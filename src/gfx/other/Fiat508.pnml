@@ -1,0 +1,60 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Fiat 508 'Barilla':
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+// Fiat 508 'Barilla':
+spriteset(spriteset_Fiat508_purchase, "src/gfx/other/Fiat508.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_Fiat508_graphic1, "src/gfx/other/Fiat508.png") { template_sprite6(8) }
+spriteset(spriteset_Fiat508_graphic2, "src/gfx/other/Fiat508.png") { template_sprite6(30) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_Fiat508_graphic) {
+    1: return spriteset_Fiat508_graphic2;
+    1: return spriteset_Fiat508_graphic1;
+}
+
+
+#define Fiat508_mass 1
+#define Fiat508_speed 95
+#define Fiat508_e_displacement 1089
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, Fiat508) { 
+	property { 
+	name:			   	string(STR_FIAT508_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1931, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : 35; 
+	vehicle_life:		   	15; 
+	retire_early:			2; 
+	reliability_decay:	    	15; 
+	loading_speed:		  	2; 
+	cost_factor:		    	2;      
+	running_cost_factor:		0; 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Fiat508_speed km/h;  
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	32 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	0; 
+	weight:			 	Fiat508_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.1; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		4; 
+    } 
+    graphics { 
+	default:	    		switch_spriteset_Fiat508_graphic;  
+	purchase:	   		spriteset_Fiat508_purchase;   
+	additional_text:        	string(STR_FIAT508_DESC, string(STR_NOT_COMMMERCIAL), Fiat508_e_displacement);    
+    } 
+ } 
+}
+

@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// San H01B:
+spriteset(spriteset_SanH01B_purchase, "src/gfx/bus/SanH01B.png") { template_sprite_window_sideview6b(8) }
+
+spriteset(spriteset_SanH01B_graphic, "src/gfx/bus/SanH01B.png") { template_sprite6b(8) }
+

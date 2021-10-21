@@ -1,0 +1,70 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+//non-articulated dumper truck for bulk cargo
+
+// dumper truck definition:
+
+#define FREIGHT_DT(DT_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_maxloadmass) \
+switch (FEAT_ROADVEHS, SELF, switch_##DT_Name##_text, param_load_multiplier) {  \
+	1 : return string(STR_DT_DESC, v_maxloadmass/2, string(STR_VE_DESC), e_displacement);  \
+	2 : return string(STR_DT_DESC, v_maxloadmass, string(STR_VE_DESC), e_displacement);  \
+	3 : return string(STR_DT_DESC, v_maxloadmass*3/2, string(STR_VE_DESC), e_displacement);  \
+  return CB_FAILED;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, maxload_##DT_Name##_switch, cargo_type_in_veh) {  \
+        return min(v_maxloadmass*param_load_multiplier,v_maxloadmass*param_load_multiplier*8/cargo_unit_weight);  \
+}  \
+if (param_allow_truck) { \
+item(FEAT_ROADVEHS, DT_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_DT_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	5; \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:	min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass) * ((e_displacement / 10) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	bitmask(CC_BULK); \
+	non_refittable_cargo_classes:  	bitmask(CC_COVERED, CC_PIECE_GOODS, CC_NON_POURABLE); \
+	cargo_disallow_refit:		[WDPR, GRAI, MAIZ]; \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	0; \
+	cargo_age_period:	 	STANDARD_COMFORT; \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	v_maxloadmass; \
+	default_cargo_type:		COAL; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    1.0; \
+	air_drag_coefficient:	   	v_airdrag; \
+	visual_effect:      	  	visual_effect(visual_effect_flag, 4); \
+	sound_effect: SOUND_CAR_HORN; \
+	length:      	    		5; \
+    } \
+\
+    graphics { \
+	default:	    	spriteset_##DT_Name##_graphic_switch;  \
+	purchase:	   	spriteset_##DT_Name##_purchase;  \
+	additional_text:        switch_##DT_Name##_text; \
+	cargo_capacity:		maxload_##DT_Name##_switch; \
+	colour_mapping:         switch_livery_subtype_mapping; \
+    }  \
+ } \
+}
+
+//FREIGHT_DT(DT_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_maxloadmass)
+#include "../src/gfx/truck/kama3.pnml"
+FREIGHT_DT(Kama3, STR_KAMAZ5511_NAME, STR_KAMAZ5511_DESC, 1975, 2002, 15, 20, 20, 34, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL, 10850, 90, 146, 0.35, 9, 26)
+
+#include "../src/gfx/truck/actrosmp1.pnml"
+FREIGHT_DT(ActrosMp1, STR_ACTROSMP1_NAME, STR_ACTROSMP1_DESC, 1996, 2014, 18, 15, 12, 50, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL, 11950, 100, 290, 0.3, 15, 30)
+
+#include "../src/gfx/truck/actrosmp3.pnml"
+FREIGHT_DT(ActrosMp3, STR_ACTROSMP3_NAME, STR_ACTROSMP3_DESC, 2011, 0, 0, 16, 10, 55, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL, 11950, 110, 335, 0.3, 16, 36)

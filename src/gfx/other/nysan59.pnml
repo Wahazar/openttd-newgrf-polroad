@@ -1,0 +1,15 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Nysa N59:
+spriteset(spriteset_NysaN59_purchase, "src/gfx/other/NysaN59.png") { template_sprite_window_sideview6(33) }
+
+spriteset(pass_spriteset_NysaN59_graphic, "src/gfx/other/NysaN59.png") { template_sprite6(8) }
+
+spriteset(mail_spriteset_NysaN59_graphic, "src/gfx/other/NysaN59.png") { template_sprite6(33) }
+
+spriteset(valu_spriteset_NysaN59_graphic, "src/gfx/other/NysaN59.png") { template_sprite6(58) }
+
+spriteset(good_spriteset_NysaN59_graphic, "src/gfx/other/NysaN59.png") { template_sprite6(83) }
+

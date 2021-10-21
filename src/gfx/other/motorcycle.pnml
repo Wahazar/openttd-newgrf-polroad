@@ -1,0 +1,52 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// motorcycle':
+spriteset(spriteset_motorcycle_purchase, "src/gfx/other/motorcycle.png") { template_sprite_window_sideview7(8) }
+
+spriteset(spriteset_motorcycle_graphic, "src/gfx/other/motorcycle.png") { template_sprite7(8) }
+
+
+#define motorcycle_pass_capacity 0
+#define motorcycle_mass 1
+#define motorcycle_speed 140
+
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, motorcycle) { 
+	property { 
+	name:			   	string(STR_MOTORCYCLE); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1932, 1, 1);	    
+	model_life:     		VEHICLE_NEVER_EXPIRES;
+	vehicle_life:		   	18; 
+	retire_early:			0; 
+	reliability_decay:	    	5; 
+	loading_speed:		  	1; 
+	cost_factor:		    	2;      
+	running_cost_factor:		0; 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	motorcycle_speed km/h;   
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	28 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	motorcycle_pass_capacity; 
+	weight:			 	motorcycle_mass; 
+	tractive_effort_coefficient:    1.0; 
+	air_drag_coefficient:	   	0.01; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		2; 
+    } 
+    graphics { 
+	default:	    		spriteset_motorcycle_graphic;  
+	purchase:	   		spriteset_motorcycle_purchase;   
+	additional_text:        	string(STR_NOT_COMMMERCIAL);
+    } 
+ } 
+}
+
+

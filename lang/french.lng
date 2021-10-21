@@ -1,0 +1,420 @@
+##grflangid 0x03
+##plural 2
+##gender f m m2
+# This is the English language file
+
+# GRF name and description
+STR_GRF_NAME        :Polroad - les nouveaux véhicules routiers de Pologne {UNSIGNED_WORD}
+STR_GRF_DESCRIPTION :Polroad - une anthologie routière de Pologne, avec des véhicules pour toutes les cargaisons.{}v. {VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licence{NBSP}: GPL v2
+
+STR_PARAM_NAME_PURCHASE_COST            :Prix d'achat
+STR_PARAM_DESC_PURCHASE_COST            :Ce paramètre permet de changer le prix d'achat des véhicules de ce set.
+STR_PARAM_NAME_RUNNING_COST             :Coût d'entretien
+STR_PARAM_DESC_RUNNING_COST             :Ce paramètre permet de changer le coût d'entretien des véhicules de ce set.
+STR_PARAM_COST_H                        :1/2
+STR_PARAM_COST_N                        : Normal
+STR_PARAM_COST_D                        : Double
+STR_PARAM_NAME_MAX_LOAD                 :Charge maximale
+STR_PARAM_DESC_MAX_LOAD                 :Multiplicateur de capacité (ou de charge max. pour les petits camions).
+STR_PARAM_LOAD_1                        :Réaliste
+STR_PARAM_LOAD_2                        : Double (par défaut)
+STR_PARAM_LOAD_3                        : Triple
+STR_PARAM_NAME_MODEL_LIFE               :Période de disponibilité des véhicules
+STR_PARAM_DESC_MODEL_LIFE               :Ce paramètre permet d'allonger la période de disponibilité des véhicules de ce set. Pour éviter que tous les véhicules n'expirent, choisir l'option concernée dans les réglages du jeu.
+STR_PARAM_MODEL_LIFE_REAL               :Réaliste
+STR_PARAM_MODEL_LIFE_EXTEND             :Étendue
+STR_PARAM_MODEL_LIFE_KEEP               :Pas d'expiration
+
+STR_PARAM_NAME_ALLOW_SLOW_VEHS          :Véhicules lents
+STR_PARAM_DESC_ALLOW_SLOW_VEHS          :Activer ce paramètre pour introduire dans le jeu les attelages à cheval et les tracteurs agricoles.
+STR_PARAM_NAME_ALLOW_BUS                :Bus
+STR_PARAM_DESC_ALLOW_BUS                :Activer ce paramètre pour introduire dans le jeu les véhicules passagers avec moteurs à combustion interne.
+STR_PARAM_NAME_ALLOW_VAN                :Vans universels
+STR_PARAM_DESC_ALLOW_VAN                :Activer ce paramètre pour introduire dans le jeu les véhicules marchandises/voyageurs avec moteurs à combustion interne.
+STR_PARAM_NAME_ALLOW_TRUCK              :Camions
+STR_PARAM_DESC_ALLOW_TRUCK              :Activer ce paramètre pour introduire dans le jeu les véhicules marchandises avec moteurs à combustion interne.
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+STR_NULL                                :{}
+
+STR_COMFORT_LW                          :{RED}bas{BLACK}
+STR_COMFORT_MD                          :{ORANGE}moyen{BLACK}
+STR_COMFORT_ST                          :{DKGREEN}standard{BLACK}
+STR_COMFORT_HI                          :{GREEN}ÉLEVÉ{BLACK}
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+STR_LOADSPEED_LO                                :{RED}long{BLACK}
+STR_LOADSPEED_MD                                :{ORANGE}moyen{BLACK}
+STR_LOADSPEED_ST                                :{DKGREEN}standard{BLACK}
+STR_LOADSPEED_HI                                :{GREEN}RAPIDE{BLACK}
+
+STR_VARIABLE_COSTS              :Le {GOLD}coût d'entretien{BLACK} dépend de la vitesse et de l'âge du véhicule
+STR_VARIABLE_BUS_COSTS          :{BLACK}{STRING} {UNSIGNED_WORD}{NBSP}cm³{}Le {GOLD}coût d'entretien{BLACK} dépend de la vitesse et de l'âge du véhicule{}{GOLD}{UNSIGNED_WORD}{BLACK} places assises{}
+
+STR_CITY_BUS                    :{BUS} bus urbain{}{STRING}{}Confort{NBSP}: {GOLD}{COMMA}{BLACK}{}Temps de chargement{NBSP}: {GOLD}{COMMA}{BLACK}
+STR_CITYBUS_SUFFIX              : - autobus urbain
+
+STR_ART_CITY_BUS                        :{BUS}{BUS} autobus urbain, {RED}articulaté{BLACK}{}{STRING}{}Confort{NBSP}: {GOLD}{COMMA}{BLACK}{}Temps de chargement{NBSP}: {GOLD}{COMMA}{BLACK}
+
+STR_LOCAL_BUS                   :{BUS} autobus local/banlieue{}{STRING}{}Confort{NBSP}: {GOLD}{COMMA}{BLACK}{}Temps de chargement{NBSP}: {GOLD}{COMMA}{BLACK}
+
+
+STR_LOCALBUS_SUFFIX             : - autobus local
+
+STR_IC_BUS                      :{BUS} autobus intercités/tourisme{}{STRING}{}Confort{NBSP}: {GOLD}{COMMA}{BLACK}{}Temps de chargement{NBSP}: {GOLD}{COMMA}{BLACK}
+
+STR_ICBUS_SUFFIX                : - autocar longs trajets
+
+STR_BENZ_GAGGENAU_NAME                  :Benz Gaggenau {STRING}
+STR_BENZ_GAGGENAU_DESC                  :moteur essence 20{NBSP}ch
+STR_SOMUA_NAME                          :Somua RZCA {STRING}
+STR_SOMUA_DESC                          :moteur essence V4
+STR_EFD183_NAME                         :Chevrolet "Bielany" {STRING}
+STR_EFD183_DESC                         :moteur essence EFB183
+STR_CHAUSSON_NAME                       :Chausson APH {STRING}
+STR_CHAUSSON_DESC                       :moteur diesel Panhard 4HL
+STR_MAVAGTR5_NAME                       :Mavag Tr5 {STRING}
+STR_MAVAGTR5_DESC                       :moteur diesel OML674 V6
+STR_SANH01B_NAME                        :San 01B {STRING}
+STR_SANH01B_DESC                        :moteur diesel S42
+STR_SANH100B_NAME                       :San 100B {STRING}
+STR_SANH100B_DESC                       :moteur diesel S474
+STR_IKARUS620_NAME                      :Ikarus 620 {STRING}
+STR_IKARUS620_DESC                      :moteur diesel Csepel D-614c
+STR_JELCZ272MEX_NAME                    :Jelcz 272 MEX {STRING}
+STR_JELCZ272MEX_DESC                    :moteur diesel Škoda 706RT
+STR_BERLIETPR100_NAME                   :Jelcz-Berliet PR100 {STRING}
+STR_BERLIETPR100_DESC                   :moteur diesel Berliet V80
+STR_IKARUS260_NAME                      :Ikarus 260 {STRING}
+STR_IKARUS260_DESC                      :moteur diesel Raba-MAN D2156HM6U
+STR_JELCZ120M_NAME                      :Jelcz 120M {STRING}
+STR_JELCZ120M_DESC                      :moteur diesel Mielec SWT
+STR_JELCZ121M_NAME                      :Jelcz 121M {STRING}
+STR_JELCZ121M_DESC                      :plancher partiellement surbaissé,{}moteur diesel MAN D0826 LUH12
+STR_URBINO12_NAME                       :Solaris Urbino 12 {STRING}
+STR_URBINO12_DESC                       :plancher surbaissé, clim.{}moteur diesel Paccar PR183
+STR_URBINO15_NAME                       :Solaris Urbino 15 {STRING}
+STR_URBINO15_DESC                       :plancher surbaissé, clim.{}moteur diesel Paccar PR228
+STR_URBINO12E_NAME                      :Solaris Urbino 12E {STRING}
+STR_URBINO12E_DESC                      :plancher surbaissé, clim.{}Moteurs électriques
+STR_URBINO15E_NAME                      :Solaris Urbino 15E {STRING}
+STR_URBINO15E_DESC                      :plancher surbaissé, clim.{}Moteurs électriques
+STR_MANSD202_NAME                       :MAN SD202 "Hop On" {STRING}
+STR_MANSD202_DESC                       :touristique à deux étages,{}moteur diesel MAN D2566 UH
+
+STR_JELCZAP02_NAME                      :Jelcz AP02 {STRING}
+STR_JELCZ021_NAME                       :Jelcz 021 {STRING}
+STR_IKARUS280_NAME                      :Ikarus 280 {STRING}
+STR_JELCZ181M_NAME                      :Jelcz 181M {STRING}
+STR_JELCZ181M_DESC                      :plancher partiellement surbaissé,{}moteur diesel MAN D0826 LUH13
+STR_URBINO18_NAME                       :Solaris Urbino 18 {STRING}
+STR_URBINO18_DESC                       :plancher surbaissé, clim.{}moteur diesel DAF PR228
+STR_URBINO18H_NAME                      :Solaris Urbino 18 MetroStyle {STRING}
+STR_URBINO18H_DESC                      :plancher surbaissé, clim.{}moteur hybride Allison II
+
+STR_URSUSAW_NAME                        :Ursus AW {STRING}
+STR_URSUSAW_DESC                        :moteur essence S.P.A.
+STR_SAURER_BLD4_NAME                    :Saurer Zawrat BLD4 {STRING}
+STR_SAURER_BLD4_DESC                    :moteur diesel Saurer BLD
+STR_STARN52_NAME                        :Star N52 {STRING}
+STR_STARN52_DESC                        :moteur essence S42
+STR_SANH01A_NAME                        :San H01A {STRING}
+STR_OSINOBUS_NAME                       :Osinobus {STRING}
+STR_OSINOBUS_DESC                       :moteur diesel S530A
+STR_AUTOSAN_H9_NAME                     :Autosan H9 {STRING}
+STR_AUTOSAN_H9_DESC                     :moteur diesel 6CT107
+STR_AUTOSAN_A1010T_NAME                 :Autosan A1010T {STRING}
+STR_AUTOSAN_A1010T_DESC                 :moteur diesel Renault dCi6
+
+STR_FIAT666RN_NAME                      :Fiat 666RN {STRING}
+STR_FIAT666RN_DESC                      :moteur diesel Fiat 366/45
+STR_JELCZ043CAR_NAME                    :Jelcz 043 CAR {STRING}
+STR_JELCZPR110D_NAME                    :Jelcz PR110D {STRING}
+STR_JELCZPR110D_DESC                    :moteur diesel Mielec SW680/165
+STR_BOVAFUTURAFHD_NAME                          :Bova Futura FHD12 {STRING}
+STR_BOVAFUTURAFHD_DESC                          :moteur diesel DAF MX-11
+STR_SETRAS419UL16_NAME                  :Setra S419 UL 16 {STRING}
+STR_SETRAS419UL16_DESC                  :moteur diesel OM 470
+STR_VH_ASTROMEGA_DT927_NAME             :Van Hool Astromega DT927 {STRING}
+STR_VH_ASTROMEGA_DT927_DESC             :clim., WC, bar{}moteur diesel DAF MX 340
+
+
+STR_NO_REFIT            :{ORANGE}Ce véhicule n'a pas de remorque{NBSP}!{BLACK} Pour en ajouter une, utiliser le menu de réaménagement (choisir la cargaison {LORRY} appropriée).
+
+STR_OLD_HORSE           :{ORANGE}Ce cheval mort ne peut pas marcher, parce qu'il n'est pas vivant.{BLACK}.
+
+# strings for farm tractor trailers refit
+STR_REFIT_NONE          : pas de remorques
+STR_REFIT_SHORT         : remorques courtes
+STR_REFIT_MEDIUM        : remorques moyennes
+STR_REFIT_LONG          : remorques longues
+
+STR_MVMB_DESC           :{RED}{BUS}{BLACK} Fourgon postal/Minibus{}{GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier/objets de valeur ou {GOLD}{UNSIGNED_WORD}{BLACK} passagers.{}{RED}Pas de réaménagement automatique{BLACK}{}{STRING}, {UNSIGNED_WORD}{NBSP}cm³{}{STRING}
+
+STR_LCV_DESC            :{RED}{LORRY}{BLACK} Véhicule commercial léger{}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier).{}{RED}Pas de réaménagement automatique{BLACK}{} {STRING}, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_GPT_DESC            :{LORRY} Camion universel,{}{STRING}{}{STRING},{}{GOLD}réaménagement automatique{BLACK} (capacité selon la remorque){}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+STR_STTN_DESC           :{LORRY}{LORRY} Camion semi-remorque avec remorque normale,{}{STRING}, {UNSIGNED_WORD}{NBSP}cm³{}{STRING}{} {GOLD}Réaménagement automatique{BLACK}{}(capacité selon la remorque){}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge{}({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier, capacité limitée pour le vrac)
+
+STR_STTM_DESC           :{LORRY}{LORRY} Camion semi-remorque avec remorque moderne,{}{STRING}, {UNSIGNED_WORD}{NBSP}cm³{}{STRING}{}{GOLD}Réaménagement automatique{BLACK}{}(capacité selon la remorque){}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge
+
+# semi-trailer tractor (special) description
+
+STR_STTS_DESC           :{RED}{LORRY}{LORRY}{BLACK} Camion semi-remorque avec remorque spécialisée,{}{STRING}, {UNSIGNED_WORD}{NBSP}cm³{}{STRING}{}{RED}Pas de réaménagement automatique{BLACK}, changement/détachement (réaménagement) de remorque dans le dépôt{}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge
+
+STR_WLT_DESC            :{RED}{LORRY}{LORRY}{BLACK} Camion à remorque porte-grumes spécialisée avec grue hydraulique,{} {STRING}, {UNSIGNED_WORD}{NBSP}cm³, modifiable en {UNSIGNED_WORD}{NBSP}cm³{}{STRING}
+
+STR_TT_DESC             :{LORRY}{LORRY} Camion avec remorque couverte{}pour le courrier ({GOLD}{UNSIGNED_WORD}{BLACK} sacs) ou autres marchandises express (charge max. {GOLD}{UNSIGNED_WORD}{BLACK} t){} {STRING}, {UNSIGNED_WORD} cm³ {STRING}
+
+STR_CTT_DESC            :{LORRY}{LORRY} Camion porte-container avec remorque{}pour le courrier ({GOLD}{UNSIGNED_WORD}{BLACK} sacs) ou autres marchandises express (charge max. {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t){} {STRING}, {UNSIGNED_WORD}{NBSP}cm³ {STRING}
+
+STR_DT_DESC             :{LORRY} camion benne (charge max. {GOLD}{UNSIGNED_WORD}{BLACK} t){}{}{GOLD}Réaménagement automatique{BLACK}{}{STRING}, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_FARM_TRACTOR_DESC   :{LORRY}{LORRY}{LORRY} Tracteur agricole{}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de grain{}or {GOLD}{UNSIGNED_WORD}{BLACK} têtes de bétail{} {STRING}, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_LIVERY_RANDOM       :- livrée aléatoire
+STR_LIVERY_STANDARD     :- livrée stardard 2cc
+STR_LIVERY_POLROAD      :- livrée polroad
+STR_LIVERY_REALCOMPANY  :- livrée 'monde réel'
+
+STR_NONE_SUBTYPE        : (véhicule tracteur seul)
+STR_MAIL_SUBTYPE        : - en fourgon postal
+STR_ARMOURED_SUBTYPE    : - en fourgon blindé
+STR_REEFER_SUBTYPE      : - en caisse réfrigérée
+STR_BOX_SUBTYPE         : - en caisse basse (avec bâche)
+STR_GOODVAN_SUBTYPE     : - en van marchandises
+STR_MINIBUS_SUBTYPE     : - en minibus
+
+STR_FLAT_SUBTYPE        : - sur plateau (avec ranchers)
+STR_LVST_SUBTYPE        : - en benne à bétail
+STR_OIL_SUBTYPE         : - en citerne
+STR_MILK_SUBTYPE        : - en citerne alimentaire
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+STR_BOX_TRAILER_SUBTYPE                 : - en caisse (avec rideaux coulissants)
+STR_DUMPER_TRAILER_SUBTYPE              : - en remorque tombereau
+STR_HOPPER_TRAILER_SUBTYPE              : - en benne
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+STR_OIL_TRAILER_SUBTYPE                 : - en remorque-citerne pétrolière
+STR_CHEM_TRAILER_SUBTYPE                : - en remorque-citerne chimique
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+STR_FLAT_TRAILER_SUBTYPE                : - sur plateau (avec ranchers)
+STR_SILO_TRAILER_SUBTYPE                : - en remorque silo
+STR_CONTAINER_TRAILER_SUBTYPE           : - remorque porte-container
+STR_GOOSENECK_TRAILER_SUBTYPE           : - sur remorque à col de cygne
+
+STR_1HORSE_DROSHKY_NAME :droshky (fiacre)
+STR_1HORSE_DROSHKY_DESC :{BUS} attelage pour service passagers local (court)
+
+STR_2HORSE_OMNIBUS_NAME         :Omnibus + 2 chevaux
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} omnibus urbain {RED}(articulaté){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} places assises et {GOLD}{UNSIGNED_WORD}{BLACK} places debout{}{BLACK}Confort {GOLD}{UNSIGNED_WORD}{BLACK}, temps de chargement {GOLD}{UNSIGNED_WORD}{BLACK}
+
+STR_1HORSE_CART_NAME            :Chariot + 1 cheval
+STR_1HORSE_CART_DESC            :{LORRY} attelage universel (court),{}{GOLD}{UNSIGNED_WORD}{BLACK} passagers (confort bas){}ou jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge
+STR_1HORSE_CART_TYRES_NAME              :Chariot à pneus + 1 cheval
+
+STR_2HORSE_HEAVY_CART_NAME              :Charette lourde + 2 chevaux
+STR_2HORSE_HEAVY_CART_DESC              :{LORRY}{LORRY} attelage universel lourd (articulaté),{}{UNSIGNED_WORD} passagers{}ou jusqu'à {UNSIGNED_WORD}{NBSP}t de charge
+
+STR_FORDTT_NAME         :Ford TT fourgon/minibus
+STR_FORDTT_DESC         :{RED}{BUS}{BLACK} Camion universel, réaménageable en{}petit bus ({UNSIGNED_WORD} passagers, confort bas){}ou petit camion jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier){}{RED}Pas de réaménagement automatique{BLACK}{}moteur essence 177 CID, 2900{NBSP}cm³
+
+STR_FORDT_NAME          :Ford T
+STR_FORDT_DESC          ::{BUS} voiture de tourisme ({GOLD}4{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence 177 CID, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_CWST1_NAME          :CWS T-1 (voiture)
+STR_CWST1_DESC          :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence R4, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_NOT_COMMMERCIAL     :{RED}usage non-commercial{BLACK}
+
+STR_HORSERIDER          :Cavalier
+STR_MOTORCYCLE          :Moto
+
+STR_FIAT508_NAME        :Polski Fiat 508
+STR_FIAT508_DESC        :Petite voiture de tourisme ({STRING}),{}moteur essence Fiat 108CS, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_OPELKAPITAN_NAME            :Opel "Kapitan"
+STR_OPELKAPITAN_DESC            :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence 151 CID, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_FSOWARSZAWA_NAME            :Voiture FSO "Warszawa"
+STR_FSOWARSZAWA_DESC            :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence M-20, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_FSO125P_NAME        :Polski Fiat 125p
+STR_FSO125P_DESC        :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence 116C.076/56, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_FSO126P_NAME        :Polski Fiat 126p (voiture)
+STR_FSO126P_DESC        :Petite voiture de tourisme ({STRING}){}moteur essence 126 A1, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_FSOPOLONEZ_NAME             :FSO "Polonez"
+STR_FSOPOLONEZ_DESC             :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence 14K16 MPI, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_DAEWOOLANOS_NAME            :Daewoo Lanos
+STR_DAEWOOLANOS_DESC            :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence E-TEC I4, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_OPELASTRA_NAME              :Opel Astra J
+STR_OPELASTRA_DESC              :{BUS} voiture de tourisme ({GOLD}5{BLACK} passagers), réaménageable pour {GOLD}2{BLACK} sacs de courrier ou {GOLD}1{BLACK} caisse de marchandises{}moteur essence A16XER, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_FIATPANDA_NAME              :Fiat Panda (voiture)
+STR_FIATPANDA_DESC              :Petite voiture de tourisme ({STRING}){}moteur essence FIRE I4, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_GMC_NAME            :GMC CCKW ex-camion de l'armée U.S.
+STR_GMC_DESC            :{LORRY} Camion universel, {GOLD}{UNSIGNED_WORD}{BLACK} passagers ({UNSIGNED_WORD} places assises, confort bas){}ou jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier){}moteur diesel GMC, 4420{NBSP}cm³
+
+STR_HANOMAGSS100_NAME   :Hanomag SS100 tracteur routier lourd
+STR_HANOMAGSS100_DESC   :{RED}{LORRY}{LORRY}{BLACK}Camion semi-remorque, moteur diesel D85S, 8550{NBSP}cm³{}{RED}Pas de réaménagement automatique{BLACK}, changement/détachement (réaménagement) de remorque dans le dépôt{}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ou{}{GOLD}{UNSIGNED_WORD}{BLACK} passagers ({UNSIGNED_WORD} places assises, confort bas)
+STR_HANOMAGSS100_PASS   :en remorque passagers
+
+STR_LUBLIN51_NAME       :Lublin 51 petit camion
+
+STR_LUBLIN51_DESC       :{LORRY} Camion universel, {GOLD}{UNSIGNED_WORD}{BLACK} passagers ({UNSIGNED_WORD} places assises, confort bas){}ou jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier){}moteur essence M-51, 3480{NBSP}cm³
+
+STR_UAZ_NAME            :UAZ (utilitaire)
+STR_UAZ_DESC            :{LORRY} petit utilitaire tout-terrain universel,{}{GOLD}{UNSIGNED_WORD}{BLACK} passagers ou {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier){}moteur essence UMZ 451 MI, 2450{NBSP}cm³
+
+STR_VWT_NAME    :Volkswagen Transporter
+STR_VWT_DESC    :{LORRY} utilitaire universel,{}{GOLD}{UNSIGNED_WORD}{BLACK} passagers{}ou {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier){}moteur diesel AAB, 2370{NBSP}cm³
+
+
+STR_4HORSE_STAGE_COACH_NAME     :Diligence
+STR_4HORSE_STAGE_COACH_DESC     :{BUS}{LORRY} réaménagement possible pour passagers, courrier, objets de valeur
+STR_MVMB_SUFFIX         : van/minibus
+STR_FIAT618_DESC        :moteur essence Fiat 118
+STR_NYSAN59_DESC        :moteur essence M-20
+STR_NYSA522_DESC        :moteur essence S-21
+STR_MERCEDES_VARIO_DESC         :moteur diesel OM602
+STR_MERCEDES_SPRINTER_DESC              :moteur diesel CR OM646
+STR_MERCEDES_SPRINTER_TRAILER_DESC  :{RED}{LORRY}{LORRY}{BLACK}Véhicule commercial léger avec remorque{}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier).{}{GOLD}réaménagement automatique possible{BLACK}{}{STRING}, {UNSIGNED_WORD}{NBSP}cm³
+
+STR_MERCEDES_ATEGO_DESC  :{LORRY}Transport de véhicules{}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de charge.{}{GOLD}Réaménagement automatique{BLACK}{}moteur diesel OM 934, {UNSIGNED_WORD}{NBSP}cm³
+
+
+STR_LCV_SUFFIX          : pickup/camionette
+STR_URSUSA_DESC         :moteur essence S.P.A.
+STR_FIAT621L_DESC       :moteur essence 122B
+STR_ZUKA03_DESC         :moteur essence S-21
+STR_LUBLIN33_DESC       :moteur diesel Andoria 4C90
+STR_DZTPASAGON_DESC     :moteur diesel Andoria ADCR
+STR_IVECODAILY6_DESC    :moteur CNG
+STR_URSUSELVI_DESC      :{LORRY}Véhicule commercial léger (moteurs électriques){}jusqu'à {GOLD}{UNSIGNED_WORD}{BLACK}t de charge ({GOLD}{UNSIGNED_WORD}{BLACK} sacs de courrier).{}{GOLD}réaménagement automatique possible{BLACK}
+
+
+STR_GPT_SUFFIX          : camion universel
+STR_PZINZ703_DESC       :moteur à gazogène PZInż 725
+STR_STAR20_DESC         :moteur essence S42
+STR_STAR25_DESC         :moteur essence S472
+STR_STAR200_DESC        :moteur diesel S359
+STR_STAR2000_DESC       :moteur diesel CR MAN
+STR_STARTGL_DESC        :moteur diesel CR MAN MAN D0836LFL
+
+STR_STTN_SUFFIX         :camion semi-remorque
+STR_CHEVROLET157_DESC   :moteur diesel 206.8 cu
+STR_STAR_C21_DESC       :moteur essence S42
+STR_STAR_C28_DESC       :moteur diesel S530A1
+
+STR_STTM_SUFFIX         : camion semi-remorque moderne
+STR_RENAULT_MAGNUM_DESC :moteur diesel Mack
+STR_DAF95X_DESC :moteur diesel DAF
+STR_RENAULT_MILLENIUM_DESC      :moteur diesel Volvo DXi 12 CR
+STR_DAFXF105_DESC       :moteur diesel Paccar CR
+
+STR_STTS_SUFFIX         : camion semi-remorque spécial
+
+STR_ZUBR_C90_DESC       :moteur diesel S-56
+STR_JELCZ_317_DESC      :moteur diesel SW-680
+STR_VOLVO_F12_DESC      :moteur turbo-diesel Volvo
+STR_VOLVO_FH12_DESC     :moteur diesel Volvo D12A
+STR_VOLVO_FH13_DESC     :moteur diesel Volvo D13K
+
+STR_KAMAZ5511_DESC      :moteur diesel K740
+STR_ACTROSMP1_DESC      :moteur diesel 1840
+STR_ACTROSMP3_DESC      :moteur diesel 1846
+
+STR_FIAT618_NAME                :Polski Fiat 618 {STRING}
+STR_NYSAN59_NAME                :Nysa N59 {STRING}
+STR_NYSA522_NAME                :Nysa 522 {STRING}
+STR_MERCEDES_VARIO_NAME         :Mercedes T2/Vario {STRING}
+STR_MERCEDES_SPRINTER_NAME      :Mercedes Sprinter {STRING}
+STR_MERCEDES_SPRINTER_TRAILER_NAME      :Mercedes Sprinter - fourgon avec remorque
+STR_MERCEDES_ATEGO_NAME         :Mercedes Atego - dépanneuse
+
+STR_URSUSA_NAME         :Ursus-A {STRING}
+STR_FIAT621L_NAME       :Polski Fiat 621L {STRING}
+STR_ZUKA03_NAME         :Zuk A03 {STRING}
+STR_LUBLIN33_NAME       :Lublin/Intrall {STRING}
+STR_DZTPASAGON_NAME     :DZT Pasagon {STRING}
+STR_IVECODAILY6_NAME    :Iveco Daily VI {STRING}
+STR_URSUSELVI_NAME      :Ursus ELVI {STRING}
+
+STR_PZINZ703_NAME       :PZInz-703 {STRING}
+STR_STAR20_NAME         :Star 20 {STRING}
+STR_STAR25_NAME         :Star 25 {STRING}
+STR_STAR200_NAME        :Star 200 {STRING}
+STR_STAR2000_NAME       :Star 2000 {STRING}
+STR_STARTGL_NAME        :Star TGL {STRING}
+
+STR_CHEVROLET157_NAME           :Chevrolet 157 {STRING}
+STR_STAR_C21_NAME               :Star C-21 {STRING}
+STR_STAR_C28_NAME               :Star C-28 {STRING}
+STR_RENAULT_MAGNUM_NAME         :Renault Magnum {STRING}
+STR_DAF95X_NAME                 :DAF 95X {STRING}
+STR_RENAULT_MILLENIUM_NAME      :Renault Magnum Millenium {STRING}
+STR_DAFXF105_NAME               :DAF XF 105 {STRING}
+
+STR_ZUBR_C90_NAME       :Zubr C90 {STRING}
+STR_JELCZ_317_NAME      :Jelcz 317 {STRING}
+STR_VOLVO_F12_NAME      :Volvo F12 {STRING}
+STR_VOLVO_FH12_NAME     :Volvo FH12 {STRING}
+STR_VOLVO_FH13_NAME     :Volvo FH13 {STRING}
+
+STR_DT_SUFFIX           :camion à benne basculante
+STR_KAMAZ5511_NAME      :Kamaz 5511 {STRING}
+STR_ACTROSMP1_NAME      :Mercedes Actros Mp1 {STRING}
+STR_ACTROSMP3_NAME      :Mercedes Actros Mp3 {STRING}
+
+STR_NORMAL_POWER        : (Puissance standard)
+STR_MORE_POWER          : (Puissance augmentée)
+STR_4HORSE_HEAVY_LOGGER_NAME    :Charette lourde à bois + 2/4 chevaux
+STR_4HORSE_HEAVY_LOGGER_DESC    :{RED}{LORRY}{LORRY}{BLACK} remorque à bois, réaménagement{NBSP}: 2 ou 4 percherons
+STR_PRAGAV3S_NAME       :Praga V3S camion porte-grumes
+STR_PRAGAV3S_DESC       :moteur diesel Tatra 912, modifiable en E359T
+STR_STAR266_NAME        :Star 266 camion porte-grumes
+STR_STAR266_DESC        :{RED}{LORRY}{LORRY}{BLACK} Camion spécialisé pour les grumes, avec grue hydraulique,{}moteur diesel S359, {UNSIGNED_WORD}{NBSP}cm³, modifiable en E359T
+STR_SCANIA_S4_NAME      :Scania 114 C camion porte-grumes
+STR_SCANIA_S4_DESC      :moteur diesel CR V8 DSC14 13 530
+STR_SCANIA_R730_NAME    :Scania R730 camion porte-grumes
+STR_SCANIA_R730_DESC    :moteur diesel CR V8 DC16 103 730
+
+STR_JELCZ315_NAME       :Jelcz 315 - camion avec remorque couverte
+
+STR_JELCZ416_NAME       :Jelcz 416 - camion avec remorque couverte
+
+STR_MANTGA_NAME :MAN TGA camion porte-container avec remorque
+STR_MANTGA_DESC :moteur diesel D2866
+
+STR_HCPLOCOMOBILE1_NAME :HCP premier tracteur à vapeur
+STR_HCPLOCOMOBILE1_DESC :{LORRY}{LORRY}{LORRY} Première locomobile à vapeur,{}attelage de max. 3 remorques{}(max. {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de grain ou {GOLD}{UNSIGNED_WORD}{BLACK} têtes de bétail)
+STR_HCPLOCOMOBILE_NAME  :HCP tracteur à vapeur amélioré
+STR_HCPLOCOMOBILE_DESC  :{LORRY}{LORRY}{LORRY} Locomobile compound à vapeur surchauffée,{}attelage de max. 6 remorques{}(max. {GOLD}{UNSIGNED_WORD}{BLACK}{NBSP}t de grain ou {GOLD}{UNSIGNED_WORD}{BLACK} têtes de bétail)
+STR_URSUSC45_DESC       :Max. 3 remorques. Moteur diesel Lanz-Bulldog
+STR_URSUSC328_DESC      :Max. 2 remorques "Autosan". Moteur diesel S-312
+STR_URSUSC330_DESC      :Max. 3 remorques "Autosan". Moteur diesel S-4001
+STR_URSUSC360_DESC      :Max. 3 remorques "Autosan". Moteur diesel S-4003
+STR_URSUSC1734_DESC     :Max. 2 remorques "Pronar". Moteur diesel UR-IV Martin
+
+STR_URSUSC45_NAME       :Ursus C45
+STR_URSUSC328_NAME      :Ursus C328
+STR_URSUSC330_NAME      :Ursus C330
+STR_URSUSC360_NAME      :Ursus C360
+STR_URSUSC1734_NAME     :Ursus C1734

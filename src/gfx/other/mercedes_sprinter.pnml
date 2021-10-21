@@ -1,0 +1,25 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Mercedes Sprinter:
+spriteset(spriteset_Mercedes_Sprinter_purchase, "src/gfx/other/Mercedes_Sprinter.png") { template_sprite_window_sideview6(8) }
+
+spriteset(pass_norm_spriteset_Mercedes_Sprinter_graphic, "src/gfx/other/Mercedes_Sprinter.png") { template_sprite6(8) }
+
+spriteset(pass_white_spriteset_Mercedes_Sprinter_graphic, "src/gfx/other/Mercedes_Sprinter.png") { template_sprite6(108) }
+
+
+spriteset(mail_spriteset_Mercedes_Sprinter_graphic, "src/gfx/other/Mercedes_Sprinter.png") { template_sprite6(33) }
+
+spriteset(valu_spriteset_Mercedes_Sprinter_graphic, "src/gfx/other/Mercedes_Sprinter.png") { template_sprite6(58) }
+
+spriteset(good_spriteset_Mercedes_Sprinter_graphic, "src/gfx/other/Mercedes_Sprinter.png") { template_sprite6(83) }
+
+switch (FEAT_ROADVEHS, SELF, pass_spriteset_Mercedes_Sprinter_graphic, cargo_subtype)
+{
+  0: return pass_norm_spriteset_Mercedes_Sprinter_graphic; 
+  1: return pass_white_spriteset_Mercedes_Sprinter_graphic;
+  2: return pass_norm_spriteset_Mercedes_Sprinter_graphic;
+     return CB_FAILED;
+}  

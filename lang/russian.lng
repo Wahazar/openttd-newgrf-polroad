@@ -1,0 +1,110 @@
+##grflangid 0x07
+##plural 6
+##gender p n m f
+##case acc nom pre f abl m n dat p gen
+# This is the English language file
+
+# GRF name and description
+
+
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# strings for farm tractor trailers refit
+
+
+
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+
+
+# semi-trailer tractor (special) description
+
+
+
+
+
+
+
+
+
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

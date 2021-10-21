@@ -1,0 +1,21 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Van Hool Astromega DT927:
+spriteset(spriteset_VHAstromegaDT927_purchase, "src/gfx/bus/VHAstromegaDT927.png") { template_sprite_window_sideview8bd(8) }
+
+spriteset(spriteset_VHAstromegaDT927_metal_graphic, "src/gfx/bus/VHAstromegaDT927.png") { template_sprite8bd(8) }
+spriteset(spriteset_VHAstromegaDT927_2cc_graphic, "src/gfx/bus/VHAstromegaDT927_2cc.png") { template_sprite8bd(8) }
+//Polski Bus
+spriteset(spriteset_VHAstromegaDT927_PB_graphic, "src/gfx/bus/VHAstromegaDT927_PB.png") { template_sprite8bd(8) }
+
+
+//metal graphic for polroad livery, plain for standard 2cc, Polski Bus graphic for real livery
+switch (FEAT_ROADVEHS, SELF, spriteset_VHAstromegaDT927_graphic, cargo_subtype)
+{
+  0: return spriteset_VHAstromegaDT927_metal_graphic;
+  1: return spriteset_VHAstromegaDT927_2cc_graphic;
+  2: return spriteset_VHAstromegaDT927_PB_graphic;
+     return spriteset_VHAstromegaDT927_2cc_graphic;
+}  

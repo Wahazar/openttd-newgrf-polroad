@@ -1,0 +1,173 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+
+// HCP locomobile (steam tractor):
+
+#define lokomobila_mass 11
+
+spriteset(spriteset_lokomobila_purchase, "src/gfx/other/lokomobila.png") { template_sprite_window_sideviewFT(70) }
+
+spriteset(spriteset_lokomobila_graphic0, "src/gfx/other/lokomobila.png") { template_spriteFT(8) }
+alternative_sprites(spriteset_lokomobila_graphic0,
+    ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/gfx/other/lokomobila_x2.png")   { template_spriteFTx2(16) }
+
+spriteset(spriteset_lokomobila_graphic1, "src/gfx/other/lokomobila.png") { template_spriteFT(38) }
+alternative_sprites(spriteset_lokomobila_graphic1,
+    ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/gfx/other/lokomobila_x2.png")   { template_spriteFTx2(72) }
+
+switch (FEAT_ROADVEHS, SELF, switch_lokomobila_text, param_load_multiplier) {    
+	1 : return string(STR_HCPLOCOMOBILE_DESC, trailer11_maxloadmass * 3, trailer11_lvst * 6);   
+	2 : return string(STR_HCPLOCOMOBILE_DESC, trailer11_maxloadmass * 6, trailer11_lvst * 12);    
+	3 : return string(STR_HCPLOCOMOBILE_DESC, trailer11_maxloadmass * 9, trailer11_lvst * 18);    
+  return CB_FAILED;   
+}   
+ 
+
+
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_cap0, position_in_consist) {
+	0..6: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_cap1, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailer11_switch;
+	2: return maxload_trailer11_switch;
+	3..6: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_cap2, position_in_consist) {
+	0: return 0;
+	1..4: return maxload_trailer11_switch;
+	5..6: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_cap3, position_in_consist) {
+	0: return 0;
+	1..6: return maxload_trailer11_switch;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_capacity, cargo_subtype) {
+	0: switch_lokomobila_cap0;
+	1: switch_lokomobila_cap1;
+	2: switch_lokomobila_cap2;
+	3: switch_lokomobila_cap3;
+	return CB_FAILED;
+}
+
+
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_running_cost, cargo_subtype) { 
+return min(STAFF_RUNNING_COST + (lokomobila_mass + 2 * cargo_subtype * trailer11_mass + 2 * cargo_subtype * trailer11_maxloadmass)*45/100, 255); 
+} 
+
+switch(FEAT_ROADVEHS, SELF, animated_lokomobila_graphic_switch, motion_counter % 4) { 
+0..1 : return spriteset_lokomobila_graphic0;
+return spriteset_lokomobila_graphic1;
+}
+
+switch (FEAT_ROADVEHS, SELF, consist_lokomobila_articulated_graphic_switch, position_in_consist) { 
+    0 : return animated_lokomobila_graphic_switch; 
+    1 : return spriteset_check_trailer11_switch1; 
+    2 : return spriteset_check_trailer11_switch1; 
+    3 : return spriteset_check_trailer11_switch2; 
+    4 : return spriteset_check_trailer11_switch2; 
+    5 : return spriteset_check_trailer11_switch3; 
+    6 : return spriteset_check_trailer11_switch3; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_check_length1, cargo_subtype) {
+	0: return 1;
+	1..3: return 5;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_check_length2, cargo_subtype) {
+	0..1: return 1;
+	2..3: return 5;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_check_length3, cargo_subtype) {
+	0..2: return 1;
+	3: return 5;
+	return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_lokomobila_length, position_in_consist) { 
+    0 : return 4; 
+    1..2 : return switch_lokomobila_check_length1; 
+    3..4 : return switch_lokomobila_check_length2; 
+    5..6 : return switch_lokomobila_check_length3; 
+return CB_FAILED;
+} 
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila_weight, cargo_subtype) {
+	0: return lokomobila_mass * 4;
+	1: return (lokomobila_mass + 2 * trailer11_mass) *4;
+	2: return (lokomobila_mass + 4 * trailer11_mass) *4;
+	3: return (lokomobila_mass + 6 * trailer11_mass) *4;
+	return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, lokomobila_articulated_switch, extra_callback_info1) {
+    1..6: return lokomobila;
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, lokomobila) { 
+	property { 
+	name:			   	string(STR_HCPLOCOMOBILE_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1909, 1, 1);	    
+	model_life:      (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 30+12 : 30); 
+	vehicle_life:		   	12; 
+	retire_early:			0; 
+	reliability_decay:	    	20; 
+	loading_speed:		  	5; 
+	cost_factor:		    	29;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + (lokomobila_mass + 6 * trailer11_mass + 6 * trailer11_maxloadmass)*45/100, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	10 km/h; 
+	refittable_cargo_classes:      	bitmask(CC_BULK, CC_PASSENGERS, CC_OVERSIZED); 
+	cargo_disallow_refit:		[TOUR]; 
+	cargo_allow_refit:		[LVST, WOOD];
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	trailer11_refitcost; 
+	cargo_age_period:	 	300; 
+	power:			  	34 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	trailer11_maxloadmass; 
+	default_cargo_type:		GRAI; 
+	weight:			 	lokomobila_mass + 6 * trailer11_mass; 
+	tractive_effort_coefficient:    0.9; 
+	air_drag_coefficient:	   	1.0; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_STEAM, -3); 
+	sound_effect: SOUND_STEAM; 
+//	road_type:			OFFR;
+	length:      	    		4; 
+    } 
+
+    graphics { 
+	default:	    	consist_lokomobila_articulated_graphic_switch;  
+	articulated_part:	lokomobila_articulated_switch;
+	purchase:	   	spriteset_lokomobila_purchase;   
+	running_cost_factor:	switch_lokomobila_running_cost;
+	purchase_running_cost_factor: min(STAFF_RUNNING_COST + (lokomobila_mass + 6 * trailer11_mass + 6 * trailer11_maxloadmass)*45/100, 255); 
+	cargo_subtype_text: 	switch_trailers3_subtype_text;
+	refit_cost:		switch_trailer11_refit_cost;
+	cargo_capacity:		switch_lokomobila_capacity; 
+	length:			switch_lokomobila_length;
+	weight:			switch_lokomobila_weight;
+	additional_text:        switch_lokomobila_text; 
+	colour_mapping:         switch_bulk_recolour;     
+	visual_effect:		switch_locomobile_visual_effect;
+	cargo_age_period:	low_passenger_comfort;
+    }  
+ }
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, lokomobila) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}
+

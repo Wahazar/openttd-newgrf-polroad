@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Benz Gaggenau:
+spriteset(spriteset_Benz_Gaggenau_purchase, "src/gfx/bus/BenzGaggenau.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_Benz_Gaggenau_graphic, "src/gfx/bus/BenzGaggenau.png") { template_sprite6(8) }
+

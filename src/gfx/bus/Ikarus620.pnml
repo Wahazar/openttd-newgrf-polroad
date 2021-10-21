@@ -1,0 +1,20 @@
+// part of Polish Road Set 2
+// Graphic by Collossus
+// NML code by McZapkie
+
+// Ikarus 620:
+spriteset(spriteset_Ikarus620_purchase, "src/gfx/bus/Ikarus620.png") { 
+[168, 8, 25, 11, -14,-7]
+} 
+
+spriteset(spriteset_Ikarus620_graphic, "src/gfx/bus/Ikarus620.png") { 
+[8, 8, 7, 16, -3,-9]
+[24, 8, 21, 17, -15,-6]
+[56, 8, 25, 11, -14, -7]
+[88, 8, 22, 17, -6,-7]
+[120, 8, 7, 16, -3,-9]
+[136, 8, 22, 17, -15,-6]
+[168, 8, 25, 11, -14,-7]
+[200, 8, 21, 17, -7,-7]
+ }
+

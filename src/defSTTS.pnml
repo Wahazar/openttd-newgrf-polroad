@@ -1,0 +1,470 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+
+// Semi-Trailer Tractor switches:
+
+//length switches
+switch(FEAT_ROADVEHS, SELF, check_STTS_trailer_length_switch, cargo_classes) {  
+	bitmask(CC_PASSENGERS): return 1; 
+	return 8;  
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_STTS_length, position_in_consist) {
+    0 : return 4;
+    1 : return check_STTS_trailer_length_switch;
+}
+
+//cargo text switches
+
+switch(FEAT_ROADVEHS, SELF,check_goods_subtype_SPECIAL_TRUCK_text_switch, cargo_type_in_veh) {  
+	STEL : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+	METL : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+	IRON : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+	ENSP : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+	VEHI : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+	FMSP : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+	GLAS : return string(STR_FLAT_TRAILER_SUBTYPE);
+   	WDPR : return string(STR_FLAT_TRAILER_SUBTYPE);
+   	GOOD : return string(STR_CONTAINER_TRAILER_SUBTYPE);
+	RCYC : return string(STR_CONTAINER_TRAILER_SUBTYPE);
+	LVST : return string(STR_LVST_SUBTYPE);
+	BDMT: return  string(STR_FLAT_TRAILER_SUBTYPE);
+	return string(STR_BOX_TRAILER_SUBTYPE);   
+} 
+switch(FEAT_ROADVEHS, SELF, liquid_subtype_SPECIAL_TRUCK_text_switch, cargo_type_in_veh) {  
+	WATR: return  string(STR_MILK_SUBTYPE);
+	OIL_: return  string(STR_OIL_TRAILER_SUBTYPE);
+	PETR: return  string(STR_OIL_TRAILER_SUBTYPE);  
+	BEER: return  string(STR_REEFER_SUBTYPE);
+	MILK: return  string(STR_MILK_SUBTYPE);
+	EOIL: return  string(STR_MILK_SUBTYPE);
+	return string(STR_CHEM_TRAILER_SUBTYPE);   
+} 
+switch(FEAT_ROADVEHS, SELF, bulk_subtype_SPECIAL_TRUCK_text_switch, cargo_type_in_veh) {  
+	WDPR: return  string(STR_FLAT_TRAILER_SUBTYPE);
+	FICR : return  string(STR_FLAT_TRAILER_SUBTYPE);
+	CMNT: return  string(STR_SILO_TRAILER_SUBTYPE);
+	QLME: return  string(STR_SILO_TRAILER_SUBTYPE);
+	SASH: return  string(STR_SILO_TRAILER_SUBTYPE);
+	CLAY: return  string(STR_SILO_TRAILER_SUBTYPE);
+	GRAI: return  string(STR_HOPPER_TRAILER_SUBTYPE);  
+	WHEA: return  string(STR_HOPPER_TRAILER_SUBTYPE); 
+	CERE: return  string(STR_HOPPER_TRAILER_SUBTYPE);
+	OLSD: return  string(STR_HOPPER_TRAILER_SUBTYPE);
+	BDMT: return  string(STR_FLAT_TRAILER_SUBTYPE);
+	RCYC : return string(STR_CONTAINER_TRAILER_SUBTYPE);
+	SCMT : return string(STR_CONTAINER_TRAILER_SUBTYPE);
+	return string(STR_DUMPER_TRAILER_SUBTYPE);   
+}
+switch(FEAT_ROADVEHS, SELF, check_liquid_subtype_SPECIAL_TRUCK_text_switch, (hasbit(cargo_classes, CC_LIQUID) /*&& !hasbit(cargo_classes, CC_PIECE_GOODS)*/ ) ) {  
+	1: return  liquid_subtype_SPECIAL_TRUCK_text_switch;  
+	return check_goods_subtype_SPECIAL_TRUCK_text_switch;  
+} 
+switch(FEAT_ROADVEHS, SELF, check_bulk_subtype_SPECIAL_TRUCK_text_switch, (hasbit(cargo_classes, CC_BULK))) {  
+	1: return  bulk_subtype_SPECIAL_TRUCK_text_switch;  
+	return check_liquid_subtype_SPECIAL_TRUCK_text_switch;  
+} 
+switch(FEAT_ROADVEHS, SELF, check_reefer_subtype_SPECIAL_TRUCK_text_switch, ((hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER)) && !hasbit(cargo_classes, CC_LIQUID)) ) {  
+	1: return  string(STR_REEFER_SUBTYPE);  
+	return check_bulk_subtype_SPECIAL_TRUCK_text_switch;  
+} 
+
+switch(FEAT_ROADVEHS, SELF, subtype_classes_SPECIAL_TRUCK_text_switch, cargo_classes) {  
+	bitmask(CC_MAIL): 	return string(STR_MAIL_SUBTYPE);    
+//	bitmask(CC_BULK): 	return bulk_subtype_SPECIAL_TRUCK_text_switch; 
+	bitmask(CC_REFRIGERATED): 	return string(STR_REEFER_SUBTYPE);
+	bitmask(CC_LIQUID): 	return liquid_subtype_SPECIAL_TRUCK_text_switch;
+	return check_reefer_subtype_SPECIAL_TRUCK_text_switch;  
+}  
+   
+switch(FEAT_ROADVEHS, SELF, pass_SPECIAL_TRUCK_text_switch, cargo_type_in_veh) {  
+	PASS: 	return string(STR_NONE_SUBTYPE);  
+	return subtype_classes_SPECIAL_TRUCK_text_switch;
+} 
+//refit switches
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_box, 
+(
+ hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_EXPRESS) || 
+ hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_PIECE_GOODS) 
+) && !(
+ hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_BULK) || 
+ hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_LIQUID) || 
+ hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED) ||
+ hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_OVERSIZED) ||
+ ((extra_callback_info1 & 0xFF) == LVST) || ((extra_callback_info1 & 0xFF) == ENSP) || ((extra_callback_info1 & 0xFF) == FMSP)  || ((extra_callback_info1 & 0xFF) == STEL) || ((extra_callback_info1 & 0xFF) == IRON)  || ((extra_callback_info1 & 0xFF) == METL) || ((extra_callback_info1 & 0xFF) == GOOD)  || ((extra_callback_info1 & 0xFF) == WDPR) 
+      ) 
+) {
+   1 : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_cont, (extra_callback_info1 & 0xFF) ) {
+   GOOD : return 0;
+   RCYC : return 0;
+   SCMT : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_good, cargo_type_in_veh ) {
+   GOOD : switch_STTS_refit_from_cont;
+   RCYC : switch_STTS_refit_from_cont;
+   SCMT : switch_STTS_refit_from_cont;
+   return switch_STTS_refit_from_box;
+}
+switch (FEAT_ROADVEHS, SELF, check_not_grain_STTS_switch, extra_callback_info1 & 0xFF ) {
+   GRAI : return CB_FAILED;
+   WHEA : return CB_FAILED;
+   CERE : return CB_FAILED;
+   OLSD : return CB_FAILED;
+   return 0;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_dumper, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_BULK) && !(hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_PIECE_GOODS) || hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED) || hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_NON_POURABLE) ) ){
+   1 : return check_not_grain_STTS_switch;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_bulk, hasbit(cargo_classes, CC_BULK) ) {
+   1 : switch_STTS_refit_from_dumper;
+   0 : switch_STTS_check_good;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_cmntsilo, extra_callback_info1 & 0xFF ) {
+   CMNT : return 0;
+   QLME : return 0;
+   SASH : return 0;
+   CLAY : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, check_STTS_refit_from_cmntsilo, hasbit(cargo_classes, CC_BULK) ) {
+   0 : return switch_STTS_refit_from_box;
+   1 : return switch_STTS_refit_from_cmntsilo;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_flat, extra_callback_info1 & 0xFF ) {
+   WDPR : return 0;
+   GLAS : return 0;
+   SGCN : return 0;
+   FICR : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_grainsilo, extra_callback_info1 & 0xFF ) {
+   GRAI : return 0;
+   WHEA : return 0;
+   CERE : return 0;
+   OLSD : return 0;
+   return CB_FAILED;
+}
+//normal flat with stakes
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_special_goods, cargo_type_in_veh ) {
+   BDMT : return switch_STTS_refit_from_flat;
+   CMNT : return switch_STTS_refit_from_cmntsilo;
+   QLME : return switch_STTS_refit_from_cmntsilo;
+   SASH : return switch_STTS_refit_from_cmntsilo;
+   CLAY : return switch_STTS_refit_from_cmntsilo;
+   WDPR : return switch_STTS_refit_from_flat;
+   GLAS : return switch_STTS_refit_from_flat;
+   SGCN : return switch_STTS_refit_from_flat;
+   FICR : return switch_STTS_refit_from_flat;
+   GRAI : return switch_STTS_refit_from_grainsilo;
+   WHEA : return switch_STTS_refit_from_grainsilo;
+   CERE : return switch_STTS_refit_from_grainsilo;
+   OLSD : return switch_STTS_refit_from_grainsilo;
+   SCMT : return switch_STTS_refit_from_cont;
+   RCYC : return switch_STTS_refit_from_cont;
+   switch_STTS_check_bulk;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_specialflat, extra_callback_info1 & 0xFF ) {
+   ENSP : return 0;
+   VEHI : return 0;
+   FMSP : return 0;
+   STEL : return 0;
+   IRON : return 0;
+   METL : return 0;
+   return CB_FAILED;
+}
+//special flat semitrailer for oversized cargo, engines etc.
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_goods_for_specialflat, hasbit(cargo_classes, CC_OVERSIZED) || (cargo_type_in_veh == ENSP) || (cargo_type_in_veh == FMSP) || (cargo_type_in_veh == STEL) || (cargo_type_in_veh == METL) || (cargo_type_in_veh == IRON) ) {
+   1 : return switch_STTS_refit_from_specialflat;
+   0 : return switch_STTS_check_special_goods;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_lvst, extra_callback_info1 & 0xFF) {
+   LVST : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_lvst, cargo_type_in_veh) {
+   LVST : return switch_STTS_refit_from_lvst;
+   return switch_STTS_check_goods_for_specialflat;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_other_tanker, extra_callback_info1 & 0xFF) {
+	BEER : return CB_FAILED;
+	OIL_ : return CB_FAILED;
+	PETR : return CB_FAILED;
+	MILK : return CB_FAILED;
+	WATR : return CB_FAILED;
+	EOIL : return CB_FAILED;
+   return 0;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_milk_tanker, extra_callback_info1) {
+   MILK : return 0;
+   WATR : return 0;
+   EOIL : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_oil_tanker, extra_callback_info1) {
+   OIL_ : return 0;
+   PETR : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_tankers, (cargo_type_in_veh) ) {
+   OIL_ : return switch_STTS_refit_from_oil_tanker;
+   PETR : return switch_STTS_refit_from_oil_tanker;
+   MILK : return switch_STTS_refit_from_milk_tanker;
+   WATR : return switch_STTS_refit_from_milk_tanker;
+   EOIL : return switch_STTS_refit_from_milk_tanker;
+   return switch_STTS_refit_from_other_tanker; 
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_liquid, hasbit(cargo_classes, CC_LIQUID) ) {
+   1 : switch_STTS_check_tankers;
+   0 : switch_STTS_check_lvst;
+}
+//icebox for refrigerated or beer but not milk
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_food, (hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED) && !hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_LIQUID)) || (((extra_callback_info1 & 0xFF) == BEER))){
+   1 : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_food, (hasbit(cargo_classes, CC_REFRIGERATED) & !hasbit(cargo_classes, CC_LIQUID)) || ((cargo_type_in_veh == BEER)) ) {
+   1 : switch_STTS_refit_from_food;
+   0 : switch_STTS_check_liquid;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_mailvan, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_MAIL) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTS_check_mail, hasbit(cargo_classes, CC_MAIL) ) {
+   1 : switch_STTS_refit_from_mailvan;
+   0 : switch_STTS_check_food;
+}
+
+//back to single tractor unit
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_semitrailer, (extra_callback_info1 & 0xFF) ) {
+   PASS : return STTS_REFIT_TRACTORUNIT_REFUND;
+   return switch_STTS_check_mail;
+}//buy trailer
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_from_tractorunit, (extra_callback_info1 & 0xFF) ) {
+   PASS : return 0;
+   return STTS_REFIT_SEMITRAILER_COST;
+}
+//initial single tractor unit
+switch (FEAT_ROADVEHS, SELF, switch_STTS_refit_cost, hasbit(cargo_classes, CC_PASSENGERS) ) {
+   1 : return switch_STTS_refit_from_tractorunit; 
+   0 : return switch_STTS_refit_from_semitrailer;
+}
+
+/* obsolete
+switch(FEAT_ROADVEHS, SELF, bdmt_check_spriteset_##Trailer_Type##_graphic_switch, hasbit(cargo_classes, CC_BULK)) {  \
+1 : return cmntsilo_spriteset_##Trailer_Type##_graphic; \
+return brck_spritegroup_##Trailer_Type##_graphic;  \
+} \
+*/ 
+
+//semi-trailers graphics switches
+#define SPECIAL_SEMI_TRAILERS_GRAPHIC_SWITCHES(Trailer_Type) \
+switch(FEAT_ROADVEHS, SELF, good_check_spriteset_##Trailer_Type##_graphic_switch, cargo_type_in_veh) {  \
+	STEL : return stel_spritegroup_##Trailer_Type##_graphic;  \
+	METL : return stel_spritegroup_##Trailer_Type##_graphic;  \
+	IRON : return stel_spritegroup_##Trailer_Type##_graphic;  \
+	ENSP : return vehi_spritegroup_##Trailer_Type##_graphic;  \
+	VEHI : return vehi_spritegroup_##Trailer_Type##_graphic;  \
+	FMSP : return fmsp_spritegroup_##Trailer_Type##_graphic;  \
+   	BDMT : return brck_spritegroup_##Trailer_Type##_graphic; \
+  	PAPR : return papr_spritegroup_##Trailer_Type##_graphic; \
+	BRCK : return brck_spritegroup_##Trailer_Type##_graphic;  \
+	GLAS : return glas_spritegroup_##Trailer_Type##_graphic;  \
+   	WDPR : return wdpr_spritegroup_##Trailer_Type##_graphic; \
+	SGCN : return sgcn_spritegroup_##Trailer_Type##_graphic;  \
+	FICR : return sgcn_spritegroup_##Trailer_Type##_graphic;  \
+   	GOOD : return goodcont_spritegroup_##Trailer_Type##_graphic; \
+	RCYC : return rcyc_spritegroup_##Trailer_Type##_graphic;  \
+	LVST : return lvst_spriteset_##Trailer_Type##_graphic;  \
+	return mnsp_spritegroup_##Trailer_Type##_graphic;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, bulk_check_cover_spriteset_##Trailer_Type##_graphic_switch, hasbit(cargo_classes,CC_COVERED) || (cargo_type_in_veh == GRAI) || (cargo_type_in_veh == WHEA)) {  \
+	1: 	return bulk_covered_spritegroup_##Trailer_Type##_graphic;  \
+	return bulk_uncovered_spritegroup_##Trailer_Type##_graphic;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, bulksilo_check_spriteset_##Trailer_Type##_graphic_switch, cargo_type_in_veh) {  \
+	CMNT : return cmntsilo_spriteset_##Trailer_Type##_graphic;  \
+	QLME : return cmntsilo_spriteset_##Trailer_Type##_graphic;  \
+	SASH : return cmntsilo_spriteset_##Trailer_Type##_graphic;  \
+	CLAY : return cmntsilo_spriteset_##Trailer_Type##_graphic;  \
+	GRAI : return grainsilo_spriteset_##Trailer_Type##_graphic;  \
+	WHEA : return grainsilo_spriteset_##Trailer_Type##_graphic;  \
+	CERE : return grainsilo_spriteset_##Trailer_Type##_graphic;  \
+	OLSD : return grainsilo_spriteset_##Trailer_Type##_graphic;  \
+	SCMT : return rcyc_spritegroup_##Trailer_Type##_graphic;  \
+	return bulk_check_cover_spriteset_##Trailer_Type##_graphic_switch;  \
+}  \
+\
+switch(FEAT_ROADVEHS, SELF, beer_check_spriteset_##Trailer_Type##_graphic_switch, cargo_type_in_veh) {  \
+	BEER: 	return food_spriteset_##Trailer_Type##_graphic;  \
+	MILK: 	return milk_spriteset_##Trailer_Type##_graphic;  \
+	WATR: 	return milk_spriteset_##Trailer_Type##_graphic;  \
+	OIL_: 	return oil__spriteset_##Trailer_Type##_graphic;  \
+	PETR: 	return oil__spriteset_##Trailer_Type##_graphic;  \
+	EOIL: 	return milk_spriteset_##Trailer_Type##_graphic;  \
+	return rfpr_spriteset_##Trailer_Type##_graphic;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, liquid_check_spriteset_##Trailer_Type##_graphic_switch, hasbit(cargo_classes, CC_LIQUID)) {  \
+	1: 	return beer_check_spriteset_##Trailer_Type##_graphic_switch;  \
+	return good_check_spriteset_##Trailer_Type##_graphic_switch;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, food_check_spriteset_##Trailer_Type##_graphic_switch, (!hasbit(cargo_classes, CC_LIQUID) && hasbit(cargo_classes,CC_REFRIGERATED))) {  \
+	1: 	return food_spriteset_##Trailer_Type##_graphic;  \
+	return liquid_check_spriteset_##Trailer_Type##_graphic_switch;  \
+}  \
+\
+switch(FEAT_ROADVEHS, SELF, bulkgoods_check_spriteset_##Trailer_Type##_graphic_switch, hasbit(cargo_classes,CC_PIECE_GOODS) ) {  \
+	1 : return good_check_spriteset_##Trailer_Type##_graphic_switch;  \
+	0 : return bulksilo_check_spriteset_##Trailer_Type##_graphic_switch;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, bulk_check_spriteset_##Trailer_Type##_graphic_switch, hasbit(cargo_classes,CC_BULK) && !hasbit(cargo_classes, CC_REFRIGERATED)) {  \
+	1 : return bulkgoods_check_spriteset_##Trailer_Type##_graphic_switch;  \
+	0 : return food_check_spriteset_##Trailer_Type##_graphic_switch;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, spriteset_check_trailer_##Trailer_Type##_switch, cargo_classes) {  \
+	bitmask(CC_MAIL): 	return mail_spriteset_##Trailer_Type##_graphic;  \
+	bitmask(CC_PASSENGERS): 	return none_spriteset_empty;  \
+	return bulk_check_spriteset_##Trailer_Type##_graphic_switch;  \
+} \
+
+// Semi-Trailer (special) Tractor definition, v_mass: tractor unit mass, t_mass: semitrailer mass 
+#define FREIGHT_STTS(STTS_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass) \
+switch (FEAT_ROADVEHS, SELF, consist_##STTS_Name##_articulated_graphic_switch, position_in_consist) { \
+    0 : return spriteset_tractor_##STTS_Name##_graphic; \
+    1 : return spriteset_check_trailer_##Trailer_Type##_switch; \
+} \
+switch (FEAT_ROADVEHS, SELF, switch_##STTS_Name##_articulated, extra_callback_info1) { \
+    1 : return STTS_Name; \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; \
+} \
+switch (FEAT_ROADVEHS, SELF, switch_##STTS_Name##_text, param_load_multiplier) {    \
+	1 : return string(STR_STTS_DESC, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS), v_maxloadmass/2);   \
+	2 : return string(STR_STTS_DESC, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS), v_maxloadmass);   \
+	3 : return string(STR_STTS_DESC, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS), v_maxloadmass*3/2);   \
+  return CB_FAILED;   \
+}   \
+  \
+switch(FEAT_ROADVEHS, SELF, trailer_maxload_##STTS_Name##_switch, cargo_type_in_veh) {  \
+	PASS: return 0; \
+	MAIL: return v_maxloadmass* param_load_multiplier*8/8;  \
+        return  min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 2) * param_load_multiplier/2;  \
+}  \
+switch (FEAT_ROADVEHS, SELF, maxload_##STTS_Name##_switch, position_in_consist) { \
+    0 : return 0; \
+    1 : return trailer_maxload_##STTS_Name##_switch; \
+}  \
+switch(FEAT_ROADVEHS, SELF, switch_##STTS_Name##_weight, cargo_type_in_veh) { \
+	PASS: return v_mass * 4; \
+	return (v_mass + t_mass)  * 4; \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##STTS_Name##_running_cost, cargo_type_in_veh ) { \
+	PASS: return min(STAFF_RUNNING_COST + max(0,(v_mass * ((e_displacement / 14) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	return min(STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)/365) + !vehicle_is_in_depot * max(0,((v_mass + v_maxloadmass/2 + t_mass) * ((e_displacement / 12) + (current_speed) * (current_speed) * 14) * v_fuelsystem) >> 15), 255); \
+} \
+if (param_allow_truck) { \
+item(FEAT_ROADVEHS, STTS_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_STTS_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	8; \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((v_mass + v_maxloadmass/2 + t_mass) * ((e_displacement / 12) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15, 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	ALL_CARGO_CLASSES; \
+	non_refittable_cargo_classes:   bitmask(CC_ARMOURED);  \
+	cargo_disallow_refit:		[WOOD, TOUR]; \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	STTS_REFIT_SEMITRAILER_COST + STTS_REFIT_TRACTORUNIT_REFUND ; \
+	cargo_age_period:	 	STANDARD_COMFORT; \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	v_maxloadmass / 2; \
+	default_cargo_type:		PASS; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.4; \
+	air_drag_coefficient:	   	0.24; \
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 2); \
+	length:      	    		8; \
+	sound_effect: SOUND_TRUCK_START;  \
+    } \
+\
+    graphics { \
+	default:	    	consist_##STTS_Name##_articulated_graphic_switch;  \
+	purchase:	   	spriteset_##STTS_Name##_purchase;  \
+	articulated_part:	switch_##STTS_Name##_articulated; \
+	refit_cost:		switch_STTS_refit_cost;  \
+	cargo_capacity:		maxload_##STTS_Name##_switch; \
+	purchase_cargo_capacity:0; \
+	additional_text:        switch_##STTS_Name##_text; \
+	cargo_subtype_text:	pass_SPECIAL_TRUCK_text_switch; \
+	colour_mapping:         switch_bulk_recolour;   \
+	weight:			switch_##STTS_Name##_weight; \
+	length:			switch_STTS_length; \
+	visual_effect:		switch_semi_trailer_tractor_unit_effect; \
+	purchase_running_cost_factor: return min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass/2 + t_mass) * ((e_displacement / 12) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	running_cost_factor:	switch_##STTS_Name##_running_cost; \
+	/*sound_effect: return switch_jelczengine_sound; */  \
+    }  \
+ } \
+} \
+if ((param_allow_truck) && HAUL_EXISTS)  { \
+ item(FEAT_ROADVEHS, STTS_Name) { \
+	property { \
+	road_type:			HAUL; \
+    } \
+ } \
+}
+
+//return v_maxloadmass* param_load_multiplier/2
+
+//special semitrailers 2-axle, old version:
+#include "../src/gfx/truck/trailers2s.pnml"
+SPECIAL_SEMI_TRAILERS_GRAPHIC_SWITCHES(trailers2s)
+
+// define FREIGHT_STTS(STTS_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass)
+
+spriteset(spriteset_ZubrC90_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTN(65) }
+spriteset(spriteset_tractor_ZubrC90_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(65) }
+FREIGHT_STTS(ZubrC90, trailers2s, STR_ZUBR_C90_NAME, STR_ZUBR_C90_DESC, 1960, 1972, 0, 12, 25, 40, DIESEL_ENGINE, 9935, 70, 105, 8, 4, 16) 
+
+spriteset(spriteset_Jelcz317_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTN(105) }
+spriteset(spriteset_tractor_Jelcz317_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(105) }
+FREIGHT_STTS(Jelcz317, trailers2s, STR_JELCZ_317_NAME, STR_JELCZ_317_DESC, 1968, 1995, 20, 25, 5, 45, DIESEL_ENGINE, 11100, 85, 147, 8, 6, 20) 
+
+//special semitrailers 3-axle, old version:
+#include "../src/gfx/truck/trailers3s_short.pnml"
+SPECIAL_SEMI_TRAILERS_GRAPHIC_SWITCHES(trailers3s_short)
+
+// define FREIGHT_STTS(STTS_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass)
+
+spriteset(spriteset_VolvoF12_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTS(125) }
+spriteset(spriteset_tractor_VolvoF12_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(125) }
+FREIGHT_STTS(VolvoF12, trailers3s_short, STR_VOLVO_F12_NAME, STR_VOLVO_F12_DESC, 1978, 1994, 20, 22, 3, 140, DIESEL_ENGINE, 12000, 90, 290, 12, 10, 30) //obnizone
+
+//special semitrailers:
+#include "../src/gfx/truck/trailers3s.pnml"
+SPECIAL_SEMI_TRAILERS_GRAPHIC_SWITCHES(trailers3s)
+
+spriteset(spriteset_VolvoFH12_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTS(185) }
+spriteset(spriteset_tractor_VolvoFH12_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(185) }
+FREIGHT_STTS(VolvoFH12, trailers3s, STR_VOLVO_FH12_NAME, STR_VOLVO_FH12_DESC, 1993, 2016, 15, 25, 1, 115, DIESEL_ENGINE, 12100, 90, 313, 9, 10, 45) 
+
+spriteset(spriteset_VolvoFH13_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTS(305) }
+spriteset(spriteset_tractor_VolvoFH13_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(305) }
+FREIGHT_STTS(VolvoFH13, trailers3s, STR_VOLVO_FH13_NAME, STR_VOLVO_FH13_DESC, 2013, 0, 15, 20, 1, 120, DIESEL_ENGINE, 13000, 90, 380, 9, 10, 50) 
+

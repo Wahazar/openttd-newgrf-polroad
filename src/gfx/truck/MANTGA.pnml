@@ -1,0 +1,134 @@
+// part of Polish Road Set
+// Graphic by McZapkie, Sojita
+// NML code by McZapkie
+
+// MAN TGA container specialized truck with trailer:
+
+
+/* */
+#define MANTGA_maxloadmass 40
+#define MANTGA_mass 16
+#define MANTGA_vmax 90
+#define MANTGAdisplacement 11900
+
+spriteset(spriteset_MANTGA_purchase, "src/gfx/truck/MANTGA.png") { template_sprite_window_sideviewWLT(185) }
+
+spriteset(empty_spriteset_MANTGA_graphic, "src/gfx/truck/MANTGA.png") { template_sprite8(8) }
+spriteset(mail_spriteset_MANTGA_graphic, "src/gfx/truck/MANTGA.png") { template_sprite8(38) }
+spriteset(good_spriteset_MANTGA_graphic, "src/gfx/truck/MANTGA.png") { template_sprite8(68) }
+spriteset(other_spriteset_MANTGA_graphic, "src/gfx/truck/MANTGA.png") { template_sprite8(98) }
+
+spritegroup mail_spritegroup_MANTGA_graphic {
+    loaded:     [mail_spriteset_MANTGA_graphic];
+    loading:    [empty_spriteset_MANTGA_graphic, mail_spriteset_MANTGA_graphic];
+}
+
+spritegroup good_spritegroup_MANTGA_graphic {
+    loaded:     [good_spriteset_MANTGA_graphic];
+    loading:    [empty_spriteset_MANTGA_graphic, good_spriteset_MANTGA_graphic];
+}
+
+spritegroup other_spritegroup_MANTGA_graphic {
+    loaded:     [other_spriteset_MANTGA_graphic];
+    loading:    [empty_spriteset_MANTGA_graphic, other_spriteset_MANTGA_graphic];
+}
+
+switch (FEAT_ROADVEHS, SELF, cargo_MANTGA_articulated_graphic_switch, cargo_type_in_veh) { 
+    MAIL : return mail_spritegroup_MANTGA_graphic;
+    GOOD : return good_spritegroup_MANTGA_graphic; 
+    FOOD : return good_spritegroup_MANTGA_graphic; 
+    return other_spritegroup_MANTGA_graphic; 
+} 
+
+spriteset(empty_spriteset_trailer11cont_graphic, "src/gfx/truck/trailer11cont.png") { template_sprite7(8) }
+
+spriteset(mail_spriteset_trailer11cont_graphic, "src/gfx/truck/trailer11cont.png") { template_sprite7(38) }
+spriteset(good_spriteset_trailer11cont_graphic, "src/gfx/truck/trailer11cont.png") { template_sprite7(68) }
+spriteset(other_spriteset_trailer11cont_graphic, "src/gfx/truck/trailer11cont.png") { template_sprite7(98) }
+
+spritegroup mail_spritegroup_trailer11cont_graphic {
+    loaded:     [empty_spriteset_trailer11cont_graphic, mail_spriteset_trailer11cont_graphic, mail_spriteset_trailer11cont_graphic];
+    loading:    [empty_spriteset_trailer11cont_graphic, mail_spriteset_trailer11cont_graphic];
+}
+
+spritegroup good_spritegroup_trailer11cont_graphic {
+    loaded:     [empty_spriteset_trailer11cont_graphic, good_spriteset_trailer11cont_graphic, good_spriteset_trailer11cont_graphic];
+    loading:    [empty_spriteset_trailer11cont_graphic, good_spriteset_trailer11cont_graphic];
+}
+
+spritegroup other_spritegroup_trailer11cont_graphic {
+    loaded:     [empty_spriteset_trailer11cont_graphic, other_spriteset_trailer11cont_graphic, other_spriteset_trailer11cont_graphic];
+    loading:    [empty_spriteset_trailer11cont_graphic, other_spriteset_trailer11cont_graphic];
+}
+
+switch (FEAT_ROADVEHS, SELF, cargo_trailer11cont_articulated_graphic_switch, cargo_type_in_veh) { 
+    MAIL : return mail_spritegroup_trailer11cont_graphic;
+    GOOD : return good_spritegroup_trailer11cont_graphic;
+    FOOD : return good_spritegroup_trailer11cont_graphic;  
+    return other_spritegroup_trailer11cont_graphic; 
+} 
+
+
+switch (FEAT_ROADVEHS, SELF, consist_MANTGA_articulated_graphic_switch, position_in_consist) { 
+    0 : return cargo_MANTGA_articulated_graphic_switch; 
+    1 : return cargo_trailer11cont_articulated_graphic_switch; 
+} 
+switch (FEAT_ROADVEHS, SELF, switch_MANTGA_articulated, extra_callback_info1) { 
+    1 : return MANTGA; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, maxload_MANTGA_switch, cargo_type_in_veh) {  
+        return min((MANTGA_maxloadmass * param_load_multiplier*80/cargo_unit_weight)/10, 			MANTGA_maxloadmass*param_load_multiplier*2)/2; 
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_MANTGA_text, param_load_multiplier) {    
+	1 : return string(STR_CTT_DESC, MANTGA_maxloadmass*2, MANTGA_maxloadmass/2, string(STR_MANTGA_DESC), MANTGAdisplacement);   
+	2 : return string(STR_CTT_DESC, MANTGA_maxloadmass*4, MANTGA_maxloadmass, string(STR_MANTGA_DESC), MANTGAdisplacement);   
+	3 : return string(STR_CTT_DESC, MANTGA_maxloadmass*6, MANTGA_maxloadmass*3/2, string(STR_MANTGA_DESC), MANTGAdisplacement);   
+  return CB_FAILED;   
+}   
+
+if (param_allow_truck) {
+ item(FEAT_ROADVEHS, MANTGA) { 
+	property { 
+	name:			   	string(STR_MANTGA_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(2000, 1, 1);	    
+	model_life:     		VEHICLE_NEVER_EXPIRES; //date(2011, 1, 1);
+	vehicle_life:		   	20; 
+	retire_early:			10; 
+	reliability_decay:	    	8; 
+	loading_speed:		  	12; 
+	cost_factor:		    	114;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((MANTGA_mass + (MANTGA_maxloadmass * param_load_multiplier)) * ((MANTGAdisplacement)/12 + (MANTGA_vmax) * (MANTGA_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	MANTGA_vmax km/h;  
+	refittable_cargo_classes:      	bitmask(CC_EXPRESS, CC_MAIL);
+	cargo_allow_refit:		[PAPR, WOOL]; 
+	non_refittable_cargo_classes:  	bitmask(CC_PASSENGERS, CC_BULK, CC_OVERSIZED, CC_ARMOURED);
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	544 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	MANTGA_maxloadmass * param_load_multiplier / 4; 
+  	default_cargo_type:		GOOD; 
+	weight:			 	MANTGA_mass; 
+	tractive_effort_coefficient:    0.7; 
+	air_drag_coefficient:	   	0.3; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	sound_effect:			SOUND_TRUCK_START_2;
+	length:      	    		7; 
+    } 
+    graphics { 
+	default:	    	consist_MANTGA_articulated_graphic_switch;  
+	purchase:	   	spriteset_MANTGA_purchase;  
+	articulated_part:	switch_MANTGA_articulated; 
+	additional_text:        switch_MANTGA_text;
+	cargo_capacity:		maxload_MANTGA_switch;
+	visual_effect:		switch_semi_trailer_tractor_unit_effect;
+	colour_mapping:         switch_livery_subtype_mapping;      
+    }  
+ }
+}

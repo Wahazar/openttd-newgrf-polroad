@@ -1,0 +1,24 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// FSO Warszawa':
+spriteset(spriteset_FSOWarszawa_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(112) }
+
+spriteset(spriteset_FSOWarszawa_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(112) }
+spriteset(spriteset_FSOWarszawa_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(138) }
+spriteset(spriteset_FSOWarszawa_graphic3, "src/gfx/other/Cars.png") { template_spriteCars(164) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_FSOWarszawa_random_graphic) {
+    1: return spriteset_FSOWarszawa_graphic2;
+    1: return spriteset_FSOWarszawa_graphic1;
+    1: return spriteset_FSOWarszawa_graphic3;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_FSOWarszawa_graphic, cargo_subtype) {
+	0: return switch_spriteset_FSOWarszawa_random_graphic;
+	1: return spriteset_FSOWarszawa_graphic3;
+	2: return spriteset_FSOWarszawa_graphic2;
+	return CB_FAILED;
+}
+

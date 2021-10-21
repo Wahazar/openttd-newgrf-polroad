@@ -1,0 +1,162 @@
+// part of Polish Road Set
+// Graphic by McZapkie, Sojita
+// NML code by McZapkie
+
+
+// autosan D47a trailer for Ursus tractors:
+
+#define trailerD47a_refitcost 10
+#define trailerD47a_refitrefund 5
+
+#define trailerD47a_maxloadmass 15
+#define trailerD47a_mass 5
+#define trailerD47a_pass 12
+#define trailerD47a_lvst 12
+
+spriteset(empty_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(8) }
+spriteset(empty_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(38) }
+
+spriteset(bulk2_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(68) }
+spriteset(bulk2_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(98) }
+
+spriteset(bulk_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(128) }
+spriteset(bulk_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(158) }
+
+spriteset(grai_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(188) }
+spriteset(grai_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(218) }
+
+spriteset(pass_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(248) }
+spriteset(pass_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(278) }
+
+spriteset(lvst_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(308) }
+spriteset(lvst_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(338) }
+
+spriteset(vehi_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(368) }
+spriteset(vehi_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(398) }
+
+spritegroup bulk_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_spriteset_trailerD47a_graphic, bulk2_spriteset_trailerD47a_graphic, bulk_spriteset_trailerD47a_graphic];
+    loading:    [empty_spriteset_trailerD47a_graphic, bulk2_spriteset_trailerD47a_graphic, bulk_spriteset_trailerD47a_graphic];
+}
+
+spritegroup bulk_end_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_end_spriteset_trailerD47a_graphic, bulk2_end_spriteset_trailerD47a_graphic, bulk_end_spriteset_trailerD47a_graphic];
+    loading:    [empty_end_spriteset_trailerD47a_graphic, bulk2_end_spriteset_trailerD47a_graphic, bulk_end_spriteset_trailerD47a_graphic];
+}
+
+spritegroup grai_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_spriteset_trailerD47a_graphic, grai_spriteset_trailerD47a_graphic];
+    loading:    [empty_spriteset_trailerD47a_graphic, bulk2_spriteset_trailerD47a_graphic, bulk_spriteset_trailerD47a_graphic];
+}
+
+spritegroup grai_end_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_end_spriteset_trailerD47a_graphic, grai_end_spriteset_trailerD47a_graphic];
+    loading:    [empty_end_spriteset_trailerD47a_graphic, bulk2_end_spriteset_trailerD47a_graphic, bulk_end_spriteset_trailerD47a_graphic, bulk_end_spriteset_trailerD47a_graphic];
+}
+
+spritegroup pass_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_spriteset_trailerD47a_graphic, pass_spriteset_trailerD47a_graphic];
+    loading:    [empty_spriteset_trailerD47a_graphic, empty_spriteset_trailerD47a_graphic, pass_spriteset_trailerD47a_graphic];
+}
+
+spritegroup pass_end_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_end_spriteset_trailerD47a_graphic, pass_end_spriteset_trailerD47a_graphic, pass_end_spriteset_trailerD47a_graphic];
+    loading:    [empty_end_spriteset_trailerD47a_graphic, pass_end_spriteset_trailerD47a_graphic];
+}
+
+spritegroup lvst_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_spriteset_trailerD47a_graphic, lvst_spriteset_trailerD47a_graphic];
+    loading:    [empty_spriteset_trailerD47a_graphic, lvst_spriteset_trailerD47a_graphic];
+}
+
+spritegroup lvst_end_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_end_spriteset_trailerD47a_graphic, lvst_end_spriteset_trailerD47a_graphic, lvst_end_spriteset_trailerD47a_graphic];
+    loading:    [empty_end_spriteset_trailerD47a_graphic, lvst_end_spriteset_trailerD47a_graphic];
+}
+
+spritegroup vehi_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_spriteset_trailerD47a_graphic, vehi_spriteset_trailerD47a_graphic];
+    loading:    [empty_spriteset_trailerD47a_graphic, vehi_spriteset_trailerD47a_graphic];
+}
+
+spritegroup vehi_end_spritegroup_trailerD47a_graphic {
+    loaded:     [empty_end_spriteset_trailerD47a_graphic, vehi_end_spriteset_trailerD47a_graphic];
+    loading:    [empty_end_spriteset_trailerD47a_graphic, vehi_end_spriteset_trailerD47a_graphic];
+}
+
+switch(FEAT_ROADVEHS, SELF, bulk_trailerD47a_graphic_switch, hasbit(cargo_classes,CC_COVERED) ) {  
+	1: 	return grai_spritegroup_trailerD47a_graphic;  
+	return bulk_spritegroup_trailerD47a_graphic;  
+}
+
+switch(FEAT_ROADVEHS, SELF, check_trailerD47a_graphic_switch, cargo_type_in_veh) {  
+	PASS: 	return pass_spritegroup_trailerD47a_graphic;  
+	LVST: 	return lvst_spritegroup_trailerD47a_graphic;  
+	VEHI: 	return vehi_spritegroup_trailerD47a_graphic;  
+	YETI: 	return pass_spritegroup_trailerD47a_graphic;
+	default : return bulk_trailerD47a_graphic_switch;  
+}
+
+switch(FEAT_ROADVEHS, SELF, bulk_end_trailerD47a_graphic_switch, hasbit(cargo_classes,CC_COVERED) || (cargo_type_in_veh == GRAI)) {  
+	0: 	return bulk_end_spritegroup_trailerD47a_graphic;  
+	return grai_end_spritegroup_trailerD47a_graphic;  
+}
+
+switch(FEAT_ROADVEHS, SELF, check_end_trailerD47a_graphic_switch, cargo_type_in_veh) {  
+	PASS: 	return pass_end_spritegroup_trailerD47a_graphic;  
+	LVST: 	return lvst_end_spritegroup_trailerD47a_graphic;  
+	VEHI: 	return vehi_end_spritegroup_trailerD47a_graphic;  
+	YETI: 	return pass_end_spritegroup_trailerD47a_graphic;
+	return bulk_end_trailerD47a_graphic_switch;  
+}
+
+
+switch(FEAT_ROADVEHS, SELF, maxload_trailerD47a_switch, cargo_type_in_veh) {  	
+	PASS: return trailerD47a_pass;  
+	VEHI: return trailerD47a_maxloadmass*param_load_multiplier*8/40;    
+	LVST: return trailerD47a_lvst *param_load_multiplier; 
+	WOOD: return trailerD47a_maxloadmass*param_load_multiplier/4; 
+        return trailerD47a_maxloadmass*param_load_multiplier/2;  
+}  
+/*
+switch(FEAT_ROADVEHS, SELF, spriteset_check_trailerD47a_switch, cargo_subtype) { 
+	0: return none_spriteset_empty;
+	1: return check_end_trailerD47a_graphic_switch;
+	return CB_FAILED;
+} 
+*/
+switch(FEAT_ROADVEHS, SELF, spriteset_check_trailerD47a_switch1, cargo_subtype) { 
+	0: return none_spriteset_empty;
+	1: return check_end_trailerD47a_graphic_switch;
+	2..3: return check_trailerD47a_graphic_switch;
+	return CB_FAILED;
+} 
+
+switch(FEAT_ROADVEHS, SELF, spriteset_check_trailerD47a_switch2, cargo_subtype) { 
+	0..1: return none_spriteset_empty;
+	2: return check_end_trailerD47a_graphic_switch;
+	3: return check_trailerD47a_graphic_switch;
+	return CB_FAILED;
+} 
+
+switch(FEAT_ROADVEHS, SELF, spriteset_check_trailerD47a_switch3, cargo_subtype) { 
+	0..2: return none_spriteset_empty;
+	3: return check_end_trailerD47a_graphic_switch;
+	return CB_FAILED;
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_trailerD47a_refit_cost, var[0x10,8,0xFF] - cargo_subtype) {
+    /* Refit cost based on difference between target cargo sybtype and current cargo subtype.
+	   Refitting to fewer carriages refunds money, while adding carriages costs (2x) money.        */
+	-3:				-(3*trailerD47a_refitrefund);
+	-2:				-(2*trailerD47a_refitrefund);
+	-1:				-(1*trailerD47a_refitrefund);
+	0:				0 | CB_RESULT_AUTOREFIT;
+	1:				(1*trailerD47a_refitcost);
+	2:				(2*trailerD47a_refitcost);
+	3:				(3*trailerD47a_refitcost);
+	return CB_FAILED;
+}
+
+
+

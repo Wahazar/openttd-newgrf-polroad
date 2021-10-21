@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Fiat 666RNR:
+spriteset(spriteset_Fiat666RN_purchase, "src/gfx/bus/Fiat666RN.png") { template_sprite_window_sideview8b(8) }
+
+spriteset(spriteset_Fiat666RN_graphic, "src/gfx/bus/Fiat666RN.png") { template_sprite8b(8) }
+

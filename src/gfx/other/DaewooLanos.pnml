@@ -1,0 +1,24 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Daewoo Lanos:
+spriteset(spriteset_DaewooLanos_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(424) }
+
+spriteset(spriteset_DaewooLanos_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(424) }
+spriteset(spriteset_DaewooLanos_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(450) }
+spriteset(spriteset_DaewooLanos_graphic3, "src/gfx/other/Cars.png") { template_spriteCars(476) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_DaewooLanos_random_graphic) {
+    1: return spriteset_DaewooLanos_graphic2;
+    1: return spriteset_DaewooLanos_graphic1;
+    1: return spriteset_DaewooLanos_graphic3;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_DaewooLanos_graphic, cargo_subtype) {
+	0: return switch_spriteset_DaewooLanos_random_graphic;
+	1: return spriteset_DaewooLanos_graphic3;
+	2: return switch_spriteset_DaewooLanos_random_graphic;
+	return CB_FAILED;
+}
+

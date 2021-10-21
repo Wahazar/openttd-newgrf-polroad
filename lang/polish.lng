@@ -1,0 +1,460 @@
+##grflangid 0x30
+##plural 7
+##gender n m f
+##case c b d m n w
+# This is the English language file
+
+# GRF name and description
+STR_GRF_NAME        :Polroad - nowy 'Polish Road Set' nr {UNSIGNED_WORD}
+STR_GRF_DESCRIPTION :Polroad - (nowy 'Polish Road Set') to popularne pojazdy (konne, traktory, ciężarówki przewożące wszelkie towary, autobusy, minibusy i inne) produkowane w Polsce lub jeżdżące po Polsce.{}Wersja {VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licencja: GPL v2
+
+STR_PARAM_NAME_PURCHASE_COST            :Modyfikator kosztów zakupu
+STR_PARAM_DESC_PURCHASE_COST            :Ta opcja pozwala na modyfikację kosztów zakupu pojazdów z tego setu
+STR_PARAM_NAME_RUNNING_COST             :Modyfikator kosztów utrzymania
+STR_PARAM_DESC_RUNNING_COST             :Ta opcja pozwala na modyfikację kosztów utrzymania pojazdów z tego setu
+STR_PARAM_COST_H                        :2x mniejsze
+STR_PARAM_COST_N                        :Normalne
+STR_PARAM_COST_D                        :2 x większe
+STR_PARAM_COST_Q                        :4 x większe
+STR_PARAM_NAME_MAX_LOAD                 :Mnożnik maksymalnej ładowności ciężarówek
+STR_PARAM_DESC_MAX_LOAD                 :Mnożnik maksymalnej pojemności (ładowności), standardowo 2x większa niż w rzeczywistości, ustawienie 3x większej może powodować problemy przy podjeździe pod górę, przy rzeczywistej ładowności zaleca się zmniejszyć koszty utrzymania.
+STR_PARAM_LOAD_1                        : Realistyczne
+STR_PARAM_LOAD_2                        :Podwójna (default)
+STR_PARAM_LOAD_3                        :Potrójna (nie zalecane)
+STR_PARAM_NAME_MODEL_LIFE               :Okres dostępności pojazdów
+STR_PARAM_DESC_MODEL_LIFE               :Użyj tej opcji do wydłużenia okresu dostępności pojazdów. Dotyczy tylko pojazdów Polroad.
+STR_PARAM_MODEL_LIFE_REAL               :Realistyczny
+STR_PARAM_MODEL_LIFE_EXTEND             :Przedłużony
+STR_PARAM_MODEL_LIFE_KEEP               :Na zawsze
+
+STR_PARAM_NAME_ALLOW_SLOW_VEHS          :Powolne pojazdy
+STR_PARAM_DESC_ALLOW_SLOW_VEHS          :Włączenie tej opcji pozwala na używanie pojazdów konnych i traktorów rolniczych.
+STR_PARAM_NAME_ALLOW_BUS                :Autobusy
+STR_PARAM_DESC_ALLOW_BUS                :Włączenie tej opcji pozwala na używanie autobusów z napędem spalinowym.
+STR_PARAM_NAME_ALLOW_VAN                :Uniwersalne furgony
+STR_PARAM_DESC_ALLOW_VAN                :Włączenie tej opcji pozwala na używanie uniwersalnych pojazdów (pasażerskich i lub ciężarowych - dostawczaki itp) z napędem spalinowym.
+STR_PARAM_NAME_ALLOW_TRUCK              :Ciężarówki
+STR_PARAM_DESC_ALLOW_TRUCK              :Włączenie tej opcji pozwala na używanie ciężarówek z napędem spalinowym.
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+STR_NULL                                :{}
+
+STR_COMFORT_LW                          :{RED}NISKI{BLACK}
+STR_COMFORT_MD                          :{ORANGE}średni{BLACK}
+STR_COMFORT_ST                          :{DKGREEN}standard{BLACK}
+STR_COMFORT_HI                          :{GREEN}WYSOKI{BLACK}
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+STR_LOADSPEED_LO                                :{RED}NISKA{BLACK}
+STR_LOADSPEED_MD                                :{ORANGE}średnia{BLACK}
+STR_LOADSPEED_ST                                :{DKGREEN}standardowa{BLACK}
+STR_LOADSPEED_HI                                :{GREEN}SZYBKA{BLACK}
+
+STR_VARIABLE_COSTS              :{GOLD}Zmienne koszty{BLACK} utrzymania zależne od chwilowej prędkości i wieku pojazdu.
+STR_VARIABLE_BUS_COSTS          :{BLACK}{STRING} {UNSIGNED_WORD} ccm{}{GOLD}Zmienne koszty{BLACK} utrzymania zależne od chwilowej prędkości i wieku pojazdu{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących{}
+
+STR_CITY_BUS                    :{BUS} krótkodystansowy autobus miejski,{}{STRING}{}Komfort {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku {GOLD}{COMMA}{BLACK}
+STR_CITYBUS_SUFFIX              :- autobus miejski
+
+STR_ART_CITY_BUS                        :{BUS}{BUS}{BLACK} miejski autobus {RED}przegubowy{BLACK}{}{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku  {GOLD}{COMMA}{BLACK}
+
+STR_LOCAL_BUS                   :{BUS} autobus dla linii lokalnych/podmiejskich,{}{STRING}{}Komfort{GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku {GOLD}{COMMA}{BLACK}
+
+
+STR_LOCALBUS_SUFFIX             : - autobus podmiejski
+
+STR_IC_BUS                      :{BUS} autobus dla połączeń międzymiastowych{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku: {GOLD}{COMMA}{BLACK}
+
+STR_ICBUS_SUFFIX                :-autobus dalekobieżny/turystyczny
+
+STR_BENZ_GAGGENAU_NAME                  :Benz Gaggenau {STRING}
+STR_BENZ_GAGGENAU_DESC                  :silnik benzynowy o mocy 20 KM
+STR_SOMUA_NAME                          :Somua RZCA {STRING}
+STR_SOMUA_DESC                          :silnik benzynowy V4
+STR_EFD183_NAME                         :Chevrolet "Bielany" {STRING}
+STR_EFD183_DESC                         :silnik benzynowy EFB183
+STR_CHAUSSON_NAME                       :Chausson APH {STRING}
+STR_CHAUSSON_DESC                       :silnik wysokoprężny Panhard 4HL
+STR_MAVAGTR5_NAME                       :Mavag Tr5 {STRING}
+STR_MAVAGTR5_DESC                       :Silnik wysokoprężny OML674 V6
+STR_SANH01B_NAME                        :San 01B {STRING}
+STR_SANH01B_DESC                        :silnik wysokoprężny S42
+STR_SANH100B_NAME                       :San 100B {STRING}
+STR_SANH100B_DESC                       :silnik wysokoprężny S474
+STR_IKARUS620_NAME                      :Ikarus 620 {STRING}
+STR_IKARUS620_DESC                      :silnik wysokoprężny Csepel D-614c
+STR_JELCZ272MEX_NAME                    :Jelcz 272 MEX {STRING}
+STR_JELCZ272MEX_DESC                    :silnik wysokoprężny Škoda 706RT
+STR_BERLIETPR100_NAME                   :Jelcz-Berliet PR100 {STRING}
+STR_BERLIETPR100_DESC                   :silnik wysokoprężny Berliet V80
+STR_IKARUS260_NAME                      :Ikarus 260 {STRING}
+STR_IKARUS260_DESC                      :silnik wysokoprężny Raba-MAN D2156HM6U
+STR_JELCZ120M_NAME                      :Jelcz 120M {STRING}
+STR_JELCZ120M_DESC                      :silnik wysokoprężny Mielec SWT
+STR_JELCZ121M_NAME                      :Jelcz 121M {STRING}
+STR_JELCZ121M_DESC                      :częściowo niskopodłogowy,{}silnik wysokoprężny MAN D0826 LUH12
+STR_URBINO12_NAME                       :Solaris Urbino 12 {STRING}
+STR_URBINO12_DESC                       :niskopodłogowy, klimatyzowany{}silnik wysokoprężny Paccar PR183
+STR_URBINO15_NAME                       :Solaris Urbino 15 {STRING}
+STR_URBINO15_DESC                       :niskopodłogowy, klimatyzowany{}silnik wysokoprężny Paccar PR228
+STR_URBINO12E_NAME                      :Solaris Urbino 12E {STRING}
+STR_URBINO12E_DESC                      :niskopodłogowy, klimatyzowany{}Silnik elektryczny Vossloh Kiepe
+STR_URBINO15E_NAME                      :Solaris Urbino 15E {STRING}
+STR_URBINO15E_DESC                      :niskopodłogowy, klimatyzowany{}Silniki elektryczne Vossloh Kiepe
+STR_MANSD202_NAME                       :MAN SD202 "Hop On" {STRING}
+STR_MANSD202_DESC                       :piętrowy miejski autobus turystyczny,{}silnik wysokoprężny MAN D2566 UH
+
+STR_JELCZAP02_NAME                      :Jelcz AP02 {STRING}
+STR_JELCZ021_NAME                       :Jelcz 021 {STRING}
+STR_IKARUS280_NAME                      :Ikarus 280 {STRING}
+STR_JELCZ181M_NAME                      :Jelcz 181M {STRING}
+STR_JELCZ181M_DESC                      :częściowo obniżona podłoga,{}silnik wysokoprężny MAN D0826 LUH13
+STR_URBINO18_NAME                       :Solaris Urbino 18 {STRING}
+STR_URBINO18_DESC                       :niskopodłogowy, klimatyzowany{}Silnik wysokoprężny DAF PR228
+STR_URBINO18H_NAME                      :Solaris Urbino 18 MetroStyle {STRING}
+STR_URBINO18H_DESC                      :low floor, AC{}hybrydowy Allison II
+
+STR_URSUSAW_NAME                        :Ursus AW {STRING}
+STR_URSUSAW_DESC                        :silnik spalinowy S.P.A.
+STR_SAURER_BLD4_NAME                    :Saurer Zawrat BLD4 {STRING}
+STR_SAURER_BLD4_DESC                    :silnik wysokoprężny Saurer BLD
+STR_STARN52_NAME                        :Star N52 {STRING}
+STR_STARN52_DESC                        :silnik benzynowy S42
+STR_SANH01A_NAME                        :San H01A {STRING}
+STR_OSINOBUS_NAME                       :Osinobus {STRING}
+STR_OSINOBUS_DESC                       :silnik wysokoprężny S530A
+STR_AUTOSAN_H9_NAME                     :Autosan H9 {STRING}
+STR_AUTOSAN_H9_DESC                     :silnik wysokoprężny 6CT107
+STR_AUTOSAN_A1010T_NAME                 :Autosan A1010T {STRING}
+STR_AUTOSAN_A1010T_DESC                 :silnik wysokoprężny Renault dCi6
+
+STR_FIAT666RN_NAME                      :Fiat 666RN {STRING}
+STR_FIAT666RN_DESC                      :silnik wysokoprężny  Fiat 366/45
+STR_JELCZ043CAR_NAME                    :Jelcz 043 CAR {STRING}
+STR_JELCZPR110D_NAME                    :Jelcz PR110D {STRING}
+STR_JELCZPR110D_DESC                    :silnik wysokoprężny Mielec SW680/165
+STR_BOVAFUTURAFHD_NAME                          :Bova Futura FHD12 {STRING}
+STR_BOVAFUTURAFHD_DESC                          :silnik wysokoprężny DAF MX-11
+STR_SETRAS419UL16_NAME                  :Setra S419 UL 16 {STRING}
+STR_SETRAS419UL16_DESC                  :silnik wysokoprężny OM 470
+STR_VH_ASTROMEGA_DT927_NAME             :Van Hool Astromega DT927 {STRING}
+STR_VH_ASTROMEGA_DT927_DESC             :Klimatyzacja, WC, bar{}silnik wysokoprężny DAF MX 340
+
+
+STR_NO_REFIT            :{ORANGE}Ten pojazd nie został przebudowany!{BLACK} Użyj opcji PRZEBUDOWA (wybierz odpowiednie nadwozie/naczepę {LORRY} i przewożony towar).
+
+STR_OLD_HORSE           :{ORANGE}Ten koń dalej już nie pójdzie, bo jest martwy.{BLACK}.
+
+# strings for farm tractor trailers refit
+STR_REFIT_NONE          :bez przyczep
+STR_REFIT_SHORT         :pociąg drogowy krótki
+STR_REFIT_MEDIUM        :pociąg drogowy średni
+STR_REFIT_LONG          :pociąg drogowy długi
+
+STR_MVMB_DESC           :{RED}{BUS}{BLACK} Furgon/minibus, ładowność do {GOLD}{UNSIGNED_WORD}{BLACK} paczek lub {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów.{}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}
+
+STR_LCV_DESC            :{RED}{LORRY}{BLACK} Dostawczak{}do {GOLD}{UNSIGNED_WORD}{BLACK} ton ładowności ({GOLD}{UNSIGNED_WORD}{BLACK} worków poczty).{}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_GPT_DESC            :{LORRY} ciężarówka średniej ładowności,{}{STRING}{}{STRING},{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu od typu nadwozia) do GOLD}{UNSIGNED_WORD}{BLACK} ton
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+STR_STTN_DESC           :{LORRY}{LORRY}  Ciągnik siodłowy do zwykłych naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{} {GOLD}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} t load{}({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty, ograniczona pojemność dla towarów sypkich)
+
+STR_STTM_DESC           :{LORRY}{LORRY} Ciągnik siodłowy do zwykłych długich naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} ton
+
+# semi-trailer tractor (special) description
+
+STR_STTS_DESC           :{RED}{LORRY}{LORRY}{BLACK} Ciągnik siodłowy do specjalistycznych naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{}ładowność do {GOLD}{UNSIGNED_WORD}{BLACK} ton
+
+STR_WLT_DESC            :{RED}{LORRY}{LORRY}{BLACK}  Specjalistyczna ciężarówka do dłużycy, z HDS,{} {STRING}, pojemność {UNSIGNED_WORD} ccm, przebudowywalny do {UNSIGNED_WORD} ccm{}{STRING}
+
+STR_TT_DESC             :{LORRY}{LORRY}{BLACK} Ciężarówka z przyczepą do przewozu poczty ({GOLD}{UNSIGNED_WORD}{BLACK} paczek) lub innych przesyłek drobnicowych (ładowność {GOLD}{UNSIGNED_WORD}{BLACK} ton){}{STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_CTT_DESC            :{LORRY}{LORRY}{BLACK} Specjalistyczna ciężarówka z przyczepą do przewozu poczty ({GOLD}{UNSIGNED_WORD}{BLACK} paczek) lub innych przesyłek (ładowność {GOLD}{UNSIGNED_WORD}{BLACK} ton){} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_DT_DESC             :{LORRY} wywrotka tylnozsypowa (ładowność {GOLD}{UNSIGNED_WORD}{BLACK} t materiałów sypkich, bez plandeki){}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_FARM_TRACTOR_DESC   :{LORRY}{LORRY}{LORRY} traktor rolniczy{}ładowność do {GOLD}{UNSIGNED_WORD}{BLACK} ton ziarna lub{}{GOLD}{UNSIGNED_WORD}{BLACK} sztuk żywca.{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_LIVERY_RANDOM       :-losowe barwy
+STR_LIVERY_STANDARD     :-standardowa paleta 2cc
+STR_LIVERY_POLROAD      :-paleta kolorów polroad
+STR_LIVERY_REALCOMPANY  :-w barwach rzeczywistego przewoźnika
+
+STR_NONE_SUBTYPE        : (tylko jednostka napędowa)
+STR_MAIL_SUBTYPE        :-w furgonie pocztowym
+STR_ARMOURED_SUBTYPE    :w furgonie opancerzonym
+STR_REEFER_SUBTYPE      : -w izotermie
+STR_BOX_SUBTYPE         :-na pace (z opcją plandeki)
+STR_GOODVAN_SUBTYPE     :-w furgonie
+STR_MINIBUS_SUBTYPE     :-w minibusie
+
+STR_FLAT_SUBTYPE        :-na platformie (z kłonicami lub bez)
+STR_LVST_SUBTYPE        : -do przewozu żywca
+STR_OIL_SUBTYPE         :-w cysternie
+STR_MILK_SUBTYPE        : -w cysternie do produktów spoż.
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+STR_BOX_TRAILER_SUBTYPE                 : -w naczepie burtówce (z opcją plandeki/firanki)
+STR_DUMPER_TRAILER_SUBTYPE              :-w naczepie wywrotce
+STR_HOPPER_TRAILER_SUBTYPE              :w naczepie do przewozu zboża
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+STR_OIL_TRAILER_SUBTYPE                 :-w naczepie cysternie do cieczy naftopochodnych
+STR_CHEM_TRAILER_SUBTYPE                :-w naczepie cysternie do substancji chemicznych
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+STR_FLAT_TRAILER_SUBTYPE                : -na naczepie platformie z kłonicami
+STR_SILO_TRAILER_SUBTYPE                : -w silosie
+STR_CONTAINER_TRAILER_SUBTYPE           : -na naczepie kontenerowej
+STR_GOOSENECK_TRAILER_SUBTYPE           :-na platformie niskopodwoziowej
+
+STR_1HORSE_DROSHKY_NAME :dorożka
+STR_1HORSE_DROSHKY_DESC :{BUS} krótka dorożka
+
+STR_2HORSE_OMNIBUS_NAME         :miejski omnibus dwukonny
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} krótkodystansowy omnibus konny  {RED}(długi){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących i  {GOLD}{UNSIGNED_WORD}{BLACK} stojących.{}{BLACK}Komfort {GOLD}{UNSIGNED_WORD}{BLACK}, szybkość za/wyładunku GOLD}{UNSIGNED_WORD}{BLACK}
+
+STR_1HORSE_CART_NAME            :furmanka jednokonna
+STR_1HORSE_CART_DESC            :{LORRY} krótka furmanka,{}zabiera  {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub do  {GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku
+STR_1HORSE_CART_TYRES_NAME              :furmanka jednokonna (na pneumatykach)
+
+STR_2HORSE_HEAVY_CART_NAME              :wóz z dwukonnym zaprzęgiem
+STR_2HORSE_HEAVY_CART_DESC              :{LORRY}{LORRY} uniwersalny ciężki wóz konny, długi{}zabiera {UNSIGNED_WORD} pasażerów{}lub do {UNSIGNED_WORD}ton ładunku
+
+STR_FORDTT_NAME         :Ford TT - lekka półciężarówka/bus
+STR_FORDTT_DESC         :{RED}{BUS}{BLACK} mały uniwersalny dostawczak, przebudowywalny do{}małego busa ({UNSIGNED_WORD} pasażerów, niski komfort) lub do półciężarówki {GOLD}{UNSIGNED_WORD}{BLACK} ton ładowności ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{}silnik benzynowy 177 CID, 2900ccm
+
+STR_FORDT_NAME          :Ford model T
+STR_FORDT_DESC          :{BUS} taxi bagażowo-osobowe,{}{GOLD}4{BLACK} pasażerów lub {GOLD}2{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy 177 CID, {UNSIGNED_WORD}ccm
+
+STR_CWST1_NAME          :CWS T-1
+STR_CWST1_DESC          :{BUS} taxi bagażowo-osobowe  ({GOLD}5{BLACK} pasażerów lub {GOLD}3{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy R4, {UNSIGNED_WORD}ccm
+
+STR_NOT_COMMMERCIAL     :{RED}nie służy do przewozów zarobkowych{BLACK}
+
+STR_HORSERIDER          :jeździec na koniu
+STR_MOTORCYCLE          :Motocykl
+
+STR_FIAT508_NAME        :Polski Fiat 508
+STR_FIAT508_DESC        :Małe auto ({STRING}),{}Silnik benzynowy Fiat 108CS, {UNSIGNED_WORD}ccm
+
+STR_OPELKAPITAN_NAME            :Opel Kapitan
+STR_OPELKAPITAN_DESC            :{BUS} taxi bagażowo-osobowe,{}{GOLD}5{BLACK} pasażerów lub {GOLD}2{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy 151 CID, {UNSIGNED_WORD}ccm
+
+STR_FSOWARSZAWA_NAME            :FSO Warszawa
+STR_FSOWARSZAWA_DESC            :{BUS} taxi bagażowo-osobowe,{}{GOLD}5{BLACK} pasażerów lub {GOLD}2{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy M-20, {UNSIGNED_WORD}ccm
+
+STR_FSO125P_NAME        :Polski Fiat 125p
+STR_FSO125P_DESC        :{BUS} taxi bagażowo-osobowe,{}{GOLD}5{BLACK} pasażerów lub {GOLD}2{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy 116C.076/56, {UNSIGNED_WORD}ccm
+
+STR_FSO126P_NAME        :Polski Fiat 126p
+STR_FSO126P_DESC        :Małe auto ({STRING}),{}silnik benzynowy 126 A1, {UNSIGNED_WORD}ccm
+
+STR_FSOPOLONEZ_NAME             :FSO Polonez
+STR_FSOPOLONEZ_DESC             :{BUS} taxi bagażowo-osobowe,{}{GOLD}5{BLACK} pasażerów lub {GOLD}2{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy 14K16 MPI , {UNSIGNED_WORD}ccm
+
+STR_DAEWOOLANOS_NAME            :Daewoo Lanos
+STR_DAEWOOLANOS_DESC            :{BUS} taxi bagażowo-osobowe  ({GOLD}5{BLACK} pasażerów lub {GOLD}3{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy E-TEC I4, {UNSIGNED_WORD}ccm
+
+STR_OPELASTRA_NAME              :Opel Astra J
+STR_OPELASTRA_DESC              :{BUS} taxi bagażowo-osobowe,{}{GOLD}5{BLACK} pasażerów lub {GOLD}2{BLACK} paczki poczty lub {GOLD}1{BLACK} skrzynka towarów{}Silnik benzynowy A16XER , {UNSIGNED_WORD}ccm
+
+STR_FIATPANDA_NAME              :Fiat Panda
+STR_FIATPANDA_DESC              :Małe auto ({STRING}),{}silnik benzynowy FIRE I4, {UNSIGNED_WORD}ccm
+
+STR_GMC_NAME            :GMC CCKW ciężarówka z demobilu/UNRRA
+STR_GMC_DESC            :{LORRY} uniwersalna ciężarówka wojskowa, {UNSIGNED_WORD} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort){}lub do{GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik wysokoprężny GMC, 4420ccm
+
+STR_HANOMAGSS100_NAME   :Hanomag SS100 - ciężki ciągnik szosowy
+STR_HANOMAGSS100_DESC   :{RED}{LORRY}{LORRY}{BLACK}Ciągnik szosowy,silnik wysokoprężny D85S, 8550 ccm{}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{}ładowność do {GOLD}{UNSIGNED_WORD}{BLACK}t lub {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort)
+STR_HANOMAGSS100_PASS   : w doczepie pasażerskiej
+
+STR_LUBLIN51_NAME       :Lublin 51 towos
+
+STR_LUBLIN51_DESC       :{LORRY} ciężarówka towos, ładowność {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort){}lub do {GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku ( {GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik benzynowy M-51, poj.3480ccm
+
+STR_UAZ_NAME            :UAZ 469
+STR_UAZ_DESC            :{LORRY} mały uniwersalny "łazik",{}{GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} poczty){}silnik benzynowy  UMZ 451 MI, 2450ccm
+
+STR_VWT_NAME    :Volkswagen Transporter
+STR_VWT_DESC    :{LORRY} Uniwersalny dostawczak{}{GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik wysokoprężny AAB, 2370ccm
+
+
+STR_4HORSE_STAGE_COACH_NAME     :steinkellerka
+STR_4HORSE_STAGE_COACH_DESC     :{BUS}{LORRY} może przewozić pasażerów, pocztę, kosztowności
+STR_MVMB_SUFFIX         :furgon/minibus
+STR_FIAT618_DESC        :silnik benzynowy Fiat 118
+STR_NYSAN59_DESC        :silnik benzynowy M-20
+STR_NYSA522_DESC        :silnik benzynowy S-21
+STR_MERCEDES_VARIO_DESC         :silnik wysokoprężny OM602
+STR_MERCEDES_SPRINTER_DESC              :silnik wysokoprężny OM646 CR
+STR_MERCEDES_SPRINTER_TRAILER_DESC  :{RED}{LORRY}{LORRY}{BLACK} Dostawczak z przyczepką{}do {GOLD}{UNSIGNED_WORD}{BLACK}ton ładowności ({GOLD}{UNSIGNED_WORD}{BLACK} worków poczty).{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_MERCEDES_ATEGO_DESC  :{LORRY}Auto do transportu pojazdów{}ładowność {GOLD}{UNSIGNED_WORD}{BLACK}ton{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}silnik wysokoprężny OM 934, {UNSIGNED_WORD} ccm
+
+
+STR_LCV_SUFFIX          :półcięzarówka/furgon
+STR_URSUSA_DESC         :silnik benzynowy S.P.A.
+STR_FIAT621L_DESC       :silnik benzynowy 122B
+STR_ZUKA03_DESC         :silnik benzynowy S-21
+STR_LUBLIN33_DESC       :silnik wysokoprężny Andoria 4C90
+STR_DZTPASAGON_DESC     :silnik wysokoprężny Andoria ADCR
+STR_IVECODAILY6_DESC    :silnik CNG
+STR_URSUSELVI_DESC      :{LORRY} Dostawczak o napędzie elektrycznym{}do {GOLD}{UNSIGNED_WORD}{BLACK} ton ładowności ({GOLD}{UNSIGNED_WORD}{BLACK} worków poczty).{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}
+
+
+STR_GPT_SUFFIX          :ciężarówka
+STR_PZINZ703_DESC       :silnik na gaz drzewny PZInż 725
+STR_STAR20_DESC         :silnik benzynowy S42
+STR_STAR25_DESC         :silnik benzynowy  S472
+STR_STAR200_DESC        :silnik wysokoprężny S359
+STR_STAR2000_DESC       :silnik wysokoprężny MAN CR
+STR_STARTGL_DESC        :silnik wysokoprężny MAN D0836LFL CR
+
+STR_STTN_SUFFIX         :ciągnik siodłowy, zwykła naczepa
+STR_CHEVROLET157_DESC   :silnik wysokoprężny 206.8 cu
+STR_STAR_C21_DESC       :silnik benzynowy S42
+STR_STAR_C28_DESC       :silnik wysokoprężny S530A1
+
+STR_STTM_SUFFIX         :ciągnik siodłowy, zwykła długa naczepa
+STR_RENAULT_MAGNUM_DESC :silnik wysokoprężny Mack
+STR_DAF95X_DESC :silnik wysokoprężny DAF
+STR_RENAULT_MILLENIUM_DESC      :silnik wysokoprężny Volvo DXi 12 CR
+STR_DAFXF105_DESC       :silnik wysokoprężny Paccar CR
+
+STR_STTS_SUFFIX         :ciągnik siodłowy, specjalistyczne naczepy
+
+STR_ZUBR_C90_DESC       :silnik wysokoprężny S-56
+STR_JELCZ_317_DESC      :silnik wysokoprężny SW-680
+STR_VOLVO_F12_DESC      :silnik wysokoprężny Volvo TD
+STR_VOLVO_FH12_DESC     :silnik wysokoprężny Volvo D12A
+STR_VOLVO_FH13_DESC     :silnik wysokoprężny Volvo D13K
+
+STR_KAMAZ5511_DESC      :silnik wysokoprężny K740
+STR_ACTROSMP1_DESC      :silnik wysokoprężny 1840
+STR_ACTROSMP3_DESC      :silnik wysokoprężny 1846
+
+STR_FIAT618_NAME                :Polski Fiat 618 {STRING}
+STR_NYSAN59_NAME                :Nysa N59 {STRING}
+STR_NYSA522_NAME                :Nysa 522 {STRING}
+STR_MERCEDES_VARIO_NAME         :Mercedes T2/Vario {STRING}
+STR_MERCEDES_SPRINTER_NAME      :Mercedes Sprinter {STRING}
+STR_MERCEDES_SPRINTER_TRAILER_NAME      :Mercedes Sprinter - półciężarówka z przyczepką
+STR_MERCEDES_ATEGO_NAME         :Mercedes Atego - laweta
+
+STR_URSUSA_NAME         :Ursus-A {STRING}
+STR_FIAT621L_NAME       :Polski Fiat 621L {STRING}
+STR_ZUKA03_NAME         :Zuk A03 {STRING}
+STR_LUBLIN33_NAME       :Lublin/Intrall {STRING}
+STR_DZTPASAGON_NAME     :DZT Pasagon {STRING}
+STR_IVECODAILY6_NAME    :Iveco Daily VI {STRING}
+STR_URSUSELVI_NAME      :Ursus ELVI {STRING}
+
+STR_PZINZ703_NAME       :PZInz-703 {STRING}
+STR_STAR20_NAME         :Star 20 {STRING}
+STR_STAR25_NAME         :Star 25 {STRING}
+STR_STAR200_NAME        :Star 200 {STRING}
+STR_STAR2000_NAME       :Star 2000 {STRING}
+STR_STARTGL_NAME        :Star TGL {STRING}
+
+STR_CHEVROLET157_NAME           :Chevrolet 157 {STRING}
+STR_STAR_C21_NAME               :Star C-21 {STRING}
+STR_STAR_C28_NAME               :Star C-28 {STRING}
+STR_RENAULT_MAGNUM_NAME         :Renault Magnum {STRING}
+STR_DAF95X_NAME                 :DAF 95X {STRING}
+STR_RENAULT_MILLENIUM_NAME      :Renault Magnum Millenium {STRING}
+STR_DAFXF105_NAME               :DAF XF 105 {STRING}
+
+STR_ZUBR_C90_NAME       :Żubr C90 {STRING}
+STR_JELCZ_317_NAME      :Jelcz 317 {STRING}
+STR_VOLVO_F12_NAME      :Volvo F12 {STRING}
+STR_VOLVO_FH12_NAME     :Volvo FH12 {STRING}
+STR_VOLVO_FH13_NAME     :Volvo FH13 {STRING}
+
+STR_DT_SUFFIX           :wywrotka
+STR_KAMAZ5511_NAME      :{STRING} Kamaz 5511
+STR_ACTROSMP1_NAME      :{STRING} Mercedes Actros Mp1
+STR_ACTROSMP3_NAME      :{STRING} Mercedes Actros Mp3
+
+STR_NORMAL_POWER        : (standardowa moc)
+STR_MORE_POWER          : (zwiększona moc)
+STR_4HORSE_HEAVY_LOGGER_NAME    :zaprzęg do zrywki drzewa
+STR_4HORSE_HEAVY_LOGGER_DESC    :{RED}{LORRY}{LORRY}{BLACK}fura kłonicowa do drewna, możliwość zmiany: 2 lub 4 perszerony
+STR_PRAGAV3S_NAME       :Praga V3S do dłużycy
+STR_PRAGAV3S_DESC       :silnik wysokoprężny Tatra 912, możliwość przebudowy do E359T
+STR_STAR266_NAME        :Star 266 do dłużycy
+STR_STAR266_DESC        :{RED}{LORRY}{LORRY}{BLACK} Specjalistyczna ciężarówka do dłużycy, z HDS,{}silnik wysokoprężny S359 o pojemności {UNSIGNED_WORD} ccm, przebudowywalny do E359T
+STR_SCANIA_S4_NAME      :Scania 114 C do dłużycy
+STR_SCANIA_S4_DESC      :silnik wysokoprężny V8 DSC14 13 530 CR
+STR_SCANIA_R730_NAME    :Scania R730 do dłużycy
+STR_SCANIA_R730_DESC    :silnik wysokoprężny V8 DC16 103 730 CR
+
+STR_JELCZ315_NAME       :Jelcz 315 - ciężarówka z przyczepą z plandeką
+
+STR_JELCZ416_NAME       :Jelcz 416 - ciężarówka z przyczepą z plandeką
+
+STR_MANTGA_NAME :MAN TGA ciężarówka z przyczepą do przewozu kontenerów
+STR_MANTGA_DESC :silnik wysokoprężny D2866
+
+STR_HCPLOCOMOBILE1_NAME :pierwsza lokomobila HCP
+STR_HCPLOCOMOBILE1_DESC : {LORRY}{LORRY}{LORRY} Pierwszy traktor parowy HCP, silnik na parę nasyconą{}Przebudowalny do maks. 3 przyczep{}(ładowność do {GOLD}{UNSIGNED_WORD}{BLACK} ton ziarna lub {GOLD}{UNSIGNED_WORD}{BLACK} szt. żywca).{}
+STR_HCPLOCOMOBILE_NAME  :ulepszona lokomobila HCP
+STR_HCPLOCOMOBILE_DESC  : {LORRY}{LORRY}{LORRY}Traktor parowy z silnikiem sprzężonym na parę przegrzaną.{}Przebudowalny do maks. 6 przyczep{}(ładowność do {GOLD}{UNSIGNED_WORD}{BLACK}  ton ziarna lub {GOLD}{UNSIGNED_WORD}{BLACK}  szt. żywca).{}
+STR_URSUSC45_DESC       :Maks. 3 przyczepy. Silnik wysokoprężny Lanz-Bulldog
+STR_URSUSC328_DESC      :Maks. 2 przyczepy "Autosana". Silnik wysokoprężny S-312
+STR_URSUSC330_DESC      :Maks. 3 przyczepy "Autosana". Silnik wysokoprężny S-4001
+STR_URSUSC360_DESC      :Maks. 3 przyczepy "Autosana". Silnik wysokoprężny S-4003
+STR_URSUSC1734_DESC     :Maks. 2  przyczepy "Pronar". Silnik wysokoprężny Martin UR-IV
+
+STR_URSUSC45_NAME       :Ursus C45
+STR_URSUSC328_NAME      :Ursus C328
+STR_URSUSC330_NAME      :Ursus C330
+STR_URSUSC360_NAME      :Ursus C360
+STR_URSUSC1734_NAME     :Ursus C1734
+
+
+STR_GENERIC_BUILD_VEHICLE            :Nowy pojazd drogowy
+STR_GENERIC_AUTOREPLACE              :Pojazdy drogowe
+STR_GENERIC_NEW_ENGINE               :pojazd drogowy
+
+STR_PEDESTRIAN_ZONE_NAME             :Skwer dla pieszych (bez ruchu kołowego)
+STR_PEDESTRIAN_ZONE_TOOLBAR          :Budowa strefy dla pieszych
+STR_PEDESTRIAN_ZONE_MENU             :Budowa strefy dla pieszych
+
+STR_DIRT_ROAD_NAME                   :Droga gruntowa (dla lekkich pojazdów)
+STR_DIRT_ROAD_TOOLBAR                :Budowa drogi gruntowej
+STR_DIRT_ROAD_MENU                   :Budowa drogi gruntowej
+
+STR_SETT_PAVEMENT_ROAD_NAME          :Droga brukowana
+STR_SETT_PAVEMENT_ROAD_TOOLBAR       :Budowa drogi brukowanej
+STR_SETT_PAVEMENT_ROAD_MENU          :Budowa drogi brukowanej
+
+STR_BASIC_ASPHALT_ROAD_NAME          :Droga asfaltowa
+STR_BASIC_ASPHALT_ROAD_TOOLBAR       :Budowa drogi asfaltowej
+STR_BASIC_ASPHALT_ROAD_MENU          :Budowa drogi asfaltowej
+
+STR_IMPROVED_ASPHALT_ROAD_NAME       :Szosa asfaltowa
+STR_IMPROVED_ASPHALT_ROAD_TOOLBAR    :Budowa szosy asfaltowej
+STR_IMPROVED_ASPHALT_ROAD_MENU       :Budowa szosy asfaltowej
+
+STR_MODERN_ASPHALT_ROAD_NAME         :Droga szybkiego ruchu (dla szybkich pojazdów)
+STR_MODERN_ASPHALT_ROAD_TOOLBAR      :Budowa drogi szybkiego ruchu
+STR_MODERN_ASPHALT_ROAD_MENU         :Budowa drogi szybkiego ruchu
+
+STR_HIGHWAY_ROAD_NAME                :Autostrada (dla szybkich pojazdów)
+STR_HIGHWAY_ROAD_TOOLBAR             :Budowa autostrady
+STR_HIGHWAY_ROAD_MENU                :Budowa autostrady
+
+STR_HAUL_ROAD_NAME                :Autostrada z płyt betonowych (dla szybkich pojazdów)
+STR_HAUL_ROAD_TOOLBAR             :Budowa autostrady betonowej
+STR_HAUL_ROAD_MENU                :Budowa autostrady betonowej
+

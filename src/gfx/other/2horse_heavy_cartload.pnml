@@ -1,0 +1,145 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// two horse heavy carriage:
+
+
+/* */
+#define twohorse_heavy_cartload_maxloadmass 10
+#define twohorse_heavy_cartload_mass 3
+#define twohorse_heavy_cartload_pass 12
+#define twohorse_heavy_cartload_speed 10
+
+spriteset(spriteset_twohorse_heavy_cartload_purchase, "src/gfx/other/heavy_cartload.png") { template_sprite_window_sideview8(270) }
+
+spriteset(empty_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(8) }
+spriteset(bulk_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(33) }
+spriteset(grai_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(58) }
+spriteset(pass_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(83) }
+spriteset(lvst_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(108) }
+spriteset(vehi_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(133) }
+spriteset(oil__heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(158) }
+spriteset(wdpr_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(183) }
+spriteset(good_heavy_cartload_graphic, "src/gfx/other/heavy_cartload.png") { template_sprite6(208) }
+
+
+switch(FEAT_ROADVEHS, SELF, check_bulk_heavy_cartload_graphic, hasbit(cargo_classes, CC_BULK) + 2 * (hasbit(cargo_classes, CC_COVERED) || cargo_type_in_veh == GRAI)) {
+	1: return bulk_heavy_cartload_graphic;  
+	3: return grai_heavy_cartload_graphic;
+	return good_heavy_cartload_graphic;
+} 
+
+switch(FEAT_ROADVEHS, SELF, check_liquid_heavy_cartload_graphic, hasbit(cargo_classes, CC_LIQUID)) {
+	1: return oil__heavy_cartload_graphic;  
+	return check_bulk_heavy_cartload_graphic;
+} 
+
+switch(FEAT_ROADVEHS, SELF, check_cargo_heavy_cartload_graphic_switch, cargo_type_in_veh) {  
+	PASS: return pass_heavy_cartload_graphic;  
+	VEHI: return vehi_heavy_cartload_graphic;  
+	ENSP: return vehi_heavy_cartload_graphic; 
+	WDPR: return wdpr_heavy_cartload_graphic;
+	WOOD: return bulk_heavy_cartload_graphic; 
+	YETI: return pass_heavy_cartload_graphic;
+	return check_liquid_heavy_cartload_graphic;  
+} 
+
+switch(FEAT_ROADVEHS, SELF, heavy_cartload_graphic_loaded_switch, cargo_count) {  
+	0: return empty_heavy_cartload_graphic;  
+	return check_cargo_heavy_cartload_graphic_switch;  
+} 
+
+switch (FEAT_ROADVEHS, SELF, consist_twohorse_heavy_cartload_graphic_switch, position_in_consist) { 
+    0 : return switch_randomize2_first_horsepair_graphics; 
+    1 : return heavy_cartload_graphic_loaded_switch; 
+return CB_FAILED;
+}
+ 
+switch (FEAT_ROADVEHS, SELF, switch_twohorse_heavy_cartload_articulated, extra_callback_info1) { 
+    1 : return twohorse_heavy_cartload; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+switch(FEAT_ROADVEHS, SELF, check_twohorse_heavy_cartload_length_switch, position_in_consist) {  
+	0 : return 4; 
+	1 : return 5;  
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_twohorse_heavy_cartload_text, param_load_multiplier) {    
+	1 : return string(STR_2HORSE_HEAVY_CART_DESC, twohorse_heavy_cartload_pass, twohorse_heavy_cartload_maxloadmass / 2);   
+	2 : return string(STR_2HORSE_HEAVY_CART_DESC, twohorse_heavy_cartload_pass, twohorse_heavy_cartload_maxloadmass);   
+	3 : return string(STR_2HORSE_HEAVY_CART_DESC, twohorse_heavy_cartload_pass, twohorse_heavy_cartload_maxloadmass * 3 / 2);   
+  return CB_FAILED;   
+}   
+
+switch(FEAT_ROADVEHS, SELF, maxload_twohorse_heavy_cartload_switch, cargo_type_in_veh) {  	
+	PASS: return twohorse_heavy_cartload_pass / 2;
+	GEAR: return 0; 
+//	MAIL: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/8;  
+	GOOD: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/8;  
+	ENSP: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/10;  
+	VEHI: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/40;  
+	FMSP: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/9;  
+	MNSP: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/8;  
+	LVST: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/4;  
+	OIL_: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/15;  
+	PETR: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/15;  
+	RFPR: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/15;  
+	WOOD: return twohorse_heavy_cartload_maxloadmass* param_load_multiplier*4/32;  
+        return twohorse_heavy_cartload_maxloadmass* param_load_multiplier/4;  
+}   
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, twohorse_heavy_cartload) { 
+	property { 
+	name:			   	string(STR_2HORSE_HEAVY_CART_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1710, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 240+10 : 240+5);
+	vehicle_life:		   	20; 
+	retire_early:			10; 
+	reliability_decay:	    	2; 
+	loading_speed:		  	4; 
+	cost_factor:		    	16;      
+	running_cost_factor:	min(4 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	twohorse_heavy_cartload_speed km/h;  
+	refittable_cargo_classes:      	ALL_NORMAL_CARGO_CLASSES; 
+//	cargo_disallow_refit:		[WOOD]; 
+	non_refittable_cargo_classes:   bitmask(CC_ARMOURED, CC_MAIL); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	20 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	twohorse_heavy_cartload_maxloadmass; 
+	default_cargo_type:		PASS; 
+	weight:			 	twohorse_heavy_cartload_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.9; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+//	road_type:			OFFR;
+	sound_effect: SOUND_HORSE;
+	length:      	    		4; 
+    } 
+    graphics { 
+	default:	    	consist_twohorse_heavy_cartload_graphic_switch;  
+	purchase:	   	spriteset_twohorse_heavy_cartload_purchase;  
+	articulated_part:	switch_twohorse_heavy_cartload_articulated; 
+	length:			check_twohorse_heavy_cartload_length_switch;
+	cargo_capacity:		maxload_twohorse_heavy_cartload_switch;
+	additional_text:        switch_twohorse_heavy_cartload_text;
+	cargo_age_period:	low_passenger_comfort;
+	colour_mapping:         switch_bulk_recolour;      
+    }  
+ }
+}
+
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, twohorse_heavy_cartload) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

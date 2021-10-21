@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Solaris Urbino 18:
+spriteset(spriteset_Solaris_Urbino18_purchase, "src/gfx/bus/Solaris_Urbino18.png") { template_sprite_window_sideview12(58) }
+
+spriteset(spriteset_Solaris_Urbino18_graphic1, "src/gfx/bus/Solaris_Urbino18.png") { template_sprite6ab(8) }
+spriteset(spriteset_Solaris_Urbino18_graphic2, "src/gfx/bus/Solaris_Urbino18.png") { template_sprite6ab(33) } 

@@ -1,0 +1,25 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Ford T:
+spriteset(spriteset_FordT_purchase, "src/gfx/other/FordT.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_FordT_graphic, "src/gfx/other/FordT.png") { template_sprite6(8) }
+
+spriteset(spriteset_FordT_graphic_black, "src/gfx/other/FordT.png") { template_sprite6(30) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_FordT_random_graphic) {
+    1: return spriteset_FordT_graphic_black;
+    1: return spriteset_FordT_graphic;
+    1: return spriteset_FordT_graphic_black;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_FordT_graphic, cargo_subtype) {
+	0: return spriteset_FordT_graphic_black;
+	1: return switch_spriteset_FordT_random_graphic;
+	2: return spriteset_FordT_graphic_black;
+	return CB_FAILED;
+}
+
+

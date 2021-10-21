@@ -1,0 +1,147 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// two or four horse heavy logger:
+
+
+/* */
+#define horse_heavy_logger_maxloadmass 15
+#define horse_heavy_logger_mass 3
+#define horse_heavy_logger_speed 10
+#define TWOHORSE_REFIT_REFUND 4
+#define  FOURHORSE_REFIT_COST 5
+
+spriteset(spriteset_horse_heavy_logger_purchase, "src/gfx/other/heavy_logload.png") { template_sprite_window_sideview13(135) }
+
+spriteset(empty_heavy_logger_graphic, "src/gfx/other/heavy_logload.png") { template_sprite7(8) }
+spriteset(logging_heavy_logger_graphic, "src/gfx/other/heavy_logload.png") { template_sprite7(38) }
+spriteset(emptied_heavy_logger_graphic, "src/gfx/other/heavy_logload.png") { template_sprite7(68) }
+spriteset(logged_heavy_logger_graphic, "src/gfx/other/heavy_logload.png") { template_sprite7(98) }
+
+spriteset(wdprloading_heavy_logger_graphic, "src/gfx/other/heavy_timberload.png") { template_sprite7(38) }
+spriteset(wdprloaded_heavy_logger_graphic, "src/gfx/other/heavy_timberload.png") { template_sprite7(98) }
+
+spritegroup spritegroup_horse_heavy_logger_graphic {
+    loaded:     [emptied_heavy_logger_graphic, logged_heavy_logger_graphic];
+    loading:    [empty_heavy_logger_graphic, logging_heavy_logger_graphic];
+}
+
+spritegroup spritegroup_horse_heavy_wdpr_graphic {
+    loaded:     [emptied_heavy_logger_graphic, wdprloaded_heavy_logger_graphic];
+    loading:    [empty_heavy_logger_graphic, empty_heavy_logger_graphic, wdprloading_heavy_logger_graphic];
+}
+
+switch (FEAT_ROADVEHS, SELF, horse_heavy_logger_cargo_graphic_switch, cargo_type_in_veh) { 
+    WDPR : return spritegroup_horse_heavy_wdpr_graphic; 
+    return spritegroup_horse_heavy_logger_graphic; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, secondpair_horsewalk_graphic_switch, cargo_subtype) {
+	0: return none_spriteset_empty;
+	1: return velocity_secondpair_horsewalk_graphic_switch;
+	return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, consist_horse_heavy_logload_graphic_switch, position_in_consist) { 
+    0 : return switch_randomize1_first_horsepair_graphics; 
+    1 : return secondpair_horsewalk_graphic_switch; 
+    2 : return horse_heavy_logger_cargo_graphic_switch; 
+return CB_FAILED;
+}
+ 
+switch (FEAT_ROADVEHS, SELF, switch_heavy_logload_articulated, extra_callback_info1) { 
+    1..2 : return horse_heavy_logload; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, secondpair_horsewalk_length_switch, cargo_subtype) {
+	0: return 1;
+	1: return 4;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, check_horse_heavy_logload_length_switch, position_in_consist) {  
+	0 : return 4; 
+	1 : secondpair_horsewalk_length_switch;
+	2 : return 5;  
+	return CB_FAILED;
+}  
+switch(FEAT_ROADVEHS, SELF, check_horse_heavy_logload_power_switch, cargo_subtype) {  
+	0 : return 2; //20 hp
+	1 : return 4;
+	return CB_FAILED;  
+} 
+switch(FEAT_ROADVEHS, SELF, check_horse_heavy_logload_weight_switch, cargo_subtype) {  
+	0 : return horse_heavy_logger_mass * 4; //internal units*4 = t
+	1 : return (horse_heavy_logger_mass + 2) * 4; //additional 2 horses
+	return CB_FAILED;  
+} 
+switch(FEAT_ROADVEHS, SELF, switch_horse_heavy_logload_running_cost, cargo_subtype) {
+	0: return min(4 * STAFF_RUNNING_COST /10, 255);
+	1: return min(6 * STAFF_RUNNING_COST /10, 255);
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_horse_heavy_logload_refit_cost, var[0x10,8,0xFF] - cargo_subtype) {
+    /* 	Refit cost based on difference between target cargo sybtype and current cargo subtype.
+	Refitting to fewer horses refunds money, while adding horses costs (slightly more) money.   */
+	-1:				-(TWOHORSE_REFIT_REFUND);
+	0:				0;
+	1:				(FOURHORSE_REFIT_COST);
+	return CB_FAILED;
+}
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, horse_heavy_logload) { 
+	property { 
+	name:			   	string(STR_4HORSE_HEAVY_LOGGER_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1712, 1, 1);	    
+	model_life:      (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 240+10 : 240+5); 
+	vehicle_life:		   	20; 
+	retire_early:			5; 
+	reliability_decay:	    	4; 
+	loading_speed:		  	4; 
+	cost_factor:		    	10;      
+	running_cost_factor:	min(4 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	horse_heavy_logger_speed km/h;  
+	cargo_allow_refit:		[WOOD, WDPR]; 
+	non_refittable_cargo_classes:   bitmask(CC_ARMOURED, CC_MAIL); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE, ROADVEH_FLAG_AUTOREFIT); 
+	refit_cost:		   	FOURHORSE_REFIT_COST; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	20 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	horse_heavy_logger_maxloadmass /3; 
+	weight:			 	horse_heavy_logger_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	1.0; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		4; 
+//	road_type:			OFFR;
+	sound_effect: SOUND_VEHICLE_BREAKDOWN;
+    } 
+    graphics { 
+	default:	    		consist_horse_heavy_logload_graphic_switch;  
+	purchase:	   		spriteset_horse_heavy_logger_purchase;  
+	articulated_part:		switch_heavy_logload_articulated; 
+	length:				check_horse_heavy_logload_length_switch;
+	power:				check_horse_heavy_logload_power_switch;
+	weight:				check_horse_heavy_logload_weight_switch;
+	running_cost_factor:		switch_horse_heavy_logload_running_cost;
+	refit_cost:			switch_horse_heavy_logload_refit_cost;
+	cargo_subtype_text: 		switch_horsepower_subtype_text;
+	additional_text:        	string(STR_4HORSE_HEAVY_LOGGER_DESC);
+	colour_mapping:         	switch_bulk_recolour;
+//	sound_effect: return switch_horsewhin_sound;      
+    } 
+ } 
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, horse_heavy_logload) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

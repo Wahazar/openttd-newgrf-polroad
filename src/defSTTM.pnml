@@ -1,0 +1,264 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Semi-Trailer Tractor with Modern trailer (like STTN + container, dumper/skipper) - switches:
+
+//length switches
+switch(FEAT_ROADVEHS, SELF, check_STTM_trailer_length_switch, cargo_type_in_veh) {  
+	PASS: return 1; 
+	return 7;  
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_STTM_length, position_in_consist) {
+    0 : return 4;
+    1 : return check_STTM_trailer_length_switch;
+}
+
+//refit text
+switch(FEAT_ROADVEHS, SELF, subtype_MODERN_TRAILER_text_switch, cargo_subtype) {  
+//	ID_GEAR:	return string(STR_NONE_SUBTYPE);
+	ID_BOX: 	return string(STR_BOX_SUBTYPE);  
+	ID_FLAT:  	return string(STR_FLAT_SUBTYPE);
+	ID_LVST:  	return string(STR_LVST_SUBTYPE);
+	ID_REEF:  	return string(STR_REEFER_SUBTYPE);
+	ID_OIL:  	return string(STR_OIL_SUBTYPE);
+	ID_MILK:  	return string(STR_MILK_SUBTYPE);
+	ID_MAIL:  	return string(STR_MAIL_SUBTYPE);
+	ID_CONT:  	return string(STR_CONTAINER_TRAILER_SUBTYPE);
+	ID_DUMP:  	return string(STR_DUMPER_TRAILER_SUBTYPE);
+	return CB_FAILED;  
+} 
+switch(FEAT_ROADVEHS, SELF, MODERN_TRAILER_text_switch, cargo_type_in_veh) {  
+	PASS: return  string(STR_NONE_SUBTYPE);  
+	subtype_MODERN_TRAILER_text_switch;  
+}
+
+//refit cost
+switch (FEAT_ROADVEHS, SELF, switch_STTM_check_pass, ((extra_callback_info1 & 0xFF) == PASS)) {
+   0 : STTM_REFIT_SEMITRAILER_COST + STTM_REFIT_TRACTORUNIT_REFUND; //anti-cheat change: only surplus, but 0 for sell
+   1 : 0;
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTM_check_trailer, var[0x10,8,0xFF] - cargo_subtype ) {
+   0 : return 0 | CB_RESULT_AUTOREFIT; //same trailer, OK
+return STTM_REFIT_SEMITRAILER_COST + STTM_REFIT_TRACTORUNIT_REFUND;  //pay for changing trailers
+}
+switch (FEAT_ROADVEHS, SELF, switch_cargo_STTM_check_pass, ((extra_callback_info1 & 0xFF) == PASS)) {
+   0 : switch_STTM_check_trailer;
+   1 : 0;  //STTM_REFIT_TRACTORUNIT_REFUND; //sell trailer
+}
+switch (FEAT_ROADVEHS, SELF, switch_STTM_refit_cost, cargo_type_in_veh ) {
+   PASS : return switch_STTM_check_pass; //pay if cargo
+   return switch_cargo_STTM_check_pass;  //none if pass, otherwise check trailer
+}
+//load/unload conainers/dumper
+switch(FEAT_ROADVEHS, SELF, switch_STTM_loading_speed, cargo_subtype) {  
+	ID_OIL:  	return 8;
+	ID_MILK:  	return 8;
+	ID_MAIL:  	return 8;
+	ID_CONT:  	return 14;
+	ID_DUMP:  	return 14;
+	return 5;  
+} 
+
+//semi-trailers graphics switches
+#define SEMI_TRAILERS_MODERN_GRAPHIC_SWITCHES(Trailer_Type) \
+\
+switch(FEAT_ROADVEHS, SELF, check_subtype_spriteset_##Trailer_Type##_graphic_switch, cargo_subtype) {  \
+  ID_BOX  : return box_spriteset_##Trailer_Type##_graphic_switch; \
+  ID_FLAT : return flat_spriteset_##Trailer_Type##_graphic_switch; \
+  ID_LVST : return lvst_spriteset_##Trailer_Type##_graphic; \
+  ID_REEF : return food_spriteset_##Trailer_Type##_graphic; \
+  ID_OIL  : return oil__spriteset_##Trailer_Type##_graphic; \
+  ID_MILK : return milk_spriteset_##Trailer_Type##_graphic; \
+  ID_MAIL : return mail_spriteset_##Trailer_Type##_graphic; \
+  ID_CONT : return cont_spritegroup_##Trailer_Type##_graphic; \
+  ID_DUMP : return dump_spriteset_##Trailer_Type##_graphic_switch; \
+} \
+switch(FEAT_ROADVEHS, SELF, spriteset_check_trailer_##Trailer_Type##_switch, cargo_type_in_veh) {  \
+	PASS: return  	none_spriteset_empty;  \
+	return 		check_subtype_spriteset_##Trailer_Type##_graphic_switch;  \
+} \
+
+//
+
+// Semi-Trailer Tractor with Modern trailer - definition 
+// v_mass: tractor unit mass, t_mass: semitrailer mass
+#define FREIGHT_STTM(STTM_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass) \
+switch (FEAT_ROADVEHS, SELF, consist_##STTM_Name##_articulated_graphic_switch, position_in_consist) { \
+    0 : return spriteset_tractor_##STTM_Name##_graphic; \
+    1 : return spriteset_check_trailer_##Trailer_Type##_switch; \
+	return CB_FAILED; \
+} \
+switch (FEAT_ROADVEHS, SELF, switch_##STTM_Name##_articulated, extra_callback_info1) { \
+    1 : return STTM_Name; \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; \
+} \
+switch (FEAT_ROADVEHS, SELF, switch_##STTM_Name##_text, param_load_multiplier) {    \
+	1 : return string(STR_STTM_DESC, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS), v_maxloadmass/2);   \
+	2 : return string(STR_STTM_DESC, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS), v_maxloadmass);   \
+	3 : return string(STR_STTM_DESC, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS), v_maxloadmass*3/2);   \
+  return CB_FAILED;   \
+}   \
+  \
+switch(FEAT_ROADVEHS, SELF, maxload_##STTM_Name##_subtype_switch, cargo_subtype) {  \
+  ID_BOX  : min((v_maxloadmass*param_load_multiplier * (((hasbit(cargo_classes, CC_PIECE_GOODS) && (!hasbit(cargo_classes, CC_BULK))) || hasbit(cargo_classes, CC_EXPRESS)) * 80 / cargo_unit_weight + 80/20 * (hasbit(cargo_classes, CC_BULK)) + 80/32*((cargo_classes == bitmask(CC_LIQUID)))))/10, v_maxloadmass * param_load_multiplier); \
+  ID_FLAT : (v_maxloadmass*param_load_multiplier * 80 / cargo_unit_weight * ((hasbit(cargo_classes, CC_PIECE_GOODS) || hasbit(cargo_classes, CC_EXPRESS)) && !(hasbit(cargo_classes, CC_COVERED) || hasbit(cargo_classes, CC_LIQUID) || hasbit(cargo_classes, CC_REFRIGERATED) ) ) )/10; \
+  ID_LVST : 0; \
+  ID_REEF : v_maxloadmass*param_load_multiplier*80/20 * (hasbit(cargo_classes, CC_REFRIGERATED))/10; \
+  ID_OIL  : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_LIQUID) && !hasbit(cargo_classes, CC_REFRIGERATED)); \
+  ID_MILK : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_LIQUID) && hasbit(cargo_classes, CC_REFRIGERATED)); \
+  ID_MAIL : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 2) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_MAIL)); \
+  ID_CONT : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass*2) * (hasbit(cargo_classes, CC_EXPRESS) && !hasbit(cargo_classes, CC_OVERSIZED)) * param_load_multiplier/2; \
+  ID_DUMP : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass) * (hasbit(cargo_classes, CC_BULK) && !hasbit(cargo_classes, CC_PIECE_GOODS)) * param_load_multiplier/2; \
+return CB_FAILED; \
+} \
+switch(FEAT_ROADVEHS, SELF, maxload_trailer_##STTM_Name##_switch, cargo_type_in_veh) {  \
+	PASS: return 0;  \
+	MAIL: return v_maxloadmass*param_load_multiplier*(80/16 * ((cargo_subtype == ID_BOX)) + 80/cargo_unit_weight * (cargo_subtype == ID_MAIL))/10;  \
+	GOOD: return v_maxloadmass*param_load_multiplier* \
+	(80/cargo_unit_weight * ((cargo_subtype == ID_BOX) || (cargo_subtype == ID_CONT)) \
+ 	+ 80/9 * (cargo_subtype == ID_FLAT))/10;  \
+	ENSP: return min(v_maxloadmass*param_load_multiplier*  \
+	(80/cargo_unit_weight * (cargo_subtype == ID_FLAT) + 80/16 * ((cargo_subtype == ID_BOX) \
+	|| (cargo_subtype == ID_CONT)))/10, v_maxloadmass*param_load_multiplier*2);  \
+	VEHI: return v_maxloadmass*param_load_multiplier*  \
+	80/cargo_unit_weight * (cargo_subtype == ID_FLAT)/10 + 2 * (cargo_subtype == ID_BOX);  \
+	FMSP: return v_maxloadmass*param_load_multiplier*  \
+	(80/cargo_unit_weight * ((cargo_subtype == ID_FLAT) || (cargo_subtype == ID_BOX)  \
+	|| (cargo_subtype == ID_CONT)))/10;  \
+	MNSP: return v_maxloadmass*param_load_multiplier*  \
+	(80/cargo_unit_weight* ((cargo_subtype == ID_BOX) || (cargo_subtype == ID_CONT)) \
+	+ 80/cargo_unit_weight * (cargo_subtype == ID_FLAT))/10;  \
+	LVST: return min(v_maxloadmass*param_load_multiplier*  \
+	(80/cargo_unit_weight * (cargo_subtype == ID_LVST) + \
+	40/cargo_unit_weight * (cargo_subtype == ID_BOX))/10, v_maxloadmass*param_load_multiplier*3);  \
+	OIL_: return min(v_maxloadmass*param_load_multiplier*  \
+	(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, \
+ 	v_maxloadmass*param_load_multiplier/2);  \
+	PETR: return min(v_maxloadmass*param_load_multiplier* \
+	(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, \
+ 	v_maxloadmass*param_load_multiplier/2);  \
+	RFPR: return min(v_maxloadmass*param_load_multiplier* \
+	(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, \
+ 	v_maxloadmass*param_load_multiplier/2);  \
+	BEER: return v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/16 * (cargo_subtype == ID_REEF) + 80/cargo_unit_weight * (cargo_subtype == ID_MILK))/10;  \
+	WATR: return v_maxloadmass*param_load_multiplier* \
+	(80/32 * (cargo_subtype == ID_BOX) \
+	+ 80/16 * (cargo_subtype == ID_REEF) + 80/cargo_unit_weight * (cargo_subtype == ID_MILK))/10;  \
+	WOOD: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/16) * (cargo_subtype == ID_FLAT))/10;  \
+	BDMT: return v_maxloadmass*param_load_multiplier*((80/20)* (cargo_subtype == ID_BOX) + (80/16) * (cargo_subtype == ID_FLAT))/10;  \
+	STEL: return v_maxloadmass*param_load_multiplier*((80/20)* (cargo_subtype == ID_BOX) + (80/16) * (cargo_subtype == ID_FLAT))/10;  \
+	METL: return v_maxloadmass*param_load_multiplier*((80/20)* (cargo_subtype == ID_BOX) + (80/16) * (cargo_subtype == ID_FLAT))/10;  \
+	IRON: return v_maxloadmass*param_load_multiplier*((80/20)* (cargo_subtype == ID_BOX) + (80/16) * (cargo_subtype == ID_FLAT))/10;  \
+	WDPR: return min(v_maxloadmass*param_load_multiplier \
+	*((80/30)* (cargo_subtype == ID_BOX) \
+	+ (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10, v_maxloadmass* param_load_multiplier*2);  \
+	PAPR: return v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * ((cargo_subtype == ID_BOX) || (cargo_subtype == ID_CONT))/10;  \
+	BRCK: return v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * (cargo_subtype == ID_BOX)/10;  \
+        return maxload_##STTM_Name##_subtype_switch;  \
+}  \
+switch (FEAT_ROADVEHS, SELF, maxload_##STTM_Name##_switch, position_in_consist) { \
+    0 : return 0; \
+    1 : return maxload_trailer_##STTM_Name##_switch; \
+}  \
+switch(FEAT_ROADVEHS, SELF, switch_##STTM_Name##_maxspeed, cargo_type_in_veh) { \
+	PASS: return v_vmax * 15 /20; \
+	return v_vmax /2; \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##STTM_Name##_weight, cargo_type_in_veh) { \
+	PASS: return v_mass * 4; \
+	return (v_mass + t_mass)  * 4; \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##STTM_Name##_running_cost, cargo_type_in_veh) { \
+	PASS: min(STAFF_RUNNING_COST + max(0,((v_mass) * ((e_displacement / 12) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	return min(STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)/365) + !vehicle_is_in_depot * max(0,((v_mass + v_maxloadmass + t_mass) * ((e_displacement / 12) + (current_speed) * (current_speed) * 14) * v_fuelsystem) >> 15), 255); \
+} \
+if (param_allow_truck) { \
+item(FEAT_ROADVEHS, STTM_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_STTM_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	5; \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((v_mass + v_maxloadmass + t_mass) * ((e_displacement / 12) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15, 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax/2; \
+	refittable_cargo_classes:      	ALL_CARGO_CLASSES; \
+	non_refittable_cargo_classes:   bitmask(CC_ARMOURED);  \
+	cargo_disallow_refit:		[TOUR]; \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	STTM_REFIT_SEMITRAILER_COST + STTM_REFIT_TRACTORUNIT_REFUND ; \
+	cargo_age_period:	 	STANDARD_COMFORT; \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	v_maxloadmass/2; \
+	default_cargo_type:		GOOD; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.4; \
+	air_drag_coefficient:	   	0.24; \
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 2); \
+	sound_effect: SOUND_TRUCK_START_2; \
+	length:      	    		8; \
+    } \
+\
+    graphics { \
+	default:	    	consist_##STTM_Name##_articulated_graphic_switch;  \
+	purchase:	   	spriteset_##STTM_Name##_purchase;  \
+	articulated_part:	switch_##STTM_Name##_articulated; \
+	refit_cost:		switch_STTM_refit_cost;  \
+	purchase_cargo_capacity:return v_maxloadmass* param_load_multiplier/2; \
+	cargo_capacity:		maxload_##STTM_Name##_switch; \
+	loading_speed:		switch_STTM_loading_speed; \
+	additional_text:        switch_##STTM_Name##_text; \
+	cargo_subtype_text:	MODERN_TRAILER_text_switch; \
+	colour_mapping:         switch_bulk_recolour;   \
+	speed:			switch_##STTM_Name##_maxspeed; \
+	weight:			switch_##STTM_Name##_weight; \
+	length:			switch_STTM_length; \
+	visual_effect:		switch_semi_trailer_tractor_unit_effect; \
+	purchase_speed:		return v_vmax/2; \
+	purchase_running_cost_factor: return min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass + t_mass) * ((e_displacement / 12) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	running_cost_factor:	switch_##STTM_Name##_running_cost; \
+    }  \
+ } \
+}
+// Semi-Trailer Tractor definition, v_mass: tractor unit mass, t_mass: semitrailer mass
+// FREIGHT_STTM(STTM_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass) 
+
+//modern 3-axle semitrailers: (TODO: different for Renault and DAF)
+#include "../src/gfx/truck/trailers3m.pnml"
+SEMI_TRAILERS_MODERN_GRAPHIC_SWITCHES(trailers3m)
+
+// Renault Magnum semi-trailer tractor unit:
+spriteset(spriteset_RenaultMagnum_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTN(165) }
+spriteset(spriteset_tractor_RenaultMagnum_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(165) }
+// Semi-Trailer Tractor definition, v_mass: tractor unit mass, t_mass: semitrailer mass
+// FREIGHT_STTM(STTM_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass) 
+FREIGHT_STTM(RenaultMagnum, trailers3m, STR_RENAULT_MAGNUM_NAME, STR_RENAULT_MAGNUM_DESC, 1990, 2008, 15, 20, 1, 100, DIESEL_ENGINE, 12800, 90, 328, 8, 10, 40) 
+
+#include "../src/gfx/truck/trailers3mb.pnml"
+SEMI_TRAILERS_MODERN_GRAPHIC_SWITCHES(trailers3mb)
+
+// DAF 95XF semi-trailer tractor unit:
+spriteset(spriteset_DAF95X_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTN(245) }
+spriteset(spriteset_tractor_DAF95X_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(245) }
+FREIGHT_STTM(DAF95X, trailers3mb, STR_DAF95X_NAME, STR_DAF95X_DESC, 1997, 2014, 15, 22, 1, 90, DIESEL_ENGINE, 12600, 90, 340, 7, 10, 36) 
+
+
+// Renault Magnum Millenium semi-trailer tractor unit:
+spriteset(spriteset_RenaultMagnumMillenium_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTN(285) }
+spriteset(spriteset_tractor_RenaultMagnumMillenium_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(285) }
+FREIGHT_STTM(RenaultMagnumMillenium, trailers3m, STR_RENAULT_MILLENIUM_NAME, STR_RENAULT_MILLENIUM_DESC, 2001, 0, 0, 20, 1, 105, DIESEL_ENGINE_CR, 12800, 90, 360, 8, 10, 42) 
+
+// DAF XF105 semi-trailer tractor unit:
+spriteset(spriteset_DAFXF105_purchase, "src/gfx/truck/allSTT.png") { template_sprite_window_sideviewSTTN(345) }
+spriteset(spriteset_tractor_DAFXF105_graphic, "src/gfx/truck/allSTT.png") { template_spriteSTT(345) }
+FREIGHT_STTM(DAFXF105, trailers3mb, STR_DAFXF105_NAME, STR_DAFXF105_DESC, 2007, 0, 0, 22, 1, 95, DIESEL_ENGINE_CR, 12900, 90, 380, 7, 10, 38) 
+
+/* */

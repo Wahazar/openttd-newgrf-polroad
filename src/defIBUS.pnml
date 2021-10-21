@@ -1,0 +1,114 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// definition of intercity/touristic buses:
+
+
+#define BUS_INTERCITY(BUS_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_len, sitpass, basecomfort, doorwings) \
+\
+switch(FEAT_ROADVEHS, SELF, description_##BUS_Name##_switch, [ STORE_TEMP(string(STR_VARIABLE_BUS_COSTS, string(STR_VE_DESC), e_displacement, sitpass) |  \
+GET_COMFORT(basecomfort, 20, sitpass, sitpass) << 16, 256), STORE_TEMP( \
+GET_LOADING_SPEED(doorwings, 0) << 16, 257) \
+ ] \
+) { \
+return string(STR_IC_BUS); \
+} \
+\
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect_position, visual_effect_flag) {  \
+	VISUAL_EFFECT_DIESEL 	 : 	return switch_high_diesel_smoke_effect; \
+	VISUAL_EFFECT_DIESEL_LOW : 	return switch_low_diesel_smoke_effect;  \
+	return CB_FAILED;  \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect, ((reliability > 70) && (build_year > 1990))) {  \
+	0 : return switch_##BUS_Name##_visual_effect_position;  \
+	1 : return CB_FAILED;  \
+	return CB_FAILED;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, capacity_##BUS_Name##_touristic_switch, cargo_type_in_veh) {  \
+	TOUR: return sitpass-1;  \
+	PASS: return sitpass;  \
+        return sitpass;  \
+}  \
+\
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_running_cost, current_speed) { \
+	0: return min(STAFF_RUNNING_COST + basecomfort / 5 + !vehicle_is_in_depot * max(0,((v_mass) * (e_displacement / 3) * v_fuelsystem) >> 16), 255); \
+	return min(2 * STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)/365) + basecomfort / 3 + max(0,((v_mass) * (e_displacement / 3 + (current_speed) * (current_speed) * 14) * v_fuelsystem) >> 16), 255); \
+} \
+\
+if (param_allow_bus) { \
+ item(FEAT_ROADVEHS, BUS_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_ICBUS_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4;  \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	GET_LOADING_SPEED(doorwings, 0); \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:	 	min(2 * STAFF_RUNNING_COST + basecomfort / 3 + max(0,((v_mass) * (e_displacement / 3 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 16), 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	0; \
+	cargo_age_period:	 	GET_COMFORT(basecomfort, 20, sitpass, sitpass); \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	sitpass; \
+	default_cargo_type:		PASS; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.5; \
+	air_drag_coefficient:	   	v_airdrag; \
+	effect_spawn_model:      	EFFECT_SPAWN_MODEL_DIESEL; \
+	sound_effect: SOUND_BUS_START_PULL_AWAY_WITH_HORN; \
+	length:      	    		v_len; \
+    }  \
+    graphics {  \
+	default:	    	spriteset_##BUS_Name##_graphic;  \
+	purchase:	   	spriteset_##BUS_Name##_purchase;  \
+	cargo_subtype_text: 	switch_livery_subtype_text;  \
+	cargo_capacity:		capacity_##BUS_Name##_touristic_switch; \
+	additional_text:        return description_##BUS_Name##_switch;  \
+	create_effect:		switch_##BUS_Name##_visual_effect;  \
+	colour_mapping:         switch_livery_subtype_mapping_PKS; \
+	purchase_running_cost_factor:	 min(2 * STAFF_RUNNING_COST + basecomfort / 3 + max(0,((v_mass) * (e_displacement / 3 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 16), 255); \
+	running_cost_factor:	switch_##BUS_Name##_running_cost; \
+    }  \
+ } \
+} \
+if ((param_allow_truck) && HAUL_EXISTS)  { \
+ item(FEAT_ROADVEHS, STTS_Name) { \
+	property { \
+	road_type:			HAUL; \
+    } \
+ } \
+}
+
+// #define BUS_INTERCITY(BUS_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_len, sitpass, basecomfort, doorwings) 
+
+#include "../src/gfx/bus/SaurerBLD4.pnml"
+BUS_INTERCITY(SaurerBLD4, STR_SAURER_BLD4_NAME, STR_SAURER_BLD4_DESC, 1932, 1945, 0, 10, 20, 45, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 8850, 76, 85, 0.3, 5, 6, 50, COMFORT_SOFT, 1) 
+
+#include "../src/gfx/bus/Fiat666RN.pnml"
+BUS_INTERCITY(Fiat666RN, STR_FIAT666RN_NAME, STR_FIAT666RN_DESC, 1947, 1958, 0, 8, 18, 37, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 9365, 78, 83, 0.21, 8, 8, 44, COMFORT_SOFT, 2) 
+
+#include "../src/gfx/bus/Jelcz043CAR.pnml"
+BUS_INTERCITY(Jelcz043CAR, STR_JELCZ043CAR_NAME, STR_JELCZ272MEX_DESC, 1959, 1987, 5, 15, 10, 43, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 11781, 75, 118, 0.25, 9, 8, 50, COMFORT_SOFT, 2) 
+
+#include "../src/gfx/bus/JelczPR110D.pnml"
+BUS_INTERCITY(JelczPR110D, STR_JELCZPR110D_NAME, STR_JELCZPR110D_DESC, 1984, 1993, 10, 24, 5, 48, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 11100, 99, 151, 0.15, 16, 8, 52, COMFORT_SOFT, 2)
+
+#include "../src/gfx/bus/BovaFuturaFHD12.pnml"
+BUS_INTERCITY(BovaFuturaFHD12, STR_BOVAFUTURAFHD_NAME, STR_BOVAFUTURAFHD_DESC, 1991, 2014, 15, 17, 2, 85, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 10800, 100, 271, 0.12, 18, 8, 51, COMFORT_ACOND, 2)
+
+#include "../src/gfx/bus/SetraS419UL16.pnml"
+BUS_INTERCITY(SetraS419UL16, STR_SETRAS419UL16_NAME, STR_SETRAS419UL16_DESC, 2002, 0, 0, 18, 1, 93, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 11967, 110, 300, 0.09, 20, 8, 69, COMFORT_SOFT, 3)
+
+#include "../src/gfx/bus/VHAstromegaDT927.pnml"
+BUS_INTERCITY(VHAstromegaDT927, STR_VH_ASTROMEGA_DT927_NAME, STR_VH_ASTROMEGA_DT927_DESC, 2011, 0, 0, 14, 1, 102, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 12902, 120, 353, 0.11, 24, 8, 89, COMFORT_ACWC, 2)
+
+/* */
+

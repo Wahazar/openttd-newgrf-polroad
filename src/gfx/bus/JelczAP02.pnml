@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Jelcz AP02:
+spriteset(spriteset_JelczAP02_purchase, "src/gfx/bus/JelczAP02.png") { template_sprite_window_sideview12(58) }
+
+spriteset(spriteset_JelczAP02_graphic1, "src/gfx/bus/JelczAP02.png") { template_sprite6ab(8) }
+spriteset(spriteset_JelczAP02_graphic2, "src/gfx/bus/JelczAP02.png") { template_sprite6ab(33) } //second part long as first

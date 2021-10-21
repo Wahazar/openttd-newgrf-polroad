@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Autosan A1010T:
+spriteset(spriteset_AutosanA1010T_purchase, "src/gfx/bus/AutosanA1010T.png") { template_sprite_window_sideview6b(8) }
+
+spriteset(spriteset_AutosanA1010T_graphic, "src/gfx/bus/AutosanA1010T.png") { template_sprite6b(8) }
+

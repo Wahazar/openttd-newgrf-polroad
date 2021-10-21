@@ -1,0 +1,29 @@
+// part of Polish Road Set
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Kama3 DT:
+spriteset(spriteset_Kama3_purchase, "src/gfx/truck/Kama3.png") { template_sprite_window_sideview6(8) }
+spriteset(none_spriteset_Kama3_graphic, "src/gfx/truck/Kama3.png") { template_sprite6(8) }
+spriteset(coal2_spriteset_Kama3_graphic, "src/gfx/truck/Kama3.png") { template_sprite6(33) }
+spriteset(coal_spriteset_Kama3_graphic, "src/gfx/truck/Kama3.png") { template_sprite6(58) }
+spriteset(bulk2_spriteset_Kama3_graphic, "src/gfx/truck/Kama3.png") { template_sprite6(83) }
+spriteset(bulk_spriteset_Kama3_graphic, "src/gfx/truck/Kama3.png") { template_sprite6(108) }
+	
+spritegroup coal_spritegroup_Kama3_graphic {
+    loaded:     [none_spriteset_Kama3_graphic, coal2_spriteset_Kama3_graphic, coal_spriteset_Kama3_graphic];
+    loading:    [none_spriteset_Kama3_graphic, coal2_spriteset_Kama3_graphic, coal_spriteset_Kama3_graphic];
+}
+
+spritegroup bulk_spritegroup_Kama3_graphic {
+    loaded:     [none_spriteset_Kama3_graphic, bulk2_spriteset_Kama3_graphic, bulk_spriteset_Kama3_graphic];
+    loading:    [none_spriteset_Kama3_graphic, bulk2_spriteset_Kama3_graphic, bulk_spriteset_Kama3_graphic];
+}
+
+// check cargo 
+switch(FEAT_ROADVEHS, SELF, spriteset_Kama3_graphic_switch, cargo_type_in_veh) {  
+COAL : return coal_spritegroup_Kama3_graphic;
+return bulk_spritegroup_Kama3_graphic;
+}
+
+

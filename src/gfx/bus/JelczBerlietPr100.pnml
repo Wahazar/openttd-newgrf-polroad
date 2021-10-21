@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Jelcz-Berliet Pr100:
+spriteset(spriteset_JelczBerlietPr100_purchase, "src/gfx/bus/Jelcz120M.png") { template_sprite_window_sideview6b(8) }
+
+spriteset(spriteset_JelczBerlietPr100_graphic, "src/gfx/bus/Jelcz120M.png") { template_sprite6b(8) }
+

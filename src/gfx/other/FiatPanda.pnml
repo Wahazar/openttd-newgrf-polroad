@@ -1,0 +1,60 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Fiat Panda:
+spriteset(spriteset_FiatPanda_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(554) }
+
+spriteset(spriteset_FiatPanda_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(554) }
+spriteset(spriteset_FiatPanda_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(580) }
+spriteset(spriteset_FiatPanda_graphic3, "src/gfx/other/Cars.png") { template_spriteCars(606) }
+
+#define FiatPanda_pass_capacity 0
+#define FiatPanda_mass 1
+#define FiatPanda_speed 150
+#define FiatPanda_e_displacement 1108
+
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_FiatPanda_graphic) {
+    1: return spriteset_FiatPanda_graphic1;
+    1: return spriteset_FiatPanda_graphic2;
+    1: return spriteset_FiatPanda_graphic3;
+}
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, FiatPanda) { 
+	property { 
+	name:			   	string(STR_FIATPANDA_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(2003, 1, 1);	    
+	model_life:      		VEHICLE_NEVER_EXPIRES; 
+	vehicle_life:		   	18; 
+	retire_early:			20; 
+	reliability_decay:	    	10; 
+	loading_speed:		  	1; 
+	cost_factor:		    	3;      
+	running_cost_factor:		0; 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	FiatPanda_speed km/h;   
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	54 hp; 
+	running_cost_base:	   	RUNNING_COST_DIESEL; 
+	cargo_capacity:		 	FiatPanda_pass_capacity; 
+	weight:			 	FiatPanda_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.02; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		3; 
+    } 
+    graphics { 
+	default:	    		switch_spriteset_FiatPanda_graphic;  
+	purchase:	   		spriteset_FiatPanda_purchase;   
+	additional_text:        	string(STR_FIATPANDA_DESC, string(STR_NOT_COMMMERCIAL), FiatPanda_e_displacement);   
+    } 
+ } 
+}
+
+

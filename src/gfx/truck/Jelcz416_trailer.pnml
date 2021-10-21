@@ -1,0 +1,83 @@
+// part of Polish Road Set
+// Graphic by McZapkie, Sojita
+// NML code by McZapkie
+
+// Jelcz416 truck with trailer:
+
+
+/* */
+#define Jelcz416_maxloadmass 26
+#define Jelcz416_mass 14
+#define Jelcz416_vmax 90
+#define Jelcz416displacement 11998
+
+spriteset(spriteset_Jelcz416_purchase, "src/gfx/truck/Jelcz416_trailer.png") { template_sprite_window_sideviewWLT(8) }
+
+spriteset(good_spriteset_Jelcz416_graphic, "src/gfx/truck/Jelcz416_trailer.png") { template_sprite6(33) }
+
+spriteset(good_spriteset_Jelcz416trailer11_graphic, "src/gfx/truck/Jelcz416_trailer.png") { template_sprite7(83) }
+
+
+switch (FEAT_ROADVEHS, SELF, consist_Jelcz416_articulated_graphic_switch, position_in_consist) { 
+    0 : return good_spriteset_Jelcz416_graphic; 
+    1 : return good_spriteset_Jelcz416trailer11_graphic; 
+} 
+switch (FEAT_ROADVEHS, SELF, switch_Jelcz416_articulated, extra_callback_info1) { 
+    1 : return Jelcz416; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, maxload_Jelcz416_switch, cargo_type_in_veh) {  
+        return min((Jelcz416_maxloadmass * param_load_multiplier*80/cargo_unit_weight)/10, 			Jelcz416_maxloadmass*param_load_multiplier*2)/2; 
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_Jelcz416_text, param_load_multiplier) {    
+	1 : return string(STR_TT_DESC, Jelcz416_maxloadmass*2, Jelcz416_maxloadmass/2, string(STR_JELCZ_317_DESC), Jelcz416displacement);   
+	2 : return string(STR_TT_DESC, Jelcz416_maxloadmass*4, Jelcz416_maxloadmass, string(STR_JELCZ_317_DESC), Jelcz416displacement);   
+	3 : return string(STR_TT_DESC, Jelcz416_maxloadmass*6, Jelcz416_maxloadmass*3/2, string(STR_JELCZ_317_DESC), Jelcz416displacement);   
+  return CB_FAILED;   
+}   
+
+if (param_allow_truck) {
+ item(FEAT_ROADVEHS, Jelcz416) { 
+	property { 
+	name:			   	string(STR_JELCZ416_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1985, 1, 1);	    
+	model_life:     		(param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 24+20 : 24); 
+	vehicle_life:		   	18; 
+	retire_early:			6; 
+	reliability_decay:	    	12; 
+	loading_speed:		  	5; 
+	cost_factor:		    	55;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((Jelcz416_mass + (Jelcz416_maxloadmass * param_load_multiplier)) * ((Jelcz416displacement)/12 + (Jelcz416_vmax) * (Jelcz416_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Jelcz416_vmax km/h;  
+	refittable_cargo_classes:      	bitmask(CC_EXPRESS, CC_MAIL);
+	cargo_allow_refit:		[PAPR, WOOL]; 
+	non_refittable_cargo_classes:  	bitmask(CC_PASSENGERS, CC_BULK, CC_OVERSIZED, CC_ARMOURED);
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	240 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	Jelcz416_maxloadmass * param_load_multiplier / 4; 
+  	default_cargo_type:		GOOD; 
+	weight:			 	Jelcz416_mass; 
+	tractive_effort_coefficient:    0.7; 
+	air_drag_coefficient:	   	0.3; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	sound_effect:			SOUND_TRUCK_START_2;
+	length:      	    		7; 
+    } 
+    graphics { 
+	default:	    	consist_Jelcz416_articulated_graphic_switch;  
+	purchase:	   	spriteset_Jelcz416_purchase;  
+	articulated_part:	switch_Jelcz416_articulated; 
+	additional_text:        switch_Jelcz416_text;
+	cargo_capacity:		maxload_Jelcz416_switch;
+	visual_effect:		switch_semi_trailer_tractor_unit_effect;
+	colour_mapping:         switch_livery_subtype_mapping;      
+    }  
+ }
+}

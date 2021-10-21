@@ -1,0 +1,90 @@
+// part of Polish Road Set
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Atego:
+#define Atego_maxloadmass 14
+#define Atego_mass 7
+#define Atego_vmax 120
+#define Atego_displacement 5132
+
+spriteset(spriteset_Atego_purchase, "src/gfx/truck/Atego.png") { template_sprite_window_sideview6(83) }
+spriteset(none_spriteset_Atego_graphic, "src/gfx/truck/Atego.png") { template_sprite6(8) }
+spriteset(scmt_spriteset_Atego_graphic, "src/gfx/truck/Atego.png") { template_sprite6(33) }
+spriteset(good_spriteset_Atego_graphic, "src/gfx/truck/Atego.png") { template_sprite6(58) }
+spriteset(vehi_spriteset_Atego_graphic, "src/gfx/truck/Atego.png") { template_sprite6(83) }
+
+spritegroup scmt_spritegroup_Atego_graphic {
+    loaded:     [none_spriteset_Atego_graphic, scmt_spriteset_Atego_graphic, scmt_spriteset_Atego_graphic];
+    loading:    [none_spriteset_Atego_graphic, scmt_spriteset_Atego_graphic];
+}
+	
+spritegroup good_spritegroup_Atego_graphic {
+    loaded:     [none_spriteset_Atego_graphic, good_spriteset_Atego_graphic, good_spriteset_Atego_graphic];
+    loading:    [none_spriteset_Atego_graphic, good_spriteset_Atego_graphic];
+}
+
+spritegroup vehi_spritegroup_Atego_graphic {
+    loaded:     [none_spriteset_Atego_graphic, vehi_spriteset_Atego_graphic, vehi_spriteset_Atego_graphic];
+    loading:    [none_spriteset_Atego_graphic, vehi_spriteset_Atego_graphic];
+}
+
+// check cargo 
+switch(FEAT_ROADVEHS, SELF, spriteset_Atego_graphic_switch, cargo_type_in_veh) {  
+SCMT : return scmt_spritegroup_Atego_graphic;
+VEHI : return vehi_spritegroup_Atego_graphic;
+ENSP : return vehi_spritegroup_Atego_graphic;
+return good_spritegroup_Atego_graphic;
+}
+
+switch(FEAT_ROADVEHS, SELF, maxload_Atego_switch, cargo_type_in_veh) { 
+        return Atego_maxloadmass*param_load_multiplier/2;  
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_Atego_text, param_load_multiplier) {    
+	1 : return string(STR_MERCEDES_ATEGO_DESC, Atego_maxloadmass/2, Atego_displacement);   
+	2 : return string(STR_MERCEDES_ATEGO_DESC, Atego_maxloadmass, Atego_displacement);   
+	3 : return string(STR_MERCEDES_ATEGO_DESC, Atego_maxloadmass*3/2, Atego_displacement);   
+  return CB_FAILED;   
+}
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, Atego) { 
+	property { 
+	name:			   	string(STR_MERCEDES_ATEGO_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(2013, 1, 1);	    
+	model_life:     		VEHICLE_NEVER_EXPIRES; 
+	vehicle_life:		   	19; 
+	retire_early:			0; 
+	reliability_decay:	    	5; 
+	loading_speed:		  	4; 
+	cost_factor:		    	29;      
+	running_cost_factor:		min(STAFF_RUNNING_COST + max(0,((Atego_maxloadmass) * ((Atego_vmax) * (Atego_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Atego_vmax km/h; 
+	cargo_allow_refit:		[GOOD, ENSP, VEHI, SCMT]; 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	155 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	Atego_maxloadmass; 
+	default_cargo_type:		VEHI; 
+	weight:			 	Atego_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.14; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	sound_effect: SOUND_CAR_HORN; 
+	length:      	    		6; 
+    } 
+    graphics { 
+	default:	    	spriteset_Atego_graphic_switch;  
+	purchase:	   	spriteset_Atego_purchase;   
+	cargo_capacity:		maxload_Atego_switch;
+	additional_text:        switch_Atego_text; 
+	colour_mapping:         switch_bulk_recolour;   
+    }  
+ }
+}
+

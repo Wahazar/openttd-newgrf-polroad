@@ -1,0 +1,339 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+
+/* sprite templates */
+
+spriteset(none_spriteset_empty, "src/gfx/empty.png") {
+	[0, 0]
+}
+
+// [left_x,   upper_y,    width,    height,    offset_x,    offset_y]
+template template_sprite_window_sideview6(y) {
+    [150,          y,       24,        13,         -14,         -6, ANIM]
+}
+
+template template_sprite_window_sideview6b(y) {
+    [184,          y,       28,        12,         -10,         -7, ANIM]
+}
+
+template template_sprite_window_sideview7(y) {
+    [160,          y,       28,        13,         -15,         -7, ANIM]
+}
+
+template template_sprite_window_sideview8(y) {
+    [170,          y,       36,        20,         -18,         -10, ANIM]
+}
+
+template template_sprite_window_sideview8b(y) {
+    [184,          y,       36,        12,         -16,         -7, ANIM]
+}
+template template_sprite_window_sideview8bd(y) {
+    [160, 	   y, 	    32,        15, 	   -16,		-8, ANIM]
+}
+template template_sprite_window_sideviewSTTN(y) {
+    [174,          y+1,       35,        13,         -18,         -6]
+}
+template template_sprite_window_sideviewSTTS(y) {
+    [174,          y+1,       38,        13,         -20,         -6]
+}
+template template_sprite_window_sideviewWLT(y) {
+    [8,          y,       57,        14,         -28,         -7]
+}
+// for farm tractors with trailers
+template template_sprite_window_sideviewFT(y) {
+    [8,          y,       90,        14,         -45,         -7]
+}
+
+// articulated buses etc
+template template_sprite_window_sideview12(y) {
+    [8,          y,       56,        12,         -35,         -6]
+}
+template template_sprite_window_sideview13(y) {
+    [8,          y,       48,        13,         -24,         -7]
+}
+
+//buses
+template template_sprite6b(y) {
+[8, y, 8, 18, -3,-9, ANIM]
+[24, y, 20, 16, -10,-8, ANIM]
+[56, y, 28, 12, -14, -10, ANIM]
+[104, y, 20, 16, -3,-6, ANIM]
+[136, y, 8, 18, -3,-9, ANIM]
+[152, y, 20, 16, -15,-6, ANIM]
+[184, y, 28, 12, -14,-7, ANIM]
+[232, y, 20, 16, -10,-8, ANIM]
+}
+//long buses
+template template_sprite8b(y) {
+[8, y, 8, 20, -3,-9, ANIM]
+[24, y, 22, 17, -15,-6, ANIM]
+[57, y, 36, 12, -14, -7, ANIM]
+[104, y, 22, 17, -6,-7, ANIM]
+[136, y, 8, 20, -3,-9, ANIM]
+[152, y, 22, 17, -15,-6, ANIM]
+[184, y, 36, 12, -14,-7, ANIM]
+[232, y, 22, 17, -7,-7, ANIM]
+}
+template template_sprite_window_sideview8c(y) {
+    [184,          y,       36,        12,         -16,         -7, ANIM]
+}
+template template_sprite8c(y) {
+[8, y, 8, 21, -3,-9, ANIM]
+[24, y, 23, 17, -15,-6, ANIM]
+[57, y, 36, 12, -14, -7, ANIM]
+[104, y, 23, 17, -6,-7, ANIM]
+[136, y, 8, 21, -3,-9, ANIM]
+[151, y, 23, 17, -15,-6, ANIM]
+[184, y, 36, 12, -14,-7, ANIM]
+[232, y, 23, 17, -7,-7, ANIM]
+}
+
+//articulated buses, first part
+template template_sprite6ab(y) {
+[8, y, 8, 18, -3,-9, ANIM]
+[24, y, 21, 16, -11,-8, ANIM] //-12, -7
+[50, y, 28, 12, -14, -10, ANIM]
+[84, y, 21, 16, -5,-6, ANIM]
+[111, y, 8, 18, -3,-9, ANIM]
+[125, y, 21, 16, -16,-6, ANIM]
+[154, y, 28, 12, -14,-7, ANIM]
+[187, y, 21, 16, -10,-8, ANIM]
+}
+/*
+//articulated buses, second part
+template template_sprite6as(y) {
+[8, y, 8, 16, -4, -8, ANIM]
+[24, y, 15, 14, -8, -8, ANIM]
+[44, y, 20, 12, -10, -10, ANIM]
+[71, y, 15, 14, -13, -17, ANIM]  //0 0
+[94, y, 8, 16, -0,-0, ANIM]
+[110, y, 15, 14, -15, -6, ANIM]
+[132, y, 20, 12, -10, -7, ANIM]
+[158, y, 15, 14, -0, -0, ANIM]
+}
+*/ 
+//long distance double deckers
+template template_sprite8bd(y) {
+[8, y, 8, 25, -3,-11, ANIM]
+[24, y, 22, 20, -12,-9, ANIM]
+[52, y, 32, 16, -14, -7, ANIM]
+[88, y, 22, 20, -5,-7, ANIM]
+[116, y, 8, 25, -3,-10, ANIM]
+[132, y, 22, 20, -17,-7, ANIM]
+[160, y, 32, 16, -16,-8, ANIM]
+[196, y, 22, 20, -11,-11, ANIM]
+}
+//standard trucks
+template template_sprite6(y) {
+[8, y, 8, 17, -3,-9, ANIM]
+[24, y, 18, 14, -9,-7, ANIM]
+[50, y, 24, 13, -10, -10, ANIM]
+[82, y, 18, 16, -3,-6, ANIM]
+[108, y, 8, 17, -3,-9, ANIM]
+[124, y, 18, 16, -15,-6, ANIM]
+[150, y, 24, 13, -10,-7, ANIM]
+[182, y, 18, 14, -9,-7, ANIM]
+}
+//semi-trailers, short
+template template_sprite7s(y) {
+[8, y, 8, 20, -3,-11, ANIM]
+[26, y, 18, 17, -11,-8, ANIM]
+[56, y, 24, 13, -10, -7, ANIM]
+[90, y, 18, 15, -3,-5, ANIM]
+[116, y, 8, 20, -3,-10, ANIM]
+[132, y, 18, 15, -17,-5, ANIM]
+[160, y, 24, 13, -16,-7, ANIM]
+[196, y, 18, 17, -8,-9, ANIM]
+}
+//semi-trailers, normal
+template template_sprite7(y) {
+[8, y, 8, 22, -3,-11, ANIM]
+[24, y, 20, 17, -11,-8, ANIM]
+[52, y, 28, 13, -12, -7, ANIM]
+[88, y, 20, 15, -3,-5, ANIM]
+[116, y, 8, 20, -3,-10, ANIM]
+[132, y, 20, 15, -17,-5, ANIM]
+[160, y, 28, 13, -12,-7, ANIM]
+[196, y, 20, 17, -8,-9, ANIM]
+}
+//semi-trailers special unload, goods
+template template_sprite8(y) {
+[8, y, 8, 25, -3,-11, ANIM]
+[24, y, 22, 19, -12,-9, ANIM]
+[52, y, 32, 14, -14, -7, ANIM]
+[88, y, 22, 19, -5,-7, ANIM]
+[116, y, 8, 25, -3,-10, ANIM]
+[132, y, 22, 19, -17,-7, ANIM]
+[160, y, 32, 14, -16,-8, ANIM]
+[196, y, 22, 19, -11,-11, ANIM]
+}
+// for semi-trailer tractors
+template template_spriteSTT(y) {
+[8, y, 8, 15, -3,-7]
+[24, y, 14, 14, -7,-7]
+[46, y, 14, 13, -7, -7]
+[68, y, 15, 12, -0,-1]
+[91, y, 8, 11, -3, -4]
+[107, y, 15, 12, -14,-1]
+[130, y, 14, 13, -7,-7]
+[152, y, 14, 14, -6,-7]
+}
+
+// for log trailer tractors
+template template_spriteLTT(y) {
+[8, y, 8, 17, -3,-7]
+[24, y, 16, 15, -7,-7]
+[46, y, 17, 13, -7, -7]
+[68, y, 17, 12, -1,-1]
+[91, y, 8, 11, -3,-6]
+[105, y, 17, 12, -13,-1]
+[127, y, 17, 13, -7,-7]
+[150, y, 16, 15, -7,-7]
+}
+
+// for farm tractors
+template template_spriteFT(y) {
+[8, y, 8, 17, -3,-14, ANIM]
+[24, y, 14, 14, -7,-7, ANIM]
+[50, y, 20, 13, -7, -7, ANIM]
+[82, y, 16, 16, -1,-8, ANIM]
+[108, y, 8, 17, -3,-6, ANIM]
+[126, y, 16, 16, -16,-8, ANIM]
+[154, y, 20, 13, -11,-7, ANIM]
+[186, y, 14, 14, -7,-7, ANIM]
+}
+
+template template_spriteFTx2(y) {
+[16, y, 16, 34, -6,-28]
+[48, y, 36, 28, -14,-14]
+[100, y, 48, 26, -14, -14]
+[164, y, 36, 32, -2,-16]
+[216, y, 16, 34, -6,-12]
+[248, y, 36, 32, -32,-16]
+[300, y, 48, 26, -22,-14]
+[364, y, 36, 28, -22,-14]
+}
+
+template template_spriteCars_window_sideview(y) {
+[136, y, 28, 12, -7,-7]
+}
+
+template template_spriteCars(y) {
+[8, y, 8, 18, -3,-12] //-3,-7
+[20, y, 20, 16, -10,-9] //-7,-7
+[44, y, 28, 12, -7, -7]
+[76, y, 20, 15, -3,-3] //-1, -1
+[100, y, 8, 17, -3,-6]
+[112, y, 20, 15, -16,-4]  //-13, -1
+[136, y, 28, 12, -15,-7] //-7,-7
+[168, y, 20, 15, -9,-9] //-7,-7
+}
+
+
+//from RattRoads
+
+//========================
+//begin defining templates
+//========================
+
+template template_roads_main_new (x, y) {
+	[ x,           y,       64,    31,     -31,        0]  //nw-se normal
+	[ x+69,        y,       64,    31,     -31,        0]  //ne-sw normal
+	[ x+138,       y,       64,    31,     -31,        0]  //4-way normal
+	[ x+207,       y,       64,    31,     -31,        0]  //ne spur normal
+	[ x+276,       y,       64,    31,     -31,        0]  //nw spur normal
+	[ x+345,       y,       64,    31,     -31,        0]  //sw spur normal
+	[ x+414,       y,       64,    31,     -31,        0]  //se spur normal
+	[ x+483,       y,       64,    31,     -31,        0]  //e corner normal
+	[ x+552,       y,       64,    31,     -31,        0]  //s corner normal
+	[ x+621,       y,       64,    31,     -31,        0]  //w corner normal
+	[ x+690,       y,       64,    31,     -31,        0]  //n corner normal
+	[ x+759,       y,       64,    39,     -31,       -8]  //ne slope normal
+	[ x+828,       y,       64,    23,     -31,        0]  //se slope normal
+	[ x+897,       y,       64,    23,     -31,        0]  //sw slope normal
+	[ x+966,       y,       64,    39,     -31,       -8]  //nw slope normal
+	[ x+1035,      y,       64,    31,     -31,        0, ANIM]  //sw end normal
+	[ x+1104,      y,       64,    31,     -31,        0, ANIM]  //nw end normal
+	[ x+1173,      y,       64,    31,     -31,        0, ANIM]  //ne end normal
+	[ x+1242,      y,       64,    31,     -31,        0, ANIM]  //se end normal
+}/*
+template template_roads_main_modern_city1 (x, y) {
+	[ x,        y+36,       64,    31,     -31,        0]  //nw-se normal
+	[ x+69,     y+36,       64,    31,     -31,        0]  //ne-sw normal
+	[ x+138,       y,       64,    31,     -31,        0]  //4-way normal
+	[ x+207,       y,       64,    31,     -31,        0]  //ne spur normal
+	[ x+276,       y,       64,    31,     -31,        0]  //nw spur normal
+	[ x+345,       y,       64,    31,     -31,        0]  //sw spur normal
+	[ x+414,       y,       64,    31,     -31,        0]  //se spur normal
+	[ x+483,       y,       64,    31,     -31,        0]  //e corner normal
+	[ x+552,       y,       64,    31,     -31,        0]  //s corner normal
+	[ x+621,       y,       64,    31,     -31,        0]  //w corner normal
+	[ x+690,       y,       64,    31,     -31,        0]  //n corner normal
+	[ x+759,       y,       64,    39,     -31,       -8]  //ne slope normal
+	[ x+828,       y,       64,    23,     -31,        0]  //se slope normal
+	[ x+897,       y,       64,    23,     -31,        0]  //sw slope normal
+	[ x+966,       y,       64,    39,     -31,       -8]  //nw slope normal
+	[ x+1035,      y,       64,    31,     -31,        0, ANIM]  //sw end normal
+	[ x+1104,      y,       64,    31,     -31,        0, ANIM]  //nw end normal
+	[ x+1173,      y,       64,    31,     -31,        0, ANIM]  //ne end normal
+	[ x+1242,      y,       64,    31,     -31,        0, ANIM]  //se end normal
+}
+template template_roads_main_modern_city2 (x, y) {
+	[ x,        y+72,       64,    31,     -31,        0]  //nw-se normal
+	[ x+69,     y+72,       64,    31,     -31,        0]  //ne-sw normal
+	[ x+138,       y,       64,    31,     -31,        0]  //4-way normal
+	[ x+207,       y,       64,    31,     -31,        0]  //ne spur normal
+	[ x+276,       y,       64,    31,     -31,        0]  //nw spur normal
+	[ x+345,       y,       64,    31,     -31,        0]  //sw spur normal
+	[ x+414,       y,       64,    31,     -31,        0]  //se spur normal
+	[ x+483,       y,       64,    31,     -31,        0]  //e corner normal
+	[ x+552,       y,       64,    31,     -31,        0]  //s corner normal
+	[ x+621,       y,       64,    31,     -31,        0]  //w corner normal
+	[ x+690,       y,       64,    31,     -31,        0]  //n corner normal
+	[ x+759,       y,       64,    39,     -31,       -8]  //ne slope normal
+	[ x+828,       y,       64,    23,     -31,        0]  //se slope normal
+	[ x+897,       y,       64,    23,     -31,        0]  //sw slope normal
+	[ x+966,       y,       64,    39,     -31,       -8]  //nw slope normal
+	[ x+1035,      y,       64,    31,     -31,        0, ANIM]  //sw end normal
+	[ x+1104,      y,       64,    31,     -31,        0, ANIM]  //nw end normal
+	[ x+1173,      y,       64,    31,     -31,        0, ANIM]  //ne end normal
+	[ x+1242,      y,       64,    31,     -31,        0, ANIM]  //se end normal
+}*/
+template template_roads_gui (x, y) {
+	[ x,           y,       20,    13,       0,        0]  //nw-se toolbar
+	[ x+32,        y,       20,    13,       0,        0]  //ne-sw toolbar
+	[ x+64,        y,       20,    20,       0,        1]  //4-way toolbar
+	[ x+96,        y,       20,    20,       0,        0]  //depot toolbar
+	[ x+128,       y,       20,    20,       0,        0]  //tunnel toolbar
+	[ x+160,       y,       20,    20,       0,        0]  //convert toolbar
+	[ x,           y+32,    48,    36,       0,        0]  //nw-se cursor
+	[ x+64,        y+32,    52,    36,       0,        0]  //ne-sw cursor
+	[ x+128,       y+32,    32,    32,       0,        0]  //4-way cursor
+	[ x+172,       y+32,    32,    32,       0,        0]  //depot cursor
+	[ x+216,       y+32,    32,    32,       0,        0]  //tunnel cursor
+	[ x+260,       y+32,    32,    32,       0,        0]  //convert cursor
+}
+template template_road_stops (x, y) {
+	[ x,           y,       64,    31,     -31,        0]  //ne
+	[ x+69,        y,       64,    31,     -31,        0]  //se
+	[ x+138,       y,       64,    31,     -31,        0]  //sw
+	[ x+207,       y,       64,    31,     -31,        0]  //nw
+}
+template template_road_bridge_overlay (x, y) {
+	[ x,           y,       64,    31,     -31,        0]  //nw-se flat
+	[ x+69,        y,       64,    31,     -31,        0]  //ne-sw flat
+	[ x+138,       y,       64,    39,     -31,       -8]  //ne slope
+	[ x+207,       y,       64,    23,     -31,        0]  //se slope
+	[ x+276,       y,       64,    23,     -31,        0]  //sw slope
+	[ x+345,       y,       64,    39,     -31,       -8]  //nw slope
+}
+template template_road_tunnels (x, y) {
+	[ x,           y,       64,    31,     -31,        0]  //ne
+	[ x+69,        y,       64,    31,     -31,        0]  //se
+	[ x+138,       y,       64,    31,     -31,        0]  //sw
+	[ x+207,       y,       64,    31,     -31,        0]  //nw
+}
+
+

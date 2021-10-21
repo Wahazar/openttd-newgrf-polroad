@@ -1,0 +1,132 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Star266 wood logging truck:
+
+/* 
+spriteset(spriteset_Star266_purchase, "src/gfx/truck/Star266.png") { template_sprite_window_sideviewSTTS(10) }
+
+spriteset(cab_crane_loading_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_spriteLTT(10) }
+spriteset(cab_crane_folding_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_spriteLTT(120) }
+
+spritegroup spritegroup_truck_Star266_graphic {
+    loaded:     [cab_crane_folding_spriteset_Star266_graphic];
+    loading:    [cab_crane_loading_spriteset_Star266_graphic];
+}
+*/
+
+/* */
+#define Star266_maxloadmass 20
+#define Star266_mass 7
+#define Star266_vmax 80
+#define Star266displacement 6840
+#define STAR266_REFIT_COST 23
+
+spriteset(spriteset_Star266_purchase, "src/gfx/truck/Star266.png") { template_sprite_window_sideviewSTTS(10) }
+
+spriteset(cab_crane_loading_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_spriteLTT(10) }
+
+spriteset(cab_crane_folding_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_spriteLTT(120) }
+
+spriteset(empty_log_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_sprite7(30) }
+
+spriteset(wood2_log_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_sprite7(60) }
+
+spriteset(wood_log_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_sprite7(90) }
+
+spriteset(wdpr_log_spriteset_Star266_graphic, "src/gfx/truck/Star266.png") { template_sprite7(146) }
+
+spritegroup cab_spritegroup_Star266_graphic {
+    loaded:     [cab_crane_folding_spriteset_Star266_graphic];
+    loading:    [cab_crane_loading_spriteset_Star266_graphic];
+}
+
+spritegroup log_spritegroup_Star266_graphic {
+    loaded:     [empty_log_spriteset_Star266_graphic, wood2_log_spriteset_Star266_graphic, wood_log_spriteset_Star266_graphic, wood_log_spriteset_Star266_graphic];
+    loading:    [empty_log_spriteset_Star266_graphic, wood2_log_spriteset_Star266_graphic, wood2_log_spriteset_Star266_graphic, wood_log_spriteset_Star266_graphic];
+}
+ 
+spritegroup wdpr_spritegroup_Star266_graphic {
+    loaded:     [empty_log_spriteset_Star266_graphic, wdpr_log_spriteset_Star266_graphic];
+    loading:    [empty_log_spriteset_Star266_graphic, wdpr_log_spriteset_Star266_graphic, wdpr_log_spriteset_Star266_graphic];
+}
+ 
+switch (FEAT_ROADVEHS, SELF, Star266_cargo_graphic_switch, cargo_type_in_veh) { 
+    WDPR : return wdpr_spritegroup_Star266_graphic; 
+    return log_spritegroup_Star266_graphic; 
+} 
+
+switch (FEAT_ROADVEHS, SELF, consist_Star266_articulated_graphic_switch, position_in_consist) { 
+    0 : return cab_spritegroup_Star266_graphic; 
+    1 : return Star266_cargo_graphic_switch; 
+} 
+switch (FEAT_ROADVEHS, SELF, switch_Star266_articulated, extra_callback_info1) { 
+    1 : return Star266; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+switch(FEAT_ROADVEHS, SELF, check_Star266_length_switch, position_in_consist) {  
+	0 : return 5; 
+	1 : return 7;  
+}  
+switch(FEAT_ROADVEHS, SELF, check_Star266_power_switch, cargo_subtype) {  
+	0 : return 15; //110kW
+	1 : return 18; //134kW
+	return CB_FAILED;  
+} 
+switch(FEAT_ROADVEHS, SELF, switch_Star266_refit_cost, var[0x10,8,0xFF] - cargo_subtype) {
+	0:				0;
+	return STAR266_REFIT_COST;
+}
+
+
+if (param_allow_truck) {
+ item(FEAT_ROADVEHS, Star266) { 
+	property { 
+	name:			   	string(STR_STAR266_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1972, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 28+8+18 : 28+8); 
+	vehicle_life:		   	18; 
+	retire_early:			8; 
+	reliability_decay:	    	10; 
+	loading_speed:		  	10; 
+	cost_factor:		    	45;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((Star266_mass + (Star266_maxloadmass * param_load_multiplier)) * (Star266displacement/10 + (Star266_vmax) * (Star266_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Star266_vmax km/h;  
+	cargo_allow_refit:		[WOOD,WDPR]; 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	STAR266_REFIT_COST; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	110 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	Star266_maxloadmass * param_load_multiplier / 2; 
+	default_cargo_type:		WOOD; 
+	weight:			 	Star266_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.38; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	sound_effect: SOUND_TRUCK_START; 
+	length:      	    		7; 
+    } 
+    graphics { 
+	default:	    	consist_Star266_articulated_graphic_switch;  
+	purchase:	   	spriteset_Star266_purchase;  
+	articulated_part:	switch_Star266_articulated; 
+	length:			check_Star266_length_switch;
+
+//	running_cost_factor:	switch_Star266_running_cost;
+	power:			check_Star266_power_switch;
+	refit_cost:		switch_Star266_refit_cost;
+ 	cargo_subtype_text: 	switch_horsepower_subtype_text;
+
+	additional_text:        string(STR_STAR266_DESC, Star266displacement);
+	visual_effect:		switch_semi_trailer_tractor_unit_effect;
+
+	colour_mapping:         switch_livery_subtype_mapping; 
+//	cargo_subtype_text:	switch_livery_subtype_text;     
+    }  
+ }
+}
+/* */

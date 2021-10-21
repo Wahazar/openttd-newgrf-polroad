@@ -1,0 +1,467 @@
+##grflangid 0x01
+##plural 0
+# This is the English language file
+
+# GRF name and description
+STR_GRF_NAME        :Polroad - the new Polish Road Set, release {UNSIGNED_WORD}
+STR_GRF_DESCRIPTION :Polroad - a Polish Road Set with vehicles for all cargo types.{}Version {VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}License: GPL v2
+
+STR_PARAM_NAME_PURCHASE_COST    	:Purchase cost modifier
+STR_PARAM_DESC_PURCHASE_COST    	:Use this option to change the purchase cost of vehicles from this set.
+STR_PARAM_NAME_RUNNING_COST     	:Running cost modifier
+STR_PARAM_DESC_RUNNING_COST     	:Use this option to change the running cost of vehicles from this set.
+STR_PARAM_COST_H               		: Half
+STR_PARAM_COST_N               		: Normal
+STR_PARAM_COST_D               		: Double
+STR_PARAM_COST_Q               		: Quadruple
+STR_PARAM_NAME_MAX_LOAD     		:Truck maxload modifier
+STR_PARAM_DESC_MAX_LOAD	     		:Capacity (maxload in case of small trucks) multiplier.
+STR_PARAM_LOAD_1               		: Realistic
+STR_PARAM_LOAD_2               		: Double (default)
+STR_PARAM_LOAD_3               		: Triple
+STR_PARAM_NAME_MODEL_LIFE	    	: Change availability period of vehicles
+STR_PARAM_DESC_MODEL_LIFE	    	: Select this option to extend model life period. This option applies only to this road set. To disable expiration of another vehicles in purchase menu, use option "Vehicles never expire" in game settings.
+STR_PARAM_MODEL_LIFE_REAL               : Realistic
+STR_PARAM_MODEL_LIFE_EXTEND             : Extended
+STR_PARAM_MODEL_LIFE_KEEP               : Never expire
+
+STR_PARAM_NAME_ALLOW_SLOW_VEHS    	:Enable slow vehicles
+STR_PARAM_DESC_ALLOW_SLOW_VEHS    	:Select this option to enable horse carriages and farm tractors.
+STR_PARAM_NAME_ALLOW_BUS    		:Enable buses
+STR_PARAM_DESC_ALLOW_BUS    		:Select this option to enable all passenger only carriers with internal combustion engine.
+STR_PARAM_NAME_ALLOW_VAN    		:Enable universal vans
+STR_PARAM_DESC_ALLOW_VAN    		:Select this option to enable all freight and passenger carriers with internal combustion engine.
+STR_PARAM_NAME_ALLOW_TRUCK    		:Enable trucks
+STR_PARAM_DESC_ALLOW_TRUCK    		:Select this option to enable all freight only carriers with internal combustion engine.
+STR_PARAM_NAME_ALLOW_ROADS    		:Enable custom road types
+STR_PARAM_DESC_ALLOW_ROADS    		:Enable dirt, cobblestone, asphalt, improved asphalt and highway roads. Also slow vehicles can't enter highways.
+
+
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+STR_NULL				:{}
+
+STR_COMFORT_LW				:{RED}LOW{BLACK}
+STR_COMFORT_MD				:{ORANGE}average{BLACK}
+STR_COMFORT_ST				:{DKGREEN}standard{BLACK}
+STR_COMFORT_HI				:{GREEN}HIGH{BLACK}
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+STR_LOADSPEED_LO				:{RED}LOW{BLACK}
+STR_LOADSPEED_MD				:{ORANGE}average{BLACK}
+STR_LOADSPEED_ST				:{DKGREEN}standard{BLACK}
+STR_LOADSPEED_HI				:{GREEN}FAST{BLACK}
+
+STR_VARIABLE_COSTS		:{GOLD}Running costs{BLACK} depends on actual speed and vehicle age
+STR_VARIABLE_BUS_COSTS		:{BLACK}{STRING} {UNSIGNED_WORD} ccm{}{GOLD}Running costs{BLACK} depends on actual speed and vehicle age{}{GOLD}{UNSIGNED_WORD}{BLACK} sitting places{}
+
+STR_CITY_BUS			:{BUS} urban service bus{}{STRING}{}Comfort: {GOLD}{COMMA}{BLACK} {}Loading speed: {GOLD}{COMMA}{BLACK}
+STR_CITYBUS_SUFFIX		: - city bus
+
+STR_ART_CITY_BUS			:{BUS}{BUS} urban service bus, {RED}articulated{BLACK}{}{STRING}{}Comfort: {GOLD}{COMMA}{BLACK}{}Loading speed: {GOLD}{COMMA}{BLACK} 
+
+STR_LOCAL_BUS			:{BUS} local lines/suburban service bus{}{STRING}{}Comfort: {GOLD}{COMMA}{BLACK}{}Loading speed: {GOLD}{COMMA}{BLACK}
+
+
+STR_LOCALBUS_SUFFIX		: - local bus
+
+STR_IC_BUS			:{BUS} intercity lines/touristic bus{}{STRING}{}Comfort: {GOLD}{COMMA}{BLACK}{}Loading speed: {GOLD}{COMMA}{BLACK}
+
+STR_ICBUS_SUFFIX		: - long distance bus
+
+STR_BENZ_GAGGENAU_NAME  		:Benz Gaggenau {STRING}
+STR_BENZ_GAGGENAU_DESC      		:20 hp gasoline engine
+STR_SOMUA_NAME  			:Somua RZCA {STRING}
+STR_SOMUA_DESC      			:V4 gasoline engine
+STR_EFD183_NAME  			:Chevrolet "Bielany" {STRING}
+STR_EFD183_DESC      			:EFB183 gasoline engine
+STR_CHAUSSON_NAME  			:Chausson APH {STRING}
+STR_CHAUSSON_DESC      			:Panhard 4HL diesel engine
+STR_MAVAGTR5_NAME  			:Mavag Tr5 {STRING}
+STR_MAVAGTR5_DESC      			:OML674 V6 diesel engine
+STR_SANH01B_NAME  			:San 01B {STRING}
+STR_SANH01B_DESC      			:S42 diesel engine
+STR_SANH100B_NAME  			:San 100B {STRING}
+STR_SANH100B_DESC      			:S474 diesel engine
+STR_IKARUS620_NAME  			:Ikarus 620 {STRING}
+STR_IKARUS620_DESC      		:Csepel D-614c diesel engine
+STR_JELCZ272MEX_NAME  			:Jelcz 272 MEX {STRING}
+STR_JELCZ272MEX_DESC      		:Škoda 706RT diesel engine
+STR_BERLIETPR100_NAME  			:Jelcz-Berliet PR100 {STRING}
+STR_BERLIETPR100_DESC      		:Berliet V80 diesel engine
+STR_IKARUS260_NAME  			:Ikarus 260 {STRING}
+STR_IKARUS260_DESC      		:Raba-MAN D2156HM6U diesel engine
+STR_JELCZ120M_NAME  			:Jelcz 120M {STRING}
+STR_JELCZ120M_DESC      		:Mielec SWT diesel engine
+STR_JELCZ121M_NAME  			:Jelcz 121M {STRING}
+STR_JELCZ121M_DESC      		:partially low floor,{}MAN D0826 LUH12 diesel engine
+STR_URBINO12_NAME  			:Solaris Urbino 12 {STRING}
+STR_URBINO12_DESC      			:low floor, AC{}Paccar PR183 diesel engine
+STR_URBINO15_NAME  			:Solaris Urbino 15 {STRING}
+STR_URBINO15_DESC      			:low floor, AC{}Paccar PR228 diesel engine
+STR_URBINO12E_NAME  			:Solaris Urbino 12E {STRING}
+STR_URBINO12E_DESC      		:low floor, AC{}Electric motors
+STR_URBINO15E_NAME  			:Solaris Urbino 15E {STRING}
+STR_URBINO15E_DESC      		:low floor, AC{}Electric motors
+STR_MANSD202_NAME  			:MAN SD202 "Hop On" {STRING}
+STR_MANSD202_DESC      			:touristic double decker, {}MAN D2566 UH diesel engine
+
+STR_JELCZAP02_NAME  			:Jelcz AP02 {STRING}
+STR_JELCZ021_NAME  			:Jelcz 021 {STRING}
+STR_IKARUS280_NAME  			:Ikarus 280 {STRING}
+STR_JELCZ181M_NAME  			:Jelcz 181M {STRING}
+STR_JELCZ181M_DESC      		:partially low floor,{}MAN D0826 LUH13 diesel engine
+STR_URBINO18_NAME  			:Solaris Urbino 18 {STRING}
+STR_URBINO18_DESC      			:low floor, AC{}DAF PR228 diesel engine
+STR_URBINO18H_NAME  			:Solaris Urbino 18 MetroStyle {STRING}
+STR_URBINO18H_DESC      		:low floor, AC{}Allison II hybrid engine
+
+STR_URSUSAW_NAME  			:Ursus AW {STRING}
+STR_URSUSAW_DESC      			:S.P.A. gasoline engine
+STR_SAURER_BLD4_NAME  			:Saurer Zawrat BLD4 {STRING}
+STR_SAURER_BLD4_DESC      		:Saurer BLD diesel engine
+STR_STARN52_NAME  			:Star N52 {STRING}
+STR_STARN52_DESC      			:S42 gasoline engine
+STR_SANH01A_NAME  			:San H01A {STRING}
+STR_OSINOBUS_NAME  			:Osinobus {STRING}
+STR_OSINOBUS_DESC  			:S530A diesel engine
+STR_AUTOSAN_H9_NAME  			:Autosan H9 {STRING}
+STR_AUTOSAN_H9_DESC  			:6CT107 diesel engine
+STR_AUTOSAN_A1010T_NAME  		:Autosan A1010T {STRING}
+STR_AUTOSAN_A1010T_DESC  		:Renault dCi6 diesel engine
+
+STR_FIAT666RN_NAME  			:Fiat 666RN {STRING}
+STR_FIAT666RN_DESC      		:Fiat 366/45 diesel engine
+STR_JELCZ043CAR_NAME  			:Jelcz 043 CAR {STRING}
+STR_JELCZPR110D_NAME  			:Jelcz PR110D {STRING}
+STR_JELCZPR110D_DESC  			:Mielec SW680/165 diesel engine
+STR_BOVAFUTURAFHD_NAME  			:Bova Futura FHD12 {STRING}
+STR_BOVAFUTURAFHD_DESC  			:DAF MX-11 diesel engine
+STR_SETRAS419UL16_NAME  		:Setra S419 UL 16 {STRING}
+STR_SETRAS419UL16_DESC  		:OM 470 diesel engine
+STR_VH_ASTROMEGA_DT927_NAME  		:Van Hool Astromega DT927 {STRING}
+STR_VH_ASTROMEGA_DT927_DESC  		:AC, WC, bar{}DAF MX 340 diesel engine
+
+
+STR_NO_REFIT		:{ORANGE}This power unit is not refitted!{BLACK} Use refit for purchase of vehicle body (choose appropriate {LORRY} freight cargo).
+
+STR_OLD_HORSE		:{ORANGE}This dead horse can't walk, because is not alive.{BLACK}.
+
+# strings for farm tractor trailers refit
+STR_REFIT_NONE		: no trailers
+STR_REFIT_SHORT		: short trailers
+STR_REFIT_MEDIUM	: medium trailers
+STR_REFIT_LONG		: long trailers
+
+STR_MVMB_DESC		:{RED}{BUS}{BLACK} Mail Van/Minibus {}{GOLD}{UNSIGNED_WORD}{BLACK} mailbags/valuables or {GOLD}{UNSIGNED_WORD}{BLACK} passengers.{}{RED}No autorefit available{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm {}{STRING}
+
+STR_LCV_DESC		:{RED}{LORRY}{BLACK} Light Commercial Vehicle {}up to {GOLD}{UNSIGNED_WORD}{BLACK}t load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags).{}{RED}No autorefit available{BLACK}{} {STRING}, {UNSIGNED_WORD} ccm 
+
+STR_GPT_DESC		:{LORRY} General Purpose Truck,{}{STRING} {}{STRING}, {}{GOLD}station autorefit available{BLACK} (capacity depend on body subtype){}up to {GOLD}{UNSIGNED_WORD}{BLACK}t of load
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+STR_STTN_DESC		:{LORRY}{LORRY} Semi-Trailer Truck with normal trailer,{}{STRING}, {UNSIGNED_WORD} ccm {}{STRING}{} {GOLD}station autorefit available{BLACK} {}(capacity depend on trailer subtype){}up to {GOLD}{UNSIGNED_WORD}{BLACK} t load {}({GOLD}{UNSIGNED_WORD}{BLACK} mailbags, bulk cargo capacity limited)
+
+STR_STTM_DESC		:{LORRY}{LORRY} Semi-Trailer Truck with modern trailer,{}{STRING}, {UNSIGNED_WORD} ccm {}{STRING} {}{GOLD}station autorefit available{BLACK} {}(capacity depend on trailer subtype){}up to {GOLD}{UNSIGNED_WORD}{BLACK}t of load
+
+# semi-trailer tractor (special) description
+
+STR_STTS_DESC		:{RED}{LORRY}{LORRY}{BLACK} Semi-Trailer Truck with specialized trailer,{}{STRING}, {UNSIGNED_WORD} ccm {}{STRING} {}{RED}No autorefit available{BLACK}, switching/detaching trailers via depot refit order{}up to {GOLD}{UNSIGNED_WORD}{BLACK}t of load
+
+STR_WLT_DESC		:{RED}{LORRY}{LORRY}{BLACK} Log Wood Trailer - specialized truck with hydraulic-powered crane,{} {STRING}, {UNSIGNED_WORD} ccm, refitable to {UNSIGNED_WORD} ccm {}{STRING}
+
+STR_TT_DESC		:{LORRY}{LORRY} Truck with covered trailer {}for mail ({GOLD}{UNSIGNED_WORD}{BLACK} bags) or other express cargo (maxload {GOLD}{UNSIGNED_WORD}{BLACK} t){} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_CTT_DESC		:{LORRY}{LORRY} Container Truck with Trailer {}for mail ({GOLD}{UNSIGNED_WORD}{BLACK} bags) or other express cargo (maxload {GOLD}{UNSIGNED_WORD}{BLACK} t){} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_DT_DESC		:{LORRY} bulk skipper (maxload {GOLD}{UNSIGNED_WORD}{BLACK} t){}{}{GOLD}station autorefit available{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_FARM_TRACTOR_DESC	:{LORRY}{LORRY}{LORRY} farm tractor {}up to {GOLD}{UNSIGNED_WORD}{BLACK} t of grain {}or {GOLD}{UNSIGNED_WORD}{BLACK} livestock {} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_LIVERY_RANDOM       :-random livery 
+STR_LIVERY_STANDARD     :-standard 2cc livery 
+STR_LIVERY_POLROAD     	:-polroad style livery
+STR_LIVERY_REALCOMPANY  :-real life based livery
+
+STR_NONE_SUBTYPE	: (power unit only)
+STR_MAIL_SUBTYPE	: -in mail van
+STR_ARMOURED_SUBTYPE	: -in armoured van
+STR_REEFER_SUBTYPE	: -in refrigerated box
+STR_BOX_SUBTYPE		: -in lowsided box (with tarpaulin)
+STR_GOODVAN_SUBTYPE	: -in goods van
+STR_MINIBUS_SUBTYPE	: -in minibus
+
+STR_FLAT_SUBTYPE	: -on flatbed (with stakes) 
+STR_LVST_SUBTYPE	: -in cattle truck
+STR_OIL_SUBTYPE		: -in tanker
+STR_MILK_SUBTYPE	: -in potable liquid tanker
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+STR_BOX_TRAILER_SUBTYPE			: -in box trailer (with curtains)
+STR_DUMPER_TRAILER_SUBTYPE		: -in dumper trailer
+STR_HOPPER_TRAILER_SUBTYPE		: -in hopper trailer
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+STR_OIL_TRAILER_SUBTYPE			: -in petroleum tank trailer
+STR_CHEM_TRAILER_SUBTYPE		: -in chemical tank trailer
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+STR_FLAT_TRAILER_SUBTYPE		: -on flatbed with stakes
+STR_SILO_TRAILER_SUBTYPE		: -in silo trailer 
+STR_CONTAINER_TRAILER_SUBTYPE		: -on container trailer 
+STR_GOOSENECK_TRAILER_SUBTYPE		: -on gooseneck flatbed trailer 
+
+STR_1HORSE_DROSHKY_NAME	:droshky (fiacre)
+STR_1HORSE_DROSHKY_DESC	:{BUS} local passenger carriage (short)
+
+STR_2HORSE_OMNIBUS_NAME		:two horse passenger omnibus
+STR_2HORSE_OMNIBUS_DESC		:{BUS}{BUS} town omnibus {RED}(articulated){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} sitting and {GOLD}{UNSIGNED_WORD}{BLACK} standing places{}{BLACK}Comfort {GOLD}{UNSIGNED_WORD}{BLACK}, loading speed {GOLD}{UNSIGNED_WORD}{BLACK}
+
+STR_1HORSE_CART_NAME      	:single horse cart
+STR_1HORSE_CART_DESC      	:{LORRY} universal carriage (short), {}{GOLD}{UNSIGNED_WORD}{BLACK} passengers (low comfort){}or up to {GOLD}{UNSIGNED_WORD}{BLACK}t load 
+STR_1HORSE_CART_TYRES_NAME      	:single horse cart with tyres
+
+STR_2HORSE_HEAVY_CART_NAME      	:two horse heavy cartload
+STR_2HORSE_HEAVY_CART_DESC      	:{LORRY}{LORRY} universal heavy carriage (articulated), {}{UNSIGNED_WORD} passengers {}or up to {UNSIGNED_WORD}t load 
+
+STR_FORDTT_NAME      	:Ford TT light truck/minibus
+STR_FORDTT_DESC      	:{RED}{BUS}{BLACK} universal truck, refitable to {}small bus ({UNSIGNED_WORD} passengers, low comfort) {}or light lorry up to {GOLD}{UNSIGNED_WORD}{BLACK}t load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags){}{RED}No autorefit available{BLACK} {}177 CID gasoline engine, 2900ccm
+
+STR_FORDT_NAME      	:Ford T car
+STR_FORDT_DESC      	::{BUS} passenger car ({GOLD}4{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}177 CID gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_CWST1_NAME      	:CWS T-1 car
+STR_CWST1_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}3{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}R4 gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_NOT_COMMMERCIAL	:{RED}not for commercial use{BLACK}
+
+STR_HORSERIDER		:Horse rider
+STR_MOTORCYCLE		:Motorcycle
+
+STR_FIAT508_NAME      	:Polski Fiat 508 car
+STR_FIAT508_DESC      	:Small passenger car ({STRING}), {}Fiat 108CS gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_OPELKAPITAN_NAME      	:Opel "Kapitan" car
+STR_OPELKAPITAN_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}151 CID gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_FSOWARSZAWA_NAME      	:FSO "Warszawa" car
+STR_FSOWARSZAWA_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}M-20 gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_FSO125P_NAME      	:Polski Fiat 125p car
+STR_FSO125P_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}116C.076/56 gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_FSO126P_NAME      	:Polski Fiat 126p car
+STR_FSO126P_DESC      	:Small passenger car ({STRING}){}126 A1 gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_FSOPOLONEZ_NAME      	:FSO "Polonez" car
+STR_FSOPOLONEZ_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}14K16 MPI gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_DAEWOOLANOS_NAME      	:Daewoo Lanos
+STR_DAEWOOLANOS_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}E-TEC I4 gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_OPELASTRA_NAME      	:Opel Astra J car
+STR_OPELASTRA_DESC      	:{BUS} passenger car ({GOLD}5{BLACK} passengers), refitable to {GOLD}2{BLACK} mailbags or {GOLD}1{BLACK} crate of goods {}A16XER gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_FIATPANDA_NAME      	:Fiat Panda car
+STR_FIATPANDA_DESC      	:Small passenger car ({STRING}){}FIRE I4 gasoline engine, {UNSIGNED_WORD}ccm
+
+STR_GMC_NAME      	:GMC CCKW ex-U.S. Army truck
+STR_GMC_DESC      	:{LORRY} universal truck, {GOLD}{UNSIGNED_WORD}{BLACK} passengers ({UNSIGNED_WORD} sitting places, low comfort) {}or up to {GOLD}{UNSIGNED_WORD}{BLACK}t of load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags) {}GMC diesel engine, 4420ccm
+
+STR_HANOMAGSS100_NAME   :Hanomag SS100 heavy road tractor
+STR_HANOMAGSS100_DESC	:{RED}{LORRY}{LORRY}{BLACK}Trailer Truck, D85S diesel engine, 8550 ccm {}{RED}No autorefit available{BLACK}, switching/detaching trailers via depot refit order{}up to {GOLD}{UNSIGNED_WORD}{BLACK}t of load or {}{GOLD}{UNSIGNED_WORD}{BLACK} passengers ({UNSIGNED_WORD} sitting places, low comfort)
+STR_HANOMAGSS100_PASS	: in passenger semitrailer
+
+STR_LUBLIN51_NAME      	:Lublin 51 small truck
+
+STR_LUBLIN51_DESC      	:{LORRY} universal truck, {GOLD}{UNSIGNED_WORD}{BLACK} passengers ({UNSIGNED_WORD} sitting places, low comfort) {}or up to {GOLD}{UNSIGNED_WORD}{BLACK}t of load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags) {}M-51 gasoline engine, 3480ccm
+
+STR_UAZ_NAME      	:UAZ utility vehicle
+STR_UAZ_DESC      	:{LORRY} universal off-road small utility vehicle, {}{GOLD}{UNSIGNED_WORD}{BLACK} passengers or {GOLD}{UNSIGNED_WORD}{BLACK}t of load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags) {}UMZ 451 MI gasoline engine, 2450ccm
+
+STR_HONKER_NAME      	:Honker utility vehicle
+STR_HONKER_DESC      	:{LORRY} universal off-road small utility vehicle, {}{GOLD}{UNSIGNED_WORD}{BLACK} passengers or {GOLD}{UNSIGNED_WORD}{BLACK}t of load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags) {}Andoria 4C90 diesel engine, 2636ccm
+
+STR_VWT_NAME  	:Volkswagen Transporter
+STR_VWT_DESC    :{LORRY} universal utility vehicle, {}{GOLD}{UNSIGNED_WORD}{BLACK} passengers {}or {GOLD}{UNSIGNED_WORD}{BLACK}t of load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags) {}AAB diesel engine, 2370ccm
+
+
+STR_4HORSE_STAGE_COACH_NAME	:stage coach
+STR_4HORSE_STAGE_COACH_DESC	:{BUS}{LORRY} refitable to passengers, mail, valuables
+STR_MVMB_SUFFIX		: van/minibus
+STR_FIAT618_DESC      	:Fiat 118 gasoline engine
+STR_NYSAN59_DESC      	:M-20 gasoline engine
+STR_NYSA522_DESC      	:S-21 gasoline engine
+STR_MERCEDES_VARIO_DESC      	:OM602 diesel engine
+STR_MERCEDES_SPRINTER_DESC      	:OM646 diesel CR engine
+STR_MERCEDES_SPRINTER_TRAILER_DESC  :{RED}{LORRY}{LORRY}{BLACK}Light Commercial Vehicle with trailer {}up to {GOLD}{UNSIGNED_WORD}{BLACK}t load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags).{}{GOLD}station autorefit available{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm 
+
+STR_MERCEDES_ATEGO_DESC  :{LORRY}Vehicle transporter {}up to {GOLD}{UNSIGNED_WORD}{BLACK}t load.{}{GOLD}station autorefit available{BLACK}{}diesel engine OM 934, {UNSIGNED_WORD} ccm 
+
+
+STR_LCV_SUFFIX		: pickup/cargo van
+STR_URSUSA_DESC      	:S.P.A. gasoline engine
+STR_FIAT621L_DESC      	:122B gasoline engine
+STR_ZUKA03_DESC      	:S-21 gasoline engine
+STR_LUBLIN33_DESC	:Andoria 4C90 diesel engine
+STR_DZTPASAGON_DESC     :Andoria ADCR diesel engine
+STR_IVECODAILY6_DESC    :CNG engine
+STR_URSUSELVI_DESC      :{LORRY}Light Commercial Vehicle (electric motors) {}up to {GOLD}{UNSIGNED_WORD}{BLACK}t load ({GOLD}{UNSIGNED_WORD}{BLACK} mailbags).{}{GOLD}station autorefit available{BLACK} 
+
+
+STR_GPT_SUFFIX		: general purpose truck
+STR_PZINZ703_DESC      	:PZInż 725 wood gasifier engine
+STR_STAR20_DESC      	:S42 gasoline engine
+STR_STAR25_DESC      	:S472 gasoline engine
+STR_STAR200_DESC      	:S359 diesel engine
+STR_STAR2000_DESC      	:MAN diesel CR engine
+STR_STARTGL_DESC      	:MAN MAN D0836LFL diesel CR engine
+
+STR_STTN_SUFFIX		: semi-trailer truck
+STR_CHEVROLET157_DESC	:206.8 cu diesel engine 
+STR_STAR_C21_DESC	:S42 gasoline engine 
+STR_STAR_C28_DESC	:S530A1 diesel engine 
+
+STR_STTM_SUFFIX		: modern semi-trailer truck
+STR_RENAULT_MAGNUM_DESC	:Mack diesel engine 
+STR_DAF95X_DESC	:DAF diesel engine
+STR_RENAULT_MILLENIUM_DESC	:Volvo DXi 12 CR diesel engine
+STR_DAFXF105_DESC	:Paccar CR diesel engine
+
+STR_STTS_SUFFIX		: special semi-trailer truck
+
+STR_ZUBR_C90_DESC	:S-56 diesel engine
+STR_JELCZ_317_DESC	:SW-680 diesel engine
+STR_VOLVO_F12_DESC	:Volvo TD engine
+STR_VOLVO_FH12_DESC	:Volvo D12A diesel engine
+STR_VOLVO_FH13_DESC	:Volvo D13K diesel engine
+
+STR_KAMAZ5511_DESC  	:K740 diesel engine 
+STR_ACTROSMP1_DESC  	:1840 diesel engine 
+STR_ACTROSMP3_DESC  	:1846 diesel engine
+
+STR_FIAT618_NAME  		:Polski Fiat 618 {STRING}
+STR_NYSAN59_NAME  		:Nysa N59 {STRING}
+STR_NYSA522_NAME  		:Nysa 522 {STRING}
+STR_MERCEDES_VARIO_NAME  	:Mercedes T2/Vario {STRING}
+STR_MERCEDES_SPRINTER_NAME  	:Mercedes Sprinter {STRING}
+STR_MERCEDES_SPRINTER_TRAILER_NAME  	:Mercedes Sprinter - van with trailer
+STR_MERCEDES_ATEGO_NAME  	:Mercedes Atego - tow truck
+
+STR_URSUSA_NAME  	:Ursus-A {STRING}
+STR_FIAT621L_NAME  	:Polski Fiat 621L {STRING}
+STR_ZUKA03_NAME  	:Zuk A03 {STRING}
+STR_LUBLIN33_NAME  	:Lublin/Intrall {STRING}
+STR_DZTPASAGON_NAME  	:DZT Pasagon {STRING}
+STR_IVECODAILY6_NAME  	:Iveco Daily VI {STRING}
+STR_URSUSELVI_NAME  	:Ursus ELVI {STRING}
+
+STR_PZINZ703_NAME  	:PZInz-703 {STRING}
+STR_STAR20_NAME  	:Star 20 {STRING}
+STR_STAR25_NAME  	:Star 25 {STRING}
+STR_STAR200_NAME  	:Star 200 {STRING}
+STR_STAR2000_NAME  	:Star 2000 {STRING}
+STR_STARTGL_NAME  	:Star TGL {STRING}
+
+STR_CHEVROLET157_NAME  		:Chevrolet 157 {STRING}
+STR_STAR_C21_NAME  		:Star C-21 {STRING}
+STR_STAR_C28_NAME  		:Star C-28 {STRING} 
+STR_RENAULT_MAGNUM_NAME  	:Renault Magnum {STRING}
+STR_DAF95X_NAME  		:DAF 95X {STRING}
+STR_RENAULT_MILLENIUM_NAME  	:Renault Magnum Millenium {STRING}
+STR_DAFXF105_NAME  		:DAF XF 105 {STRING}
+
+STR_ZUBR_C90_NAME  	:Zubr C90 {STRING}
+STR_JELCZ_317_NAME  	:Jelcz 317 {STRING}
+STR_VOLVO_F12_NAME  	:Volvo F12 {STRING}
+STR_VOLVO_FH12_NAME  	:Volvo FH12 {STRING}
+STR_VOLVO_FH13_NAME  	:Volvo FH13 {STRING}
+
+STR_DT_SUFFIX		: dumper truck
+STR_KAMAZ5511_NAME  	:Kamaz 5511 {STRING}
+STR_ACTROSMP1_NAME  	:Mercedes Actros Mp1 {STRING}
+STR_ACTROSMP3_NAME  	:Mercedes Actros Mp3 {STRING}
+
+STR_NORMAL_POWER	: (Standard horsepower)
+STR_MORE_POWER		: (Increased horsepower)
+STR_4HORSE_HEAVY_LOGGER_NAME	:heavy horse logger
+STR_4HORSE_HEAVY_LOGGER_DESC	:{RED}{LORRY}{LORRY}{BLACK} wood lorry, refitable: 2 or 4 persherons
+STR_PRAGAV3S_NAME	:Praga V3S log trailer truck
+STR_PRAGAV3S_DESC	:Tatra 912 diesel engine, reffitable to E359T
+STR_STAR266_NAME	:Star 266 log trailer truck
+STR_STAR266_DESC	:{RED}{LORRY}{LORRY}{BLACK} Log Wood specialized truck with hydraulic-powered crane,{}S359 diesel engine, {UNSIGNED_WORD} ccm, reffitable to E359T
+STR_SCANIA_S4_NAME	:Scania 114 C log trailer truck
+STR_SCANIA_S4_DESC	:V8 DSC14 13 530 diesel CR engine
+STR_SCANIA_R730_NAME	:Scania R730 log trailer truck
+STR_SCANIA_R730_DESC	:V8 DC16 103 730 diesel CR engine
+
+STR_JELCZ315_NAME	:Jelcz 315 - truck with covered trailer
+
+STR_JELCZ416_NAME	:Jelcz 416 - truck with covered trailer
+
+STR_MANTGA_NAME	:MAN TGA container truck with trailer
+STR_MANTGA_DESC	:D2866 diesel engine
+
+STR_HCPLOCOMOBILE1_NAME	:HCP first steam tractor
+STR_HCPLOCOMOBILE1_DESC	:{LORRY}{LORRY}{LORRY} First locomobile with steam engine, {}refitable to max. 3 trailers {}(max. {GOLD}{UNSIGNED_WORD}{BLACK} t of grain or {GOLD}{UNSIGNED_WORD}{BLACK} livestock)
+STR_HCPLOCOMOBILE_NAME	:HCP improved steam tractor
+STR_HCPLOCOMOBILE_DESC	:{LORRY}{LORRY}{LORRY} locomobile with superheated steam compound engine, {}refitable to max. 6 trailers {}(max. {GOLD}{UNSIGNED_WORD}{BLACK} t of grain or {GOLD}{UNSIGNED_WORD}{BLACK} livestock)
+STR_URSUSC45_DESC	:Max. 3 trailers. Lanz-Bulldog diesel engine
+STR_URSUSC328_DESC	:Max. 2 "Autosan" trailers. S-312 diesel engine
+STR_URSUSC330_DESC	:Max. 3 "Autosan" trailers. S-4001 diesel engine
+STR_URSUSC360_DESC	:Max. 3 "Autosan" trailers. S-4003 diesel engine
+STR_URSUSC1734_DESC	:Max. 2 "Pronar" trailers. Martin Diesel UR-IV engine
+
+STR_URSUSC45_NAME  	:Ursus C45
+STR_URSUSC328_NAME  	:Ursus C328
+STR_URSUSC330_NAME  	:Ursus C330
+STR_URSUSC360_NAME  	:Ursus C360
+STR_URSUSC1734_NAME  	:Ursus C1734
+
+
+STR_GENERIC_BUILD_VEHICLE            :Build New Road Vehicles
+STR_GENERIC_AUTOREPLACE              :Road Vehicles
+STR_GENERIC_NEW_ENGINE               :road vehicle
+
+STR_PEDESTRIAN_ZONE_NAME             :Pedestrian Zone (road vehicles restricted)
+STR_PEDESTRIAN_ZONE_TOOLBAR          :Pedestrian Zone Construction
+STR_PEDESTRIAN_ZONE_MENU             :Pedestrian Zone construction
+
+STR_DIRT_ROAD_NAME                   :Dirt Road (limited use for light vehicles)
+STR_DIRT_ROAD_TOOLBAR                :Dirt Road Construction
+STR_DIRT_ROAD_MENU                   :Dirt Road construction
+
+STR_SETT_PAVEMENT_ROAD_NAME          :Paved Road
+STR_SETT_PAVEMENT_ROAD_TOOLBAR       :Paved Road Construction
+STR_SETT_PAVEMENT_ROAD_MENU          :Paved Road construction
+
+STR_BASIC_ASPHALT_ROAD_NAME          :Basic Asphalt Road
+STR_BASIC_ASPHALT_ROAD_TOOLBAR       :Basic Asphalt Road Construction
+STR_BASIC_ASPHALT_ROAD_MENU          :Basic Asphalt Road construction
+
+STR_IMPROVED_ASPHALT_ROAD_NAME       :Improved Asphalt Road
+STR_IMPROVED_ASPHALT_ROAD_TOOLBAR    :Improved Asphalt Road Construction
+STR_IMPROVED_ASPHALT_ROAD_MENU       :Improved Asphalt Road construction
+
+STR_MODERN_ASPHALT_ROAD_NAME         :Modern Asphalt Road (slow vehicles restricted)
+STR_MODERN_ASPHALT_ROAD_TOOLBAR      :Modern Asphalt Road Construction
+STR_MODERN_ASPHALT_ROAD_MENU         :Modern Asphalt Road construction
+
+STR_HIGHWAY_ROAD_NAME                :Highway (slow vehicles restricted)
+STR_HIGHWAY_ROAD_TOOLBAR             :Highway Construction
+STR_HIGHWAY_ROAD_MENU                :Highway construction
+
+STR_HAUL_ROAD_NAME                :Concrete Slab Highway (slow vehicles restricted)
+STR_HAUL_ROAD_TOOLBAR             :Concrete Slab Highway Construction
+STR_HAUL_ROAD_MENU                :Concrete Slab Highway construction
+
+
+

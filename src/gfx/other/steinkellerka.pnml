@@ -1,0 +1,102 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// stage coach (steinkellerka):
+
+
+/* */
+#define horse_stage_coach_capacity 12
+#define horse_stage_coach_mass 5
+#define horse_stage_coach_speed 32
+
+spriteset(spriteset_horse_stage_coach_purchase, "src/gfx/other/steinkellerka.png") { template_sprite_window_sideview13(106) }
+
+spriteset(horse_stage_coach_graphic1, "src/gfx/other/steinkellerka.png") { template_sprite6(8) }
+spriteset(horse_stage_coach_graphic2, "src/gfx/other/steinkellerka.png") { template_sprite6(38) }
+
+switch(FEAT_ROADVEHS, SELF, animated_horse_stage_coach_graphic, motion_counter % 4) { 
+0..1 : return horse_stage_coach_graphic1;
+2..3 : return horse_stage_coach_graphic1;
+return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, consist_horse_stage_coach_graphic_switch, position_in_consist) { 
+    0 : return switch_randomize3_first_horsepair_graphics; 
+    1 : return animated_secondpair_horsewalk_graphic_switch; 
+    2 : return animated_horse_stage_coach_graphic; 
+return CB_FAILED;
+}
+ 
+switch (FEAT_ROADVEHS, SELF, switch_horse_stage_coach_articulated, extra_callback_info1) { 
+    1..2 : return horse_stage_coach; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, horse_stage_coach_length_switch, position_in_consist) {  
+	0..1 : return 4; 
+	2 : return 5;  
+	return CB_FAILED;
+}  
+
+switch(FEAT_ROADVEHS, SELF, horse_stage_cargo_capacity_switch, position_in_consist) {  
+	0..1 : return 0; 
+	2 : return horse_stage_coach_capacity;  
+	return CB_FAILED;
+}  
+
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, horse_stage_coach) { 
+	property { 
+	name:			   	string(STR_4HORSE_STAGE_COACH_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1838, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 83+10+10 : 83+10); 
+	vehicle_life:		   	20; 
+	retire_early:			10; 
+	reliability_decay:	    	20; 
+	loading_speed:		  	4; 
+	cost_factor:		    	21;      
+	running_cost_factor:	min(9 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	horse_stage_coach_speed km/h;  
+	cargo_allow_refit:		[PASS]; 
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS, CC_ARMOURED, CC_MAIL); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	40 hp; 
+	running_cost_base:	   	RUNNING_COST_ELECTRIC; 
+	cargo_capacity:		 	horse_stage_coach_capacity; 
+	weight:			 	horse_stage_coach_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.5; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		4; 
+//	road_type:			OFFR;
+	sound_effect: SOUND_HORSE;
+    } 
+    graphics { 
+	default:	    		consist_horse_stage_coach_graphic_switch;  
+	purchase:	   		spriteset_horse_stage_coach_purchase;  
+	purchase_cargo_capacity:	horse_stage_coach_capacity /3;
+	cargo_capacity:			horse_stage_cargo_capacity_switch;	
+	articulated_part:		switch_horse_stage_coach_articulated; 
+	length:				horse_stage_coach_length_switch;
+	additional_text:        	string(STR_4HORSE_STAGE_COACH_DESC);
+	cargo_subtype_text: 		switch_livery_subtype_text;  
+	colour_mapping:         	switch_livery_subtype_mapping; 
+//	sound_effect: return switch_horseklap_sound;    
+    } 
+ } 
+}
+
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, horse_stage_coach) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

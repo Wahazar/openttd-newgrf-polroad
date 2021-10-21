@@ -1,0 +1,349 @@
+##grflangid 0x35
+##plural 0
+# This is the English language file
+
+# GRF name and description
+STR_GRF_NAME        :Polroad v. {UNSIGNED_WORD}
+STR_GRF_DESCRIPTION :Polroad - Puolan ajoneuvot.{}{VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie{}Lisenssi: GPL v2
+
+STR_PARAM_NAME_PURCHASE_COST            :Ostohintakerroin
+STR_PARAM_DESC_PURCHASE_COST            :Käytä tätä asetusta muuttaaksesi ajoneuvojen ostohintoja.
+STR_PARAM_NAME_RUNNING_COST             :Käyttökustannuskerroin
+STR_PARAM_DESC_RUNNING_COST             :Käytä tätä asetusta muuttaaksesi ajoneuvojen käyttökustannuksia.
+STR_PARAM_COST_H                        :Puolitettu
+STR_PARAM_COST_N                        :Tavallinen
+STR_PARAM_COST_D                        :Kaksinkertainen
+STR_PARAM_NAME_MAX_LOAD                 :Maksimikuormakerroin
+STR_PARAM_DESC_MAX_LOAD                 :Kapasiteetin (maksimikuorma pienten autojen kohdalla) kerroin.
+STR_PARAM_LOAD_1                        :Realistinen
+STR_PARAM_LOAD_2                        :Kaksinkertainen (oletus)
+STR_PARAM_LOAD_3                        :Tripla
+
+STR_PARAM_NAME_ALLOW_SLOW_VEHS          :Salli hitaat ajoneuvot
+STR_PARAM_DESC_ALLOW_SLOW_VEHS          :Kytke tämä asetus päälle salliaksesi hevosvaunut ja traktorit.
+STR_PARAM_NAME_ALLOW_BUS                :Salli bussit
+STR_PARAM_DESC_ALLOW_BUS                :Kytke tämä asetus päälle salliaksesi kaikki polttomoottorikäyttöiset matkustaja-ajoneuvot.
+STR_PARAM_NAME_ALLOW_VAN                :Salli yleispakettiautot
+STR_PARAM_DESC_ALLOW_VAN                :Kytke tämä asetus päälle salliaksesi kaikki polttomoottoriajoneuvot.
+STR_PARAM_NAME_ALLOW_TRUCK              :Salli kuorma-autot
+STR_PARAM_DESC_ALLOW_TRUCK              :Kytke tämä asetus päälle salliaksesi kaikki polttomoottorikäyttöiset rahtiajoneuvot.
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+STR_NULL                                :{}
+
+STR_COMFORT_LW                          :{RED}MATALA{BLACK}
+STR_COMFORT_MD                          :{ORANGE}keskinkertainen{BLACK}
+STR_COMFORT_ST                          :{DKGREEN}tavallinen{BLACK}
+STR_COMFORT_HI                          :{GREEN}KORKEA{BLACK}
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+STR_LOADSPEED_LO                                :{RED}MATALA{BLACK}
+STR_LOADSPEED_MD                                :{ORANGE}keskinkertainen{BLACK}
+STR_LOADSPEED_ST                                :{DKGREEN}tavallinen{BLACK}
+STR_LOADSPEED_HI                                :{GREEN}NOPEA{BLACK}
+
+STR_VARIABLE_COSTS              :{GOLD}Käyttökustannukset{BLACK} riippuvat ajoneuvon nopeudesta ja iästä
+
+STR_CITY_BUS                    :{BUS} kaupunkibussi, {UNSIGNED_WORD} istuma- ja {UNSIGNED_WORD} seisomapaikkaa.{}{BLACK}Mukavuus {STRING}, lastausaika {STRING}{}{STRING}, {UNSIGNED_WORD} ccm
+STR_CITYBUS_SUFFIX              :- kaupunkibussi
+
+STR_ART_CITY_BUS                        :{BUS}{RED}{BUS}{BLACK} nivelkaupunkibussi, {UNSIGNED_WORD} istuma- ja {UNSIGNED_WORD} seisomapaikkaa.{}{BLACK}Mukavuus {STRING}, lastausaika {STRING}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_LOCAL_BUS                   :{BUS} paikallisbussi, {UNSIGNED_WORD} istuma- ja {UNSIGNED_WORD} seisomapaikkaa.{}{BLACK}Mukavuus {STRING}, lastausaika {STRING}{}{STRING}, {UNSIGNED_WORD} ccm
+
+
+STR_LOCALBUS_SUFFIX             :- paikallisbussi
+
+STR_IC_BUS                      :{BUS} kaukoliikenne/turistibussi, {UNSIGNED_WORD} istumapaikkaa.{}{BLACK}Mukavuus {STRING}, lastausaika {STRING}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_ICBUS_SUFFIX                :- kaukoliikennebussi
+
+STR_BENZ_GAGGENAU_NAME                  :Benz Gaggenau {STRING}
+STR_BENZ_GAGGENAU_DESC                  :20 hv bensiinimoottori
+STR_SOMUA_NAME                          :Somua RZCA {STRING}
+STR_SOMUA_DESC                          :V4 bensiinimoottori
+STR_EFD183_NAME                         :Chevrolet "Bielany" {STRING}
+STR_EFD183_DESC                         :EFB183 bensiinimoottori
+STR_CHAUSSON_NAME                       :Chausson APH {STRING}
+STR_MAVAGTR5_NAME                       :Mavag Tr5 {STRING}
+STR_MAVAGTR5_DESC                       :OML674 V6-dieselmoottori
+STR_SANH01B_NAME                        :San 01B {STRING}
+STR_SANH01B_DESC                        :S42 dieselmoottori
+STR_SANH100B_NAME                       :San 100B {STRING}
+STR_SANH100B_DESC                       :S474 dieselmoottori
+STR_JELCZ272MEX_NAME                    :Jelcz 272 MEX {STRING}
+STR_JELCZ272MEX_DESC                    :Škoda 706RT dieselmoottori
+STR_BERLIETPR100_NAME                   :Jelcz-Berliet PR100 {STRING}
+STR_BERLIETPR100_DESC                   :Berliet V80 dieselmoottori
+STR_IKARUS260_NAME                      :Ikarus 260 {STRING}
+STR_IKARUS260_DESC                      :Raba-MAN D2156HM6U dieselmoottori
+STR_JELCZ120M_NAME                      :Jelcz 120M {STRING}
+STR_JELCZ120M_DESC                      :Mielec SWT dieselmoottori
+STR_JELCZ121M_NAME                      :Jelcz 121M {STRING}
+STR_JELCZ121M_DESC                      :etumatalalattia,{}MAN D0826 LUH12 dieselmoottori
+STR_URBINO12_NAME                       :Solaris Urbino 12 {STRING}
+STR_URBINO12_DESC                       :matalalattia, ilmastointi{}Paccar PR183 dieselmoottori
+STR_URBINO15_NAME                       :Solaris Urbino 15 {STRING}
+STR_URBINO15_DESC                       :matalalattia, ilmastointi{}Paccar PR228 dieselmoottori
+STR_MANSD202_NAME                       :MAN SD202 "Hop On" {STRING}
+
+STR_JELCZAP02_NAME                      :Jelcz AP02 {STRING}
+STR_JELCZ021_NAME                       :Jelcz 021 {STRING}
+STR_IKARUS280_NAME                      :Ikarus 280 {STRING}
+STR_JELCZ181M_NAME                      :Jelcz 181M {STRING}
+STR_JELCZ181M_DESC                      :etumatalalattia,{}MAN D0826 LUH13 dieselmoottori
+STR_URBINO18_NAME                       :Solaris Urbino 18 {STRING}
+STR_URBINO18_DESC                       :matalalattia, ilmastointi{}DAF PR228 dieselmoottori
+
+STR_URSUSAW_NAME                        :Ursus AW {STRING}
+STR_URSUSAW_DESC                        :S.P.A. bensiinimoottori
+STR_SAURER_BLD4_NAME                    :Saurer Zawrat BLD4 {STRING}
+STR_SAURER_BLD4_DESC                    :Saurer BLD dieselmoottori
+STR_STARN52_NAME                        :Star N52 {STRING}
+STR_STARN52_DESC                        :S42 bensiinimoottori
+STR_SANH01A_NAME                        :San H01A {STRING}
+STR_OSINOBUS_NAME                       :Osinobus {STRING}
+STR_OSINOBUS_DESC                       :S530A dieselmoottori
+STR_AUTOSAN_H9_NAME                     :Autosan H9 {STRING}
+STR_AUTOSAN_H9_DESC                     :6CT107 dieselmoottori
+STR_AUTOSAN_A1010T_NAME                 :Autosan A1010T {STRING}
+STR_AUTOSAN_A1010T_DESC                 :Renault dCi6 dieselmoottori
+
+STR_JELCZ043CAR_NAME                    :Jelcz 043 CAR {STRING}
+STR_JELCZPR110D_NAME                    :Jelcz PR110D {STRING}
+STR_JELCZPR110D_DESC                    :Mielec SW680/165 dieselmoottori
+STR_SETRAS419UL16_NAME                  :Setra S419 UL 16 {STRING}
+STR_VH_ASTROMEGA_DT927_NAME             :Van Hool Astromega DT927 {STRING}
+STR_VH_ASTROMEGA_DT927_DESC             :Ilmastointi, WC, baari{}DAF MX 340 dieselmoottori
+
+
+STR_NO_REFIT            :{ORANGE}Tätä nuppia ei ole sovitettu!{BLACK} Käytä sovitusta ostaaksesi perävaunun (valitse sopiva {LORRY} rahti).
+
+STR_OLD_HORSE           :{ORANGE}Tämä hevonen ei kävele, koska se on kuollut.{BLACK}.
+
+# strings for farm tractor trailers refit
+STR_REFIT_NONE          :ei perävaunuja
+STR_REFIT_SHORT         :lyhyet perävaunut
+STR_REFIT_MEDIUM        :keskimittaiset perävaunut
+STR_REFIT_LONG          :pitkät perävaunut
+
+STR_MVMB_DESC           :{YELLOW}{BUS}{BLACK} Postiauto/pikkubussi, korkeintaan {UNSIGNED_WORD} säkkiä postiatai arvotavaraa tai {UNSIGNED_WORD} matkustajaa.{}Ei automaattista uudelleensovitusta saatavilla.{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_LCV_DESC            :{YELLOW}{LORRY}{BLACK} Kevyt hyötyajoneuvo, korkeintaan {UNSIGNED_WORD}t kuormaa ({UNSIGNED_WORD} säkkiä postia).{}Ei automaattista uudelleensovitusta saatavilla.{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_GPT_DESC            :{LORRY} Yleiskuorma-auto, korkeintaan {UNSIGNED_WORD}t kuormaa ({UNSIGNED_WORD} säkkiä postia),{}automaattinen uudelleensovitus saatavilla (kapasiteetti riippuu päällirakenteesta){} {STRING}, {UNSIGNED_WORD} ccm
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+STR_STTN_DESC           :{LORRY}{RED}{LORRY}{BLACK} puoliperävaunurekka tavallisella {UNSIGNED_WORD} t perävaunulla, {UNSIGNED_WORD}t maksimikuorma ({UNSIGNED_WORD} säkkiä postia), irtotavaratilavuus rajoitettu {UNSIGNED_WORD}t,{}automaattinen uudelleensovitus saatavilla (kapasiteetti riippuu perävaunusta){} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_STTM_DESC           :{LORRY}{RED}{LORRY}{BLACK} puoliperävaunurekka modernilla {UNSIGNED_WORD} t perävaunulla, {UNSIGNED_WORD}t maksimikuorma ({UNSIGNED_WORD} säkkiä postia),{}automaattinen uudelleensovitus saatavilla (kapasiteetti riippuu perävaunun tyypistä){} {STRING}, {UNSIGNED_WORD} ccm
+
+# semi-trailer tractor (special) description
+
+STR_STTS_DESC           :{RED}{LORRY}{LORRY}{BLACK} Puoliperävaunurekka erikoistuneella {UNSIGNED_WORD} t perävaunulla, {UNSIGNED_WORD}t maksimikuorma ({UNSIGNED_WORD} säkkiä postia).{}Ei automaattista uudelleensovitusta, aikataulutettu perävaunun vaihto varikolla sovittamalla.{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_WLT_DESC            :{DKGREEN}{LORRY}{RED}{LORRY}{BLACK} Tukkirekka hydraulisella nosturilla,{} {STRING}, {UNSIGNED_WORD} ccm, sovitettava {UNSIGNED_WORD} ccm{STRING}
+
+
+STR_CTT_DESC            :{DKGREEN}{LORRY}{RED}{LORRY}{BLACK} Konttikuorma-auto perävaunulla - erikoiskuorma-auto kahdella 20 jalan postikontilla ({UNSIGNED_WORD} säkkiä) tai muuta pikarahtia (maksimikuorma {UNSIGNED_WORD} t{} {STRING}, {UNSIGNED_WORD} ccm, {STRING}
+
+
+STR_FARM_TRACTOR_DESC   :maataloustraktori, korkeintaan {UNSIGNED_WORD} t viljaa tai {UNSIGNED_WORD} karjaa.{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_LIVERY_STANDARD     :-tavallinen 2cc-väritys
+STR_LIVERY_POLROAD      :-polroad-väritys
+STR_LIVERY_REALCOMPANY  :-realistinen väritys
+
+STR_NONE_SUBTYPE        :(pelkkä nuppi)
+STR_MAIL_SUBTYPE        :-postiautossa
+STR_ARMOURED_SUBTYPE    :-panssaroidussa autossa
+STR_REEFER_SUBTYPE      :-kylmäperävaunussa
+STR_BOX_SUBTYPE         :-pressupeitteisellä lavalla
+STR_GOODVAN_SUBTYPE     :-pakettiautossa
+STR_MINIBUS_SUBTYPE     :-pikkubussissa
+
+STR_FLAT_SUBTYPE        :-avolavalla
+STR_LVST_SUBTYPE        :-karja-autossa
+STR_OIL_SUBTYPE         :-säiliössä
+STR_MILK_SUBTYPE        :-säiliöperävaunussa
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+STR_BOX_TRAILER_SUBTYPE                 :-umpiperävaunussa
+STR_DUMPER_TRAILER_SUBTYPE              :-kippiperävaunussa
+STR_HOPPER_TRAILER_SUBTYPE              :-suppiloperävaunussa
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+STR_OIL_TRAILER_SUBTYPE                 :-säiliöperävaunussa
+STR_CHEM_TRAILER_SUBTYPE                :-säiliöperävaunussa
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+STR_FLAT_TRAILER_SUBTYPE                :-avolavalla
+STR_SILO_TRAILER_SUBTYPE                :-siiloperävaunussa
+STR_CONTAINER_TRAILER_SUBTYPE           :-konttiperävaunussa
+STR_GOOSENECK_TRAILER_SUBTYPE           :-lavetilla
+
+STR_1HORSE_DROSHKY_NAME :Valjakkovaunu
+STR_1HORSE_DROSHKY_DESC :{BUS} paikallismatkustajavaunu (short)
+
+STR_2HORSE_OMNIBUS_NAME         :Kahden hevosen matkustajavaunu
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{RED}{BUS}{BLACK} kaupunkinivelbussi, {COMMA} istuma- ja {COMMA} seisomapaikkaa.{}{BLACK}Mukavuus {STRING}, lastausaika {STRING}
+
+STR_1HORSE_CART_NAME            :Hevosvaunu
+STR_1HORSE_CART_DESC            :{DKGREEN}{LORRY}{BLACK} lyhyt yleisvaunu,{}{UNSIGNED_WORD} matkustajaa{}tai korkeintaan {UNSIGNED_WORD}t kuormaa
+STR_1HORSE_CART_TYRES_NAME              :Hevosvaunu kumipyörillä
+
+STR_2HORSE_HEAVY_CART_NAME              :Raskas kahden hevosen vaunu
+STR_2HORSE_HEAVY_CART_DESC              :{DKGREEN}{LORRY}{RED}{LORRY}{BLACK} raskas yleisvaunu,{}{UNSIGNED_WORD} matkustajaa{}tai korkeintaan {UNSIGNED_WORD}t kuormaa
+
+STR_FORDTT_NAME         :Ford TT kevytkuorma-auto/pikkubussi
+STR_FORDTT_DESC         :{DKGREEN}{BUS}{BLACK} yleiskuorma-auto, sovitettava{}pikkubussiksi ({UNSIGNED_WORD} matkustajaa, matala mukavuus) tai korkeintaan kevytkuorma-autoksi {UNSIGNED_WORD}t kuormaa ({UNSIGNED_WORD} säkkiä postia){}177 CID bensiinimoottori, 2900ccm
+
+
+
+
+
+STR_FIAT508_NAME        :Polski Fiat 508 henkilöauto
+STR_FIAT508_DESC        :{BUS} henkilöauto ({GOLD}4{BLACK} matkustajaa), sovitettava {GOLD}2{BLACK} säkille postia tai {GOLD}1{BLACK} laatikolle tavaraa{}Fiat 108CS bensiinimoottori, {UNSIGNED_WORD}ccm
+
+
+
+
+
+
+
+
+
+STR_GMC_NAME            :GMC CCKW ex-U.S. Sotilasajoneuvo
+STR_GMC_DESC            :{DKGREEN}{LORRY}{BLACK} yleiskuorma-auto, {UNSIGNED_WORD} matkustajaa ({UNSIGNED_WORD} epämukavaa istumapaikkaa){}tai korkeintaan {UNSIGNED_WORD}t kuormaa ({UNSIGNED_WORD} säkkiä postia){}GMC-dieselmoottori, 4420ccm
+
+
+STR_LUBLIN51_NAME       :Lublin 51 pieni kuorma-auto
+
+STR_LUBLIN51_DESC       :{DKGREEN}{LORRY}{BLACK} yleiskuorma-auto, {UNSIGNED_WORD} matkustajaa ({UNSIGNED_WORD} epämukavaa istumapaikkaa){}tai korkeintaan {UNSIGNED_WORD}t kuormaa ({UNSIGNED_WORD} säkkiä postia){}M-51 bensiinimoottori, 3480ccm
+
+
+
+
+STR_4HORSE_STAGE_COACH_NAME     :Landoo
+STR_4HORSE_STAGE_COACH_DESC     :{DKGREEN}{BUS}{RED}{LORRY}{BLACK} sovitettava matkustajille, postille ja arvotavaralle
+STR_MVMB_SUFFIX         :pakettiauto/pikkubussi
+STR_FIAT618_DESC        :Fiat 118 bensiinimoottori
+STR_NYSAN59_DESC        :M-20 bensiinimoottori
+STR_NYSA522_DESC        :S-21 bensiinimoottori
+STR_MERCEDES_VARIO_DESC         :OM602 dieselmoottori
+STR_MERCEDES_SPRINTER_DESC              :OM646 dieselmoottori
+
+
+
+STR_LCV_SUFFIX          :lava/pakettiauto
+STR_URSUSA_DESC         :S.P.A. bensiinimoottori
+STR_FIAT621L_DESC       :122B bensiinimoottori
+STR_ZUKA03_DESC         :S-21 bensiinimoottori
+STR_LUBLIN33_DESC       :Andoria 4C90 dieselmoottori
+STR_DZTPASAGON_DESC     :Andoria ADCR dieselmoottori
+STR_IVECODAILY6_DESC    :Maakaasumoottori
+
+
+STR_GPT_SUFFIX          :yleiskuorma-auto
+STR_PZINZ703_DESC       :PZInż 725 puukaasutinmoottori
+STR_STAR20_DESC         :S42 bensiinimoottori
+STR_STAR25_DESC         :S472 bensiinimoottori
+STR_STAR200_DESC        :S359 dieselmoottori
+STR_STAR2000_DESC       :MAN dieselmoottori
+STR_STARTGL_DESC        :MAN D0836LFL dieselmoottori
+
+STR_STTN_SUFFIX         :puoliperävaunurekka
+STR_CHEVROLET157_DESC   :206.8 cu dieselmoottori
+STR_STAR_C21_DESC       :S42 bensiinimoottori
+STR_STAR_C28_DESC       :S530A1 dieselmoottori
+
+STR_STTM_SUFFIX         :moderni puoliperävaunurekka
+STR_RENAULT_MAGNUM_DESC :Mack-dieselmoottori
+STR_DAF95X_DESC :DAF-dieselmoottori
+STR_RENAULT_MILLENIUM_DESC      :Volvo DXi 12 CR dieselmoottori
+STR_DAFXF105_DESC       :Paccar CR dieselmoottori
+
+STR_STTS_SUFFIX         :erikoispuoliperävaunurekka
+
+STR_ZUBR_C90_DESC       :S-56 dieselmoottori
+STR_JELCZ_317_DESC      :SW-680 dieselmoottori
+STR_VOLVO_F12_DESC      :Volvo TD moottori
+STR_VOLVO_FH12_DESC     :Volvo D12A dieselmoottori
+STR_VOLVO_FH13_DESC     :Volvo D13K dieselmoottori
+
+
+STR_NYSAN59_NAME                :Nysa N59 {STRING}
+STR_NYSA522_NAME                :Nysa 522 {STRING}
+STR_MERCEDES_VARIO_NAME         :Mercedes T2/Vario {STRING}
+STR_MERCEDES_SPRINTER_NAME      :Mercedes Sprinter {STRING}
+
+STR_URSUSA_NAME         :Ursus-A {STRING}
+STR_FIAT621L_NAME       :Fiat 621L {STRING}
+STR_ZUKA03_NAME         :Zuk A03 {STRING}
+STR_LUBLIN33_NAME       :Lublin/Intrall {STRING}
+STR_DZTPASAGON_NAME     :DZT Pasagon {STRING}
+STR_IVECODAILY6_NAME    :Iveco Daily VI {STRING}
+
+STR_PZINZ703_NAME       :PZInz-703 {STRING}
+STR_STAR20_NAME         :Star 20 {STRING}
+STR_STAR25_NAME         :Star 25 {STRING}
+STR_STAR200_NAME        :Star 200 {STRING}
+STR_STAR2000_NAME       :Star 2000 {STRING}
+STR_STARTGL_NAME        :Star TGL {STRING}
+
+STR_CHEVROLET157_NAME           :Chevrolet 157 {STRING}
+STR_STAR_C21_NAME               :Star C-21 {STRING}
+STR_STAR_C28_NAME               :Star C-28 {STRING}
+STR_RENAULT_MAGNUM_NAME         :Renault Magnum {STRING}
+STR_DAF95X_NAME                 :DAF 95X {STRING}
+STR_RENAULT_MILLENIUM_NAME      :Renault Magnum Millenium {STRING}
+STR_DAFXF105_NAME               :DAF XF 105 {STRING}
+
+STR_ZUBR_C90_NAME       :Zubr C90 {STRING}
+STR_JELCZ_317_NAME      :Jelcz 317 {STRING}
+STR_VOLVO_F12_NAME      :Volvo F12 {STRING}
+STR_VOLVO_FH12_NAME     :Volvo FH12 {STRING}
+STR_VOLVO_FH13_NAME     :Volvo FH13 {STRING}
+
+
+STR_NORMAL_POWER        :(Vakioteho)
+STR_MORE_POWER          :(Suurempi teho)
+STR_4HORSE_HEAVY_LOGGER_NAME    :Raskas hevosmetsuri
+STR_4HORSE_HEAVY_LOGGER_DESC    :sovitettava 2 tai 4 perchenhevoselle
+STR_PRAGAV3S_NAME       :Praga V3S tukkirekka
+STR_PRAGAV3S_DESC       :Tatra 912 dieselmoottori, sovittamalla E359T
+STR_STAR266_NAME        :Star 266 tukkirekka
+STR_STAR266_DESC        :{DKGREEN}{LORRY}{RED}{LORRY}{BLACK} Tukkirekka hydraulisella nosturilla,{}S359 dieselmoottori, {UNSIGNED_WORD} ccm, sovittamalla E359T
+STR_SCANIA_S4_NAME      :Scania 144c tukkirekka
+STR_SCANIA_S4_DESC      :DSC14 13 530 V8-dieselmoottori
+STR_SCANIA_R730_NAME    :Scania R730 tukkirekka
+STR_SCANIA_R730_DESC    :DC16 103 730 V8-dieselmoottori
+
+
+
+STR_MANTGA_NAME :MAN TGA konttikuorma-auto perävaunulla
+STR_MANTGA_DESC :D2866 dieselmoottori
+
+STR_HCPLOCOMOBILE1_NAME :HCP ensimmäinen höyrytraktori
+STR_HCPLOCOMOBILE1_DESC :Maks. 3 perävaunua (maks. {UNSIGNED_WORD} t viljaa tai {UNSIGNED_WORD} karjaa).{}Höyrykone.
+STR_HCPLOCOMOBILE_NAME  :HCP parannettu höyrytraktori
+STR_HCPLOCOMOBILE_DESC  :Maks. 6 perävaunua (maks. {UNSIGNED_WORD} t viljaa tai {UNSIGNED_WORD} karjaa).{}Tulistajatyyppinen yhdistelmähöyrytraktori.
+STR_URSUSC45_DESC       :Maks. 3 perävaunua. Lanz-Bulldog dieselmoottori
+STR_URSUSC328_DESC      :Maks. 2 perävaunua. S-312 dieselmoottori
+STR_URSUSC330_DESC      :Maks. 3 perävaunua. S-4001 dieselmoottori
+STR_URSUSC360_DESC      :Maks. 3 perävaunua. S-4003 dieselmoottori
+STR_URSUSC1734_DESC     :Maks. 2 perävaunua. Martin Diesel UR-IV moottori
+
+STR_URSUSC45_NAME       :Ursus C45
+STR_URSUSC328_NAME      :Ursus C328
+STR_URSUSC330_NAME      :Ursus C330
+STR_URSUSC360_NAME      :Ursus C360
+STR_URSUSC1734_NAME     :Ursus C1734

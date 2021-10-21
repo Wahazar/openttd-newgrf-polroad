@@ -1,0 +1,245 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Hanomag SS100 + trailers
+
+#define HSS100_maxloadmass 20
+#define HSS100_passtotal 150
+#define HSS100_sitt 32
+#define HSS100_mass 6
+#define HSS100_vmax 45
+#define HSS100_power 100
+#define HSS100_life 12
+#define HSS100_e_displacement 8550
+
+
+// define FREIGHT_STTS(STTS_Name, Trailer_Type, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_mass, t_mass, v_maxloadmass)
+
+spriteset(spriteset_HSS100_purchase, "src/gfx/other/HanomagSS100.png") { template_sprite_window_sideview12(61) }
+
+spriteset(spriteset_tractor_HSS100_graphic, "src/gfx/other/HanomagSS100.png") { template_spriteLTT(8) }
+
+spriteset(spriteset_tractor_HSS100_Bajadera_graphic, "src/gfx/other/Bajadera.png") { template_sprite8b(8) }
+
+// Trailer Tractor switches:
+
+//length switches
+switch(FEAT_ROADVEHS, SELF, check_HSS100_second_trailer_length_switch, cargo_subtype) {  
+	0: return 1; 
+	1: return 1;
+	2: return 6;  
+    	return CB_FAILED;
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_length, position_in_consist) {
+    0 : return 5;
+    1 : return 6;
+    2 : return check_HSS100_second_trailer_length_switch;
+    return CB_FAILED;
+}
+
+//cargo text switches
+
+switch(FEAT_ROADVEHS, SELF, check_goods_cargo_HSS100_text_switch, cargo_type_in_veh) {  
+//	ENSP : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+//	VEHI : return string(STR_GOOSENECK_TRAILER_SUBTYPE);
+   	WOOD : return string(STR_FLAT_TRAILER_SUBTYPE);
+   	WDPR : return string(STR_FLAT_TRAILER_SUBTYPE);
+	BDMT: return  string(STR_FLAT_TRAILER_SUBTYPE);
+	return string(STR_BOX_TRAILER_SUBTYPE);   
+} 
+switch(FEAT_ROADVEHS, SELF, check_liquid_cargo_HSS100_text_switch, cargo_type_in_veh) {  
+	WATR: return  string(STR_MILK_SUBTYPE);
+	BEER: return  string(STR_MILK_SUBTYPE);
+	MILK: return  string(STR_MILK_SUBTYPE);
+	EOIL: return  string(STR_MILK_SUBTYPE);
+	return string(STR_OIL_SUBTYPE);   
+} 
+
+switch(FEAT_ROADVEHS, SELF, liquid_subtype_HSS100_text_switch, hasbit(cargo_classes, CC_LIQUID)) {  
+	1 : return  check_liquid_cargo_HSS100_text_switch;
+	return check_goods_cargo_HSS100_text_switch;   
+}
+
+//farm tractors trailer switch:
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_trailers2_subtype_text, cargo_subtype)
+{
+  0: string(STR_REFIT_SHORT);
+  1: string(STR_REFIT_MEDIUM);
+  2: string(STR_REFIT_LONG);
+     return CB_RESULT_NO_TEXT;
+} 
+
+switch(FEAT_ROADVEHS, SELF, bulk_subtype_HSS100_text_switch, hasbit(cargo_classes, CC_BULK) && (cargo_type_in_veh!=WDPR) && (cargo_type_in_veh!=BDMT)) {  
+	1 : return  switch_HSS100_trailers2_subtype_text;
+	return liquid_subtype_HSS100_text_switch;   
+}
+
+switch(FEAT_ROADVEHS, SELF, pass_subtype_HSS100_text_switch, hasbit(cargo_classes, CC_PASSENGERS)) {  
+	1 : return  string(STR_HANOMAGSS100_PASS);
+	return bulk_subtype_HSS100_text_switch;   
+}
+
+//trailers graphics switches 
+
+switch(FEAT_ROADVEHS, SELF, check_pass_spriteset_trailers11h_graphic_switch, hasbit(cargo_classes, CC_PASSENGERS)) {  
+	1 : return spriteset_tractor_HSS100_Bajadera_graphic;  
+	return check_liquid_cargo_class_spriteset_trailers11h_graphic_switch;  
+}
+
+switch(FEAT_ROADVEHS, SELF, consist_HSS100_other_articulated_graphic_switch, position_in_consist) {  
+	0 : return spriteset_tractor_HSS100_graphic;  
+	1 : return check_pass_spriteset_trailers11h_graphic_switch;
+	return none_spriteset_empty;  
+}    
+
+switch(FEAT_ROADVEHS, SELF, check_HSS100_trailer_switch, cargo_subtype) {
+0 : return bulk_spritegroup_trailer11_graphic; //old type cart trailer
+return bulk_spritegroup_trailerD47a_graphic; //Autosan trailer
+}
+
+switch(FEAT_ROADVEHS, SELF, check_HSS100_trailer2_switch, cargo_subtype) {
+2 : return bulk_spritegroup_trailerD47a_graphic; //new type cart trailer
+return none_spriteset_empty; 
+}
+
+switch (FEAT_ROADVEHS, SELF, consist_HSS100_bulk_articulated_graphic_switch, position_in_consist) { 
+    0 : return spriteset_tractor_HSS100_graphic; 
+    1 : return check_HSS100_trailer_switch; //one old or one new
+    2 : return check_HSS100_trailer2_switch;  //two new 
+}
+
+switch(FEAT_ROADVEHS, SELF, bulk_check_spriteset_HSS100_graphic_switch, hasbit(cargo_classes, CC_BULK) && (cargo_type_in_veh!=WDPR) && (cargo_type_in_veh!=BDMT)) {  
+	1: 	return consist_HSS100_bulk_articulated_graphic_switch;  
+	return consist_HSS100_other_articulated_graphic_switch;  
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_articulated, extra_callback_info1) { 
+    1..2 : return Hanomag_SS100; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_text, param_load_multiplier) {    
+	1 : return string(STR_HANOMAGSS100_DESC, HSS100_maxloadmass, HSS100_passtotal, HSS100_sitt);   
+	2 : return string(STR_HANOMAGSS100_DESC, HSS100_maxloadmass*2, HSS100_passtotal, HSS100_sitt);   
+	3 : return string(STR_HANOMAGSS100_DESC, HSS100_maxloadmass*3, HSS100_passtotal, HSS100_sitt);   
+  return CB_FAILED;   
+}   
+  
+switch(FEAT_ROADVEHS, SELF, trailer1_maxload_HSS100_switch, cargo_type_in_veh) {  
+	PASS: return HSS100_passtotal; 
+	TOUR: return HSS100_sitt;   
+        return  (1+(cargo_subtype>0)+!hasbit(cargo_classes, CC_BULK)) * min(HSS100_maxloadmass *8 / cargo_unit_weight, HSS100_maxloadmass) * param_load_multiplier/2;  
+}  
+
+switch(FEAT_ROADVEHS, SELF, trailer2_maxload_HSS100_switch, hasbit(cargo_classes, CC_PASSENGERS)) {  
+	1: return 0;  
+        return  (cargo_subtype==2) * min(HSS100_maxloadmass * 16 / cargo_unit_weight, HSS100_maxloadmass * 2) * param_load_multiplier/2;  
+}  
+
+switch (FEAT_ROADVEHS, SELF, maxload_HSS100_switch, position_in_consist) { 
+    0 : return 0; 
+    1 : return trailer1_maxload_HSS100_switch;
+    2 : return trailer2_maxload_HSS100_switch;
+    return CB_FAILED; 
+}  
+
+switch(FEAT_ROADVEHS, SELF, switch_HSS100_running_cost, hasbit(cargo_classes, CC_PASSENGERS)) { 
+	0 : min(STAFF_RUNNING_COST + max(0,((HSS100_mass + (1+cargo_subtype) * 
+                                  (trailer11_mass + trailer11_maxloadmass)) * 
+(HSS100_e_displacement/12 + 4 * (HSS100_vmax) * (HSS100_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+	1: min(5 * STAFF_RUNNING_COST + max(0,((HSS100_mass + 2 * trailer11_mass) * 
+(HSS100_e_displacement/5 + 4 * (HSS100_vmax) * (HSS100_vmax)) * DIESEL_ENGINE) >> 15), 255);
+//	1: return min(5 * STAFF_RUNNING_COST + ((HSS100_mass + trailer11_mass + HSS100_maxloadmass) * ((HSS100_e_displacement / 10) + (HSS100_vmax) * (HSS100_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+//	return min(2 * STAFF_RUNNING_COST + ((HSS100_mass + (1+cargo_subtype) * (HSS100_maxloadmass + trailer11_mass)) * ((HSS100_e_displacement / 5) + (HSS100_vmax) * (HSS100_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_HSS100_weight, cargo_subtype) { 
+	0: return (HSS100_mass + trailer11_mass) * 4; 
+	1: return (HSS100_mass + trailerD47a_mass) * 4; 
+	2: return (HSS100_mass + 2 * trailerD47a_mass) * 4; 
+	return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_refit_from_bulk, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_BULK) ) {
+   1 : return 0;
+   return STTS_REFIT_SEMITRAILER_COST + STTS_REFIT_TRACTORUNIT_REFUND;
+}
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_check_bulk, hasbit(cargo_classes, CC_BULK) ) {
+   1 : return switch_HSS100_refit_from_bulk;
+   0 : return STTS_REFIT_SEMITRAILER_COST + STTS_REFIT_TRACTORUNIT_REFUND;
+}
+switch(FEAT_ROADVEHS, SELF, switch_HSS100_refit_trailers_cost, var[0x10,8,0xFF] - cargo_subtype) {
+    /* Refit cost based on difference between target cargo sybtype and current cargo subtype.
+	   Refitting to fewer carriages refunds money, while adding carriages costs (2x) money.        */
+	-2:				-(trailer11_refitrefund);
+	-1:				-(trailer11_refitrefund/2);
+	0:				switch_HSS100_check_bulk;
+	1:				(1*trailer11_refitcost);
+	2:				(2*trailer11_refitcost);
+	return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_HSS100_check_pass, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_PASSENGERS) ) {
+   1 : return STTS_REFIT_SEMITRAILER_COST * (!hasbit(cargo_classes, CC_PASSENGERS));
+   0 : return switch_HSS100_refit_trailers_cost;
+}
+if (param_allow_slow_vehs) { 
+item(FEAT_ROADVEHS, Hanomag_SS100) { 
+	property { 
+	name:			   	string(STR_HANOMAGSS100_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1945, 7, 8);	    
+	model_life:     ((param_keep_old_vehs == 1)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? 11+HSS100_life : 12; 
+	vehicle_life:		   	HSS100_life; 
+	retire_early:			0; 
+	reliability_decay:	    	20; 
+	loading_speed:		  	5; 
+	cost_factor:		    	85;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + max(0,((HSS100_mass + (trailer11_mass + trailer11_maxloadmass)) * (HSS100_e_displacement/12 + 4 * (HSS100_vmax) * (HSS100_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	HSS100_vmax km/h; 
+	refittable_cargo_classes:      	ALL_CARGO_CLASSES; 
+	non_refittable_cargo_classes:   bitmask(CC_ARMOURED);  
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	STTS_REFIT_SEMITRAILER_COST + STTS_REFIT_TRACTORUNIT_REFUND ; 
+	cargo_age_period:	 	LOW_COMFORT; 
+	power:			  	HSS100_power hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	HSS100_maxloadmass; 
+	default_cargo_type:		GRAI; 
+	weight:			 	HSS100_mass; 
+	tractive_effort_coefficient:    0.6; 
+	air_drag_coefficient:	   	0.8; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 2); 
+	length:      	    		8; 
+//	road_type:			HAUL;
+	sound_effect: SOUND_TRUCK_START;  
+    } 
+
+    graphics { 
+	default:	    	bulk_check_spriteset_HSS100_graphic_switch;  
+	purchase:	   	spriteset_HSS100_purchase;  
+	articulated_part:	switch_HSS100_articulated; 
+	refit_cost:		switch_HSS100_check_pass;  
+	cargo_capacity:		maxload_HSS100_switch; 
+	purchase_cargo_capacity:HSS100_maxloadmass*2/3; 
+	additional_text:        switch_HSS100_text; 
+	cargo_subtype_text:	pass_subtype_HSS100_text_switch; 
+	colour_mapping:         switch_bulk_recolour;   
+	weight:			switch_HSS100_weight; 
+	length:			switch_HSS100_length; 
+	visual_effect:		switch_farm_tractor_unit_effect; 
+	running_cost_factor:	switch_HSS100_running_cost;	
+	purchase_running_cost_factor: return min(STAFF_RUNNING_COST + max(0,((HSS100_mass + (1+cargo_subtype) * (trailer11_mass + trailer11_maxloadmass)) * (HSS100_e_displacement/12 + 4 * (HSS100_vmax) * (HSS100_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+    }  
+ } 
+}
+
+if ((param_allow_slow_vehs) && HAUL_EXISTS)  {
+ item(FEAT_ROADVEHS, UrsusC360) { 
+	property { 
+	road_type:			HAUL;
+    } 
+ }
+}
+

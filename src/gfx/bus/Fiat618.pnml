@@ -1,0 +1,17 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Fiat 618:
+spriteset(spriteset_Fiat618_purchase, "src/gfx/bus/Fiat618.png") { template_spriteCars_window_sideview(8) }
+
+spriteset(spriteset_Fiat618_graphic1, "src/gfx/bus/Fiat618.png") { template_spriteCars(8) }
+spriteset(spriteset_Fiat618_graphic2, "src/gfx/bus/Fiat618.png") { template_spriteCars(28) }
+
+
+
+switch (FEAT_ROADVEHS, SELF, spriteset_Fiat618_graphic, cargo_subtype) {
+	2: return spriteset_Fiat618_graphic2;
+	return spriteset_Fiat618_graphic1;
+}
+

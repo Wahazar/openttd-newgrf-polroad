@@ -1,0 +1,115 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// one horse farm cart, pneumatic wheels:
+
+
+/* */
+// #define onehorse_cart_tyres_maxloadmass 2 //reuse switch from previous cart
+#define onehorse_cart_tyres_mass 2
+#define onehorse_cart_tyres_pass 12
+#define onehorse_cart_tyres_speed 20
+
+spriteset(spriteset_onehorse_cart_tyres_purchase, "src/gfx/other/horsecart_empty2.png") { template_sprite_window_sideview7(8) }
+
+#define ONEHORSE_TYRES_ANIMATION_SWITCHES_DEFINITION(cargo, spritelink) \
+spriteset(cargo##_1horse_cart_tyres_walkstop_graphic, spritelink) { template_sprite7(8) } \
+spriteset(cargo##_1horse_cart_tyres_walk0_graphic, spritelink) { template_sprite7(38) } \
+spriteset(cargo##_1horse_cart_tyres_walk1_graphic, spritelink) { template_sprite7(68) } \
+spriteset(cargo##_1horse_cart_tyres_walk2_graphic, spritelink) { template_sprite7(98) } \
+spriteset(cargo##_1horse_cart_tyres_walk3_graphic, spritelink) { template_sprite7(128) } \
+switch(FEAT_ROADVEHS, SELF, animated_##cargo##_1horse_cart_tyres_switch, motion_counter % 4) {  \
+0 : return cargo##_1horse_cart_tyres_walk0_graphic; \
+1 : return cargo##_1horse_cart_tyres_walk1_graphic; \
+2 : return cargo##_1horse_cart_tyres_walk2_graphic; \
+3 : return cargo##_1horse_cart_tyres_walk3_graphic; \
+return CB_FAILED; \
+} \
+switch(FEAT_ROADVEHS, SELF, velocity_##cargo##_1horse_cart_tyres_switch, current_speed) {   \
+0 : return cargo##_1horse_cart_tyres_walkstop_graphic; \
+return animated_##cargo##_1horse_cart_tyres_switch;  \
+}
+
+ONEHORSE_TYRES_ANIMATION_SWITCHES_DEFINITION(empty, "src/gfx/other/horsecart_empty2.png")
+ONEHORSE_TYRES_ANIMATION_SWITCHES_DEFINITION(bulk, "src/gfx/other/horsecart_bulk2.png")
+ONEHORSE_TYRES_ANIMATION_SWITCHES_DEFINITION(wood, "src/gfx/other/horsecart_wood2.png")
+ONEHORSE_TYRES_ANIMATION_SWITCHES_DEFINITION(cover, "src/gfx/other/horsecart_cover2.png")
+
+
+switch(FEAT_ROADVEHS, SELF, check_bulk_1horse_cart_tyres_graphic_switch, 
+( hasbit(cargo_classes,CC_BULK) && (!hasbit(cargo_classes,CC_COVERED) && (cargo_type_in_veh!=GRAI)) )
+) {  
+	1: return velocity_bulk_1horse_cart_tyres_switch;  
+return velocity_cover_1horse_cart_tyres_switch;  //all other
+} 
+
+switch(FEAT_ROADVEHS, SELF, check_wood_1horse_cart_tyres_graphic_switch, cargo_type_in_veh) {  
+	WOOD: return velocity_wood_1horse_cart_tyres_switch;  
+return check_bulk_1horse_cart_tyres_graphic_switch;  
+} 
+
+switch(FEAT_ROADVEHS, SELF, onehorse_cart_tyres_graphic_switch, cargo_count) {  
+	0: return velocity_empty_1horse_cart_tyres_switch;  
+	return check_wood_1horse_cart_tyres_graphic_switch;  
+} 
+
+
+switch (FEAT_ROADVEHS, SELF, switch_onehorse_cart_tyres_text, param_load_multiplier) {    
+	1 : return string(STR_1HORSE_CART_DESC, onehorse_cart_tyres_pass, onehorse_cart_maxloadmass / 2);   
+	2 : return string(STR_1HORSE_CART_DESC, onehorse_cart_tyres_pass, onehorse_cart_maxloadmass);   
+	3 : return string(STR_1HORSE_CART_DESC, onehorse_cart_tyres_pass, onehorse_cart_maxloadmass * 3 / 2);   
+  return CB_FAILED;   
+}   
+   
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, onehorse_cart_tyres) { 
+	property { 
+	name:			   	string(STR_1HORSE_CART_TYRES_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1920, 8, 16);	    
+	model_life:      		(param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 70+4+20 : 70+4); 
+	vehicle_life:		   	20; 
+	retire_early:			0; 
+	reliability_decay:	    	1; 
+	loading_speed:		  	4; 
+	cost_factor:		    	5;      
+	running_cost_factor:	min(3 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	onehorse_cart_tyres_speed km/h;  
+	refittable_cargo_classes:      	ALL_NORMAL_CARGO_CLASSES; 
+	non_refittable_cargo_classes:   bitmask(CC_OVERSIZED, CC_HAZARDOUS, CC_ARMOURED);
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	10 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	onehorse_cart_maxloadmass; //reuse from previous cart
+	default_cargo_type:		PASS; 
+	weight:			 	onehorse_cart_tyres_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.7; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		7; 
+//	road_type:			OFFR;
+	sound_effect: SOUND_HORSE;
+    } 
+    graphics { 
+	default:	    	onehorse_cart_tyres_graphic_switch;  
+	purchase:	   	spriteset_onehorse_cart_tyres_purchase;   
+	cargo_capacity:		maxload_onehorse_cart_switch; //reuse switch from previous cart
+	additional_text:        switch_onehorse_cart_tyres_text;
+	colour_mapping:         switch_bulk_recolour;      
+//	sound_effect: return switch_horsewhin_sound;
+    }  
+ }
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, onehorse_cart_tyres) { 
+	property { 
+	road_type:			OFFR;
+	model_life:     VEHICLE_NEVER_EXPIRES;
+    } 
+ }
+}

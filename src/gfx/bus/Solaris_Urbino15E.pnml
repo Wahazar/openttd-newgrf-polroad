@@ -1,0 +1,76 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// U15E
+
+#define U15E_sitpass 36
+#define U15E_stdpass 128
+#define U15E_v_mass 15
+#define U15E_v_power 180
+#define U15E_v_vmax 75
+#define U15E_v_cost 135
+ 
+spriteset(spriteset_Solaris_Urbino_15E_purchase, "src/gfx/bus/Solaris_Urbino15E.png") { template_sprite_window_sideview8b(8) }
+spriteset(spriteset_Solaris_Urbino_15E_graphic, "src/gfx/bus/Solaris_Urbino15E.png") { template_sprite8b(8) }
+
+switch(FEAT_ROADVEHS, SELF, description_Solaris_Urbino_15E_switch, [ STORE_TEMP(string(STR_VARIABLE_BUS_COSTS, string(STR_URBINO15E_DESC), 0, U15E_sitpass) |  \
+GET_COMFORT(COMFORT_ACOND, 100, U15E_sitpass, (U15E_sitpass + U15E_stdpass)) << 16, 256), STORE_TEMP( \
+GET_LOADING_SPEED(6, 100) << 16, 257) \
+ ] \
+) { 
+return string(STR_CITY_BUS); 
+} 
+
+switch(FEAT_ROADVEHS, SELF, capacity_Solaris_Urbino_15E_touristic_switch, cargo_type_in_veh) {  
+	TOUR: return U15E_sitpass;  
+	PASS: return U15E_sitpass + U15E_stdpass;  
+        return U15E_sitpass;  
+}  
+switch(FEAT_ROADVEHS, SELF, switch_Solaris_Urbino_15E_running_cost, current_speed) { \
+	0: return min(3 * STAFF_RUNNING_COST + COMFORT_ACOND / 2 + (!vehicle_is_in_depot) * max(0,((U15E_v_mass) * ELECTRIC_ENGINE) >> 15), 255); 
+	return min(4 * STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days)/365) + COMFORT_ACOND / 2 + max(0,((U15E_v_mass) * ( (current_speed) * (current_speed) * 15) * ELECTRIC_ENGINE) >> 15), 255); 
+} 
+
+if (param_allow_bus) { 
+ item(FEAT_ROADVEHS, Solaris_Urbino_15E) { 
+	property { 
+	name:			   	string(STR_URBINO15E_NAME, string(STR_CITYBUS_SUFFIX)); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(2020, 1, 1);
+	model_life:     VEHICLE_NEVER_EXPIRES;  
+	vehicle_life:		   	16;
+	reliability_decay:	    	20; 
+	loading_speed:		  	GET_LOADING_SPEED(6, 100); 
+	cost_factor:		    	U15E_v_cost;      
+	running_cost_factor:		min(4 * STAFF_RUNNING_COST + COMFORT_ACOND / 2 + max(0,((U15E_v_mass) * ( (U15E_v_vmax) * (U15E_v_vmax)) * ELECTRIC_ENGINE) >> 15), 255);  
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	U15E_v_vmax km/h; 
+	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	GET_COMFORT(COMFORT_ACOND, 100, U15E_sitpass, (U15E_sitpass + U15E_stdpass)); \
+	power:			  	U15E_v_power kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	U15E_sitpass + U15E_stdpass; 
+	default_cargo_type:		PASS; 
+	weight:			 	U15E_v_mass; 
+	tractive_effort_coefficient:    0.8; 
+	air_drag_coefficient:	   	0.15; 
+	sound_effect: SOUND_MAGLEV; 
+	length:      	    		8; 
+    }  
+    graphics {  
+	default:	    	spriteset_Solaris_Urbino_15E_graphic;  
+	purchase:	   	spriteset_Solaris_Urbino_15E_purchase;  
+	cargo_subtype_text: 	switch_livery_subtype_text;  
+	additional_text:        return description_Solaris_Urbino_15E_switch; 
+	cargo_capacity:		capacity_Solaris_Urbino_15E_touristic_switch; 
+	create_effect:		VISUAL_EFFECT_DISABLE;  
+	colour_mapping:         switch_livery_subtype_mapping_WPK; 
+	purchase_running_cost_factor:	min(4 * STAFF_RUNNING_COST + COMFORT_ACOND / 2 + max(0,((U15E_v_mass) * ( (U15E_v_vmax) * (U15E_v_vmax)) * ELECTRIC_ENGINE) >> 15), 255);  
+	running_cost_factor:	switch_Solaris_Urbino_15E_running_cost; 
+    }  
+ } 
+}
+

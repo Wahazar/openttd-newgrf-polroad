@@ -1,0 +1,203 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+//common switches/constants 
+
+#define POLROAD_CLIMATES	    	bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL)
+
+#define EXTRA_COMFORT       	400
+#define STANDARD_COMFORT       	185
+#define LOW_COMFORT       	 85
+
+#define COMFORT_HARD       	 25
+#define COMFORT_SOFT       	 40
+#define COMFORT_ACOND       	 65
+#define COMFORT_ACWC       	200
+
+#define STANDARD_LOAD_SPEED       5
+
+#define STAFF_RUNNING_COST       20
+
+#define MVMB_REFIT_COST       2
+#define LCV_REFIT_COST       3
+#define GPT_REFIT_COST       22
+#define STTN_REFIT_SEMITRAILER_COST       19
+#define STTN_REFIT_TRACTORUNIT_REFUND   0
+#define STTM_REFIT_SEMITRAILER_COST       25
+#define STTM_REFIT_TRACTORUNIT_REFUND   0
+#define STTS_REFIT_SEMITRAILER_COST       29
+#define STTS_REFIT_TRACTORUNIT_REFUND   -23
+
+// running cost modifiers:
+#define PETROL_ENGINE       17
+#define HOLZGAS_ENGINE       15
+#define DIESEL_ENGINE       14
+#define DIESEL_ENGINE_CR    10
+#define CNG_ENGINE    9
+#define HYBRID_ENGINE       7
+#define ELECTRIC_ENGINE     5
+
+
+cargotable {
+    PASS, COAL, MAIL, OIL_, LVST, GOOD, GRAI, WOOD, IORE, STEL, VALU, PAPR, WHEA, FOOD, GOLD, RUBR,
+    FRUT, MAIZ, CORE, WATR, DIAM, AORE, BEER, BDMT, BRCK, CERA, CERE, CLAY, CMNT, COPR, DYES, ENSP,
+    FERT, FICR, FISH, FMSP, FRVG, GLAS, GRVL, LIME, MILK, MNSP, OLSD, PETR, PLAS, POTA, RCYC, RFPR,
+    SAND, SCMT, SGBT, SGCN, SULP, TOUR, VEHI, WDPR, WOOL, GEAR, YETI, MNO2, COKE, SLAG, SASH, PORE,
+    PHOS, NITR, IRON, METL, EOIL, QLME
+}
+
+//for buses, should give 185 for base_comfort=50, loweredfloor=10 and 1:1 places:
+#define GET_COMFORT(base_comfort, loweredfloor, seats, capacity) base_comfort + loweredfloor/4 + int(165 * (seats)/((capacity) +1))
+//base comfort: hard seats, soft seats, air cdtn., air cdtn.+toilet 
+
+#define GET_LOADING_SPEED(doorwings, loweredfloor) doorwings*2+loweredfloor/15
+//number of door wings, percent of lowered floor 
+
+#define GET_LOADING_TIME(doorwings, loweredfloor, capacity) int(2 * capacity/(doorwings*2+loweredfloor/15+0.1)/3.7+1)  
+//total time of loading, one portion per 20 ticks
+ 
+#define COMFORT_STRING(cargo_aging) \
+cargo_aging < 100 ? string(STR_COMFORT_LW) : \
+(cargo_aging < 180 ? string(STR_COMFORT_MD) : \
+ (cargo_aging < 290 ? string(STR_COMFORT_ST) : string(STR_COMFORT_HI) ))
+
+#define LOADTIME_STRING(loading_time) \
+loading_time < 3 ? string(STR_LOADTIME_FA) : \
+(loading_time < 6 ? string(STR_LOADTIME_ST) : \
+ (loading_time < 7 ? string(STR_LOADTIME_MD) : string(STR_LOADTIME_LO) ))
+
+#define LOADSPEED_STRING(loading_speed) \
+loading_speed < 4 ? string(STR_LOADSPEED_LO) : \
+(loading_speed < 6 ? string(STR_LOADSPEED_MD) : \
+ (loading_speed < 9 ? string(STR_LOADSPEED_ST) : string(STR_LOADSPEED_HI) ))
+
+#define VISUAL_EFFECT_DIESEL_LOW 0x21
+
+switch (FEAT_ROADVEHS, SELF, switch_low_diesel_smoke_effect, STORE_TEMP(create_effect(EFFECT_SPRITE_DIESEL, 2, -3, 1), 0x100) 
+) {
+return 1; 
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_high_diesel_smoke_effect, STORE_TEMP(create_effect(EFFECT_SPRITE_DIESEL, 2, 3, 8), 0x100) 
+) {
+return 1; 
+}
+
+//smoke from semitrailer tractor only
+switch(FEAT_ROADVEHS, SELF, switch_semi_trailer_tractor_unit_effect, position_in_consist) {
+	0: return visual_effect(VISUAL_EFFECT_DIESEL, -2);
+	1: return visual_effect(VISUAL_EFFECT_DISABLE, 0);
+	return CB_FAILED;
+}
+//farm tractors:
+switch(FEAT_ROADVEHS, SELF, switch_farm_tractor_unit_effect, position_in_consist) {
+	0: return visual_effect(VISUAL_EFFECT_DIESEL, -4);
+return visual_effect(VISUAL_EFFECT_DISABLE, 0);
+}
+
+//stop trucks without refitted body (todo: PASS)
+switch (FEAT_ROADVEHS, SELF, switch_start_stop_norefit, cargo_type_in_veh) {
+	PASS: return string(STR_NO_REFIT);
+	return CB_RESULT_NO_TEXT;
+}
+
+//stop old horses
+switch (FEAT_ROADVEHS, SELF, switch_start_stop_old_horse, age_in_days > max_age_in_days + 4 * 365) {
+	1: return string(STR_OLD_HORSE);
+	return CB_RESULT_NO_TEXT;
+}
+
+//refit to more powerful version
+switch (FEAT_ROADVEHS, SELF, switch_horsepower_subtype_text, cargo_subtype)
+{
+  0: string(STR_NORMAL_POWER);
+  1: string(STR_MORE_POWER);
+     return CB_RESULT_NO_TEXT;
+}
+
+//GEAR pseudo-cargo definition fon non-refitted vehicles 
+/* depreceated
+item(FEAT_CARGOS, cargo_gear, 0x1E)
+  {
+    property
+    {
+      number: 0x1E;
+      type_name: string(STR_CARGO_GEAR);
+      unit_name: string(STR_CARGO_GEAR);
+      type_abbreviation: string(STR_ABBREV_GEAR);
+      sprite: 0x10C9;
+      weight: 1; // x.0/16
+      penalty_lowerbound: 0x0;
+      single_penalty_length: 0xFF;
+      price_factor: 0; 
+      station_list_colour: 0x0A;
+      cargo_payment_list_colour: 0x0A;
+      is_freight: 1;
+      cargo_classes: bitmask(CC_SPECIAL);
+      cargo_label: "GEAR";
+      town_growth_effect: TOWNGROWTH_NONE;
+      town_growth_multiplier: 1.0; // 0x100
+      units_of_cargo: string(STR_CARGO_UNIT_GEAR);
+      items_of_cargo: string(STR_CARGO_UNIT_GEAR);
+      capacity_multiplier: 1;
+    }
+  }
+*/
+
+
+//farm tractors trailer switch:
+switch (FEAT_ROADVEHS, SELF, switch_trailers3_subtype_text, cargo_subtype)
+{
+  0: string(STR_REFIT_NONE);
+  1: string(STR_REFIT_SHORT);
+  2: string(STR_REFIT_MEDIUM);
+  3: string(STR_REFIT_LONG);
+     return CB_RESULT_NO_TEXT;
+} 
+
+//cargo subtypes for truck/trailers
+// GPT, normal trailers:
+
+#define ID_GEAR 0
+#define ID_BOX 0
+#define ID_FLAT 1
+#define ID_LVST 2
+#define ID_REEF 3
+#define ID_OIL 4
+#define ID_MILK 5
+#define ID_MAIL 6
+#define ID_ARMO 7
+#define ID_CONT 7
+#define ID_DUMP 8
+
+switch (FEAT_ROADVEHS, SELF, switch_truck_age_period, cargo_subtype)
+{
+  ID_BOX: return (hasbit(cargo_classes, CC_REFRIGERATED) || hasbit(cargo_classes, CC_ARMOURED)) ? LOW_COMFORT : STANDARD_COMFORT;
+  ID_REEF: EXTRA_COMFORT;
+  ID_ARMO: EXTRA_COMFORT;
+  return STANDARD_COMFORT;
+}
+
+switch (FEAT_ROADVEHS, SELF, low_passenger_comfort, cargo_type_in_veh)
+{
+  PASS: return LOW_COMFORT;
+  return STANDARD_COMFORT;
+}
+
+ 
+/*
+switch (FEAT_ROADVEHS, SELF, switch_trailers2_subtype_text, cargo_subtype)
+{
+  0: string(STR_REFIT_NONE);
+  1: string(STR_REFIT_SHORT);
+  2: string(STR_REFIT_MEDIUM);
+     return CB_RESULT_NO_TEXT;
+}  
+switch (FEAT_ROADVEHS, SELF, switch_trailers1_subtype_text, cargo_subtype)
+{
+  0: string(STR_REFIT_NONE);
+  1: string(STR_REFIT_SHORT);
+     return CB_RESULT_NO_TEXT;
+}  
+*/

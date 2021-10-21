@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Jelcz 272 MEX:
+spriteset(spriteset_Jelcz272MEX_purchase, "src/gfx/bus/Jelcz272MEX.png") { template_sprite_window_sideview8b(8) }
+
+spriteset(spriteset_Jelcz272MEX_graphic, "src/gfx/bus/Jelcz272MEX.png") { template_sprite8b(8) }
+

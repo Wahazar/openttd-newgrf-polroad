@@ -1,0 +1,195 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// General Purpose Truck switches:
+//refit text
+switch(FEAT_ROADVEHS, SELF, subtype_BODY_TRUCK_text_switch, cargo_subtype) {  
+//	ID_GEAR:	return string(STR_NONE_SUBTYPE);
+	ID_BOX: 	return string(STR_BOX_SUBTYPE);  
+	ID_FLAT:  	return string(STR_FLAT_SUBTYPE);
+	ID_LVST:  	return string(STR_LVST_SUBTYPE);
+	ID_REEF:  	return string(STR_REEFER_SUBTYPE);
+	ID_OIL:  	return string(STR_OIL_SUBTYPE);
+	ID_MILK:  	return string(STR_MILK_SUBTYPE);
+	ID_MAIL:  	return string(STR_MAIL_SUBTYPE);
+	ID_ARMO:  	return string(STR_ARMOURED_SUBTYPE);
+	return CB_FAILED;  
+} 
+/*
+switch(FEAT_ROADVEHS, SELF, subtype_NORMAL_TRUCK_text_switch, cargo_type_in_veh) {  
+	PASS: return  string(STR_NONE_SUBTYPE);  
+	subtype_BODY_TRUCK_text_switch;  
+}
+*/
+
+//refit cost
+
+/*
+switch (FEAT_ROADVEHS, SELF, switch_GPT_check_pass, ((extra_callback_info1 & 0xFF) == PASS)) {
+   0 : GPT_REFIT_COST / 2;
+   1 : 0;
+}
+*/
+
+//initial bare engine+chassiss
+switch (FEAT_ROADVEHS, SELF, switch_GPT_check_chassis, var[0x10,8,0xFF] - cargo_subtype ) {
+   0 : return 0 | CB_RESULT_AUTOREFIT;
+return  GPT_REFIT_COST;
+}
+
+/*
+switch (FEAT_ROADVEHS, SELF, switch_GPT_refit_cost, cargo_type_in_veh ) {
+   PASS : return switch_GPT_check_pass;
+   return switch_GPT_check_chassis;
+}
+*/
+
+// General Purpose Truck definition:
+#define FREIGHT_GPT(GPT_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_maxloadmass) \
+\
+switch (FEAT_ROADVEHS, SELF, switch_##GPT_Name##_text, param_load_multiplier) {    \
+	1 : return string(STR_GPT_DESC, string(STR_VE_DESC), string(STR_VARIABLE_COSTS), int(v_maxloadmass/2));   \
+	2 : return string(STR_GPT_DESC, string(STR_VE_DESC), string(STR_VARIABLE_COSTS),  v_maxloadmass);   \
+	3 : return string(STR_GPT_DESC, string(STR_VE_DESC), string(STR_VARIABLE_COSTS), int(v_maxloadmass*3/2));   \
+  return CB_FAILED;   \
+}   \
+  \
+switch(FEAT_ROADVEHS, SELF, check_subtype_spriteset_##GPT_Name##_graphic_switch, cargo_subtype) {  \
+  ID_BOX  : return box_spriteset_##GPT_Name##_graphic; \
+  ID_FLAT : return flat_spriteset_##GPT_Name##_graphic; \
+  ID_LVST : return lvst_spriteset_##GPT_Name##_graphic; \
+  ID_REEF : return food_spriteset_##GPT_Name##_graphic; \
+  ID_OIL  : return oil__spriteset_##GPT_Name##_graphic; \
+  ID_MILK : return milk_spriteset_##GPT_Name##_graphic; \
+  ID_MAIL : return mail_spriteset_##GPT_Name##_graphic; \
+  ID_ARMO : return valu_spriteset_##GPT_Name##_graphic; \
+} \
+switch(FEAT_ROADVEHS, SELF, maxload_##GPT_Name##_subtype_switch, cargo_subtype) {  \
+  ID_BOX  : min(10*param_load_multiplier * (  \
+		((hasbit(cargo_classes, CC_PIECE_GOODS) && (!hasbit(cargo_classes, CC_BULK))) \
+		|| hasbit(cargo_classes, CC_EXPRESS) ) * 80 / cargo_unit_weight \
+		+ (hasbit(cargo_classes, CC_BULK)) * 80 / 20   \
+		+ (cargo_classes == bitmask(CC_LIQUID)) * 80/32 )/10,  \
+		10 * param_load_multiplier); \
+ \
+  ID_FLAT : min((v_maxloadmass*param_load_multiplier * 80 /cargo_unit_weight * ((hasbit(cargo_classes, CC_PIECE_GOODS) || hasbit(cargo_classes, CC_EXPRESS)) && !(hasbit(cargo_classes, CC_COVERED) || hasbit(cargo_classes, CC_LIQUID) || hasbit(cargo_classes, CC_REFRIGERATED) || hasbit(cargo_classes, CC_ARMOURED) ) ) )/10, v_maxloadmass * param_load_multiplier); \
+  ID_LVST : 0; \
+  ID_REEF : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 2) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_REFRIGERATED)); \
+  ID_OIL  : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 2) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_LIQUID) && !hasbit(cargo_classes, CC_REFRIGERATED)); \
+  ID_MILK : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 2) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_LIQUID) && hasbit(cargo_classes, CC_REFRIGERATED)); \
+  ID_MAIL : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 4) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_MAIL)); \
+  ID_ARMO : min(v_maxloadmass * 16 / cargo_unit_weight, v_maxloadmass * 2) * param_load_multiplier/2 * (hasbit(cargo_classes, CC_ARMOURED)); \
+return CB_FAILED; \
+} \
+switch(FEAT_ROADVEHS, SELF, maxload_##GPT_Name##_switch, cargo_type_in_veh) {  \
+	MAIL: return v_maxloadmass*param_load_multiplier*(80/8 * ((cargo_subtype == ID_BOX) || (cargo_subtype == ID_ARMO)) + 80/4 * (cargo_subtype == ID_MAIL))/10;  \
+	GOOD: return v_maxloadmass*param_load_multiplier*(80/8 * ((cargo_subtype == ID_BOX) || (cargo_subtype == ID_ARMO)) + 80/9 * (cargo_subtype == ID_FLAT))/10;  \
+	ENSP: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight * (cargo_subtype == ID_FLAT) + 80/16 * (cargo_subtype == ID_BOX))/10, v_maxloadmass * param_load_multiplier);  \
+	VEHI: return v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * (cargo_subtype == ID_FLAT)/10 + (cargo_subtype == ID_BOX);  \
+	FMSP: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight * ((cargo_subtype == ID_FLAT) || (cargo_subtype == ID_BOX)))/10, v_maxloadmass * param_load_multiplier);  \
+	MNSP: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight* (cargo_subtype == ID_BOX) + 80/16 * (cargo_subtype == ID_FLAT))/10, v_maxloadmass * param_load_multiplier);  \
+	LVST: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight * (cargo_subtype == ID_LVST) + 60/cargo_unit_weight * (cargo_subtype == ID_BOX))/10, v_maxloadmass * param_load_multiplier*3);  \
+	GOLD: return v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * ((cargo_subtype == ID_ARMO) || (cargo_subtype == ID_BOX))/10;  \
+	VALU: return min(v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * ((cargo_subtype == ID_ARMO) || (cargo_subtype == ID_BOX))/10, v_maxloadmass * param_load_multiplier*2);  \
+	OIL_: return min(v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, v_maxloadmass * param_load_multiplier);  \
+	PETR: return min(v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, v_maxloadmass * param_load_multiplier);  \
+	RFPR: return min(v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, v_maxloadmass * param_load_multiplier);  \
+	BEER: return min(v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/16 * (cargo_subtype == ID_REEF) + 80/cargo_unit_weight * (cargo_subtype == ID_MILK))/10, v_maxloadmass * param_load_multiplier);  \
+	WATR: return v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/18 * (cargo_subtype == ID_REEF) + 80/cargo_unit_weight * (cargo_subtype == ID_MILK))/10;  \
+	EOIL: return min(v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/18 * (cargo_subtype == ID_REEF) + 80/cargo_unit_weight * (cargo_subtype == ID_MILK))/10, v_maxloadmass * param_load_multiplier);  \
+	BDMT: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10;  \
+	STEL: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10;  \
+	METL: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10;  \
+	IRON: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10;  \
+	WOOD: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10;  \
+	WDPR: return v_maxloadmass*param_load_multiplier*((80/30)* (cargo_subtype == ID_BOX) + (80/cargo_unit_weight) * (cargo_subtype == ID_FLAT))/10;  \
+	PAPR: return v_maxloadmass*param_load_multiplier*80/16 * (cargo_subtype == ID_BOX)/10;  \
+        return maxload_##GPT_Name##_subtype_switch;  \
+}  \
+/* switch (FEAT_ROADVEHS, SELF, subtype_maxload_##GPT_Name##_switch, cargo_subtype) { \
+    0 : return 0; \
+    1 : return maxload_##GPT_Name##_switch; \
+}  */\
+switch(FEAT_ROADVEHS, SELF, switch_##GPT_Name##_running_cost, current_speed) { \
+	0: min(!vehicle_is_in_depot * STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)) + max(0,((v_mass + v_maxloadmass) * (e_displacement / 9) * v_fuelsystem) >> 15), 255); \
+	return min(STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days)) + max(0,((v_mass + v_maxloadmass) * ((e_displacement / 9) + (current_speed) * (current_speed) * 15) * v_fuelsystem) >> 15), 255); \
+} \
+if (param_allow_truck) { \
+item(FEAT_ROADVEHS, GPT_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_GPT_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	4; \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:	min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass) * (e_displacement / 12 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	ALL_CARGO_CLASSES; \
+	non_refittable_cargo_classes:   bitmask(CC_PASSENGERS);  \
+	cargo_disallow_refit:		[TOUR]; \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	GPT_REFIT_COST; \
+	cargo_age_period:	 	STANDARD_COMFORT; \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	v_maxloadmass; \
+	default_cargo_type:		GOOD; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.5; \
+	air_drag_coefficient:	   	v_airdrag; \
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); \
+	sound_effect: SOUND_TRUCK_START; \
+	length:      	    		6; \
+    } \
+\
+    graphics { \
+	default:	    	check_subtype_spriteset_##GPT_Name##_graphic_switch;  \
+	purchase:	   	spriteset_##GPT_Name##_purchase;  \
+	refit_cost:		switch_GPT_check_chassis;  \
+	cargo_capacity:		maxload_##GPT_Name##_switch; \
+	purchase_cargo_capacity:return v_maxloadmass* param_load_multiplier/2; \
+	purchase_running_cost_factor: return min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass) * (e_displacement / 10 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	additional_text:        switch_##GPT_Name##_text; \
+	cargo_subtype_text:	subtype_BODY_TRUCK_text_switch; \
+	colour_mapping:         switch_bulk_recolour;   \
+	start_stop:		switch_start_stop_norefit;  \
+	running_cost_factor:	switch_##GPT_Name##_running_cost; \
+	cargo_age_period:	switch_truck_age_period; \
+    }  \
+ } \
+}
+
+/*
+switch(FEAT_ROADVEHS, SELF, spriteset_##GPT_Name##_graphic_switch, cargo_type_in_veh) {  \
+	PASS: return  	none_spriteset_##GPT_Name##_graphic;  \
+	return 		check_subtype_spriteset_##GPT_Name##_graphic_switch;  \
+} \ */
+
+
+// FREIGHT_GPT(GPT_Name, STR_V_NAME, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, v_vmax, v_power, v_airdrag, v_mass, v_maxloadmass)
+
+#include "../src/gfx/truck/pzinz703.pnml"
+FREIGHT_GPT(PZInz703, STR_PZINZ703_NAME, STR_PZINZ703_DESC, 1937, 1943, 0, 10, 20, 31, HOLZGAS_ENGINE, 4670, 75, 75, 0.3, 3, 7)
+
+#include "../src/gfx/truck/star20.pnml"
+FREIGHT_GPT(Star20, STR_STAR20_NAME, STR_STAR20_DESC, 1948, 1960, 10, 12, 15, 23, PETROL_ENGINE, 4188, 80, 63,  0.2, 4, 7)
+
+#include "../src/gfx/truck/star25.pnml"
+FREIGHT_GPT(Star25, STR_STAR25_NAME, STR_STAR25_DESC, 1956, 1981, 15, 18, 10, 26, PETROL_ENGINE, 4196, 85, 70,  0.18, 4, 8)
+
+#include "../src/gfx/truck/star200.pnml"
+FREIGHT_GPT(Star200, STR_STAR200_NAME, STR_STAR200_DESC, 1975, 2003, 15, 20, 5, 30, DIESEL_ENGINE, 6840, 90, 110, 0.18, 4, 12)
+
+#include "../src/gfx/truck/star2000.pnml"
+FREIGHT_GPT(Star2000, STR_STAR2000_NAME, STR_STAR2000_DESC, 2000, 2015, 15, 22, 2, 35, DIESEL_ENGINE_CR, 4580, 100, 160, 0.17, 5, 14)
+
+#include "../src/gfx/truck/startgl.pnml"
+FREIGHT_GPT(StarTGL, STR_STARTGL_NAME, STR_STARTGL_DESC, 2008, 0, 0, 18, 1, 42, DIESEL_ENGINE_CR, 6870, 105, 180, 0.16, 8, 14)
+
+/* */

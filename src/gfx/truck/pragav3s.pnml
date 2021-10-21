@@ -1,0 +1,117 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Praga V3S wood logging truck:
+
+
+#define PragaV3S_maxloadmass 20
+#define PragaV3S_mass 6
+#define PragaV3S_vmax 60
+#define PragaV3Sdisplacement 7400
+#define PragaV3Sdisplacement2 8100
+#define PRAGAV3S_REFIT_COST 15
+
+spriteset(spriteset_PragaV3S_purchase, "src/gfx/truck/PragaV3S.png") { template_sprite_window_sideviewSTTS(10) }
+
+spriteset(cab_spriteset_PragaV3S_graphic, "src/gfx/truck/PragaV3S.png") { template_spriteLTT(10) }
+
+spriteset(empty_log_spriteset_PragaV3S_graphic, "src/gfx/truck/PragaV3S.png") { template_sprite7(30) }
+
+spriteset(wood2_log_spriteset_PragaV3S_graphic, "src/gfx/truck/PragaV3S.png") { template_sprite7(60) }
+
+spriteset(wood_log_spriteset_PragaV3S_graphic, "src/gfx/truck/PragaV3S.png") { template_sprite7(90) }
+
+spriteset(wdpr_log_spriteset_PragaV3S_graphic, "src/gfx/truck/PragaV3S.png") { template_sprite7(120) }
+
+spritegroup log_spritegroup_PragaV3S_graphic {
+    loaded:     [empty_log_spriteset_PragaV3S_graphic, wood2_log_spriteset_PragaV3S_graphic, wood_log_spriteset_PragaV3S_graphic, wood_log_spriteset_PragaV3S_graphic];
+    loading:    [empty_log_spriteset_PragaV3S_graphic, wood2_log_spriteset_PragaV3S_graphic, wood2_log_spriteset_PragaV3S_graphic, wood_log_spriteset_PragaV3S_graphic];
+}
+ 
+
+spritegroup wdpr_spritegroup_PragaV3S_graphic {
+    loaded:     [empty_log_spriteset_PragaV3S_graphic, wdpr_log_spriteset_PragaV3S_graphic];
+    loading:    [empty_log_spriteset_PragaV3S_graphic, wdpr_log_spriteset_PragaV3S_graphic, wdpr_log_spriteset_PragaV3S_graphic];
+}
+ 
+switch (FEAT_ROADVEHS, SELF, PragaV3S_cargo_graphic_switch, cargo_type_in_veh) { 
+    WDPR : return wdpr_spritegroup_PragaV3S_graphic; 
+    return log_spritegroup_PragaV3S_graphic; 
+} 
+
+
+switch (FEAT_ROADVEHS, SELF, consist_PragaV3S_articulated_graphic_switch, position_in_consist) { 
+    0 : return cab_spriteset_PragaV3S_graphic; 
+    1 : return PragaV3S_cargo_graphic_switch; 
+} 
+switch (FEAT_ROADVEHS, SELF, switch_PragaV3S_articulated, extra_callback_info1) { 
+    1 : return PragaV3S; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+switch(FEAT_ROADVEHS, SELF, check_PragaV3S_length_switch, position_in_consist) {  
+	0 : return 5; 
+	1 : return 7;  
+}  
+switch(FEAT_ROADVEHS, SELF, check_PragaV3S_power_switch, cargo_subtype) {  
+	0 : return 10; //74kW
+	1 : return 11; //81kW
+	return CB_FAILED;  
+} 
+switch(FEAT_ROADVEHS, SELF, switch_PragaV3S_running_cost, cargo_subtype) {
+	0: return min(STAFF_RUNNING_COST + ((PragaV3S_mass + (PragaV3S_maxloadmass * param_load_multiplier)) * (PragaV3Sdisplacement/10 + (PragaV3S_vmax) * (PragaV3S_vmax)) * DIESEL_ENGINE) >> 15, 255);
+	1: return min(STAFF_RUNNING_COST + ((PragaV3S_mass + (PragaV3S_maxloadmass * param_load_multiplier)) * (PragaV3Sdisplacement2/10 + (PragaV3S_vmax) * (PragaV3S_vmax)) * DIESEL_ENGINE) >> 15, 255);
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_PragaV3S_refit_cost, var[0x10,8,0xFF] - cargo_subtype) {
+	0:				0;
+	return PRAGAV3S_REFIT_COST;
+}
+
+
+if (param_allow_truck) {
+ item(FEAT_ROADVEHS, PragaV3S) { 
+	property { 
+	name:			   	string(STR_PRAGAV3S_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1953, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 32+18+22 : 32+18); 
+	vehicle_life:		   	22; 
+	retire_early:			18; 
+	reliability_decay:	    	20; 
+	loading_speed:		  	4; 
+	cost_factor:		    	38;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((PragaV3S_mass + (PragaV3S_maxloadmass * param_load_multiplier)) * (PragaV3Sdisplacement/10 + (PragaV3S_vmax) * (PragaV3S_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	PragaV3S_vmax km/h;  
+	cargo_allow_refit:		[WOOD, WDPR]; 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	PRAGAV3S_REFIT_COST; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	74 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	PragaV3S_maxloadmass * param_load_multiplier / 2; 
+	default_cargo_type:		WOOD; 
+	weight:			 	PragaV3S_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.5; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	sound_effect: SOUND_TRUCK_START; 
+	length:      	    		7; 
+    } 
+    graphics { 
+	default:	    	consist_PragaV3S_articulated_graphic_switch;  
+	purchase:	   	spriteset_PragaV3S_purchase;  
+	articulated_part:	switch_PragaV3S_articulated; 
+	length:			check_PragaV3S_length_switch;
+	power:			check_PragaV3S_power_switch;
+	running_cost_factor:	switch_PragaV3S_running_cost;
+	refit_cost:		switch_PragaV3S_refit_cost;
+ 	cargo_subtype_text: 	switch_horsepower_subtype_text;
+	additional_text:        string(STR_WLT_DESC, string(STR_PRAGAV3S_DESC), PragaV3Sdisplacement, PragaV3Sdisplacement2, string(STR_NULL));
+	visual_effect:		switch_semi_trailer_tractor_unit_effect;
+	colour_mapping:         switch_livery_subtype_mapping;    
+    }  
+ }
+}
+/* */

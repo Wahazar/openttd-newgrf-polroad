@@ -1,0 +1,153 @@
+// part of Polish Road Set
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Star (MAN) TGL:
+spriteset(spriteset_StarTGL_purchase, "src/gfx/truck/StarTGL.png") { template_sprite_window_sideview6(33) }
+spriteset(none_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(8) }
+spriteset(good_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(33) }
+spriteset(empty_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(58) }
+
+spriteset(cover_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(83) }
+spriteset(bulk2_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(108) }
+spriteset(bulk_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(133) }
+spriteset(emptyflat_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(158) }
+spriteset(goodflat_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(183) }
+spriteset(bdmt2_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(208) }
+spriteset(bdmt_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(233) }
+spriteset(stel2_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(258) }
+spriteset(stel_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(283) }
+spriteset(wood2_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(308) }
+spriteset(wood_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(333) }
+spriteset(wdpr2_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(358) }
+spriteset(wdpr_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(383) }
+
+spriteset(lvst_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(408) }
+
+spriteset(food_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(433) }
+spriteset(oil__spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(458) }
+spriteset(milk_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(483) }
+
+spriteset(mail_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(508) }
+
+spriteset(valu_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(533) }
+
+spriteset(stelbox_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(558) }
+spriteset(woodbox_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(583) }
+spriteset(oilbox_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(608) }
+spriteset(otherflat_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(633) }
+spriteset(bdmtbox_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(658) }
+spriteset(otherbox_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(683) }
+	
+spriteset(emptyflat_nostakes_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(708) }
+spriteset(vehi_spriteset_StarTGL_graphic, "src/gfx/truck/StarTGL.png") { template_sprite6(733) }
+
+spritegroup vehi_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_nostakes_spriteset_StarTGL_graphic, vehi_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_nostakes_spriteset_StarTGL_graphic, vehi_spriteset_StarTGL_graphic];
+}
+
+spritegroup bdmt_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_spriteset_StarTGL_graphic, bdmt2_spriteset_StarTGL_graphic, bdmt_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_spriteset_StarTGL_graphic, bdmt2_spriteset_StarTGL_graphic, bdmt_spriteset_StarTGL_graphic];
+}
+
+spritegroup stel_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_spriteset_StarTGL_graphic, stel2_spriteset_StarTGL_graphic, stel_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_spriteset_StarTGL_graphic, stel2_spriteset_StarTGL_graphic, stel_spriteset_StarTGL_graphic];
+}
+
+spritegroup wood_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_spriteset_StarTGL_graphic, wood2_spriteset_StarTGL_graphic, wood_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_spriteset_StarTGL_graphic, wood2_spriteset_StarTGL_graphic, wood_spriteset_StarTGL_graphic];
+}
+
+spritegroup wdpr_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_spriteset_StarTGL_graphic, wdpr2_spriteset_StarTGL_graphic, wdpr_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_spriteset_StarTGL_graphic, wdpr2_spriteset_StarTGL_graphic, wdpr_spriteset_StarTGL_graphic];
+}
+
+spritegroup good_spritegroup_StarTGL_graphic {
+    loaded:     [good_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, otherbox_spriteset_StarTGL_graphic, good_spriteset_StarTGL_graphic];
+}
+
+spritegroup goodflat_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_nostakes_spriteset_StarTGL_graphic, goodflat_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_nostakes_spriteset_StarTGL_graphic, goodflat_spriteset_StarTGL_graphic];
+}
+
+spritegroup bulk_covered_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, cover_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, bulk2_spriteset_StarTGL_graphic, bulk_spriteset_StarTGL_graphic];
+}
+
+spritegroup bulk_uncovered_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, bulk2_spriteset_StarTGL_graphic, bulk_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, bulk2_spriteset_StarTGL_graphic, bulk_spriteset_StarTGL_graphic];
+}
+
+//new sprites
+spritegroup woodbox_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, woodbox_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, woodbox_spriteset_StarTGL_graphic];
+}
+
+spritegroup stelbox_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, stelbox_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, stelbox_spriteset_StarTGL_graphic];
+}
+spritegroup bdmtbox_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, bdmtbox_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, bdmtbox_spriteset_StarTGL_graphic];
+}
+spritegroup oilbox_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, oilbox_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, oilbox_spriteset_StarTGL_graphic];
+}
+spritegroup otherflat_spritegroup_StarTGL_graphic {
+    loaded:     [emptyflat_spriteset_StarTGL_graphic, otherflat_spriteset_StarTGL_graphic];
+    loading:    [emptyflat_spriteset_StarTGL_graphic, otherflat_spriteset_StarTGL_graphic];
+}
+
+spritegroup otherbox_spritegroup_StarTGL_graphic {
+    loaded:     [empty_spriteset_StarTGL_graphic, otherbox_spriteset_StarTGL_graphic];
+    loading:    [empty_spriteset_StarTGL_graphic, otherbox_spriteset_StarTGL_graphic];
+}
+
+// check cargo for box subtype
+switch(FEAT_ROADVEHS, SELF, check_box_cargo_class_spriteset_StarTGL_graphic_switch, hasbit(cargo_classes, CC_BULK) + 2 * hasbit(cargo_classes, CC_COVERED) + 4 * hasbit(cargo_classes, CC_LIQUID) + 8 * hasbit(cargo_classes, CC_REFRIGERATED) + 16 * hasbit(cargo_classes, CC_PIECE_GOODS) + 32 * hasbit(cargo_classes, CC_ARMOURED)) {  
+1 : return bulk_uncovered_spritegroup_StarTGL_graphic;
+2 : return good_spriteset_StarTGL_graphic;
+3 : return bulk_covered_spritegroup_StarTGL_graphic;
+4 : return oilbox_spritegroup_StarTGL_graphic;
+8 : return good_spriteset_StarTGL_graphic;
+16 : return otherbox_spritegroup_StarTGL_graphic;
+32 : return good_spriteset_StarTGL_graphic;
+return good_spritegroup_StarTGL_graphic;
+}
+switch(FEAT_ROADVEHS, SELF, box_spriteset_StarTGL_graphic, cargo_type_in_veh) {  
+BDMT : return bdmtbox_spritegroup_StarTGL_graphic;
+BRCK : return bdmtbox_spritegroup_StarTGL_graphic;
+STEL : return stelbox_spritegroup_StarTGL_graphic;
+WOOD : return woodbox_spritegroup_StarTGL_graphic;
+GRAI : return bulk_covered_spritegroup_StarTGL_graphic;
+WHEA : return bulk_covered_spritegroup_StarTGL_graphic;
+MAIL : return good_spriteset_StarTGL_graphic;
+VEHI : return good_spriteset_StarTGL_graphic;
+ENSP : return good_spriteset_StarTGL_graphic;
+return check_box_cargo_class_spriteset_StarTGL_graphic_switch;
+}
+// check cargo for flat subtype
+switch(FEAT_ROADVEHS, SELF, flat_spriteset_StarTGL_graphic, cargo_type_in_veh) {  
+BDMT : return bdmt_spritegroup_StarTGL_graphic;
+STEL : return stel_spritegroup_StarTGL_graphic;
+WOOD : return wood_spritegroup_StarTGL_graphic;
+WDPR : return wdpr_spritegroup_StarTGL_graphic;
+VEHI : return vehi_spritegroup_StarTGL_graphic;
+ENSP : return vehi_spritegroup_StarTGL_graphic;
+GOOD : return goodflat_spritegroup_StarTGL_graphic;
+return otherflat_spritegroup_StarTGL_graphic;
+}
+
+

@@ -1,0 +1,15 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Somua RZCA:
+spriteset(spriteset_Somua_purchase, "src/gfx/bus/Somua.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_Somua_graphic_pass, "src/gfx/bus/Somua.png") { template_sprite6(8) }
+spriteset(spriteset_Somua_graphic_pass2, "src/gfx/bus/Somua.png") { template_sprite6(33) }
+spriteset(spriteset_Somua_graphic_empty, "src/gfx/bus/Somua.png") { template_sprite6(58) }
+
+spritegroup spriteset_Somua_graphic {
+    loaded:     [spriteset_Somua_graphic_empty, spriteset_Somua_graphic_pass2, spriteset_Somua_graphic_pass];
+    loading:    [spriteset_Somua_graphic_empty, spriteset_Somua_graphic_pass2, spriteset_Somua_graphic_pass];
+}

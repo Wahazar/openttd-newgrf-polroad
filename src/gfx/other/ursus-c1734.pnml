@@ -1,0 +1,164 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+
+// Ursus C330 farm tractor:
+
+
+#define UrsusC1734_mass 6
+#define UrsusC1734_vmax 33
+#define UrsusC1734_edisp 4866
+
+
+spriteset(spriteset_UrsusC1734_purchase, "src/gfx/other/UrsusC1734.png") { template_sprite_window_sideviewFT(30) }
+
+spriteset(spriteset_UrsusC1734_graphic, "src/gfx/other/UrsusC1734.png") { template_spriteFT(8) }
+
+
+
+switch (FEAT_ROADVEHS, SELF, switch_UrsusC1734_text, param_load_multiplier) {    
+	1 : return string(STR_FARM_TRACTOR_DESC, trailerT672_maxloadmass, trailerT672_lvst, string(STR_URSUSC1734_DESC), UrsusC1734_edisp);   
+	2 : return string(STR_FARM_TRACTOR_DESC, trailerT672_maxloadmass * 2, trailerT672_lvst * 2, string(STR_URSUSC1734_DESC), UrsusC1734_edisp);    
+	3 : return string(STR_FARM_TRACTOR_DESC, trailerT672_maxloadmass * 3, trailerT672_lvst * 3, string(STR_URSUSC1734_DESC), UrsusC1734_edisp);    
+  return CB_FAILED;   
+}   
+ 
+
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_cap0, position_in_consist) {
+	0..2: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_cap1, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailerD47a_switch;
+	2: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_cap2, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailerT672_switch;
+	2: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_cap3, position_in_consist) {
+	0: return 0;
+	1..2: return maxload_trailerT672_switch;
+	return CB_FAILED;
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_capacity, cargo_subtype) {
+	0: switch_UrsusC1734_cap0;
+	1: switch_UrsusC1734_cap1;
+	2: switch_UrsusC1734_cap2;
+	3: switch_UrsusC1734_cap3;
+	return CB_FAILED;
+}
+
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_running_cost, cargo_subtype) { 
+	0: return min(STAFF_RUNNING_COST + max(0,((UrsusC1734_mass) * (UrsusC1734_edisp/10 + 4 * (UrsusC1734_vmax) * (UrsusC1734_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+	1 : return min(STAFF_RUNNING_COST + ((UrsusC1734_mass + trailerD47a_mass + trailerD47a_maxloadmass) * (UrsusC1734_edisp/10 + 4 * (UrsusC1734_vmax) * (UrsusC1734_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	return min(STAFF_RUNNING_COST + ((UrsusC1734_mass + (cargo_subtype-1) * trailerT672_mass + (cargo_subtype-1) * trailerT672_maxloadmass) * (UrsusC1734_edisp/10 + 4 * (UrsusC1734_vmax) * (UrsusC1734_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+} 
+
+switch(FEAT_ROADVEHS, SELF, check_UrsusC1734_trailer_switch, cargo_subtype) {
+0 : return none_spriteset_empty;
+1 : return spriteset_check_trailerD47a_switch1; //old type autosan trailer
+return spriteset_check_trailerT672_switch1; //modern trailer
+}
+
+switch (FEAT_ROADVEHS, SELF, consist_UrsusC1734_articulated_graphic_switch, position_in_consist) { 
+    0 : return spriteset_UrsusC1734_graphic; 
+    1 : return check_UrsusC1734_trailer_switch; 
+    2 : return spriteset_check_trailerT672_switch2; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_check_length, cargo_subtype) {
+	0: return 1;
+	1..3: return 6;
+	return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_UrsusC1734_length, position_in_consist) { 
+    0 : return 4; 
+    1 : return switch_UrsusC1734_check_length; 
+return 1;
+} 
+
+switch (FEAT_ROADVEHS, SELF, UrsusC1734_articulated_switch, extra_callback_info1) {
+    1..2: return UrsusC1734;
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC1734_weight, cargo_subtype) {
+0 : return (UrsusC1734_mass) *4;
+1 : return (UrsusC1734_mass + trailerD47a_mass) *4; //old type autosan trailer
+return (UrsusC1734_mass + (cargo_subtype-1) * trailerT672_mass) *4; //one or two modern trailers
+}
+
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, UrsusC1734) { 
+	property { 
+	name:			   	string(STR_URSUSC1734_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1998, 8, 1);	    
+	model_life:     		VEHICLE_NEVER_EXPIRES; 
+	vehicle_life:		   	18; 
+	retire_early:			0; 
+	reliability_decay:	    	8; 
+	loading_speed:		  	6; 
+	cost_factor:		    	29;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((UrsusC1734_mass + 2 * trailerT672_mass + 2 * trailerT672_maxloadmass) * (UrsusC1734_edisp/10 + 4 * (UrsusC1734_vmax) * (UrsusC1734_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	UrsusC1734_vmax km/h; 
+	refittable_cargo_classes:      	bitmask(CC_BULK, CC_PASSENGERS, CC_OVERSIZED); 
+	cargo_disallow_refit:		[TOUR]; 
+	cargo_allow_refit:		[LVST, WOOD];
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	trailerT672_refitcost; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	125 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	trailerT672_maxloadmass; 
+	default_cargo_type:		GRAI; 
+	weight:			 	UrsusC1734_mass + 2 * trailerT672_mass; 
+	tractive_effort_coefficient:    0.9; 
+	air_drag_coefficient:	   	0.8; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+//	road_type:			OFFR;
+ //sound("src/sfx/tractor_cmusounddesign8.wav"); 
+	length:      	    		4; 
+    } 
+
+    graphics { 
+	default:	    	consist_UrsusC1734_articulated_graphic_switch;  
+	articulated_part:	UrsusC1734_articulated_switch;
+	purchase:	   	spriteset_UrsusC1734_purchase;   
+	running_cost_factor:	switch_UrsusC1734_running_cost;
+	purchase_running_cost_factor: min(STAFF_RUNNING_COST + ((UrsusC1734_mass + 2 * trailerT672_mass + 2 * trailerT672_maxloadmass) * (UrsusC1734_edisp/10 + 4 * (UrsusC1734_vmax) * (UrsusC1734_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	cargo_subtype_text: 	switch_trailers3_subtype_text;
+	refit_cost:		switch_trailerT672_refit_cost;
+	cargo_capacity:		switch_UrsusC1734_capacity; 
+	length:			switch_UrsusC1734_length;
+	weight:			switch_UrsusC1734_weight;
+	additional_text:        switch_UrsusC1734_text; 
+	colour_mapping:         switch_bulk_recolour;     
+	visual_effect:		switch_farm_tractor_unit_effect;
+	cargo_age_period:	low_passenger_comfort;
+	sound_effect: return CB_RESULT_NO_SOUND;
+    } 
+ } 
+}
+
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, UrsusC1734) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}
+

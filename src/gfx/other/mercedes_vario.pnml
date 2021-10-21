@@ -1,0 +1,15 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Mercedes T1/T2/Vario:
+spriteset(spriteset_Mercedes_Vario_purchase, "src/gfx/other/Mercedes_Vario.png") { template_sprite_window_sideview6(8) }
+
+spriteset(pass_spriteset_Mercedes_Vario_graphic, "src/gfx/other/Mercedes_Vario.png") { template_sprite6(8) }
+
+spriteset(mail_spriteset_Mercedes_Vario_graphic, "src/gfx/other/Mercedes_Vario.png") { template_sprite6(33) }
+
+spriteset(valu_spriteset_Mercedes_Vario_graphic, "src/gfx/other/Mercedes_Vario.png") { template_sprite6(58) }
+
+spriteset(good_spriteset_Mercedes_Vario_graphic, "src/gfx/other/Mercedes_Vario.png") { template_sprite6(83) }
+

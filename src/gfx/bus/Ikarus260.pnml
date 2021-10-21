@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Ikarus 260:
+spriteset(spriteset_Ikarus260_purchase, "src/gfx/bus/Ikarus260.png") { template_sprite_window_sideview6b(8) }
+
+spriteset(spriteset_Ikarus260_graphic, "src/gfx/bus/Ikarus260.png") { template_sprite6b(8) }
+

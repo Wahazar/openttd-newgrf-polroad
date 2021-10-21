@@ -1,0 +1,327 @@
+##grflangid 0x04
+##plural 0
+##gender m f
+# This is the English language file
+
+# GRF name and description
+STR_GRF_DESCRIPTION :Polroad - Un set de vehículos de carretera polacos para todo tipo de carga.{}v. {VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licencia: GPL v2
+
+STR_PARAM_DESC_PURCHASE_COST            :Selecciona esta opción para cambiar el precio de compra de los vehículos de este set.
+STR_PARAM_NAME_RUNNING_COST             :Modificador de los costes de funcionamiento
+STR_PARAM_DESC_RUNNING_COST             :Selecciona esta opción para cambiar los costes de funcionamiento de los vehículos de este set.
+STR_PARAM_COST_H                        :Mitad
+STR_PARAM_COST_N                        :Normal
+STR_PARAM_COST_D                        :Doble
+STR_PARAM_DESC_MAX_LOAD                 :Multiplicador de capacidad (carga máxima en el caso de los camiones pequeños).
+STR_PARAM_LOAD_1                        :Realista
+STR_PARAM_LOAD_2                        :Doble (por defecto)
+STR_PARAM_LOAD_3                        :Triple
+
+STR_PARAM_NAME_ALLOW_SLOW_VEHS          :Habilitar vehículos lentos
+STR_PARAM_DESC_ALLOW_SLOW_VEHS          :Selecciona esta opción para habilitar los coches de caballos y tractores agrícolas.
+STR_PARAM_NAME_ALLOW_BUS                :Habilitar autobuses
+STR_PARAM_DESC_ALLOW_BUS                :Selecciona esta opción para permitir el transporte de pasajeros únicamente en vehículos con motor de combustión interna.
+STR_PARAM_NAME_ALLOW_VAN                :Habilitar furgonetas universales
+STR_PARAM_NAME_ALLOW_TRUCK              :Habilitar camiones
+STR_PARAM_DESC_ALLOW_TRUCK              :Selecciona esta opción para habilitar los transportes, de toda carga, con motor de combustión interna.
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+STR_NULL                                :{}
+
+STR_COMFORT_LW                          :{RED}BAJO{BLACK}
+STR_COMFORT_MD                          :{ORANGE}medio{BLACK}
+STR_COMFORT_ST                          :{DKGREEN}estándar{BLACK}
+STR_COMFORT_HI                          :{GREEN}ALTO{BLACK}
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+STR_LOADSPEED_LO                                :{RED}BAJA{BLACK}
+STR_LOADSPEED_MD                                :{ORANGE}media{BLACK}
+STR_LOADSPEED_ST                                :{DKGREEN}estándar{BLACK}
+STR_LOADSPEED_HI                                :{GREEN}RÁPIDA{BLACK}
+
+STR_VARIABLE_COSTS              :{GOLD}Los costes de funcionamiento{BLACK} dependen tanto de la velocidad como de la edad del vehículo.
+
+STR_CITY_BUS                    :{BUS} autobús de servicio urbano{}{STRING}{}Confort: {GOLD}{COMMA}{BLACK}{}Tiempo de carga/descarga: {GOLD}{COMMA}{BLACK}
+STR_CITYBUS_SUFFIX              :-autobús urbano
+
+STR_ART_CITY_BUS                        :{BUS}{BUS} autobús de servicio urbano, {RED}articulado{BLACK}{}{STRING}{}Confort: {GOLD}{COMMA}{BLACK}{}Tiempo de carga/descarga: {GOLD}{COMMA}{BLACK}
+
+STR_LOCAL_BUS                   :{BUS} autobús de servicio local/suburbano{}{STRING}{}Confort: {GOLD}{COMMA}{BLACK}{}Tiempo de carga/descarga: {GOLD}{COMMA}{BLACK}
+
+
+STR_LOCALBUS_SUFFIX             : -autobús local
+
+STR_IC_BUS                      :{BUS} líneas interurbanas/autobús turístico{}{STRING}{}Confort: {GOLD}{COMMA}{BLACK}{}Tiempo de carga/descarga: {GOLD}{COMMA}{BLACK}
+
+STR_ICBUS_SUFFIX                : -autobús de larga distancia
+
+STR_BENZ_GAGGENAU_NAME                  :Benz Gaggenau {STRING}
+STR_BENZ_GAGGENAU_DESC                  :20 hp motor de gasolina
+STR_SOMUA_NAME                          :Somua RZCA {STRING}
+STR_SOMUA_DESC                          :V4 motor de gasolina
+STR_EFD183_NAME                         :Chevrolet "Bielany" {STRING}
+STR_EFD183_DESC                         :EFB183 motor de gasolina
+STR_CHAUSSON_NAME                       :Chausson APH {STRING}
+STR_CHAUSSON_DESC                       :Panhard 4HL motor diésel
+STR_MAVAGTR5_NAME                       :Mavag Tr5 {STRING}
+STR_MAVAGTR5_DESC                       :OML674 V6 motor diésel
+STR_SANH01B_NAME                        :San 01B {STRING}
+STR_SANH01B_DESC                        :S42 motor diésel
+STR_SANH100B_NAME                       :San 100B {STRING}
+STR_SANH100B_DESC                       :S474 motor diésel
+STR_IKARUS620_NAME                      :Ikarus 620 {STRING}
+STR_IKARUS620_DESC                      :Csepel D-614c motor diésel
+STR_JELCZ272MEX_NAME                    :Jelcz 272 MEX {STRING}
+STR_JELCZ272MEX_DESC                    :Škoda 706RT motor diésel
+STR_BERLIETPR100_NAME                   :Jelcz-Berliet PR100 {STRING}
+STR_BERLIETPR100_DESC                   :Berliet V80 motor diésel
+STR_IKARUS260_NAME                      :Ikarus 260 {STRING}
+STR_IKARUS260_DESC                      :Raba-MAN D2156HM6U motor diésel
+STR_JELCZ120M_NAME                      :Jelcz 120M {STRING}
+STR_JELCZ120M_DESC                      :Mielec SWT motor diésel
+STR_JELCZ121M_NAME                      :Jelcz 121M {STRING}
+STR_URBINO12_NAME                       :Solaris Urbino 12 {STRING}
+STR_URBINO15_NAME                       :Solaris Urbino 15 {STRING}
+STR_URBINO15E_NAME                      :Solaris Urbino 15E {STRING}
+STR_MANSD202_NAME                       :MAN SD202 "Hop On" {STRING}
+STR_MANSD202_DESC                       :autobús turístico de dos pisos,{}MAN D2566 UH motor diésel
+
+STR_JELCZ021_NAME                       :Jelcz 021 {STRING}
+STR_IKARUS280_NAME                      :Ikarus 280 {STRING}
+STR_JELCZ181M_NAME                      :Jelcz 181M {STRING}
+STR_URBINO18_NAME                       :Solaris Urbino 18 {STRING}
+
+STR_URSUSAW_NAME                        :Ursus AW {STRING}
+STR_SAURER_BLD4_NAME                    :Saurer Zawrat BLD4 {STRING}
+STR_SAURER_BLD4_DESC                    :Saurer BLD motor diésel
+STR_STARN52_NAME                        :Star N52 {STRING}
+STR_STARN52_DESC                        :S42 motor de gasolina
+STR_SANH01A_NAME                        :San H01A {STRING}
+STR_OSINOBUS_NAME                       :Osinobus {STRING}
+STR_OSINOBUS_DESC                       :S530A motor diésel
+STR_AUTOSAN_H9_NAME                     :Autosan H9 {STRING}
+STR_AUTOSAN_H9_DESC                     :6CT107 motor diésel
+STR_AUTOSAN_A1010T_NAME                 :Autosan A1010T {STRING}
+STR_AUTOSAN_A1010T_DESC                 :Renault dCi6 motor diésel
+
+STR_JELCZPR110D_NAME                    :Jelcz PR110D {STRING}
+STR_JELCZPR110D_DESC                    :Mielec SW680/165 motor diésel
+STR_BOVAFUTURAFHD_DESC                          :DAF MX-11 motor diésel
+STR_SETRAS419UL16_NAME                  :Setra S419 UL 16 {STRING}
+STR_SETRAS419UL16_DESC                  :OM 470 motor diésel
+STR_VH_ASTROMEGA_DT927_NAME             :Van Hool Astromega DT927 {STRING}
+STR_VH_ASTROMEGA_DT927_DESC             :CA, WC, bar{}DAF MX 340 motor diésel
+
+
+
+
+# strings for farm tractor trailers refit
+STR_REFIT_NONE          :sin remolque/s
+STR_REFIT_SHORT         : remolques cortos
+STR_REFIT_MEDIUM        : remolques medios
+STR_REFIT_LONG          :remolques largos
+
+
+STR_LCV_DESC            :{RED}{LORRY}{BLACK} Vehículo Comercial Ligero{}hasta {GOLD}{UNSIGNED_WORD}{BLACK}t de carga ({GOLD}{UNSIGNED_WORD}{BLACK} sacos de correo).{}{RED}Autoreforma no disponible{BLACK}{} {STRING}, {UNSIGNED_WORD} ccm
+
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+
+
+# semi-trailer tractor (special) description
+
+
+
+
+STR_CTT_DESC            :{LORRY}{LORRY} Camión Contenedor con Remolque{}para correo ({GOLD}{UNSIGNED_WORD}{BLACK} bolsas) u otra carga express (carga máxima {GOLD}{UNSIGNED_WORD}{BLACK} t){} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+
+STR_FARM_TRACTOR_DESC   :{LORRY}{LORRY}{LORRY} tractor agrícola{}hasta {GOLD}{UNSIGNED_WORD}{BLACK} t de grano{}o {GOLD}{UNSIGNED_WORD}{BLACK} cabezas de ganado{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_LIVERY_STANDARD     :-librea estándar 2cc
+STR_LIVERY_POLROAD      :-librea estilo polroad
+STR_LIVERY_REALCOMPANY  :-librea basada en la vida real
+
+STR_MAIL_SUBTYPE        : -en furgoneta de correos
+STR_ARMOURED_SUBTYPE    : -en furgón blindado
+STR_REEFER_SUBTYPE      : -en furgón refrigerado
+STR_BOX_SUBTYPE         : -en contenedor bajo (con lona)
+STR_MINIBUS_SUBTYPE     : -en minibús
+
+STR_FLAT_SUBTYPE        : -sobre plataforma (con estacas)
+STR_LVST_SUBTYPE        : -en camión de ganado
+STR_OIL_SUBTYPE         : -en cisterna
+STR_MILK_SUBTYPE        : -en cisterna para líquidos potables
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+STR_BOX_TRAILER_SUBTYPE                 : -en remolque contenedor (con cortinas)
+STR_DUMPER_TRAILER_SUBTYPE              : -en remolque volquete
+STR_HOPPER_TRAILER_SUBTYPE              : -en remolque tolva
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+STR_OIL_TRAILER_SUBTYPE                 : -en remolque cisterna de petróleo
+STR_CHEM_TRAILER_SUBTYPE                : -en remolque cisterna químico
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+STR_FLAT_TRAILER_SUBTYPE                : -sobre plataforma con estacas
+STR_SILO_TRAILER_SUBTYPE                : -en remolque silo
+STR_CONTAINER_TRAILER_SUBTYPE           : -en remolque contenedor
+
+STR_1HORSE_DROSHKY_NAME :droshky (carruaje)
+STR_1HORSE_DROSHKY_DESC :{BUS} carruaje de pasajeros local (corto)
+
+STR_2HORSE_OMNIBUS_NAME         :ómnibus de pasajeros de dos caballos
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} ómnibus urbano {RED}(articulado){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} plazas sentado y {GOLD}{UNSIGNED_WORD}{BLACK} de pie{}{BLACK}Confort {GOLD}{UNSIGNED_WORD}{BLACK}, tiempo de carga/descarga {GOLD}{UNSIGNED_WORD}{BLACK}
+
+STR_1HORSE_CART_NAME            :carruaje de un caballo
+STR_1HORSE_CART_DESC            :{LORRY} carruaje universal (corto),{}{GOLD}{UNSIGNED_WORD}{BLACK} pasajeros (bajo confort){}o hasta {GOLD}{UNSIGNED_WORD}{BLACK}t de carga
+STR_1HORSE_CART_TYRES_NAME              :carruaje con neumáticos de un caballo
+
+STR_2HORSE_HEAVY_CART_NAME              :carruaje pesado de dos caballos
+STR_2HORSE_HEAVY_CART_DESC              :{LORRY}{LORRY} carruaje pesado universal (articulado),{}{UNSIGNED_WORD} pasajeros{}o hasta {UNSIGNED_WORD}t de carga
+
+STR_FORDTT_NAME         :Ford TT camión ligero/minibús
+STR_FORDTT_DESC         :{RED}{BUS}{BLACK} camión universal, reformable a{}autobús pequeño ({UNSIGNED_WORD} pasajeros, bajo confort){}o a camión ligero con {GOLD}{UNSIGNED_WORD}{BLACK}t de carga ({GOLD}{UNSIGNED_WORD}{BLACK} sacos de correo){}{RED}Autoreforma no disponible{BLACK}{}motor de gasolina 177 CID, 2900ccm
+
+
+
+
+
+STR_FIAT508_NAME        :Polski Fiat 508
+STR_FIAT508_DESC        :Coche pequeño de pasajeros ({STRING}),{}Fiat 108CS motor de gasolina, {UNSIGNED_WORD}ccm
+
+
+
+
+
+
+STR_DAEWOOLANOS_NAME            :Daewoo Lanos
+
+
+
+STR_GMC_NAME            :GMC CCKW ex-Camión del Ejército EstadoUnidense
+STR_GMC_DESC            :{LORRY} camión universal, {GOLD}{UNSIGNED_WORD}{BLACK} pasajeros ({UNSIGNED_WORD} plazas sentado, bajo confort){}o hasta {GOLD}{UNSIGNED_WORD}{BLACK}t de carga ({GOLD}{UNSIGNED_WORD}{BLACK} sacos de correo){}GMC motor diésel, 4420ccm
+
+
+STR_LUBLIN51_NAME       :Lublin 51 camión pequeño
+
+STR_LUBLIN51_DESC       :{LORRY} camión universal, {GOLD}{UNSIGNED_WORD}{BLACK} pasajeros ({UNSIGNED_WORD} plazas sentado, bajo confort){}o hasta {GOLD}{UNSIGNED_WORD}{BLACK}t de carga ({GOLD}{UNSIGNED_WORD}{BLACK} sacos de correo){}M-51 motor de gasolina, 3480ccm
+
+
+
+
+STR_4HORSE_STAGE_COACH_NAME     :diligencia
+STR_4HORSE_STAGE_COACH_DESC     :{BUS}{LORRY} reformable a pasajeros, correo, objetos de valor
+STR_MVMB_SUFFIX         : furgoneta/minibús
+STR_FIAT618_DESC        :Fiat 118 motor de gasolina
+STR_NYSAN59_DESC        :M-20 motor de gasolina
+STR_NYSA522_DESC        :S-21 motor de gasolina
+STR_MERCEDES_VARIO_DESC         :OM602 motor diésel
+STR_MERCEDES_SPRINTER_TRAILER_DESC  :{RED}{LORRY}{LORRY}{BLACK}Vehículo Comercial Ligero con remolque{}hasta {GOLD}{UNSIGNED_WORD}{BLACK}t de carga ({GOLD}{UNSIGNED_WORD}{BLACK} sacos de correo).{}{GOLD}Autoreforma disponible{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm
+
+
+
+STR_LCV_SUFFIX          : pickup/furgoneta de carga
+STR_URSUSA_DESC         :S.P.A. motor de gasolina
+STR_FIAT621L_DESC       :122B motor de gasolina
+STR_ZUKA03_DESC         :S-21 motor de gasolina
+STR_DZTPASAGON_DESC     :Andoria ADCR motor diésel
+STR_IVECODAILY6_DESC    :motor CNG
+
+
+STR_GPT_SUFFIX          :camión de propósito general
+STR_STAR20_DESC         :S42 motor de gasolina
+STR_STAR25_DESC         :S472 motor de gasolina
+STR_STAR200_DESC        :S359 motor diésel
+
+STR_CHEVROLET157_DESC   :206.8 cu motor diésel
+STR_STAR_C21_DESC       :S42 motor de gasolina
+STR_STAR_C28_DESC       :S530A1 motor diésel
+
+STR_RENAULT_MAGNUM_DESC :Mack motor diésel
+STR_DAF95X_DESC :DAF motor diésel
+STR_RENAULT_MILLENIUM_DESC      :Volvo DXi 12 CR motor diésel
+STR_DAFXF105_DESC       :Paccar CR motor diésel
+
+STR_STTS_SUFFIX         : camión con semirremolque especial
+
+STR_ZUBR_C90_DESC       :S-56 motor diésel
+STR_JELCZ_317_DESC      :SW-680 motor diésel
+STR_VOLVO_F12_DESC      :Volvo motor TD
+STR_VOLVO_FH12_DESC     :Volvo D12A motor diésel
+STR_VOLVO_FH13_DESC     :Volvo D13K motor diésel
+
+STR_ACTROSMP1_DESC      :1840 motor diésel
+STR_ACTROSMP3_DESC      :1846 motor diésel
+
+STR_FIAT618_NAME                :Polski Fiat 618 {STRING}
+STR_NYSAN59_NAME                :Nysa N59 {STRING}
+STR_NYSA522_NAME                :Nysa 522 {STRING}
+STR_MERCEDES_VARIO_NAME         :Mercedes T2/Vario {STRING}
+STR_MERCEDES_SPRINTER_NAME      :Mercedes Sprinter {STRING}
+
+STR_URSUSA_NAME         :Ursus-A {STRING}
+STR_FIAT621L_NAME       :Polski Fiat 621L {STRING}
+STR_ZUKA03_NAME         :Zuk A03 {STRING}
+STR_DZTPASAGON_NAME     :DZT Pasagon {STRING}
+STR_IVECODAILY6_NAME    :Iveco Daily VI {STRING}
+
+STR_PZINZ703_NAME       :PZInz-703 {STRING}
+STR_STAR20_NAME         :Star 20 {STRING}
+STR_STAR25_NAME         :Star 25 {STRING}
+STR_STAR200_NAME        :Star 200 {STRING}
+STR_STAR2000_NAME       :Star 2000 {STRING}
+STR_STARTGL_NAME        :Star TGL {STRING}
+
+STR_CHEVROLET157_NAME           :Chevrolet 157 {STRING}
+STR_STAR_C21_NAME               :Star C-21 {STRING}
+STR_STAR_C28_NAME               :Star C-28 {STRING}
+STR_RENAULT_MAGNUM_NAME         :Renault Magnum {STRING}
+STR_DAF95X_NAME                 :DAF 95X {STRING}
+STR_RENAULT_MILLENIUM_NAME      :Renault Magnum Millenium {STRING}
+STR_DAFXF105_NAME               :DAF XF 105 {STRING}
+
+STR_ZUBR_C90_NAME       :Zubr C90 {STRING}
+STR_JELCZ_317_NAME      :Jelcz 317 {STRING}
+STR_VOLVO_F12_NAME      :Volvo F12 {STRING}
+STR_VOLVO_FH12_NAME     :Volvo FH12 {STRING}
+STR_VOLVO_FH13_NAME     :Volvo FH13 {STRING}
+
+STR_DT_SUFFIX           : camión volquete
+STR_KAMAZ5511_NAME      :Kamaz 5511 {STRING}
+STR_ACTROSMP1_NAME      :Mercedes Actros Mp1 {STRING}
+STR_ACTROSMP3_NAME      :Mercedes Actros Mp3 {STRING}
+
+STR_4HORSE_HEAVY_LOGGER_NAME    :carruaje pesado maderero
+STR_4HORSE_HEAVY_LOGGER_DESC    :{RED}{LORRY}{LORRY}{BLACK} camión de madera, reformable: 2 ó 4 percherones
+STR_PRAGAV3S_NAME       :Praga V3S camión con remolque de madera
+STR_PRAGAV3S_DESC       :Tatra 912 motor diésel, reformable a E359T
+STR_STAR266_DESC        :{RED}{LORRY}{LORRY}{BLACK} Camión maderero con grúa hidráulica,{}S359 motor diésel, {UNSIGNED_WORD} ccm, reformable a E359T
+
+
+
+STR_MANTGA_NAME :MAN TGA camión contenedor con remolque
+STR_MANTGA_DESC :D2866 motor diésel
+
+STR_HCPLOCOMOBILE1_NAME :HCP primer tractor a vapor
+STR_HCPLOCOMOBILE1_DESC :{LORRY}{LORRY}{LORRY} Primer locomobile con motor a vapor,{}reformable a un máximo de 3 remolques{}(máx. {GOLD}{UNSIGNED_WORD}{BLACK} t de grano ó {GOLD}{UNSIGNED_WORD}{BLACK} cabezas de ganado)
+STR_HCPLOCOMOBILE_NAME  :HCP tractor a vapor mejorado
+STR_HCPLOCOMOBILE_DESC  :{LORRY}{LORRY}{LORRY} locomobile con motor compuesto (supercalentador a vapor),{}reformable a un máximo de 6 remolques{}(max. {GOLD}{UNSIGNED_WORD}{BLACK} t de grano ó {GOLD}{UNSIGNED_WORD}{BLACK} cabezas de ganado)
+STR_URSUSC45_DESC       :Máx. 3 remolques. Lanz-Bulldog motor diésel
+STR_URSUSC328_DESC      :Máx. 2 remolques "Autosan". S-312 motor diésel
+STR_URSUSC330_DESC      :Máx. 3 remolques "Autosan". S-4001 motor diésel
+STR_URSUSC1734_DESC     :Máx. 2 remolques "Pronar". Martin motor diésel UR-IV
+
+STR_URSUSC45_NAME       :Ursus C45
+STR_URSUSC328_NAME      :Ursus C328
+STR_URSUSC330_NAME      :Ursus C330
+STR_URSUSC360_NAME      :Ursus C360
+STR_URSUSC1734_NAME     :Ursus C1734

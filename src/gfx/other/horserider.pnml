@@ -1,0 +1,74 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// horserider:
+spriteset(spriteset_horserider_purchase, "src/gfx/other/horserider1.png") { template_sprite_window_sideview7(8) }
+
+spriteset(horserider_walkstop_graphic, "src/gfx/other/horserider1.png") { template_sprite7(8) }
+spriteset(horserider_walk0_graphic, "src/gfx/other/horserider1.png") { template_sprite7(38) }
+spriteset(horserider_walk1_graphic, "src/gfx/other/horserider1.png") { template_sprite7(68) }
+spriteset(horserider_walk2_graphic, "src/gfx/other/horserider1.png") { template_sprite7(98) }
+spriteset(horserider_walk3_graphic, "src/gfx/other/horserider1.png") { template_sprite7(128) }
+
+switch(FEAT_ROADVEHS, SELF, animated_horserider_graphic_switch, motion_counter % 4) { 
+0 : return horserider_walk0_graphic;
+1 : return horserider_walk1_graphic;
+2 : return horserider_walk2_graphic;
+3 : return horserider_walk3_graphic;
+return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, velocity_horserider_graphic_switch, current_speed) { 
+0..1 : return horserider_walkstop_graphic;
+return animated_horserider_graphic_switch;
+}
+
+#define horserider_pass_capacity 0
+#define horserider_mass 1
+#define horserider_speed 35
+
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, horserider) { 
+	property { 
+	name:			   	string(STR_HORSERIDER); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1700, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES :  235;
+	vehicle_life:		   	18; 
+	retire_early:			0; 
+	reliability_decay:	    	5; 
+	loading_speed:		  	1; 
+	cost_factor:		    	1;      
+	running_cost_factor:		0; 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	horserider_speed km/h;   
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	10 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	horserider_pass_capacity; 
+	weight:			 	horserider_mass; 
+	tractive_effort_coefficient:    1.0; 
+	air_drag_coefficient:	   	0.1; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		2; 
+//	road_type:			OFFR;
+    } 
+    graphics { 
+	default:	    		velocity_horserider_graphic_switch;  
+	purchase:	   		spriteset_horserider_purchase;   
+	additional_text:        	string(STR_NOT_COMMMERCIAL);
+    } 
+ } 
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, horserider) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

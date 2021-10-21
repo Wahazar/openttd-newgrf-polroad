@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Ursus AW:
+spriteset(spriteset_UrsusAW_purchase, "src/gfx/bus/UrsusAW.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_UrsusAW_graphic, "src/gfx/bus/UrsusAW.png") { template_sprite6(8) }
+

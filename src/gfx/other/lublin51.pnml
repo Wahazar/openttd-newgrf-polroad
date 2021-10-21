@@ -1,0 +1,96 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Lublin 51 universal small truck:
+
+#define Lublin51_maxloadmass 5
+#define Lublin51_mass 3
+#define Lublin51_vmax 70
+#define Lublin51_pass_sitting 10
+#define Lublin51_pass_standing 10
+#define Lublin51_pass_total Lublin51_pass_sitting + Lublin51_pass_standing
+
+spriteset(spriteset_Lublin51_purchase, "src/gfx/other/Lublin51.png") { template_sprite_window_sideview6(57) }
+
+spriteset(good_spriteset_Lublin51_graphic, "src/gfx/other/Lublin51.png") { template_sprite6(32) }
+spriteset(pass_spriteset_Lublin51_graphic, "src/gfx/other/Lublin51.png") { template_sprite6(57) }
+
+switch (FEAT_ROADVEHS, SELF, switch_Lublin51_text, param_load_multiplier) {    
+	1 : return string(STR_LUBLIN51_DESC, Lublin51_pass_total, Lublin51_pass_sitting, Lublin51_maxloadmass/2, Lublin51_maxloadmass*2);   
+	2 : return string(STR_LUBLIN51_DESC, Lublin51_pass_total, Lublin51_pass_sitting, Lublin51_maxloadmass, Lublin51_maxloadmass*4);   
+	3 : return string(STR_LUBLIN51_DESC, Lublin51_pass_total, Lublin51_pass_sitting, Lublin51_maxloadmass*3/2, Lublin51_maxloadmass*6);   
+  return CB_FAILED;   
+}   
+ 
+switch(FEAT_ROADVEHS, SELF, good_check_Lublin51_graphic_switch, cargo_type_in_veh) {   
+	PASS: 	return pass_spriteset_Lublin51_graphic;  
+	TOUR: 	return pass_spriteset_Lublin51_graphic;  
+	return good_spriteset_Lublin51_graphic;  
+}
+
+switch(FEAT_ROADVEHS, SELF, maxload_Lublin51_switch, cargo_type_in_veh) {  	
+	PASS: return Lublin51_pass_total;  
+	TOUR: return Lublin51_pass_sitting;  
+	MAIL: return Lublin51_maxloadmass*param_load_multiplier*8/4;  
+	GOOD: return Lublin51_maxloadmass*param_load_multiplier*8/8;  
+	ENSP: return Lublin51_maxloadmass*param_load_multiplier*8/10;    
+	FMSP: return Lublin51_maxloadmass*param_load_multiplier*8/9;  
+	MNSP: return Lublin51_maxloadmass*param_load_multiplier*8/5;  
+	GOLD: return Lublin51_maxloadmass*param_load_multiplier*8/8;  
+        return Lublin51_maxloadmass*param_load_multiplier/2;  
+}  
+
+switch(FEAT_ROADVEHS, SELF, switch_Lublin51_running_cost, cargo_type_in_veh) { 
+	PASS: return min(2 * STAFF_RUNNING_COST + ((Lublin51_mass) * (348 + 4 * (Lublin51_vmax) * (Lublin51_vmax)) * PETROL_ENGINE) >> 15, 255); 
+	return min(STAFF_RUNNING_COST + ((Lublin51_mass + Lublin51_maxloadmass) * (348 + 4 * (Lublin51_vmax) * (Lublin51_vmax)) * PETROL_ENGINE) >> 15, 255); 
+} 
+
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, Lublin51) { 
+	property { 
+	name:			   	string(STR_LUBLIN51_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1951, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 12+9+20 : 12+9); 
+	vehicle_life:		   	20; 
+	retire_early:			9; 
+	reliability_decay:	    	18; 
+	loading_speed:		  	4; 
+	cost_factor:		    	19;      
+	running_cost_factor:	min(2 * STAFF_RUNNING_COST + ((Lublin51_mass) * (348 + (Lublin51_vmax) * (Lublin51_vmax)) * PETROL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Lublin51_vmax km/h; 
+//	refittable_cargo_classes:      	bitmask(CC_PASSENGERS, CC_EXPRESS, CC_REFRIGERATED, CC_MAIL, CC_ARMOURED, CC_PIECE_GOODS); 
+	refittable_cargo_classes:      	ALL_NORMAL_CARGO_CLASSES; 
+	non_refittable_cargo_classes:  	bitmask(CC_OVERSIZED); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	52 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	Lublin51_maxloadmass; 
+	default_cargo_type:		PASS; 
+	weight:			 	Lublin51_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.3; 
+	effect_spawn_model:      	EFFECT_SPAWN_MODEL_DIESEL;
+	sound_effect: SOUND_CAR_HORN; 
+	length:      	    		6; 
+    } 
+
+    graphics { 
+	default:	    	good_check_Lublin51_graphic_switch;  
+	purchase:	   	spriteset_Lublin51_purchase;   
+	running_cost_factor:	switch_Lublin51_running_cost;
+	cargo_capacity:		maxload_Lublin51_switch; 
+	additional_text:        switch_Lublin51_text; 
+	create_effect:		switch_low_diesel_smoke_effect;
+	colour_mapping:         switch_bulk_recolour;   
+	cargo_age_period:	low_passenger_comfort;  
+    }  
+ }
+}
+
+

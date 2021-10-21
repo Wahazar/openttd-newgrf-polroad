@@ -1,0 +1,16 @@
+// part of Polish Road Set
+// Graphic by Sojita
+// NML code by McZapkie
+
+// Ursus A:
+spriteset(spriteset_UrsusA_purchase, "src/gfx/truck/UrsusA.png") { template_sprite_window_sideview6(8) }
+
+spriteset(good_spriteset_UrsusA_graphic, "src/gfx/truck/UrsusA.png") { template_sprite6(8) }
+spriteset(empty_spriteset_UrsusA_graphic, "src/gfx/truck/UrsusA.png") { template_sprite6(33) }
+
+spriteset(food_spriteset_UrsusA_graphic, "src/gfx/truck/UrsusA.png") { template_sprite6(58) }
+
+spriteset(mail_spriteset_UrsusA_graphic, "src/gfx/truck/UrsusA.png") { template_sprite6(83) }
+
+spriteset(valu_spriteset_UrsusA_graphic, "src/gfx/truck/UrsusA.png") { template_sprite6(108) }
+

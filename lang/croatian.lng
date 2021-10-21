@@ -1,0 +1,421 @@
+##grflangid 0x38
+##plural 6
+##gender middle male female
+##case nom lok aku vok dat ins gen
+# This is the English language file
+
+# GRF name and description
+STR_GRF_NAME        :Polroad - novi poljski cestovni set, verzija {UNSIGNED_WORD}
+STR_GRF_DESCRIPTION :Polroad - poljski cestovni set sa vozilima za sve vrste tereta.{}ver. {VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licenca: GPL v2
+
+STR_PARAM_NAME_PURCHASE_COST            :Parametar za prilagodbu nabavnih troškova
+STR_PARAM_DESC_PURCHASE_COST            :Koristite ovu postavku za promjenu nabavnih troškova vozila iz ovog seta.
+STR_PARAM_NAME_RUNNING_COST             :Parametar za prilagodbu tekućih troškova
+STR_PARAM_DESC_RUNNING_COST             :Koristite ovu postavku za promjenu tekućih troškova vozila iz ovog seta.
+STR_PARAM_COST_H                        :Pola
+STR_PARAM_COST_N                        :Normalno
+STR_PARAM_COST_D                        :Dvostruko
+STR_PARAM_NAME_MAX_LOAD                 :Parametar za prilagodbu najveće nosivosti kamiona
+STR_PARAM_DESC_MAX_LOAD                 :Modifikator kapaciteta (najveća nosivost kod malih kamiona).
+STR_PARAM_LOAD_1                        :Realistično
+STR_PARAM_LOAD_2                        : Dvostruko (osnovna postavka)
+STR_PARAM_LOAD_3                        :Trostruko
+STR_PARAM_NAME_MODEL_LIFE               :Izmijenite period dostupnosti vozila
+STR_PARAM_DESC_MODEL_LIFE               :Koristite ovu postavku za produživanje vijeka trajanja vozila. Ova postavka utječe samo na vozila iz ovog seta. Za promjenu vijeka trajanja drugih vozila, koristite opciju "Vozila nikad ne ističu" u osnovnim postavkama igre.
+STR_PARAM_MODEL_LIFE_REAL               :Realistično
+STR_PARAM_MODEL_LIFE_EXTEND             :Produženi
+STR_PARAM_MODEL_LIFE_KEEP               :Nikad ne ističe
+
+STR_PARAM_NAME_ALLOW_SLOW_VEHS          :Uključi spora vozila
+STR_PARAM_DESC_ALLOW_SLOW_VEHS          :Odaberite ovu postavku za uključivanje konjskih zaprega i poljoprivrednih traktora
+STR_PARAM_NAME_ALLOW_BUS                :Uključi autobuse
+STR_PARAM_DESC_ALLOW_BUS                :Odaberite ovu postavku za uključivanje svih prijevoznika putnika sa motorom na unutrašnje izgaranje.
+STR_PARAM_NAME_ALLOW_VAN                :Uključi univerzalne kombije
+STR_PARAM_DESC_ALLOW_VAN                :Odaberite ovu postavku za uključivanje svih nosača tereta i prijevoznika putnika sa motorom na unutrašnje izgaranje.
+STR_PARAM_NAME_ALLOW_TRUCK              :Uključi kamione
+STR_PARAM_DESC_ALLOW_TRUCK              :Odaberite ovu postavku za uključivanje svih nosača tereta sa motorom na unutrašnje izgaranje.
+
+# obsolete
+# STR_CARGO_GEAR		:power unit {RED}without{BLACK} body/trailer
+# STR_ABBREV_GEAR		:GEAR
+# STR_CARGO_UNIT_GEAR	:{WEIGHT} of cargo {RED}after refit{BLACK}
+
+STR_NULL                                :{}
+
+STR_COMFORT_LW                          :{RED}NISKO{BLACK}
+STR_COMFORT_MD                          :{ORANGE}srednje{BLACK}
+STR_COMFORT_ST                          :{DKGREEN}standardno{BLACK}
+STR_COMFORT_HI                          :{GREEN}VISOKI{BLACK}
+
+#STR_LOADTIME_LO				:{RED}LONG{BLACK} (>6 days)
+#STR_LOADTIME_MD				:{ORANGE}average{BLACK}
+#STR_LOADTIME_ST				:{DKGREEN}standard{BLACK}
+#STR_LOADTIME_FA				:{GREEN}SHORT{BLACK} (<3 days)
+
+STR_LOADSPEED_LO                                :{RED}NISKO{BLACK}
+STR_LOADSPEED_MD                                :{ORANGE}srednje{BLACK}
+STR_LOADSPEED_ST                                :{DKGREEN}standardno{BLACK}
+STR_LOADSPEED_HI                                :{GREEN}BRZO{BLACK}
+
+STR_VARIABLE_COSTS              :{GOLD}Tekuči troškovi{BLACK} ovise o stvarnoj brzini i starosti vozila.
+STR_VARIABLE_BUS_COSTS          :{BLACK}{STRING} {UNSIGNED_WORD} ccm{}{GOLD}Tekući troškovi{BLACK} ovise o stvarnoj brzini i starosti vozila{}{GOLD}{UNSIGNED_WORD}{BLACK} sjedećih mjesta{}
+
+STR_CITY_BUS                    :{BUS} gradski autobus{}{STRING}{}Komfor: {GOLD}{COMMA}{BLACK}{}Brzina ukrcaja/iskrcaja: {GOLD}{COMMA}{BLACK}
+STR_CITYBUS_SUFFIX              : - gradski autobus
+
+STR_ART_CITY_BUS                        :{BUS}{BUS} gradski autobus, {RED}zglobni{BLACK}{}{STRING}{}Komfor: {GOLD}{COMMA}{BLACK}{} Brzina ukrcaja/iskrcaja: {GOLD}{COMMA}{BLACK}
+
+STR_LOCAL_BUS                   :{BUS} lokalni/prigradski autobus{}{STRING}{}Komfor: {GOLD}{COMMA}{BLACK}{}Brzina ukrcaja/iskrcaja: {GOLD}{COMMA}{BLACK}
+
+
+STR_LOCALBUS_SUFFIX             : - lokalni autobus
+
+STR_IC_BUS                      :{BUS} međugradski/turistički autobus{}{STRING}{}Komfor: {GOLD}{COMMA}{BLACK}{}Brzina ukrcaja/iskrcaja: {GOLD}{COMMA}{BLACK}
+
+STR_ICBUS_SUFFIX                : - međugradski autobus
+
+STR_BENZ_GAGGENAU_NAME                  :Benz Gaggenau {STRING}
+STR_BENZ_GAGGENAU_DESC                  :20 hp benzinski motor
+STR_SOMUA_NAME                          :Somua RZCA {STRING}
+STR_SOMUA_DESC                          :V4 benzinski motor
+STR_EFD183_NAME                         :Chevrolet "Bielany" {STRING}
+STR_EFD183_DESC                         :EFB183 benzinski motor
+STR_CHAUSSON_NAME                       :Chausson APH {STRING}
+STR_CHAUSSON_DESC                       :Panhard 4HL dizel motor
+STR_MAVAGTR5_NAME                       :Mavag Tr5 {STRING}
+STR_MAVAGTR5_DESC                       :OML674 V6 dizel motor
+STR_SANH01B_NAME                        :San 01B {STRING}
+STR_SANH01B_DESC                        :S42 dizel motor
+STR_SANH100B_NAME                       :San 100B {STRING}
+STR_SANH100B_DESC                       :S474 dizel motor
+STR_IKARUS620_NAME                      :Ikarus 620 {STRING}
+STR_IKARUS620_DESC                      :Csepel D-614c dizel motor
+STR_JELCZ272MEX_NAME                    :Jelcz 272 MEX {STRING}
+STR_JELCZ272MEX_DESC                    :Škoda 706RT dizel motor
+STR_BERLIETPR100_NAME                   :Jelcz-Berliet PR100 {STRING}
+STR_BERLIETPR100_DESC                   :Berliet V80 dizel motor
+STR_IKARUS260_NAME                      :Ikarus 260 {STRING}
+STR_IKARUS260_DESC                      :Raba-MAN D2156HM6U dizel motor
+STR_JELCZ120M_NAME                      :Jelcz 120M {STRING}
+STR_JELCZ120M_DESC                      :Mielec SWT dizel motor
+STR_JELCZ121M_NAME                      :Jelcz 121M {STRING}
+STR_JELCZ121M_DESC                      :djelomično niskopodni,{}MAN D0826 LUH12 dizel motor
+STR_URBINO12_NAME                       :Solaris Urbino 12 {STRING}
+STR_URBINO12_DESC                       :niskopodni, AC{}Paccar PR183 dizel motor
+STR_URBINO15_NAME                       :Solaris Urbino 15 {STRING}
+STR_URBINO15_DESC                       :niskopodni, AC{}Paccar PR228 dizel motor
+STR_URBINO12E_NAME                      :Solaris Urbino 12E {STRING}
+STR_URBINO12E_DESC                      :niskopodni, AC{}električni motori
+STR_URBINO15E_NAME                      :Solaris Urbino 15E {STRING}
+STR_URBINO15E_DESC                      :niskopodni, AC{}električni motori
+STR_MANSD202_NAME                       :MAN SD202 "Uskoči" {STRING}
+STR_MANSD202_DESC                       :turistički autobus na kat,{}MAN D2566 UH dizel motor
+
+STR_JELCZAP02_NAME                      :Jelcz AP02 {STRING}
+STR_JELCZ021_NAME                       :Jelcz 021 {STRING}
+STR_IKARUS280_NAME                      :Ikarus 280 {STRING}
+STR_JELCZ181M_NAME                      :Jelcz 181M {STRING}
+STR_JELCZ181M_DESC                      :djelomično niskopodni,{}MAN D0826 LUH13 dizel motor
+STR_URBINO18_NAME                       :Solaris Urbino 18 {STRING}
+STR_URBINO18_DESC                       :niskopodni, AC{}DAF PR228 dizel motor
+STR_URBINO18H_NAME                      :Solaris Urbino 18 MetroStyle {STRING}
+STR_URBINO18H_DESC                      :niskopodni, AC{}Allison II hibridni motor
+
+STR_URSUSAW_NAME                        :Ursus AW {STRING}
+STR_URSUSAW_DESC                        :S.P.A. benzinski motor
+STR_SAURER_BLD4_NAME                    :Saurer Zawrat BLD4 {STRING}
+STR_SAURER_BLD4_DESC                    :Saurer BLD dizel motor
+STR_STARN52_NAME                        :Star N52 {STRING}
+STR_STARN52_DESC                        :S42 benzinski motor
+STR_SANH01A_NAME                        :San H01A {STRING}
+STR_OSINOBUS_NAME                       :Osinobus {STRING}
+STR_OSINOBUS_DESC                       :S530A dizel motor
+STR_AUTOSAN_H9_NAME                     :Autosan H9 {STRING}
+STR_AUTOSAN_H9_DESC                     :6CT107 dizel motor
+STR_AUTOSAN_A1010T_NAME                 :Autosan A1010T {STRING}
+STR_AUTOSAN_A1010T_DESC                 :Renault dCi6 dizel motor
+
+STR_FIAT666RN_NAME                      :Fiat 666RN {STRING}
+STR_FIAT666RN_DESC                      :Fiat 366/45 dizel motor
+STR_JELCZ043CAR_NAME                    :Jelcz 043 CAR {STRING}
+STR_JELCZPR110D_NAME                    :Jelcz PR110D {STRING}
+STR_JELCZPR110D_DESC                    :Mielec SW680/165 dizel motor
+STR_BOVAFUTURAFHD_NAME                          :Bova Futura FHD12 {STRING}
+STR_BOVAFUTURAFHD_DESC                          :DAF MX-11 dizel motor
+STR_SETRAS419UL16_NAME                  :Setra S419 UL 16 {STRING}
+STR_SETRAS419UL16_DESC                  :OM 470 dizel motor
+STR_VH_ASTROMEGA_DT927_NAME             :Van Hool Astromega DT927 {STRING}
+STR_VH_ASTROMEGA_DT927_DESC             :AC, WC, bar{}DAF MX 340 dizel motor
+
+
+STR_NO_REFIT            :{ORANGE}Ovaj motor nije remontiran!{BLACK} Koristite remont za nabavu izvedbe kamiona (odaberite potrebni {LORRY} teret).
+
+STR_OLD_HORSE           :{ORANGE}Ovaj mrtvi konj ne može hodati zato jer nije živ.{BLACK}.
+
+# strings for farm tractor trailers refit
+STR_REFIT_NONE          :bez prikolica
+STR_REFIT_SHORT         :kratke prikolice
+STR_REFIT_MEDIUM        :srednje prikolice
+STR_REFIT_LONG          :dugačke prikolice
+
+STR_MVMB_DESC           :{RED}{BUS}{BLACK} Poštanski kombi/minibus{}{GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte/vrijednosnica ili {GOLD}{UNSIGNED_WORD}{BLACK} putnika.{}{RED}Nije dostupan remont{BLACK}{} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_LCV_DESC            :{RED}{LORRY}{BLACK} Lako komercijalno vozilo{}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta ({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte).{}Nije dostupan remont.{BLACK}{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_GPT_DESC            :{LORRY} Kamion za razne terete,{}{STRING}{}{STRING},{}{GOLD}dostupan remont na stanici{BLACK} (kapacitet ovisi o vrsti šasije){}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta
+
+# semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
+
+STR_STTN_DESC           :{LORRY}{LORRY} Šleper sa normalnom prikolicom,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{} {GOLD}dostupan remont na stanici{BLACK}{}(kapacitet ovisi o vrsti prikolice){}up do {GOLD}{UNSIGNED_WORD}{BLACK} t tereta{}({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte, ograničen kapacitet rasutog tereta)
+
+STR_STTM_DESC           :{LORRY}{LORRY} Šleper sa modernom prikolicom,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{}{GOLD}dostupan remont na stanici{BLACK}{}(kapacitet ovisi o vrsti prikolice){}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta
+
+# semi-trailer tractor (special) description
+
+STR_STTS_DESC           :{RED}{LORRY}{LORRY}{BLACK} Šleper sa specijaliziranom prikolicom,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{}{RED}Nije dostupan remont{BLACK}, priključivanje/odvajanje prikolica putem naredbi u depou.{}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta
+
+STR_WLT_DESC            :{RED}{LORRY}{LORRY}{BLACK} Šleper za trupce - specijalizirani kamion sa hidrauličkom dizalicom,{} {STRING}, {UNSIGNED_WORD} ccm, dostupan remont u {UNSIGNED_WORD} ccm {STRING}
+
+STR_TT_DESC             :{LORRY}{LORRY} Kamion sa pokrivenom prikolicom{}za poštu ({GOLD}{UNSIGNED_WORD}{BLACK} vreća) ili drugi ekspresni teret (najveća nostivost {GOLD}{UNSIGNED_WORD}{BLACK} t){} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_CTT_DESC            :{LORRY}{LORRY} Šleper za kontejnere{}za poštu ({GOLD}{UNSIGNED_WORD}{BLACK} vreća) ili drugi ekspresni teret (najveća nostivost{GOLD}{UNSIGNED_WORD}{BLACK} t){} {STRING}, {UNSIGNED_WORD} ccm {STRING}
+
+STR_DT_DESC             :{LORRY} kamion za rasuti teret (nostivost{GOLD}{UNSIGNED_WORD}{BLACK} t){}{}{GOLD}dostupan remont na stanici{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_FARM_TRACTOR_DESC   :{LORRY}{LORRY}{LORRY} poljoprivredni traktor{}do {GOLD}{UNSIGNED_WORD}{BLACK} t žita{}ili {GOLD}{UNSIGNED_WORD}{BLACK} grla stoke{} {STRING}, {UNSIGNED_WORD} ccm
+
+STR_LIVERY_RANDOM       :-nasumična livreja
+STR_LIVERY_STANDARD     :-standardna 2cc livreja
+STR_LIVERY_POLROAD      :-livreja u stilu polroada
+STR_LIVERY_REALCOMPANY  :-stvarna livreja
+
+STR_NONE_SUBTYPE        :(samo vučna vozila)
+STR_MAIL_SUBTYPE        : -u zatvorenom sanduku za poštu
+STR_ARMOURED_SUBTYPE    : -u blindiranom vozilu
+STR_REEFER_SUBTYPE      : -u hladnjači
+STR_BOX_SUBTYPE         : -u otvorenom sanduku (sa ceradom)
+STR_GOODVAN_SUBTYPE     : -u zatvorenom sanduku
+STR_MINIBUS_SUBTYPE     : -u minibusu
+
+STR_FLAT_SUBTYPE        : -na ravnoj prikolici (sa bočnim stupićima)
+STR_LVST_SUBTYPE        : -u kamionu za stoku
+STR_OIL_SUBTYPE         : -u cisterni
+STR_MILK_SUBTYPE        : -u cisterni za pitku vodu
+
+# STR_MAIL_TRAILER_SUBTYPE		: -in mail trailer
+# STR_REEFER_TRAILER_SUBTYPE		: -in reefer trailer
+STR_BOX_TRAILER_SUBTYPE                 : -u zatvorenom sanduku (sa ceradom)
+STR_DUMPER_TRAILER_SUBTYPE              : -u kiperu
+STR_HOPPER_TRAILER_SUBTYPE              : -u prikolici za rasuti teret
+# STR_LVST_TRAILER_SUBTYPE		: -in cattle trailer
+STR_OIL_TRAILER_SUBTYPE                 : -u prikolici cisterni za naftu
+STR_CHEM_TRAILER_SUBTYPE                : -u prikolici cisterni za kemikalije
+# STR_MILK_TRAILER_SUBTYPE		: -in potable liquid tank trailer
+STR_FLAT_TRAILER_SUBTYPE                : -na ravnoj prikolici sa bočnim stupićima
+STR_SILO_TRAILER_SUBTYPE                : -u prikolici silosu
+STR_CONTAINER_TRAILER_SUBTYPE           : -na kontejnerskoj prikolici
+STR_GOOSENECK_TRAILER_SUBTYPE           : -na labudici
+
+STR_1HORSE_DROSHKY_NAME :droshky (fijaker)
+STR_1HORSE_DROSHKY_DESC :{BUS} lokalni putnički vagon (kratki)
+
+STR_2HORSE_OMNIBUS_NAME         :putnički omnibus za dva konja
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} gradski autobus {RED}(zglobni){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} sjedećih i {GOLD}{UNSIGNED_WORD}{BLACK} stajaćih mjesta.{}{BLACK}Komfor {GOLD}{UNSIGNED_WORD}{BLACK}, brzina ukrcaja/iskrcaja {GOLD}{UNSIGNED_WORD}{BLACK}
+
+STR_1HORSE_CART_NAME            :konjska zaprega za jednog konja
+STR_1HORSE_CART_DESC            :{LORRY} univerzalni putnički vagon (kratki),{}{GOLD}{UNSIGNED_WORD}{BLACK} putnika (niski komfor){}ili do GOLD}{UNSIGNED_WORD}{BLACK}t tereta
+STR_1HORSE_CART_TYRES_NAME              :konjska zaprega sa gumama za jednog konja
+
+STR_2HORSE_HEAVY_CART_NAME              :teška konjska zaprega za dva konja
+STR_2HORSE_HEAVY_CART_DESC              :{LORRY}{LORRY} univerzalna teška prikolica (zglobna),{}{UNSIGNED_WORD} putnika{}ili do {UNSIGNED_WORD}t tereta
+
+STR_FORDTT_NAME         :Ford TT laki kamion/minibus
+STR_FORDTT_DESC         :{RED}{BUS}{BLACK} univerzalni kamion, dostupan remont u{}mali autobus ({UNSIGNED_WORD} putnika, niski komfor){}ili laki kamion do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte){}{RED}Nije dostupan remont{BLACK}{}177 CID benzinski motor, 2900ccm
+
+STR_FORDT_NAME          :Ford T automobil
+STR_FORDT_DESC          ::{BUS} putnički automobil ({GOLD}4{BLACK} putnika), dostupan remont u {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}177 CID benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_CWST1_NAME          :CWS T-1 vozilo
+STR_CWST1_DESC          :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u  {GOLD}3{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{{}R4 benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_NOT_COMMMERCIAL     :{RED}nije za komercijalnu uporabu{BLACK}
+
+STR_HORSERIDER          :Jahač na konju
+STR_MOTORCYCLE          :Motor
+
+STR_FIAT508_NAME        :Polski Fiat 508 automobil
+STR_FIAT508_DESC        :Mali putnički automobil ({STRING}),{}Fiat 108CS benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_OPELKAPITAN_NAME            :Opel "Kapetan" automobil
+STR_OPELKAPITAN_DESC            :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u  {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}151 CID benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_FSOWARSZAWA_NAME            :FSO "Varšava" automobil
+STR_FSOWARSZAWA_DESC            :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}M-20 benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_FSO125P_NAME        :Polski Fiat 125p automobil
+STR_FSO125P_DESC        :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}116C.076/56 benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_FSO126P_NAME        :Polski Fiat 126p automobil
+STR_FSO126P_DESC        :Mali putnički automobil ({STRING}){}126 A1 benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_FSOPOLONEZ_NAME             :FSO "Polonez" automobil
+STR_FSOPOLONEZ_DESC             :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}14K16 MPI benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_DAEWOOLANOS_NAME            :Daewoo Lanos
+STR_DAEWOOLANOS_DESC            :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u  {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}E-TEC I4 benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_OPELASTRA_NAME              :Opel Astra J automobil
+STR_OPELASTRA_DESC              :{BUS} putnički automobil ({GOLD}5{BLACK} putnika), dostupan remont u {GOLD}2{BLACK} vreća pošte ili {GOLD}1{BLACK} kutija tereta{}A16XER benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_FIATPANDA_NAME              :Fiat Panda automobil
+STR_FIATPANDA_DESC              :Mali putnički automobil ({STRING}){}FIRE I4 benzinski motor, {UNSIGNED_WORD}ccm
+
+STR_GMC_NAME            :GMC CCKW ex-U.S. Army kamion
+STR_GMC_DESC            :{LORRY} univerzalni kamion, {GOLD}{UNSIGNED_WORD}{BLACK} putnika ({UNSIGNED_WORD} sjedećih mjesta, niski komfor){}ili do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta ({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte){}GMC dizel motor, 4420ccm
+
+STR_HANOMAGSS100_NAME   :Hanomag SS100 teški cestovni traktor
+STR_HANOMAGSS100_DESC   :{RED}{LORRY}{LORRY}{BLACK}Šleper, D85S dizel motor, 8550 ccm{}{RED}Nije dostupan remont{BLACK}, priključivanje/odvajanje prikolica putem naredbi u depou{}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta ili{}{GOLD}{UNSIGNED_WORD}{BLACK} putnika ({UNSIGNED_WORD} sjedećih mjesta, niski komfor)
+STR_HANOMAGSS100_PASS   :u poluprikolicu za putnike
+
+STR_LUBLIN51_NAME       :Lublin 51 mali kamion
+
+STR_LUBLIN51_DESC       :{LORRY} univerzalni kamion, {GOLD}{UNSIGNED_WORD}{BLACK} putnika ({UNSIGNED_WORD} sjedećih mjesta, niski komfor){}ili do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta ({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte){}M-51 benzinski motor, 3480ccm
+
+STR_UAZ_NAME            :UAZ SUV
+STR_UAZ_DESC            :{LORRY} univerzalni mali terenski SUV,{}{GOLD}{UNSIGNED_WORD}{BLACK} putnika ili {GOLD}{UNSIGNED_WORD}{BLACK}t tereta ({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte){}UMZ 451 MI benzinski motor, 2450ccm
+
+STR_VWT_NAME    :Volkswagen Transporter
+STR_VWT_DESC    :{LORRY} univerzalni kombi,{}{GOLD}{UNSIGNED_WORD}{BLACK} putnika{}ili {GOLD}{UNSIGNED_WORD}{BLACK}t tereta ({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte){}AAB dizel motor, 2370ccm
+
+
+STR_4HORSE_STAGE_COACH_NAME     :kočija
+STR_4HORSE_STAGE_COACH_DESC     :{BUS}{LORRY} dostupan remont u putnike, poštu i vrijednosnice
+STR_MVMB_SUFFIX         : kombi/minibus
+STR_FIAT618_DESC        :Fiat 118 benzinski motor
+STR_NYSAN59_DESC        :M-20 benzinski motor
+STR_NYSA522_DESC        :S-21 benzinski motor
+STR_MERCEDES_VARIO_DESC         :OM602 dizel motor
+STR_MERCEDES_SPRINTER_DESC              :OM646 dizel CR motor
+STR_MERCEDES_SPRINTER_TRAILER_DESC  :{RED}{LORRY}{LORRY}{BLACK}Lako komercijalno vozilo sa prikolicom{}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte).{}{GOLD}dostupan remont na stanici{BLACK}{}{STRING}, {UNSIGNED_WORD} ccm
+
+STR_MERCEDES_ATEGO_DESC  :{LORRY}Transporter za vozila{}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta.{}{GOLD}dostupan remont na stanici{BLACK}{}dizel motor OM 934, {UNSIGNED_WORD} ccm
+
+
+STR_LCV_SUFFIX          : pickup/teretni kombi
+STR_URSUSA_DESC         :S.P.A. benzinski motor
+STR_FIAT621L_DESC       :122B benzinski motor
+STR_ZUKA03_DESC         :S-21 benzinski motor
+STR_LUBLIN33_DESC       :Andoria 4C90 dizel motor
+STR_DZTPASAGON_DESC     :Andoria ADCR dizel motor
+STR_IVECODAILY6_DESC    :CNG motor
+STR_URSUSELVI_DESC      :{LORRY}Lako komercijalno vozilo (električni motori){}do {GOLD}{UNSIGNED_WORD}{BLACK}t tereta({GOLD}{UNSIGNED_WORD}{BLACK} vreća pošte).{}{GOLD}dostupan remont na stanici{BLACK}
+
+
+STR_GPT_SUFFIX          :kamion za razne terete
+STR_PZINZ703_DESC       :PZInż 725 motor na drvni plin
+STR_STAR20_DESC         :S42 benzinski motor
+STR_STAR25_DESC         :S472 benzinski motor
+STR_STAR200_DESC        :S359 dizel motor
+STR_STAR2000_DESC       :MAN dizel CR motor
+STR_STARTGL_DESC        :MAN MAN D0836LFL dizel CR motor
+
+STR_STTN_SUFFIX         :šleper
+STR_CHEVROLET157_DESC   :206.8 cu dizel motor
+STR_STAR_C21_DESC       :S42 benzinski motor
+STR_STAR_C28_DESC       :S530A1 dizel motor
+
+STR_STTM_SUFFIX         :moderni šleper
+STR_RENAULT_MAGNUM_DESC :Mack dizel motor
+STR_DAF95X_DESC :DAF dizel motor
+STR_RENAULT_MILLENIUM_DESC      :Volvo DXi 12 CR dizel motor
+STR_DAFXF105_DESC       :Paccar CR dizel motor
+
+STR_STTS_SUFFIX         :specijalni šleper
+
+STR_ZUBR_C90_DESC       :S-56 dizel motor
+STR_JELCZ_317_DESC      :SW-680 dizel motor
+STR_VOLVO_F12_DESC      :Volvo TD motor
+STR_VOLVO_FH12_DESC     :Volvo D12A dizel motor
+STR_VOLVO_FH13_DESC     :Volvo D13K dizel motor
+
+STR_KAMAZ5511_DESC      :K740 dizel motor
+STR_ACTROSMP1_DESC      :1840 dizel motor
+STR_ACTROSMP3_DESC      :1846 dizel motor
+
+STR_FIAT618_NAME                :Polski Fiat 618 {STRING}
+STR_NYSAN59_NAME                :Nysa N59 {STRING}
+STR_NYSA522_NAME                :Nysa 522 {STRING}
+STR_MERCEDES_VARIO_NAME         :Mercedes T2/Vario {STRING}
+STR_MERCEDES_SPRINTER_NAME      :Mercedes Sprinter {STRING}
+STR_MERCEDES_SPRINTER_TRAILER_NAME      :Mercedes Sprinter - kombi s prikolicom
+STR_MERCEDES_ATEGO_NAME         :Mercedes Atego - tegljač
+
+STR_URSUSA_NAME         :Ursus-A {STRING}
+STR_FIAT621L_NAME       :Polski Fiat 621L {STRING}
+STR_ZUKA03_NAME         :Zuk A03 {STRING}
+STR_LUBLIN33_NAME       :Lublin/Intrall {STRING}
+STR_DZTPASAGON_NAME     :DZT Pasagon {STRING}
+STR_IVECODAILY6_NAME    :Iveco Daily VI {STRING}
+STR_URSUSELVI_NAME      :Ursus ELVI {STRING}
+
+STR_PZINZ703_NAME       :PZInz-703 {STRING}
+STR_STAR20_NAME         :Star 20 {STRING}
+STR_STAR25_NAME         :Star 25 {STRING}
+STR_STAR200_NAME        :Star 200 {STRING}
+STR_STAR2000_NAME       :Star 2000 {STRING}
+STR_STARTGL_NAME        :Star TGL {STRING}
+
+STR_CHEVROLET157_NAME           :Chevrolet 157 {STRING}
+STR_STAR_C21_NAME               :Star C-21 {STRING}
+STR_STAR_C28_NAME               :Star C-28 {STRING}
+STR_RENAULT_MAGNUM_NAME         :Renault Magnum {STRING}
+STR_DAF95X_NAME                 :DAF 95X {STRING}
+STR_RENAULT_MILLENIUM_NAME      :Renault Magnum Millenium {STRING}
+STR_DAFXF105_NAME               :DAF XF 105 {STRING}
+
+STR_ZUBR_C90_NAME       :Zubr C90 {STRING}
+STR_JELCZ_317_NAME      :Jelcz 317 {STRING}
+STR_VOLVO_F12_NAME      :Volvo F12 {STRING}
+STR_VOLVO_FH12_NAME     :Volvo FH12 {STRING}
+STR_VOLVO_FH13_NAME     :Volvo FH13 {STRING}
+
+STR_DT_SUFFIX           :kiper
+STR_KAMAZ5511_NAME      :Kamaz 5511 {STRING}
+STR_ACTROSMP1_NAME      :Mercedes Actros Mp1 {STRING}
+STR_ACTROSMP3_NAME      :Mercedes Actros Mp3 {STRING}
+
+STR_NORMAL_POWER        :(Standardna snaga)
+STR_MORE_POWER          :(povećana snaga)
+STR_4HORSE_HEAVY_LOGGER_NAME    :teška konjska zaprega za trupce
+STR_4HORSE_HEAVY_LOGGER_DESC    :{RED}{LORRY}{LORRY}{BLACK} drveni kamion, dostupan remont: 2 ili 4 konja
+STR_PRAGAV3S_NAME       :Praga V3S šleper za trupce
+STR_PRAGAV3S_DESC       :Tatra 912 dizel motor, moguć remont u E359T
+STR_STAR266_NAME        :Star 266 kamion za trupce
+STR_STAR266_DESC        :{RED}{LORRY}{LORRY}{BLACK} Specijalizirani šleper za trupce sa hidrauličkom dizalicom,{}S359 dizel motor, {UNSIGNED_WORD} ccm, dostupan remont u E359T
+STR_SCANIA_S4_NAME      :Scania 114 C kamion za trupce
+STR_SCANIA_S4_DESC      :V8 DSC14 13 530 dizel CR motor
+STR_SCANIA_R730_NAME    :Scania R730 šleper za trupce
+STR_SCANIA_R730_DESC    :V8 DC16 103 730 dizel CR motor
+
+STR_JELCZ315_NAME       :Jelcz 315 - kamion sa pokrivenom prikolicom
+
+STR_JELCZ416_NAME       :Jelcz 416 - kamion sa pokrivenom prikolicom
+
+STR_MANTGA_NAME :MAN TGA šleper za kontejnere
+STR_MANTGA_DESC :D2866 dizel motor
+
+STR_HCPLOCOMOBILE1_NAME :HCP prvi parni traktor
+STR_HCPLOCOMOBILE1_DESC :{LORRY}{LORRY}{LORRY} Prvi lokomobil sa parnim motorom,{}moguć remont u najviše 3 prikolice{}(maks. {GOLD}{UNSIGNED_WORD}{BLACK} t žita ili {GOLD}{UNSIGNED_WORD}{BLACK} grla stoke)
+STR_HCPLOCOMOBILE_NAME  :HCP napredni parni traktor
+STR_HCPLOCOMOBILE_DESC  :{LORRY}{LORRY}{LORRY} lokomobil sa predgrijanim kompozitnim parnim strojem,{}dostupan remont u najviše 6 prikolica{}(maks. {GOLD}{UNSIGNED_WORD}{BLACK} t žita ili {GOLD}{UNSIGNED_WORD}{BLACK} grla stoke)
+STR_URSUSC45_DESC       :Max. 3 prikolice. Lanz-Bulldog dizel motor
+STR_URSUSC328_DESC      :Max. 2 "Autosan" prikolice. S-312 dizel motor
+STR_URSUSC330_DESC      :Max. 3 "Autosan" prikolice. S-4001 dizel motor
+STR_URSUSC360_DESC      :Max. 3 "Autosan" prikolice. S-4003 dizel motor
+STR_URSUSC1734_DESC     :Max. 2 "Pronar" prikolice. Martin Diesel UR-IV motor
+
+STR_URSUSC45_NAME       :Ursus C45
+STR_URSUSC328_NAME      :Ursus C328
+STR_URSUSC330_NAME      :Ursus C330
+STR_URSUSC360_NAME      :Ursus C360
+STR_URSUSC1734_NAME     :Ursus C1734

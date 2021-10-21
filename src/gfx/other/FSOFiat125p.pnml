@@ -1,0 +1,24 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// FSO Fiat 125p:
+spriteset(spriteset_FSOFiat125p_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(190) }
+
+spriteset(spriteset_FSOFiat125p_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(190) }
+spriteset(spriteset_FSOFiat125p_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(216) }
+spriteset(spriteset_FSOFiat125p_graphic3, "src/gfx/other/Cars.png") { template_spriteCars(242) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_FSOFiat125p_random_graphic) {
+    1: return spriteset_FSOFiat125p_graphic2;
+    1: return spriteset_FSOFiat125p_graphic1;
+    1: return spriteset_FSOFiat125p_graphic3;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_FSOFiat125p_graphic, cargo_subtype) {
+	0: return switch_spriteset_FSOFiat125p_random_graphic;
+	1: return spriteset_FSOFiat125p_graphic3;
+	2: return switch_spriteset_FSOFiat125p_random_graphic;
+	return CB_FAILED;
+}
+

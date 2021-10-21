@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Jelcz181 M, Jelcz181MB:
+spriteset(spriteset_Jelcz181M_purchase, "src/gfx/bus/Jelcz181M.png") { template_sprite_window_sideview12(58) }
+
+spriteset(spriteset_Jelcz181M_graphic1, "src/gfx/bus/Jelcz181M.png") { template_sprite6ab(8) }
+spriteset(spriteset_Jelcz181M_graphic2, "src/gfx/bus/Jelcz181M.png") { template_sprite6ab(33) } 

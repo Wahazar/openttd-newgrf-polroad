@@ -1,0 +1,66 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// trailers11h (2-axle trailers, for Hanomag SS-100):
+
+spriteset(emptystakes_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(8) }
+spriteset(bdmt_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(38) }
+
+spriteset(wood_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(68) }
+
+spriteset(wdpr_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(98) }
+
+// spriteset(vehi_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(638) }
+
+spriteset(good_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(128) }
+
+spriteset(oil__spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(158) }
+
+spriteset(milk_spriteset_trailers11h_graphic, "src/gfx/other/trailers11h.png") { template_sprite7(188) }
+
+spritegroup bdmt_spritegroup_trailers11h_graphic {
+    loaded:     [emptystakes_spriteset_trailers11h_graphic, bdmt_spriteset_trailers11h_graphic];
+    loading:    [emptystakes_spriteset_trailers11h_graphic, bdmt_spriteset_trailers11h_graphic];
+}
+
+spritegroup wood_spritegroup_trailers11h_graphic {
+    loaded:     [emptystakes_spriteset_trailers11h_graphic, wood_spriteset_trailers11h_graphic];
+    loading:    [emptystakes_spriteset_trailers11h_graphic, wood_spriteset_trailers11h_graphic];
+}
+
+spritegroup wdpr_spritegroup_trailers11h_graphic {
+    loaded:     [emptystakes_spriteset_trailers11h_graphic, wdpr_spriteset_trailers11h_graphic];
+    loading:    [emptystakes_spriteset_trailers11h_graphic, wdpr_spriteset_trailers11h_graphic];
+}
+
+//spritegroup vehi_spritegroup_trailers11h_graphic {
+//    loaded:     [emptyflat_spriteset_trailers11h_graphic, vehi_spriteset_trailers11h_graphic];
+//    loading:    [emptyflat_spriteset_trailers11h_graphic, vehi_spriteset_trailers11h_graphic];
+//}
+
+
+// check cargo for tanker subtype
+switch(FEAT_ROADVEHS, SELF, check_tanker_cargo_spriteset_trailers11h_graphic_switch, cargo_type_in_veh) {  
+WATR : return milk_spriteset_trailers11h_graphic;
+BEER : return milk_spriteset_trailers11h_graphic;
+MILK : return milk_spriteset_trailers11h_graphic;
+EOIL : return milk_spriteset_trailers11h_graphic;
+return oil__spriteset_trailers11h_graphic;
+}
+
+// check cargo for flat subtype
+switch(FEAT_ROADVEHS, SELF, flat_spriteset_trailers11h_graphic_switch, cargo_type_in_veh) {  
+BDMT : return bdmt_spritegroup_trailers11h_graphic;
+WOOD : return wood_spritegroup_trailers11h_graphic;
+WDPR : return wdpr_spritegroup_trailers11h_graphic;
+//VEHI : return vehi_spritegroup_trailers11h_graphic;
+//ENSP : return vehi_spritegroup_trailers11h_graphic;
+return good_spriteset_trailers11h_graphic;
+}
+
+// check cargo for liquid class
+switch(FEAT_ROADVEHS, SELF, check_liquid_cargo_class_spriteset_trailers11h_graphic_switch, hasbit(cargo_classes, CC_LIQUID)) {  
+1 : return check_tanker_cargo_spriteset_trailers11h_graphic_switch;
+return flat_spriteset_trailers11h_graphic_switch;
+}

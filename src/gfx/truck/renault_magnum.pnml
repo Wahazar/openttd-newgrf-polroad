@@ -1,0 +1,9 @@
+// part of Polish Road Set
+// Graphic by Sojita
+// NML code by McZapkie
+
+// Renault Magnum semi-trailer tractor unit:
+spriteset(spriteset_UrsusA_purchase, "src/gfx/truck/STTs.png") { template_sprite_window_sideviewSTT(125) }
+
+spriteset(spriteset_tractor_RenaultMagnum_graphic, "src/gfx/truck/STTs.png") { template_spriteSTT(125) }
+

@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Solaris_Urbino 12:
+spriteset(spriteset_Solaris_Urbino12_purchase, "src/gfx/bus/Solaris_Urbino12.png") { template_sprite_window_sideview6b(8) }
+
+spriteset(spriteset_Solaris_Urbino12_graphic, "src/gfx/bus/Solaris_Urbino12.png") { template_sprite6b(8) }
+

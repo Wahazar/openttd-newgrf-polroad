@@ -1,0 +1,81 @@
+// part of Polish Road Set
+// Graphic by McZapkie, Sojita
+// NML code by McZapkie
+
+// Mercedes Sprinter with trailer:
+
+
+/* */
+#define MercedesSprinter_trailer_maxloadmass 10
+#define MercedesSprinter_trailer_mass 3
+#define MercedesSprinter_trailer_vmax 110
+#define MercedesSprinter_trailer_displacement 2148
+
+spriteset(spriteset_MercedesSprinter_trailer_purchase, "src/gfx/truck/MercedesSprinter_trailer.png") { template_sprite_window_sideviewWLT(74) }
+
+spriteset(spriteset_MercedesSprinter_trailer1_graphic, "src/gfx/truck/MercedesSprinter_trailer.png") { template_sprite6(8) }
+spriteset(spriteset_MercedesSprinter_trailer2_graphic, "src/gfx/truck/MercedesSprinter_trailer.png") { template_sprite6(33) }
+
+switch (FEAT_ROADVEHS, SELF, consist_MercedesSprinter_trailer_articulated_graphic_switch, position_in_consist) { 
+    0 : return spriteset_MercedesSprinter_trailer1_graphic; 
+    1 : return spriteset_MercedesSprinter_trailer2_graphic; 
+} 
+
+switch (FEAT_ROADVEHS, SELF, switch_MercedesSprinter_trailer_articulated, extra_callback_info1) { 
+    1 : return MercedesSprinter_trailer; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, maxload_MercedesSprinter_trailer_switch, cargo_type_in_veh) {  
+        return min((MercedesSprinter_trailer_maxloadmass * param_load_multiplier*80/cargo_unit_weight)/10, 			MercedesSprinter_trailer_maxloadmass*param_load_multiplier*2)/2; 
+}  
+
+switch (FEAT_ROADVEHS, SELF, switch_MercedesSprinter_trailer_text, param_load_multiplier) {    
+	1 : return string(STR_MERCEDES_SPRINTER_TRAILER_DESC, MercedesSprinter_trailer_maxloadmass/2, MercedesSprinter_trailer_maxloadmass*2, string(STR_MERCEDES_SPRINTER_DESC), MercedesSprinter_trailer_displacement);   
+	2 : return string(STR_MERCEDES_SPRINTER_TRAILER_DESC, MercedesSprinter_trailer_maxloadmass, MercedesSprinter_trailer_maxloadmass*4, string(STR_MERCEDES_SPRINTER_DESC), MercedesSprinter_trailer_displacement);   
+	3 : return string(STR_MERCEDES_SPRINTER_TRAILER_DESC, MercedesSprinter_trailer_maxloadmass*3/2, MercedesSprinter_trailer_maxloadmass*6, string(STR_MERCEDES_SPRINTER_DESC), MercedesSprinter_trailer_displacement);   
+  return CB_FAILED;   
+}   
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, MercedesSprinter_trailer) { 
+	property { 
+	name:			   	string(STR_MERCEDES_SPRINTER_TRAILER_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1998, 1, 1);	    
+	model_life:     		VEHICLE_NEVER_EXPIRES; 
+	vehicle_life:		   	20; 
+	retire_early:			10; 
+	reliability_decay:	    	8; 
+	loading_speed:		  	12; 
+	cost_factor:		    	14;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((MercedesSprinter_trailer_mass + (MercedesSprinter_trailer_maxloadmass * param_load_multiplier)) * ((MercedesSprinter_trailer_displacement)/12 + (MercedesSprinter_trailer_vmax) * (MercedesSprinter_trailer_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	MercedesSprinter_trailer_vmax km/h;  
+	refittable_cargo_classes:      	bitmask(CC_EXPRESS, CC_MAIL, CC_PIECE_GOODS);
+	cargo_disallow_refit:		[WOOD, LVST]; 
+	non_refittable_cargo_classes:  	bitmask(CC_PASSENGERS, CC_BULK, CC_OVERSIZED, CC_ARMOURED);
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	110 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	MercedesSprinter_trailer_maxloadmass * param_load_multiplier / 4; 
+  	default_cargo_type:		GOOD; 
+	weight:			 	MercedesSprinter_trailer_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.12; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 4); 
+	sound_effect: 			SOUND_CAR_HORN_2;
+	length:      	    		6; 
+    } 
+    graphics { 
+	default:	    	consist_MercedesSprinter_trailer_articulated_graphic_switch;  
+	purchase:	   	spriteset_MercedesSprinter_trailer_purchase;  
+	articulated_part:	switch_MercedesSprinter_trailer_articulated; 
+	additional_text:        switch_MercedesSprinter_trailer_text;
+	cargo_capacity:		maxload_MercedesSprinter_trailer_switch;
+	colour_mapping:         switch_livery_subtype_mapping;      
+    }  
+ }
+}

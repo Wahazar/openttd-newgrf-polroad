@@ -1,0 +1,19 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Mavag Tr5:
+spriteset(spriteset_MavagTr5_purchase, "src/gfx/bus/MavagTr5.png") { [159,          44,       24,        11,         -14,         -6, ANIM]
+} 
+
+spriteset(spriteset_MavagTr5_graphic, "src/gfx/bus/MavagTr5.png") { 
+[38, 44, 7, 16, -3,-9, ANIM]
+[48, 44, 21, 16, -10,-8, ANIM]
+[72, 44, 24, 11, -10, -10, ANIM]
+[99, 44, 22, 16, -6,-6, ANIM]
+[124, 44, 7, 16, -3,-9, ANIM]
+[134, 44, 22, 16, -15,-6, ANIM]
+[159, 44, 24, 11, -10,-7, ANIM]
+[186, 44, 21, 16, -10,-8, ANIM]
+ }
+

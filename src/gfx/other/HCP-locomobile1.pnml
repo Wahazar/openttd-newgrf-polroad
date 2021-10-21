@@ -1,0 +1,169 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+
+// HCP locomobile (steam tractor):
+
+#define lokomobila1_mass 12
+
+spriteset(spriteset_lokomobila1_purchase, "src/gfx/other/lokomobila1.png") { template_sprite_window_sideviewFT(70) }
+
+spriteset(spriteset_lokomobila1_graphic0, "src/gfx/other/lokomobila1.png") { template_spriteFT(8) }
+spriteset(spriteset_lokomobila1_graphic1, "src/gfx/other/lokomobila1.png") { template_spriteFT(38) }
+
+
+switch (FEAT_ROADVEHS, SELF, switch_lokomobila1_text, param_load_multiplier) {    
+	1 : return string(STR_HCPLOCOMOBILE1_DESC, trailer11_maxloadmass * 3 / 2, trailer11_lvst * 3);   
+	2 : return string(STR_HCPLOCOMOBILE1_DESC, trailer11_maxloadmass * 3, trailer11_lvst * 6);    
+	3 : return string(STR_HCPLOCOMOBILE1_DESC, trailer11_maxloadmass * 9 / 2, trailer11_lvst * 9);    
+  return CB_FAILED;   
+}   
+ 
+
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_cap0, position_in_consist) {
+	0..3: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_cap1, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailer11_switch;
+	2..3: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_cap2, position_in_consist) {
+	0: return 0;
+	1..2: return maxload_trailer11_switch;
+	3: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_cap3, position_in_consist) {
+	0: return 0;
+	1..3: return maxload_trailer11_switch;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_capacity, cargo_subtype) {
+	0: switch_lokomobila1_cap0;
+	1: switch_lokomobila1_cap1;
+	2: switch_lokomobila1_cap2;
+	3: switch_lokomobila1_cap3;
+	return CB_FAILED;
+}
+
+
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_running_cost, cargo_subtype) { 
+return min(STAFF_RUNNING_COST + (lokomobila1_mass + cargo_subtype * trailer11_mass + cargo_subtype * trailer11_maxloadmass)*35/100, 255); 
+} 
+
+switch(FEAT_ROADVEHS, SELF, animated_lokomobila1_graphic_switch, motion_counter % 4) { 
+0..1 : return spriteset_lokomobila1_graphic0;
+return spriteset_lokomobila1_graphic1;
+}
+
+switch (FEAT_ROADVEHS, SELF, consist_lokomobila1_articulated_graphic_switch, position_in_consist) { 
+    0 : return animated_lokomobila1_graphic_switch; 
+    1 : return spriteset_check_trailer11_switch1; 
+    2 : return spriteset_check_trailer11_switch2; 
+    3 : return spriteset_check_trailer11_switch3;
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_check_length1, cargo_subtype) {
+	0: return 1;
+	1..3: return 5;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_check_length2, cargo_subtype) {
+	0..1: return 1;
+	2..3: return 5;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_check_length3, cargo_subtype) {
+	0..2: return 1;
+	3: return 5;
+	return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_lokomobila1_length, position_in_consist) { 
+    0 : return 4; 
+    1 : return switch_lokomobila1_check_length1; 
+    2 : return switch_lokomobila1_check_length2; 
+    3 : return switch_lokomobila1_check_length3; 
+return CB_FAILED;
+} 
+ 
+switch(FEAT_ROADVEHS, SELF, switch_lokomobila1_weight, cargo_subtype) {
+	0: return lokomobila1_mass;
+	1: return lokomobila1_mass + trailer11_mass;
+	2: return lokomobila1_mass + 2 * trailer11_mass;
+	3: return lokomobila1_mass + 3 * trailer11_mass;
+	return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, lokomobila1_articulated_switch, extra_callback_info1) {
+    1..3: return lokomobila1;
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_locomobile_visual_effect, position_in_consist) {
+	0: return visual_effect(VISUAL_EFFECT_STEAM, -3);
+return visual_effect(VISUAL_EFFECT_DISABLE, 0);
+}
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, lokomobila1) { 
+	property { 
+	name:			   	string(STR_HCPLOCOMOBILE1_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1860, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 55+12 : 55); 
+	vehicle_life:		   	10; 
+	retire_early:			2; 
+	reliability_decay:	    	25; 
+	loading_speed:		  	5; 
+	cost_factor:		    	27;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + (lokomobila1_mass + 2 * trailer11_mass + 2 * trailer11_maxloadmass)*35/100, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	10 km/h; 
+	refittable_cargo_classes:      	bitmask(CC_BULK, CC_PASSENGERS, CC_OVERSIZED); 
+	cargo_disallow_refit:		[TOUR]; 
+	cargo_allow_refit:		[LVST, WOOD];
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	trailer11_refitcost; 
+	cargo_age_period:	 	350; 
+	power:			  	26 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	trailer11_maxloadmass; 
+	default_cargo_type:		GRAI; 
+	weight:			 	lokomobila1_mass + 3 * trailer11_mass; 
+	tractive_effort_coefficient:    0.7; 
+	air_drag_coefficient:	   	1.0; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_STEAM, -3); 
+	sound_effect: SOUND_STEAM; 
+//	road_type:			OFFR;
+	length:      	    		4; 
+    } 
+
+    graphics { 
+	default:	    	consist_lokomobila1_articulated_graphic_switch;  
+	articulated_part:	lokomobila1_articulated_switch;
+	purchase:	   	spriteset_lokomobila1_purchase;   
+	running_cost_factor:	switch_lokomobila1_running_cost;
+	purchase_running_cost_factor: min(STAFF_RUNNING_COST + (lokomobila1_mass + 2 * trailer11_mass + 2 * trailer11_maxloadmass)*35/100, 255); 
+	cargo_subtype_text: 	switch_trailers3_subtype_text;
+	refit_cost:		switch_trailer11_refit_cost;
+	cargo_capacity:		switch_lokomobila1_capacity; 
+	length:			switch_lokomobila1_length;
+	weight:			switch_lokomobila1_weight;
+	additional_text:        switch_lokomobila1_text; 
+	colour_mapping:         switch_bulk_recolour;     
+	visual_effect:		switch_locomobile_visual_effect;
+	cargo_age_period:	low_passenger_comfort;
+    }  
+ }
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, lokomobila1) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

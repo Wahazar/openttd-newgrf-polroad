@@ -1,0 +1,193 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// trailer3mb (3-axle semitrailer modern):
+
+spriteset(mail_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(8) }
+// spriteset(emptyhopper_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(38) }
+
+spriteset(bulk3_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(68) }
+spriteset(bulk2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(98) }
+spriteset(bulk_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(128) }
+spriteset(cover2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(158) }
+spriteset(cover_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(188) }
+spriteset(emptyflat_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(218) }
+spriteset(bdmt2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(248) }
+spriteset(bdmt_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(278) }
+spriteset(bdmtready_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(308) }
+spriteset(wood3_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(338) }
+spriteset(wood2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(368) }
+spriteset(wood_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(398) }
+spriteset(woodready_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(428) }
+spriteset(wdpr3_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(458) }
+spriteset(wdpr2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(488) }
+spriteset(wdpr_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(518) }
+spriteset(stel2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(548) }
+spriteset(stel_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(578) }
+spriteset(emptyvehi_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(608) }
+spriteset(vehi_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(638) }
+
+spriteset(lvst_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(668) }
+
+spriteset(oil__spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(698) }
+spriteset(milk_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(728) }
+spriteset(food_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(758) }
+
+spriteset(emptybox_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(788) }
+spriteset(good2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(818) }
+spriteset(good_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(848) }
+spriteset(box_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(878) }
+
+spriteset(paper2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(908) }
+spriteset(paper_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(938) }
+
+spriteset(brick2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(968) }
+spriteset(brick_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(998) }
+
+//new sprites
+spriteset(stelbox2_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1028) }
+spriteset(stelbox_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1058) }
+spriteset(woodbox_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1088) }
+spriteset(oilbox_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1118) }
+spriteset(otherbox_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1148) }
+spriteset(otherflat_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1178) }
+spriteset(emptycont_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1208) }
+spriteset(fullcont_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1238) }
+spriteset(emptydump_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1268) }
+spriteset(bulk2dump_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1298) }
+spriteset(bulkdump_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1328) }
+spriteset(covedump_spriteset_trailers3mb_graphic, "src/gfx/truck/trailers3mb.png") { template_sprite7(1358) }
+
+spritegroup bulk_uncovered_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, bulk3_spriteset_trailers3mb_graphic, bulk2_spriteset_trailers3mb_graphic, bulk_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, bulk3_spriteset_trailers3mb_graphic, bulk2_spriteset_trailers3mb_graphic, bulk_spriteset_trailers3mb_graphic];
+}
+
+spritegroup bulk_covered_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, cover2_spriteset_trailers3mb_graphic, cover2_spriteset_trailers3mb_graphic, cover_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, bulk3_spriteset_trailers3mb_graphic, bulk2_spriteset_trailers3mb_graphic, bulk_spriteset_trailers3mb_graphic];
+}
+
+spritegroup bdmt_spritegroup_trailers3mb_graphic {
+    loaded:     [emptyflat_spriteset_trailers3mb_graphic, bdmt2_spriteset_trailers3mb_graphic, bdmtready_spriteset_trailers3mb_graphic];
+    loading:    [emptyflat_spriteset_trailers3mb_graphic, bdmt2_spriteset_trailers3mb_graphic, bdmt_spriteset_trailers3mb_graphic];
+}
+
+spritegroup wood_spritegroup_trailers3mb_graphic {
+    loaded:     [emptyflat_spriteset_trailers3mb_graphic, wood3_spriteset_trailers3mb_graphic, wood2_spriteset_trailers3mb_graphic, wood_spriteset_trailers3mb_graphic, woodready_spriteset_trailers3mb_graphic];
+    loading:    [emptyflat_spriteset_trailers3mb_graphic, wood3_spriteset_trailers3mb_graphic, wood2_spriteset_trailers3mb_graphic, wood_spriteset_trailers3mb_graphic];
+}
+
+spritegroup wdpr_spritegroup_trailers3mb_graphic {
+    loaded:     [emptyflat_spriteset_trailers3mb_graphic, wdpr3_spriteset_trailers3mb_graphic, wdpr2_spriteset_trailers3mb_graphic, wdpr_spriteset_trailers3mb_graphic];
+    loading:    [emptyflat_spriteset_trailers3mb_graphic, wdpr3_spriteset_trailers3mb_graphic, wdpr2_spriteset_trailers3mb_graphic, wdpr_spriteset_trailers3mb_graphic];
+}
+
+spritegroup stel_spritegroup_trailers3mb_graphic {
+    loaded:     [emptyflat_spriteset_trailers3mb_graphic, stel2_spriteset_trailers3mb_graphic, stel2_spriteset_trailers3mb_graphic, stel_spriteset_trailers3mb_graphic];
+    loading:    [emptyflat_spriteset_trailers3mb_graphic, emptyflat_spriteset_trailers3mb_graphic, stel2_spriteset_trailers3mb_graphic, stel_spriteset_trailers3mb_graphic];
+}
+
+spritegroup vehi_spritegroup_trailers3mb_graphic {
+    loaded:     [emptyvehi_spriteset_trailers3mb_graphic, vehi_spriteset_trailers3mb_graphic];
+    loading:    [emptyvehi_spriteset_trailers3mb_graphic, vehi_spriteset_trailers3mb_graphic];
+}
+
+
+spritegroup good_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, good_spriteset_trailers3mb_graphic, box_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, good2_spriteset_trailers3mb_graphic, good_spriteset_trailers3mb_graphic];
+}
+
+spritegroup papr_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, box_spriteset_trailers3mb_graphic, box_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, paper2_spriteset_trailers3mb_graphic, paper_spriteset_trailers3mb_graphic];
+}
+
+spritegroup brck_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, brick2_spriteset_trailers3mb_graphic, brick_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, brick2_spriteset_trailers3mb_graphic, brick_spriteset_trailers3mb_graphic];
+}
+
+//new sprite groups
+spritegroup woodbox_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, woodbox_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, woodbox_spriteset_trailers3mb_graphic];
+}
+
+spritegroup stelbox_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, stelbox_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, stelbox_spriteset_trailers3mb_graphic];
+}
+spritegroup oilbox_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, oilbox_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, oilbox_spriteset_trailers3mb_graphic];
+}
+spritegroup otherflat_spritegroup_trailers3mb_graphic {
+    loaded:     [emptyflat_spriteset_trailers3mb_graphic, otherflat_spriteset_trailers3mb_graphic];
+    loading:    [emptyflat_spriteset_trailers3mb_graphic, otherflat_spriteset_trailers3mb_graphic];
+}
+spritegroup otherbox_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, otherbox_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, otherbox_spriteset_trailers3mb_graphic];
+}
+spritegroup otherboxcover_spritegroup_trailers3mb_graphic {
+    loaded:     [emptybox_spriteset_trailers3mb_graphic, otherbox_spriteset_trailers3mb_graphic, box_spriteset_trailers3mb_graphic];
+    loading:    [emptybox_spriteset_trailers3mb_graphic, otherbox_spriteset_trailers3mb_graphic];
+}
+spritegroup cont_spritegroup_trailers3mb_graphic {
+    loaded:     [emptycont_spriteset_trailers3mb_graphic, fullcont_spriteset_trailers3mb_graphic];
+    loading:    [emptycont_spriteset_trailers3mb_graphic, fullcont_spriteset_trailers3mb_graphic];
+}
+spritegroup bulkdump_spritegroup_trailers3mb_graphic {
+    loaded:     [emptydump_spriteset_trailers3mb_graphic, bulk2dump_spriteset_trailers3mb_graphic, bulkdump_spriteset_trailers3mb_graphic];
+    loading:    [emptydump_spriteset_trailers3mb_graphic, bulk2dump_spriteset_trailers3mb_graphic, bulkdump_spriteset_trailers3mb_graphic];
+}
+spritegroup bulkdumpcover_spritegroup_trailers3mb_graphic {
+    loaded:     [emptydump_spriteset_trailers3mb_graphic, bulk2dump_spriteset_trailers3mb_graphic, bulkdump_spriteset_trailers3mb_graphic, covedump_spriteset_trailers3mb_graphic];
+    loading:    [emptydump_spriteset_trailers3mb_graphic, bulk2dump_spriteset_trailers3mb_graphic, bulkdump_spriteset_trailers3mb_graphic];
+}
+
+// check cargo for box subtype
+switch(FEAT_ROADVEHS, SELF, check_box_cargo_class_spriteset_trailers3mb_graphic_switch, hasbit(cargo_classes, CC_BULK) + 2 * hasbit(cargo_classes, CC_COVERED) + 4 * hasbit(cargo_classes, CC_LIQUID) + 8 * hasbit(cargo_classes, CC_REFRIGERATED) + 16 * hasbit(cargo_classes, CC_PIECE_GOODS)) {  
+1 : return bulk_uncovered_spritegroup_trailers3mb_graphic;
+2 : return box_spriteset_trailers3mb_graphic;
+3 : return bulk_covered_spritegroup_trailers3mb_graphic;
+4 : return oilbox_spritegroup_trailers3mb_graphic;
+8 : return box_spriteset_trailers3mb_graphic;
+16 : return otherbox_spritegroup_trailers3mb_graphic;
+24 : return box_spriteset_trailers3mb_graphic;
+return otherboxcover_spritegroup_trailers3mb_graphic;
+}
+switch(FEAT_ROADVEHS, SELF, box_spriteset_trailers3mb_graphic_switch, cargo_type_in_veh) {  
+GOOD : return good_spritegroup_trailers3mb_graphic;
+BDMT : return brck_spritegroup_trailers3mb_graphic;
+BRCK : return brck_spritegroup_trailers3mb_graphic;
+STEL : return stelbox_spritegroup_trailers3mb_graphic;
+WOOD : return woodbox_spritegroup_trailers3mb_graphic;
+GRAI : return bulk_covered_spritegroup_trailers3mb_graphic;
+WHEA : return bulk_covered_spritegroup_trailers3mb_graphic;
+MAIL : return good_spriteset_trailers3mb_graphic;
+PAPR : return papr_spritegroup_trailers3mb_graphic;
+return check_box_cargo_class_spriteset_trailers3mb_graphic_switch;
+}
+// check cargo for flat subtype//new sprites
+switch(FEAT_ROADVEHS, SELF, flat_spriteset_trailers3mb_graphic_switch, cargo_type_in_veh) {  
+BDMT : return bdmt_spritegroup_trailers3mb_graphic;
+STEL : return stel_spritegroup_trailers3mb_graphic;
+METL : return stel_spritegroup_trailers3mb_graphic;
+IRON : return stel_spritegroup_trailers3mb_graphic;
+WOOD : return wood_spritegroup_trailers3mb_graphic;
+WDPR : return wdpr_spritegroup_trailers3mb_graphic;
+VEHI : return vehi_spritegroup_trailers3mb_graphic;
+ENSP : return vehi_spritegroup_trailers3mb_graphic;
+return otherflat_spritegroup_trailers3mb_graphic;
+}
+// check cargo for dumper subtype
+switch(FEAT_ROADVEHS, SELF, dump_spriteset_trailers3mb_graphic_switch, hasbit(cargo_classes, CC_BULK) + 2 * hasbit(cargo_classes, CC_COVERED)) {  
+1 : return bulkdump_spritegroup_trailers3mb_graphic;
+3 : return bulkdumpcover_spritegroup_trailers3mb_graphic;
+return emptydump_spriteset_trailers3mb_graphic;
+}
+

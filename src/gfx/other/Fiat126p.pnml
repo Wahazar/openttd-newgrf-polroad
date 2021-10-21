@@ -1,0 +1,60 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Fiat126p 'maluch':
+spriteset(spriteset_Fiat126p_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(320) }
+
+spriteset(spriteset_Fiat126p_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(268) }
+spriteset(spriteset_Fiat126p_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(294) }
+spriteset(spriteset_Fiat126p_graphic3, "src/gfx/other/Cars.png") { template_spriteCars(320) }
+
+#define Fiat126p_pass_capacity 0
+#define Fiat126p_mass 1
+#define Fiat126p_speed 120
+#define Fiat126p_e_displacement 652
+
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_Fiat126p_graphic) {
+    2: return spriteset_Fiat126p_graphic1;
+    1: return spriteset_Fiat126p_graphic2;
+    1: return spriteset_Fiat126p_graphic3;
+}
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, Fiat126p) { 
+	property { 
+	name:			   	string(STR_FSO126P_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1973, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 47+4+18 : 47+4);
+	vehicle_life:		   	18; 
+	retire_early:			20; 
+	reliability_decay:	    	10; 
+	loading_speed:		  	1; 
+	cost_factor:		    	2;      
+	running_cost_factor:		0; 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Fiat126p_speed km/h;   
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	24 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	Fiat126p_pass_capacity; 
+	weight:			 	Fiat126p_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.01; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		3; 
+    } 
+    graphics { 
+	default:	    		switch_spriteset_Fiat126p_graphic;  
+	purchase:	   		spriteset_Fiat126p_purchase;   
+	additional_text:        	string(STR_FSO126P_DESC, string(STR_NOT_COMMMERCIAL), Fiat126p_e_displacement);    
+    } 
+ } 
+}
+
+

@@ -1,0 +1,82 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Tarpan Honker universal small truck:
+
+#define Honker_maxloadmass 1
+#define Honker_mass 2
+#define Honker_vmax 130
+#define Honker_pass_sitting 4
+#define Honker_pass_total 6
+
+spriteset(spriteset_Honker_purchase, "src/gfx/other/Honker.png") { template_spriteCars_window_sideview(8) }
+
+spriteset(spriteset_Honker_graphic, "src/gfx/other/Honker.png") { template_spriteCars(8) }
+
+
+switch(FEAT_ROADVEHS, SELF, maxload_Honker_switch, cargo_type_in_veh) {  	
+	PASS: return Honker_pass_total;  
+	TOUR: return Honker_pass_sitting;  
+	MAIL: return Honker_maxloadmass*2*8/4;  
+	GOOD: return Honker_maxloadmass*2*8/8;  
+	ENSP: return Honker_maxloadmass*2*8/10;    
+	FMSP: return Honker_maxloadmass*2*8/9;  
+	MNSP: return Honker_maxloadmass*2*8/5;  
+	GOLD: return Honker_maxloadmass*2*8/8;  
+        return Honker_maxloadmass;  
+}  
+
+switch(FEAT_ROADVEHS, SELF, switch_Honker_running_cost, cargo_type_in_veh) { 
+	PASS: return min(2 * STAFF_RUNNING_COST + ((Honker_mass) * (348 + 4 * (Honker_vmax) * (Honker_vmax)) * PETROL_ENGINE) >> 15, 255); 
+	return min(2 * STAFF_RUNNING_COST + ((Honker_mass + Honker_maxloadmass) * (245 + 4 * (Honker_vmax) * (Honker_vmax)) * PETROL_ENGINE) >> 15, 255); 
+} 
+
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, Honker) { 
+	property { 
+	name:			   	string(STR_HONKER_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1988, 1, 1);	    
+	model_life:     VEHICLE_NEVER_EXPIRES; 
+	vehicle_life:		   	20; 
+	retire_early:			9; 
+	reliability_decay:	    	20; 
+	loading_speed:		  	2; 
+	cost_factor:		    	26;      
+	running_cost_factor:	min(2 * STAFF_RUNNING_COST + ((Honker_mass) * (340 + (Honker_vmax) * (Honker_vmax)) * PETROL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	Honker_vmax km/h; 
+//	refittable_cargo_classes:      	bitmask(CC_PASSENGERS, CC_EXPRESS, CC_REFRIGERATED, CC_MAIL, CC_ARMOURED, CC_PIECE_GOODS); 
+	refittable_cargo_classes:      	ALL_NORMAL_CARGO_CLASSES; 
+	non_refittable_cargo_classes:  	bitmask(CC_OVERSIZED); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	115 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	Honker_maxloadmass; 
+	default_cargo_type:		PASS; 
+	weight:			 	Honker_mass; 
+	tractive_effort_coefficient:    1.0; 
+	air_drag_coefficient:	   	0.10; 
+	effect_spawn_model:      	EFFECT_SPAWN_MODEL_DIESEL;
+	sound_effect: SOUND_CAR_HORN; 
+	length:      	    		5; 
+    } 
+
+    graphics { 
+	default:	    	spriteset_Honker_graphic;  
+	purchase:	   	spriteset_Honker_purchase;   
+	running_cost_factor:	switch_Honker_running_cost;
+	cargo_capacity:		maxload_Honker_switch; 
+	additional_text:        string(STR_HONKER_DESC, Honker_pass_total, Honker_maxloadmass, Honker_maxloadmass*4); 
+	create_effect:		switch_low_diesel_smoke_effect;
+	colour_mapping:         switch_bulk_recolour;   
+	cargo_age_period:	low_passenger_comfort;  
+    }  
+ }
+}
+
+

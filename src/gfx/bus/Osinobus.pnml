@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Osinobus:
+spriteset(spriteset_Osinobus_purchase, "src/gfx/bus/Osinobus.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_Osinobus_graphic, "src/gfx/bus/Osinobus.png") { template_sprite6(8) }
+

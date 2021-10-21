@@ -1,0 +1,109 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// definition of local/suburban buses:
+
+
+#define BUS_LOCAL(BUS_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_len, sitpass, stdpass, basecomfort, doorwings) \
+\
+switch(FEAT_ROADVEHS, SELF, description_##BUS_Name##_switch, [ STORE_TEMP(string(STR_VARIABLE_BUS_COSTS, string(STR_VE_DESC), e_displacement, sitpass) |  \
+GET_COMFORT(basecomfort, 20, sitpass, (sitpass + stdpass)) << 16, 256), STORE_TEMP( \
+GET_LOADING_SPEED(doorwings, 20) << 16, 257) \
+ ] \
+) { \
+return string(STR_LOCAL_BUS); \
+} \
+\
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect_position, visual_effect_flag) {  \
+	VISUAL_EFFECT_DIESEL 	 : 	return switch_high_diesel_smoke_effect; \
+	VISUAL_EFFECT_DIESEL_LOW : 	return switch_low_diesel_smoke_effect;  \
+	return CB_FAILED;  \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect, ((reliability > 70) && (build_year > 1990))) {  \
+	0 : return switch_##BUS_Name##_visual_effect_position;  \
+	1 : return CB_FAILED;  \
+	return CB_FAILED;  \
+}  \
+\
+switch(FEAT_ROADVEHS, SELF, capacity_##BUS_Name##_touristic_switch, cargo_type_in_veh) {  \
+	TOUR: return sitpass;  \
+	PASS: return sitpass + stdpass;  \
+        return sitpass;  \
+}  \
+\
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_running_cost, current_speed) { \
+	0: return min(2 * STAFF_RUNNING_COST + basecomfort / 4 + (!vehicle_is_in_depot) * max(0,((v_mass) * (e_displacement / 4) * v_fuelsystem) >> 16), 255); \
+	return min(3 * STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)/365) + basecomfort / 4 + max(0,((v_mass) * (e_displacement / 3 + (current_speed) * (current_speed) * 15) * v_fuelsystem) >> 16), 255); \
+} \
+\
+if (param_allow_bus) { \
+ item(FEAT_ROADVEHS, BUS_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_LOCALBUS_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4;  \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	GET_LOADING_SPEED(doorwings, 0); \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:		min(3 * STAFF_RUNNING_COST + basecomfort / 4 + max(0,((v_mass) * (e_displacement / 3 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 16), 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	0; \
+	cargo_age_period:	 	GET_COMFORT(basecomfort, 10, sitpass, (sitpass + stdpass)); \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	sitpass + stdpass; \
+	default_cargo_type:		PASS; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.5; \
+	air_drag_coefficient:	   	v_airdrag; \
+	effect_spawn_model:      	EFFECT_SPAWN_MODEL_DIESEL; \
+	sound_effect: SOUND_BUS_START_PULL_AWAY_WITH_HORN; \
+	length:      	    		v_len; \
+    }  \
+    graphics {  \
+	default:	    	spriteset_##BUS_Name##_graphic;  \
+	purchase:	   	spriteset_##BUS_Name##_purchase;  \
+	cargo_subtype_text: 	switch_livery_subtype_text;  \
+	cargo_capacity:		capacity_##BUS_Name##_touristic_switch; \
+	additional_text:        return description_##BUS_Name##_switch; \
+	create_effect:		switch_##BUS_Name##_visual_effect;  \
+	colour_mapping:         switch_livery_subtype_mapping_PKS; \
+	purchase_running_cost_factor:	min(3 * STAFF_RUNNING_COST + basecomfort / 4 + max(0,((v_mass) * (e_displacement / 3 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 16), 255); \
+	running_cost_factor:	switch_##BUS_Name##_running_cost; \
+    }  \
+ } \
+}
+
+// #define BUS_LOCAL(BUS_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_len, sitpass, stdpass, basecomfort, doorwings) 
+
+#include "../src/gfx/bus/UrsusAW.pnml"
+BUS_LOCAL(UrsusAW, STR_URSUSAW_NAME, STR_URSUSAW_DESC, 1929, 1938, 0, 8, 25, 32, PETROL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 2873, 50, 29, 0.43, 2, 5, 22, 10, COMFORT_HARD, 2) 
+
+#include "../src/gfx/bus/Fiat618.pnml"
+BUS_LOCAL(Fiat618, STR_FIAT618_NAME, STR_FIAT618_DESC, 1936, 1952, 5, 15, 20, 27, PETROL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 1944, 60, 39, 0.30, 2, 4, 11, 5, COMFORT_SOFT, 2) 
+
+#include "../src/gfx/bus/StarN52.pnml"
+BUS_LOCAL(StarN52, STR_STARN52_NAME, STR_STARN52_DESC, 1951, 1959, 0, 8, 20, 30, PETROL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 4188, 70, 63, 0.25, 6, 5, 26, 5, COMFORT_HARD, 2) 
+
+#include "../src/gfx/bus/SanH01A.pnml"
+BUS_LOCAL(SanH01A, STR_SANH01A_NAME, STR_STARN52_DESC, 1954, 1963, 0, 10, 15, 36, PETROL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 4188, 75, 63, 0.17, 8, 5, 43, 7, COMFORT_SOFT, 2) 
+
+#include "../src/gfx/bus/Osinobus.pnml"
+BUS_LOCAL(Osinobus, STR_OSINOBUS_NAME, STR_OSINOBUS_DESC, 1960, 1981, 0, 12, 10, 28, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 6230, 80, 100, 0.3, 5, 5, 25, 15, COMFORT_HARD, 1) 
+
+#include "../src/gfx/bus/AutosanH9.pnml"
+BUS_LOCAL(AutosanH9, STR_AUTOSAN_H9_NAME, STR_AUTOSAN_H9_DESC, 1972, 2002, 10, 18, 5, 38, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 6540, 88, 103, 0.16, 13, 6, 38, 10, COMFORT_SOFT, 2) 
+
+#include "../src/gfx/bus/AutosanA1010T.pnml"
+BUS_LOCAL(AutosanA1010T, STR_AUTOSAN_A1010T_NAME, STR_AUTOSAN_A1010T_DESC, 2000, 0, 10, 18, 1, 47, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, 6700, 100, 195, 0.15, 15, 6, 43, 32, COMFORT_ACOND, 2) 
+
+
+
+

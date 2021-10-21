@@ -1,0 +1,135 @@
+/*
+ * This file is part of the PolRoads NewGRF.
+ * Graphic by Sojita, McZapkie
+ * NML code by McZapkie
+ * PolRoads is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 2 or - upon your discretion - any later version.
+ * PolRoad is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with PolRoad. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#define VERSION_NUMBER 52
+
+grf {
+	grfid: "MC\02\07";
+	name: string(STR_GRF_NAME, VERSION_NUMBER);
+	desc: string(STR_GRF_DESCRIPTION);
+	version: VERSION_NUMBER;
+	min_compatible_version: 51;
+
+    param {
+        param_purchase_cost {
+            type:   int;
+            min_value: 1;
+            max_value: 4;
+            def_value: 2;
+            name:   string(STR_PARAM_NAME_PURCHASE_COST);
+            desc:   string(STR_PARAM_DESC_PURCHASE_COST);
+            names: {
+                        1: string(STR_PARAM_COST_H);
+                        2: string(STR_PARAM_COST_N);
+                        3: string(STR_PARAM_COST_D);
+                        4: string(STR_PARAM_COST_Q);
+            };
+        }
+    }
+    param {
+        param_running_cost {
+            type:   int;
+            min_value: 0;
+            max_value: 3;
+            def_value: 1;
+            name:   string(STR_PARAM_NAME_RUNNING_COST);
+            desc:   string(STR_PARAM_DESC_RUNNING_COST);
+            names: {
+                        0: string(STR_PARAM_COST_H);
+                        1: string(STR_PARAM_COST_N);
+                        2: string(STR_PARAM_COST_D);
+                        3: string(STR_PARAM_COST_Q);
+            };
+        }
+    }
+    param {
+        param_load_multiplier {
+            type:   int;
+            min_value: 1;
+            max_value: 3;
+            def_value: 2;
+            name:   string(STR_PARAM_NAME_MAX_LOAD);
+            desc:   string(STR_PARAM_DESC_MAX_LOAD);
+            names: {
+                        1: string(STR_PARAM_LOAD_1);
+                        2: string(STR_PARAM_LOAD_2);
+                        3: string(STR_PARAM_LOAD_3);
+            };
+        }
+    }
+    param {
+        param_keep_old_vehs {
+            type: int;
+            min_value: 0;
+            max_value: 2;
+            def_value: 0;
+            name: string(STR_PARAM_NAME_MODEL_LIFE);
+            desc: string(STR_PARAM_DESC_MODEL_LIFE);
+            names: {
+                        0: string(STR_PARAM_MODEL_LIFE_REAL);
+                        1: string(STR_PARAM_MODEL_LIFE_KEEP);
+                        2: string(STR_PARAM_MODEL_LIFE_EXTEND);
+            };
+        }
+    }
+    param {
+        param_allow_slow_vehs {
+            type: bool;
+            def_value: 1;
+            name: string(STR_PARAM_NAME_ALLOW_SLOW_VEHS);
+            desc: string(STR_PARAM_DESC_ALLOW_SLOW_VEHS);
+        }
+    }
+    param {
+        param_allow_bus {
+            type: bool;
+            def_value: 1;
+            name: string(STR_PARAM_NAME_ALLOW_BUS);
+            desc: string(STR_PARAM_DESC_ALLOW_BUS);
+        }
+    }
+    param {
+        param_allow_van {
+            type: bool;
+            def_value: 1;
+            name: string(STR_PARAM_NAME_ALLOW_VAN);
+            desc: string(STR_PARAM_DESC_ALLOW_VAN);
+        }
+    }
+    param {
+        param_allow_truck {
+            type: bool;
+            def_value: 1;
+            name: string(STR_PARAM_NAME_ALLOW_TRUCK);
+            desc: string(STR_PARAM_DESC_ALLOW_TRUCK);
+        }
+    }
+    param {
+        param_allow_roads {
+            type: bool;
+            def_value: 1;
+            name: string(STR_PARAM_NAME_ALLOW_ROADS);
+            desc: string(STR_PARAM_DESC_ALLOW_ROADS);
+        }
+    }
+}
+
+disable_item(FEAT_ROADVEHS);
+
+traininfo_y_offset = 2;
+
+basecost {
+    PR_BUILD_VEHICLE_ROAD:     param_purchase_cost; //default: double base 
+    PR_RUNNING_ROADVEH:        param_running_cost-1; //default: normal base 
+}
+
+
+
+

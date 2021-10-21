@@ -1,0 +1,141 @@
+// part of Polish Road Set
+// Graphic by Sojita
+// NML code by McZapkie
+
+// PZInz 703:
+
+spriteset(spriteset_PZInz703_purchase, "src/gfx/truck/PZInz703.png") { template_sprite_window_sideview6(33) }
+spriteset(none_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(8) }
+spriteset(good_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(33) }
+spriteset(empty_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(58) }
+
+spriteset(cover_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(83) }
+spriteset(bulk2_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(108) }
+spriteset(bulk_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(133) }
+spriteset(emptyflat_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(158) }
+spriteset(emptyvehi_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(183) }
+spriteset(vehi_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(208) }
+spriteset(bdmt_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(233) }
+//spriteset(bdmt_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6() }
+spriteset(stel_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(258) }
+spriteset(stelbox_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(283) }
+spriteset(wood_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(308) }
+spriteset(woodbox_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(333) }
+spriteset(wdpr_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(358) }
+spriteset(wdprbox_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(383) }
+
+spriteset(lvst_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(408) }
+
+spriteset(food_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(433) }
+spriteset(oil__spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(458) }
+spriteset(milk_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(483) }
+
+spriteset(mail_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(508) }
+
+spriteset(valu_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(533) }
+
+spriteset(oilbox_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(558) }
+spriteset(otherflat_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(583) }
+spriteset(bdmtbox_spriteset_PZInz703_graphic, "src/gfx/truck/PZInz703.png") { template_sprite6(608) }
+
+spritegroup vehi_spritegroup_PZInz703_graphic {
+    loaded:     [emptyvehi_spriteset_PZInz703_graphic, vehi_spriteset_PZInz703_graphic];
+    loading:    [emptyvehi_spriteset_PZInz703_graphic, vehi_spriteset_PZInz703_graphic];
+}
+
+spritegroup bdmt_spritegroup_PZInz703_graphic {
+    loaded:     [emptyflat_spriteset_PZInz703_graphic, bdmt_spriteset_PZInz703_graphic];
+    loading:    [emptyflat_spriteset_PZInz703_graphic, bdmt_spriteset_PZInz703_graphic];
+}
+
+spritegroup stel_spritegroup_PZInz703_graphic {
+    loaded:     [emptyflat_spriteset_PZInz703_graphic, stel_spriteset_PZInz703_graphic];
+    loading:    [emptyflat_spriteset_PZInz703_graphic, stel_spriteset_PZInz703_graphic];
+}
+
+spritegroup wood_spritegroup_PZInz703_graphic {
+    loaded:     [emptyflat_spriteset_PZInz703_graphic, wood_spriteset_PZInz703_graphic];
+    loading:    [emptyflat_spriteset_PZInz703_graphic, wood_spriteset_PZInz703_graphic];
+}
+
+spritegroup wdpr_spritegroup_PZInz703_graphic {
+    loaded:     [emptyflat_spriteset_PZInz703_graphic, wdpr_spriteset_PZInz703_graphic];
+    loading:    [emptyflat_spriteset_PZInz703_graphic, wdpr_spriteset_PZInz703_graphic];
+}
+
+spritegroup good_spritegroup_PZInz703_graphic {
+    loaded:     [good_spriteset_PZInz703_graphic, good_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, good_spriteset_PZInz703_graphic];
+}
+
+spritegroup bulk_covered_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, bulk_spriteset_PZInz703_graphic, cover_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, bulk2_spriteset_PZInz703_graphic, bulk_spriteset_PZInz703_graphic];
+}
+
+spritegroup bulk_uncovered_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, bulk2_spriteset_PZInz703_graphic, bulk_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, bulk2_spriteset_PZInz703_graphic, bulk_spriteset_PZInz703_graphic];
+}
+
+spritegroup woodbox_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, woodbox_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, woodbox_spriteset_PZInz703_graphic];
+}
+spritegroup wdprbox_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, wdprbox_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, wdprbox_spriteset_PZInz703_graphic];
+}
+spritegroup stelbox_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, stelbox_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, stelbox_spriteset_PZInz703_graphic];
+}
+spritegroup bdmtbox_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, bdmtbox_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, bdmtbox_spriteset_PZInz703_graphic];
+}
+spritegroup oilbox_spritegroup_PZInz703_graphic {
+    loaded:     [empty_spriteset_PZInz703_graphic, oilbox_spriteset_PZInz703_graphic];
+    loading:    [empty_spriteset_PZInz703_graphic, oilbox_spriteset_PZInz703_graphic];
+}
+spritegroup otherflat_spritegroup_PZInz703_graphic {
+    loaded:     [emptyvehi_spriteset_PZInz703_graphic, otherflat_spriteset_PZInz703_graphic];
+    loading:    [emptyvehi_spriteset_PZInz703_graphic, otherflat_spriteset_PZInz703_graphic];
+}
+
+// check cargo for box subtype
+switch(FEAT_ROADVEHS, SELF, check_box_cargo_class_spriteset_PZInz703_graphic_switch, hasbit(cargo_classes, CC_BULK) + 2 * hasbit(cargo_classes, CC_COVERED) + 4 * hasbit(cargo_classes, CC_LIQUID) + 8 * hasbit(cargo_classes, CC_REFRIGERATED) + 16 * hasbit(cargo_classes, CC_PIECE_GOODS) + 16 * hasbit(cargo_classes, CC_ARMOURED)) {  
+1 : return bulk_uncovered_spritegroup_PZInz703_graphic;
+2 : return good_spriteset_PZInz703_graphic;
+3 : return bulk_covered_spritegroup_PZInz703_graphic;
+4 : return oilbox_spritegroup_PZInz703_graphic;
+8 : return good_spriteset_PZInz703_graphic;
+16 : return good_spritegroup_PZInz703_graphic;
+32 : return good_spriteset_PZInz703_graphic;
+return good_spritegroup_PZInz703_graphic;
+}
+switch(FEAT_ROADVEHS, SELF, box_spriteset_PZInz703_graphic, cargo_type_in_veh) {  
+BDMT : return bdmtbox_spritegroup_PZInz703_graphic;
+BRCK : return bdmtbox_spritegroup_PZInz703_graphic;
+STEL : return stelbox_spritegroup_PZInz703_graphic;
+IRON : return stelbox_spritegroup_PZInz703_graphic;
+METL : return stelbox_spritegroup_PZInz703_graphic;
+WOOD : return woodbox_spritegroup_PZInz703_graphic;
+WDPR : return wdprbox_spritegroup_PZInz703_graphic;
+GRAI : return bulk_covered_spritegroup_PZInz703_graphic;
+WHEA : return bulk_covered_spritegroup_PZInz703_graphic;
+MAIL : return good_spriteset_PZInz703_graphic;
+return check_box_cargo_class_spriteset_PZInz703_graphic_switch;
+}
+// check cargo for flat subtype
+switch(FEAT_ROADVEHS, SELF, flat_spriteset_PZInz703_graphic, cargo_type_in_veh) {  
+BDMT : return bdmt_spritegroup_PZInz703_graphic;
+STEL : return stel_spritegroup_PZInz703_graphic;
+IRON : return stel_spritegroup_PZInz703_graphic;
+METL : return stel_spritegroup_PZInz703_graphic;
+WOOD : return wood_spritegroup_PZInz703_graphic;
+WDPR : return wdpr_spritegroup_PZInz703_graphic;
+VEHI : return vehi_spritegroup_PZInz703_graphic;
+ENSP : return vehi_spritegroup_PZInz703_graphic;
+return otherflat_spritegroup_PZInz703_graphic;
+}

@@ -1,0 +1,149 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// GMC CCKW universal truck:
+
+#define GMC_maxloadmass 5
+#define GMC_mass 5
+#define GMC_vmax 72
+#define GMC_pass_sitting 16
+#define GMC_pass_standing 10
+#define GMC_pass_total GMC_pass_sitting + GMC_pass_standing
+
+spriteset(spriteset_GMC_purchase, "src/gfx/other/GMC.png") { template_sprite_window_sideview6(57) }
+
+spriteset(good_spriteset_GMC_graphic, "src/gfx/other/GMC.png") { template_sprite6(32) }
+spriteset(empty_spriteset_GMC_graphic, "src/gfx/other/GMC.png") { template_sprite6(57) }
+
+spriteset(pass_spriteset_GMC_graphic, "src/gfx/other/GMC.png") { template_sprite6(82) }
+
+spriteset(bulk_spriteset_GMC_graphic, "src/gfx/other/GMC.png") { template_sprite6(107) }
+spritegroup bulk_spritegroup_GMC_graphic {
+    loaded:     [empty_spriteset_GMC_graphic, bulk_spriteset_GMC_graphic];
+    loading:    [empty_spriteset_GMC_graphic, bulk_spriteset_GMC_graphic];
+}
+spritegroup grai_spritegroup_GMC_graphic {
+    loaded:     [empty_spriteset_GMC_graphic, good_spriteset_GMC_graphic];
+    loading:    [empty_spriteset_GMC_graphic, bulk_spriteset_GMC_graphic];
+}
+
+spriteset(wood_spriteset_GMC_graphic, "src/gfx/other/GMC.png") { template_sprite6(132) }
+spritegroup wood_spritegroup_GMC_graphic {
+    loaded:     [empty_spriteset_GMC_graphic, wood_spriteset_GMC_graphic];
+    loading:    [empty_spriteset_GMC_graphic, wood_spriteset_GMC_graphic];
+}
+
+
+spriteset(oil__spriteset_GMC_graphic, "src/gfx/other/GMC.png") { template_sprite6(157) }
+spritegroup oil__spritegroup_GMC_graphic {
+    loaded:     [empty_spriteset_GMC_graphic, oil__spriteset_GMC_graphic];
+    loading:    [empty_spriteset_GMC_graphic, oil__spriteset_GMC_graphic];
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_GMC_text, param_load_multiplier) {    
+	1 : return string(STR_GMC_DESC, GMC_pass_total, GMC_pass_sitting, GMC_maxloadmass/2, GMC_maxloadmass*2);   
+	2 : return string(STR_GMC_DESC, GMC_pass_total, GMC_pass_sitting, GMC_maxloadmass, GMC_maxloadmass*4);   
+	3 : return string(STR_GMC_DESC, GMC_pass_total, GMC_pass_sitting, GMC_maxloadmass*3/2, GMC_maxloadmass*6);   
+  return CB_FAILED;   
+}   
+ 
+switch(FEAT_ROADVEHS, SELF, good_check_GMC_graphic_switch, cargo_type_in_veh) {  
+	WOOD: 	return wood_spritegroup_GMC_graphic;  
+	PASS: 	return pass_spriteset_GMC_graphic;  
+	TOUR: 	return pass_spriteset_GMC_graphic;  
+	return good_spriteset_GMC_graphic;  
+}
+switch(FEAT_ROADVEHS, SELF, oil_check_GMC_graphic_switch, hasbit(cargo_classes,CC_LIQUID)) {  
+	1: 	return oil__spritegroup_GMC_graphic;  
+	return good_check_GMC_graphic_switch;  
+} 
+switch(FEAT_ROADVEHS, SELF, bulk_check_cover_GMC_graphic_switch, hasbit(cargo_classes,CC_COVERED) || (cargo_type_in_veh == GRAI)) {  
+	1: 	return grai_spritegroup_GMC_graphic;  
+	return bulk_spritegroup_GMC_graphic;  
+} 
+switch(FEAT_ROADVEHS, SELF, bulk_check_GMC_graphic_switch, hasbit(cargo_classes,CC_BULK) && (cargo_type_in_veh != WOOD)) {  
+	1: 	return bulk_check_cover_GMC_graphic_switch;  
+	return oil_check_GMC_graphic_switch;  
+}   
+
+switch(FEAT_ROADVEHS, SELF, maxload_GMC_switch, cargo_type_in_veh) {  	
+	PASS: return GMC_pass_total;  
+	TOUR: return GMC_pass_sitting;  
+	MAIL: return GMC_maxloadmass*param_load_multiplier*8/4;  
+	GOOD: return GMC_maxloadmass*param_load_multiplier*8/8;  
+	ENSP: return GMC_maxloadmass*param_load_multiplier*8/10;  
+	VEHI: return GMC_maxloadmass*param_load_multiplier*8/40;  
+	FMSP: return GMC_maxloadmass*param_load_multiplier*8/9;  
+	MNSP: return GMC_maxloadmass*param_load_multiplier*8/5;  
+	GOLD: return GMC_maxloadmass*param_load_multiplier*8/8;  
+	OIL_: return GMC_maxloadmass*param_load_multiplier*8/15;  
+	PETR: return GMC_maxloadmass*param_load_multiplier*8/15;  
+	RFPR: return GMC_maxloadmass*param_load_multiplier*8/15;  
+	GEAR: return 0;
+        return GMC_maxloadmass*param_load_multiplier/2;  
+}  
+
+switch(FEAT_ROADVEHS, SELF, switch_GMC_running_cost, cargo_type_in_veh) { 
+	PASS: return min(2 * STAFF_RUNNING_COST + ((GMC_mass) * (442 + 4 * (GMC_vmax) * (GMC_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	return min(STAFF_RUNNING_COST + ((GMC_mass + GMC_maxloadmass) * (442 + 4 * (GMC_vmax) * (GMC_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+} 
+
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, GMC) { 
+	property { 
+	name:			   	string(STR_GMC_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1944, 8, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 12+8+15 : 12+8); 
+	vehicle_life:		   	15; 
+	retire_early:			8; 
+	reliability_decay:	    	10; 
+	loading_speed:		  	4; 
+	cost_factor:		    	20;      
+	running_cost_factor:	min(2 * STAFF_RUNNING_COST + ((GMC_mass) * (442 + (GMC_vmax) * (GMC_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	GMC_vmax km/h; 
+	refittable_cargo_classes:      	ALL_NORMAL_CARGO_CLASSES; 
+//	cargo_disallow_refit:		[TOUR]; 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	76 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	GMC_maxloadmass; 
+	default_cargo_type:		PASS; 
+	weight:			 	GMC_mass; 
+	tractive_effort_coefficient:    0.8; 
+	air_drag_coefficient:	   	0.4; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	length:      	    		7; 
+//	road_type:			OFFR;
+	sound_effect: SOUND_TRUCK_START;
+    } 
+
+    graphics { 
+	default:	    	bulk_check_GMC_graphic_switch;  
+	purchase:	   	spriteset_GMC_purchase;   
+	running_cost_factor:	switch_GMC_running_cost;
+	cargo_capacity:		maxload_GMC_switch; 
+	additional_text:        switch_GMC_text; 
+	colour_mapping:         switch_bulk_recolour;   
+	cargo_age_period:	low_passenger_comfort;  
+//	sound_effect: return switch_jelczengine_sound; 
+    }  
+ }
+}
+
+
+if ((param_allow_van) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, GMC) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}
+
+
+

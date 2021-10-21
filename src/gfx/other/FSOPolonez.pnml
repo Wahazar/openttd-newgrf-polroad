@@ -1,0 +1,24 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// FSO Polonez:
+spriteset(spriteset_FSOPolonez_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(346) }
+
+spriteset(spriteset_FSOPolonez_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(346) }
+spriteset(spriteset_FSOPolonez_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(372) }
+spriteset(spriteset_FSOPolonez_graphic3, "src/gfx/other/Cars.png") { template_spriteCars(398) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_FSOPolonez_random_graphic) {
+    1: return spriteset_FSOPolonez_graphic2;
+    1: return spriteset_FSOPolonez_graphic1;
+    1: return spriteset_FSOPolonez_graphic3;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_FSOPolonez_graphic, cargo_subtype) {
+	0: return switch_spriteset_FSOPolonez_random_graphic;
+	1: return spriteset_FSOPolonez_graphic3;
+	2: return switch_spriteset_FSOPolonez_random_graphic;
+	return CB_FAILED;
+}
+

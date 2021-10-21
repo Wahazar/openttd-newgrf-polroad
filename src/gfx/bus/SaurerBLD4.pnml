@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Saurer BLD4:
+spriteset(spriteset_SaurerBLD4_purchase, "src/gfx/bus/SaurerBLD4.png") { template_sprite_window_sideview6b(8) }
+
+spriteset(spriteset_SaurerBLD4_graphic, "src/gfx/bus/SaurerBLD4.png") { template_sprite6b(8) }
+

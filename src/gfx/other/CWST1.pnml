@@ -1,0 +1,22 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// CWS T-1':
+spriteset(spriteset_CWST1_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(8) }
+
+spriteset(spriteset_CWST1_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(8) }
+spriteset(spriteset_CWST1_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(34) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_CWST1_random_graphic) {
+    1: return spriteset_CWST1_graphic2;
+    1: return spriteset_CWST1_graphic1;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_CWST1_graphic, cargo_subtype) {
+	0: return switch_spriteset_CWST1_random_graphic;
+	1: return spriteset_CWST1_graphic2;
+	2: return spriteset_CWST1_graphic1;
+	return CB_FAILED;
+}
+

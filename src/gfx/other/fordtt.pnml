@@ -1,0 +1,170 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Ford TT reinforced semi-truck/minibus:
+
+#define FordTT_maxloadmass 2
+#define FordTT_mass 1
+#define FordTT_vmax 35
+#define FordTT_pass 16
+
+// spritesets 
+spriteset(spriteset_FordTT_purchase, "src/gfx/other/FordTT.png") { template_sprite_window_sideview6(8) }
+
+spriteset(pass_spriteset_FordTT_graphic, "src/gfx/other/FordTT.png") { template_sprite6(8) }
+spriteset(mail_spriteset_FordTT_graphic, "src/gfx/other/FordTT.png") { template_sprite6(33) }
+spriteset(valu_spriteset_FordTT_graphic, "src/gfx/other/FordTT.png") { template_sprite6(58) }
+spriteset(good_spriteset_FordTT_graphic, "src/gfx/other/FordTT.png") { template_sprite6(83) }
+spriteset(food_spriteset_FordTT_graphic, "src/gfx/other/FordTT.png") { template_sprite6(108) }
+spriteset(empty_spriteset_FordTT_graphic, "src/gfx/other/FordTT.png") { template_sprite6(133) }
+
+switch(FEAT_ROADVEHS, SELF, good_amount_spriteset_FordTT_graphic_switch, cargo_count) {  
+	0: empty_spriteset_FordTT_graphic;  
+	return good_spriteset_FordTT_graphic;  
+} \
+switch(FEAT_ROADVEHS, SELF, food_check_spriteset_FordTT_graphic_switch, hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER)) {  
+	1: food_spriteset_FordTT_graphic;  
+	return good_amount_spriteset_FordTT_graphic_switch;  
+} 
+switch(FEAT_ROADVEHS, SELF, pass_check_spriteset_FordTT_graphic_switch, hasbit(cargo_classes, CC_PASSENGERS) ) {  
+	1: pass_spriteset_FordTT_graphic;  
+	return food_check_spriteset_FordTT_graphic_switch;  
+}
+switch(FEAT_ROADVEHS, SELF, spriteset_FordTT_graphic_switch, cargo_classes) {  
+	bitmask(CC_MAIL): 	return mail_spriteset_FordTT_graphic;  
+	bitmask(CC_ARMOURED): 	return valu_spriteset_FordTT_graphic;  
+	return pass_check_spriteset_FordTT_graphic_switch;  
+} 
+
+// add text 
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_text, param_load_multiplier) {    
+	1 : return string(STR_FORDTT_DESC, FordTT_pass, FordTT_maxloadmass/2, FordTT_maxloadmass*2);   
+	2 : return string(STR_FORDTT_DESC, FordTT_pass, FordTT_maxloadmass, FordTT_maxloadmass*4);   
+	3 : return string(STR_FORDTT_DESC, FordTT_pass, FordTT_maxloadmass*3/2, FordTT_maxloadmass*6);   
+  return CB_FAILED;   
+}   
+ 
+// refits
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_refit_from_box, (
+hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_EXPRESS) && 
+!(hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED)) && 
+!((extra_callback_info1 & 0xFF) == BEER) ) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+//milk, food etc., beer
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_refit_from_coolbox, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED ) || ((extra_callback_info1 & 0xFF) == BEER) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_refit_from_minibus, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_PASSENGERS) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_check_refrigerated, hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER) ) {
+   1 : switch_FordTT_refit_from_coolbox;
+   return switch_FordTT_refit_from_box;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_check_passengers, hasbit(cargo_classes, CC_PASSENGERS) ) {
+   1 : switch_FordTT_refit_from_minibus;
+   return switch_FordTT_check_refrigerated;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_refit_from_mailvan, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_MAIL) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_refit_from_armoured, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_ARMOURED) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_FordTT_refit_cost, cargo_classes ) {
+   bitmask(CC_MAIL) :  switch_FordTT_refit_from_mailvan;
+   bitmask(CC_ARMOURED) :  switch_FordTT_refit_from_armoured;
+   switch_FordTT_check_passengers;
+}
+
+// cargo subtype text 
+switch(FEAT_ROADVEHS, SELF, food_subtype_FordTT_text_switch, hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER)) {  
+	1: return string(STR_REEFER_SUBTYPE);  
+	return string(STR_BOX_SUBTYPE);  
+} 
+switch(FEAT_ROADVEHS, SELF, pass_subtype_FordTT_text_switch, hasbit(cargo_classes, CC_PASSENGERS) ) {  
+	1: return string(STR_MINIBUS_SUBTYPE);  
+	return food_subtype_FordTT_text_switch;  
+} 
+switch(FEAT_ROADVEHS, SELF, subtype_FordTT_text_switch, cargo_classes) {  
+	bitmask(CC_MAIL): 	return string(STR_MAIL_SUBTYPE);  
+	bitmask(CC_ARMOURED): 	return string(STR_ARMOURED_SUBTYPE);  
+	return pass_subtype_FordTT_text_switch;  
+}  
+ 
+// max load
+switch(FEAT_ROADVEHS, SELF, maxload_FordTT_switch, cargo_type_in_veh) { 
+	PASS: return FordTT_pass; 
+	TOUR: return FordTT_pass/2; 
+	MAIL: return FordTT_maxloadmass*param_load_multiplier*8/4;  
+	GOOD: return FordTT_maxloadmass*param_load_multiplier*8/8;  
+	ENSP: return FordTT_maxloadmass*param_load_multiplier*8/10;  
+	FMSP: return FordTT_maxloadmass*param_load_multiplier*8/9;  
+	MNSP: return FordTT_maxloadmass*param_load_multiplier*8/5;  
+	VALU: return FordTT_maxloadmass*param_load_multiplier*8/2;  
+	GOLD: return FordTT_maxloadmass*param_load_multiplier*8/8;  
+	DIAM: return FordTT_maxloadmass*param_load_multiplier*8/2;  
+        return FordTT_maxloadmass*param_load_multiplier/2;  
+}   
+
+
+if (param_allow_van) {
+ item(FEAT_ROADVEHS, FordTT) { 
+	property { 
+	name:			   	string(STR_FORDTT_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1917, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 16+9 : 16); 
+	vehicle_life:		   	9; 
+	retire_early:			0; 
+	reliability_decay:	    	25; 
+	loading_speed:		  	4; 
+	cost_factor:		    	15;      
+	running_cost_factor:		min(2 * STAFF_RUNNING_COST + max(0,((FordTT_mass+FordTT_maxloadmass) * (290 + (FordTT_vmax) * (FordTT_vmax)) * PETROL_ENGINE) >> 15), 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	FordTT_vmax km/h; 
+	refittable_cargo_classes:      	bitmask(CC_PASSENGERS, CC_EXPRESS, CC_REFRIGERATED, CC_MAIL, CC_ARMOURED, CC_PIECE_GOODS); 
+	non_refittable_cargo_classes:  	bitmask(CC_BULK, CC_OVERSIZED); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); 
+	refit_cost:		   	MVMB_REFIT_COST; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	15 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	FordTT_maxloadmass; 
+	default_cargo_type:		PASS; 
+	weight:			 	FordTT_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.6; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+	sound_effect: SOUND_CAR_HORN; 
+	length:      	    		4; 
+//	road_type:			OFFR;
+    } 
+    graphics { 
+	default:	    	spriteset_FordTT_graphic_switch;  
+	purchase:	   	spriteset_FordTT_purchase;   
+	cargo_capacity:		maxload_FordTT_switch;
+	refit_cost:		switch_FordTT_refit_cost; 
+	cargo_subtype_text:	subtype_FordTT_text_switch; 
+	additional_text:        switch_FordTT_text; 
+	colour_mapping:         switch_bulk_recolour;   
+	cargo_age_period:	low_passenger_comfort; 
+
+    }  
+ }
+}
+
+

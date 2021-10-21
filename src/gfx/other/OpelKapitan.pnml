@@ -1,0 +1,22 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// Opel Kapitan':
+spriteset(spriteset_OpelKapitan_purchase, "src/gfx/other/Cars.png") { template_spriteCars_window_sideview(60) }
+
+spriteset(spriteset_OpelKapitan_graphic1, "src/gfx/other/Cars.png") { template_spriteCars(60) }
+spriteset(spriteset_OpelKapitan_graphic2, "src/gfx/other/Cars.png") { template_spriteCars(86) }
+
+random_switch(FEAT_ROADVEHS, SELF, switch_spriteset_OpelKapitan_random_graphic) {
+    1: return spriteset_OpelKapitan_graphic2;
+    1: return spriteset_OpelKapitan_graphic1;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_OpelKapitan_graphic, cargo_subtype) {
+	0: return switch_spriteset_OpelKapitan_random_graphic;
+	1: return spriteset_OpelKapitan_graphic1;
+	2: return spriteset_OpelKapitan_graphic2;
+	return CB_FAILED;
+}
+

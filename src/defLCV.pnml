@@ -1,0 +1,157 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+//Light commercial vehicle switches
+//express cargo, not beer
+switch (FEAT_ROADVEHS, SELF, switch_LCV_refit_from_box, (
+hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_EXPRESS) && 
+!(hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED)) && 
+!((extra_callback_info1 & 0xFF) == BEER) ) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+//milk, food etc., beer
+switch (FEAT_ROADVEHS, SELF, switch_LCV_refit_from_coolbox, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_REFRIGERATED ) || ((extra_callback_info1 & 0xFF) == BEER) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_LCV_check_refrigerated, hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER) ) {
+   1 : switch_LCV_refit_from_coolbox;
+   return switch_LCV_refit_from_box;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_LCV_refit_from_mailvan, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_MAIL) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_LCV_refit_from_armoured, hasbit((extra_callback_info1 & 0xFFFF0000) >> 16, CC_ARMOURED) ) {
+   1 : return 0;
+   return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_LCV_refit_cost, cargo_classes ) {
+   bitmask(CC_MAIL) :  switch_LCV_refit_from_mailvan;
+   bitmask(CC_ARMOURED) :  switch_LCV_refit_from_armoured;
+   switch_LCV_check_refrigerated;
+}
+
+
+switch(FEAT_ROADVEHS, SELF, food_subtype_LCV_text_switch, hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER)) {  
+	1: return string(STR_REEFER_SUBTYPE);  
+	return string(STR_BOX_SUBTYPE);  
+} 
+switch(FEAT_ROADVEHS, SELF, subtype_LCV_text_switch, cargo_classes) {  
+	bitmask(CC_MAIL): 	return string(STR_MAIL_SUBTYPE);  
+	bitmask(CC_ARMOURED): 	return string(STR_ARMOURED_SUBTYPE);  
+	return food_subtype_LCV_text_switch;  
+}  
+
+
+//note to myself: maxload_##LCV_Name##_switch - capacity depend on cargo unit weight
+// Light Commercial Vehicle definition:
+
+#define FREIGHT_LCV(LCV_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_maxloadmass) \
+switch (FEAT_ROADVEHS, SELF, switch_##LCV_Name##_text, param_load_multiplier) {  \
+	1 : return string(STR_LCV_DESC, v_maxloadmass/2, v_maxloadmass*2, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS));  \
+	2 : return string(STR_LCV_DESC, v_maxloadmass, v_maxloadmass*4, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS));  \
+	3 : return string(STR_LCV_DESC, v_maxloadmass*3/2, v_maxloadmass*6, string(STR_VE_DESC), e_displacement, string(STR_VARIABLE_COSTS));  \
+  return CB_FAILED;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, good_amount_spriteset_##LCV_Name##_graphic_switch, cargo_count) {  \
+	0: empty_spriteset_##LCV_Name##_graphic;  \
+	return good_spriteset_##LCV_Name##_graphic;  \
+} \
+switch(FEAT_ROADVEHS, SELF, food_check_spriteset_##LCV_Name##_graphic_switch, hasbit(cargo_classes, CC_REFRIGERATED) || (cargo_type_in_veh == BEER)) {  \
+	1: food_spriteset_##LCV_Name##_graphic;  \
+	return good_amount_spriteset_##LCV_Name##_graphic_switch;  \
+} \
+switch(FEAT_ROADVEHS, SELF, spriteset_##LCV_Name##_graphic_switch, cargo_classes) {  \
+	bitmask(CC_MAIL): 	return mail_spriteset_##LCV_Name##_graphic;  \
+	bitmask(CC_ARMOURED): 	return valu_spriteset_##LCV_Name##_graphic;  \
+	return food_check_spriteset_##LCV_Name##_graphic_switch;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, maxload_##LCV_Name##_switch, cargo_type_in_veh) {  \
+	MAIL: return v_maxloadmass*param_load_multiplier*8/4;  \
+	GOOD: return v_maxloadmass*param_load_multiplier*8/8;  \
+	ENSP: return v_maxloadmass*param_load_multiplier*8/10;  \
+	FMSP: return v_maxloadmass*param_load_multiplier*8/9;  \
+	MNSP: return v_maxloadmass*param_load_multiplier*8/5;  \
+	VALU: return v_maxloadmass*param_load_multiplier*8/2;  \
+	GOLD: return v_maxloadmass*param_load_multiplier*8/8;  \
+	DIAM: return v_maxloadmass*param_load_multiplier*8/2;  \
+        return min(v_maxloadmass*param_load_multiplier,v_maxloadmass*param_load_multiplier*8/cargo_unit_weight);  \
+}  \
+switch(FEAT_ROADVEHS, SELF, switch_##LCV_Name##_running_cost, current_speed) { \
+	0: return min(!vehicle_is_in_depot * STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass) * (e_displacement / 10) * v_fuelsystem) >> 13), 255); \
+	return min(STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)/365) + max(0,((v_mass + v_maxloadmass) * ((e_displacement / 10) + (current_speed) * (current_speed) * 3) * v_fuelsystem) >> 13), 255); \
+} \
+if (param_allow_truck) { \
+item(FEAT_ROADVEHS, LCV_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_LCV_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	5; \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:	min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass) * ((e_displacement / 10) + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	bitmask(CC_EXPRESS, CC_REFRIGERATED, CC_MAIL, CC_ARMOURED, CC_PIECE_GOODS); \
+	non_refittable_cargo_classes:  	bitmask(CC_PASSENGERS, CC_BULK, CC_OVERSIZED); \
+	cargo_disallow_refit:		[WOOD]; \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC); \
+	refit_cost:		   	LCV_REFIT_COST; \
+	cargo_age_period:	 	STANDARD_COMFORT; \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	v_maxloadmass; \
+	default_cargo_type:		MAIL; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.5; \
+	air_drag_coefficient:	   	v_airdrag; \
+	visual_effect:      	  	visual_effect(visual_effect_flag, 4); \
+	sound_effect: SOUND_CAR_HORN; \
+	length:      	    		5; \
+    } \
+\
+    graphics { \
+	default:	    	spriteset_##LCV_Name##_graphic_switch;  \
+	purchase:	   	spriteset_##LCV_Name##_purchase;  \
+	refit_cost:		switch_LCV_refit_cost;  \
+	cargo_capacity:		maxload_##LCV_Name##_switch; \
+	additional_text:        switch_##LCV_Name##_text; \
+	colour_mapping:         switch_livery_subtype_mapping; \
+	cargo_subtype_text:	subtype_LCV_text_switch; /* switch_livery_subtype_text;*/ \
+	purchase_running_cost_factor: return min(STAFF_RUNNING_COST + max(0,((v_mass + v_maxloadmass) * (e_displacement / 10 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255); \
+	running_cost_factor:	switch_##LCV_Name##_running_cost; \
+    }  \
+ } \
+}
+
+//FREIGHT_LCV(LCV_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_maxloadmass)
+#include "../src/gfx/truck/ursusa.pnml"
+FREIGHT_LCV(UrsusA, STR_URSUSA_NAME, STR_URSUSA_DESC, 1928, 1938, 0, 9, 22, 14, PETROL_ENGINE, VISUAL_EFFECT_DIESEL, 2873, 45, 26, 0.4, 2, 4)
+
+#include "../src/gfx/truck/fiat621l.pnml"
+FREIGHT_LCV(Fiat621L, STR_FIAT621L_NAME, STR_FIAT621L_DESC, 1935, 1945, 0, 12, 17, 16, PETROL_ENGINE, VISUAL_EFFECT_DIESEL,  2952, 55, 34, 0.2, 3, 5)
+
+#include "../src/gfx/truck/zuka03.pnml"
+FREIGHT_LCV(ZukA03, STR_ZUKA03_NAME, STR_ZUKA03_DESC, 1958, 1998, 10, 18, 15, 11, PETROL_ENGINE, VISUAL_EFFECT_DIESEL, 2120, 85, 38, 0.12, 1, 3)
+
+#include "../src/gfx/truck/lublin33.pnml"
+FREIGHT_LCV(Lublin33, STR_LUBLIN33_NAME, STR_LUBLIN33_DESC, 1993, 2012, 10, 15, 10, 13, DIESEL_ENGINE, VISUAL_EFFECT_DISABLE, 2417, 120, 75, 0.07, 2, 4)
+
+#include "../src/gfx/truck/dztpasagon.pnml"
+FREIGHT_LCV(DZTPasagon, STR_DZTPASAGON_NAME, STR_DZTPASAGON_DESC, 2010, 2018, 10, 12, 13, 14, DIESEL_ENGINE_CR, VISUAL_EFFECT_DISABLE, 2636, 120, 86, 0.07, 2, 4)
+
+#include "../src/gfx/truck/ivecodaily6.pnml"
+FREIGHT_LCV(IvecoDaily6, STR_IVECODAILY6_NAME, STR_IVECODAILY6_DESC, 2014, 0, 0, 10, 12, 16, CNG_ENGINE, VISUAL_EFFECT_DISABLE, 3000, 130, 101, 0.05, 3, 6)
+
+

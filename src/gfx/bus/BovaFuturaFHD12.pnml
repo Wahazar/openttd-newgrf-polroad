@@ -1,0 +1,19 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Bova Futura FHD12:
+spriteset(spriteset_BovaFuturaFHD12_purchase, "src/gfx/bus/BovaFuturaFHD12.png") { template_sprite_window_sideview8c(8) }
+
+spriteset(spriteset_BovaFuturaFHD12_1cc_graphic, "src/gfx/bus/BovaFuturaFHD12.png") { template_sprite8c(8) }
+spriteset(spriteset_BovaFuturaFHD12_2cc_graphic, "src/gfx/bus/BovaFuturaFHD12_2cc.png") { template_sprite8c(8) }
+
+
+//metal graphic for polroad livery, plain for standard 2cc, Szwagropol graphic for real livery
+switch (FEAT_ROADVEHS, SELF, spriteset_BovaFuturaFHD12_graphic, cargo_subtype)
+{
+  0: return spriteset_BovaFuturaFHD12_1cc_graphic;
+  1: return spriteset_BovaFuturaFHD12_2cc_graphic;
+  2: return spriteset_BovaFuturaFHD12_1cc_graphic;
+     return spriteset_BovaFuturaFHD12_2cc_graphic;
+}  

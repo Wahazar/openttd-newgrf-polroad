@@ -1,0 +1,10 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+
+// SetraS419UL16:
+spriteset(spriteset_SetraS419UL16_purchase, "src/gfx/bus/SetraS419UL16.png") { template_sprite_window_sideview8c(8) }
+
+spriteset(spriteset_SetraS419UL16_graphic, "src/gfx/bus/SetraS419UL16.png") { template_sprite8c(8) }
+

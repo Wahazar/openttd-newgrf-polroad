@@ -1,0 +1,42 @@
+/*
+ * This file is part of the PolRoads NewGRF.
+ * Graphic by Sojita, McZapkie
+ * NML code by McZapkie
+ * PolRoads is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, version 2 or - upon your discretion - any later version.
+ * PolRoad is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with PolRoad. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+// for horses:
+
+switch(FEAT_ROADVEHS, SELF, switch_horseklap_sound, extra_callback_info1 & 0xFF) {
+SOUND_EVENT_START  : return sound("src/sfx/horse_kl8.wav");
+return CB_RESULT_NO_SOUND;
+}  
+
+switch(FEAT_ROADVEHS, SELF, switch_horsewhin_sound, extra_callback_info1 & 0xFF) {
+SOUND_EVENT_START  : return sound("src/sfx/horse_wh8.wav");
+return CB_RESULT_NO_SOUND;
+} 
+
+
+// for buses
+
+switch(FEAT_ROADVEHS, SELF, switch_jelczdoors_sound, extra_callback_info1 & 0xFF) {
+SOUND_EVENT_START  : return sound("src/sfx/Jelczdoors_ermfilm.wav");
+return CB_RESULT_NO_SOUND;
+}  
+
+// for trucks
+
+switch(FEAT_ROADVEHS, SELF, switch_heavytruck_sound, extra_callback_info1 & 0xFF) {
+SOUND_EVENT_START  : return sound("src/sfx/heavytruck_Robinhood76.wav");
+return CB_RESULT_NO_SOUND;
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_jelczengine_sound, extra_callback_info1 & 0xFF) {
+SOUND_EVENT_START  : return sound("src/sfx/Jelczengine_ermfilm.wav");
+return CB_RESULT_NO_SOUND;
+}  

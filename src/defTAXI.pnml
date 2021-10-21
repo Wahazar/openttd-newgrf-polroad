@@ -1,0 +1,87 @@
+// part of Polish Road Set 2
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// taxi car:
+
+#define TAXI(CAR_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, e_displacement, v_vmax, v_power, v_airdrag, v_mass, sitpass, mailcap) \
+\
+\
+switch(FEAT_ROADVEHS, SELF, switch_##CAR_Name##_cargo_capacity_switch, cargo_type_in_veh) {  \
+PASS: return sitpass; \
+MAIL: return mailcap; \
+return 1; \
+} \
+if (param_allow_van) { \
+ item(FEAT_ROADVEHS, CAR_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	     \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	2; \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:		(STAFF_RUNNING_COST + v_vmax/10 + e_displacement/100)/5; \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h;  \
+	cargo_allow_refit:		[GOOD]; \
+	refittable_cargo_classes:   	bitmask(CC_PASSENGERS, CC_ARMOURED, CC_MAIL); \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	0; \
+	cargo_age_period:	 	STANDARD_COMFORT; \
+	power:			  	v_power hp; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	sitpass; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.6; \
+	air_drag_coefficient:	   	v_airdrag; \
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); \
+	length:      	    		4; \
+    } \
+    graphics { \
+	default:	    		switch_spriteset_##CAR_Name##_graphic;  \
+	purchase:	   		spriteset_##CAR_Name##_purchase;  \
+	cargo_capacity:			switch_##CAR_Name##_cargo_capacity_switch; \
+	additional_text:        	string(STR_VE_DESC,e_displacement); \
+	cargo_subtype_text: 		switch_car_livery_subtype_text;      \
+	colour_mapping:         	switch_livery_subtype_mapping_WPK; \
+    } \
+ } \
+}
+
+// #define TAXI(CAR_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, e_displacement, v_vmax, v_power, v_airdrag, v_mass, sitpass, mailcap) 
+
+#include "../src/gfx/other/FordT.pnml"
+TAXI(FordT, STR_FORDT_NAME, STR_FORDT_DESC, 1906, 1931, 4, 12, 14, 5, 2900, 64, 20, 0.1, 1, 4, 2)
+
+#include "../src/gfx/other/CWST1.pnml"
+TAXI(CWST1, STR_CWST1_NAME, STR_CWST1_DESC, 1926, 1939, 0, 10, 20, 7, 2984, 105, 61, 0.07, 2, 5, 2)
+
+//#include "../src/gfx/other/Fiat508.pnml"
+//TAXI(Fiat508, STR_FIAT508_NAME, STR_FIAT508_DESC, 1932, 1955, 2, 15, 15, 9, 1089, 95, 32, 0.15, 1, 4, 2)
+
+#include "../src/gfx/other/OpelKapitan.pnml"
+TAXI(OpelKapitan, STR_OPELKAPITAN_NAME, STR_OPELKAPITAN_DESC, 1939, 1958, 5, 18, 10, 9, 2500, 126, 55, 0.04, 1, 5, 2)
+
+#include "../src/gfx/other/FSOWarszawa.pnml"
+TAXI(FSOWarszawa, STR_FSOWARSZAWA_NAME, STR_FSOWARSZAWA_DESC, 1951, 1974, 10, 20, 12, 8, 2100, 105, 50, 0.06, 1, 5, 2)
+
+#include "../src/gfx/other/FSOFiat125p.pnml"
+TAXI(FSOFiat125p, STR_FSO125P_NAME, STR_FSO125P_DESC, 1967, 1991, 15, 20, 10, 10, 1295, 140, 60, 0.03, 1, 5, 2)
+
+#include "../src/gfx/other/FSOPolonez.pnml"
+TAXI(FSOPolonez, STR_FSOPOLONEZ_NAME, STR_FSOPOLONEZ_DESC, 1978, 2003, 15, 18, 12, 11, 1398, 165, 105, 0.03, 1, 5, 2)
+
+#include "../src/gfx/other/DaewooLanos.pnml"
+TAXI(DaewooLanos, STR_DAEWOOLANOS_NAME, STR_DAEWOOLANOS_DESC, 1997, 2020, 15, 16, 10, 14, 1498, 172, 86, 0.02, 1, 5, 2)
+
+#include "../src/gfx/other/OpelAstra.pnml"
+TAXI(OpelAstra, STR_OPELASTRA_NAME, STR_OPELASTRA_DESC, 2009, 0, 0, 15, 8, 15, 1598, 188, 115, 0.01, 1, 5, 2)
+
+
+
+
+

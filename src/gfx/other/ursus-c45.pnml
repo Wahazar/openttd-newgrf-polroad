@@ -1,0 +1,172 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+
+// Ursus C330 farm tractor:
+
+
+#define UrsusC45_mass 4
+#define UrsusC45_vmax 17
+#define UrsusC45_edisp 10300
+
+
+spriteset(spriteset_UrsusC45_purchase, "src/gfx/other/UrsusC45.png") { template_sprite_window_sideviewFT(30) }
+
+spriteset(spriteset_UrsusC45_graphic, "src/gfx/other/UrsusC45.png") { template_spriteFT(8) }
+
+
+
+switch (FEAT_ROADVEHS, SELF, switch_UrsusC45_text, param_load_multiplier) {    
+	1 : return string(STR_FARM_TRACTOR_DESC, trailer11_maxloadmass * 3 / 2, trailer11_lvst * 3, string(STR_URSUSC45_DESC), UrsusC45_edisp);   
+	2 : return string(STR_FARM_TRACTOR_DESC, trailer11_maxloadmass * 3, trailer11_lvst * 6, string(STR_URSUSC45_DESC), UrsusC45_edisp);    
+	3 : return string(STR_FARM_TRACTOR_DESC, trailer11_maxloadmass * 9 / 2, trailer11_lvst * 9, string(STR_URSUSC45_DESC), UrsusC45_edisp);    
+  return CB_FAILED;   
+}   
+ 
+
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_cap0, position_in_consist) {
+	0..3: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_cap1, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailer11_switch;
+	2..3: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_cap2, position_in_consist) {
+	0: return 0;
+	1..2: return maxload_trailer11_switch;
+	3: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_cap3, position_in_consist) {
+	0: return 0;
+	1..3: return maxload_trailer11_switch;
+	return CB_FAILED;
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_capacity, cargo_subtype) {
+	0: switch_UrsusC45_cap0;
+	1: switch_UrsusC45_cap1;
+	2: switch_UrsusC45_cap2;
+	3: switch_UrsusC45_cap3;
+	return CB_FAILED;
+}
+
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_running_cost, cargo_subtype) { 
+return min(STAFF_RUNNING_COST + max(0,((UrsusC45_mass + cargo_subtype * 
+                                  (trailer11_mass + trailer11_maxloadmass)) * 
+(UrsusC45_edisp/10 + 4 * (UrsusC45_vmax) * (UrsusC45_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+} 
+
+
+switch (FEAT_ROADVEHS, SELF, consist_UrsusC45_articulated_graphic_switch, position_in_consist) { 
+    0 : return spriteset_UrsusC45_graphic; 
+    1 : return spriteset_check_trailer11_switch1; 
+    2 : return spriteset_check_trailer11_switch2; 
+    3 : return spriteset_check_trailer11_switch3; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_check_length, cargo_subtype) {
+	0: return 1;
+	1..3: return 5;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_check_length2, cargo_subtype) {
+	0..1: return 1;
+	2..3: return 5;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_check_length3, cargo_subtype) {
+	0..2: return 1;
+	3: return 5;
+	return CB_FAILED;
+}
+switch (FEAT_ROADVEHS, SELF, switch_UrsusC45_length, position_in_consist) { 
+    0 : return 4; 
+    1 : return switch_UrsusC45_check_length; 
+    2 : return switch_UrsusC45_check_length2; 
+    3 : return switch_UrsusC45_check_length3;
+return 1;
+} 
+
+
+
+switch (FEAT_ROADVEHS, SELF, UrsusC45_articulated_switch, extra_callback_info1) {
+    1..3: return UrsusC45;
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC45_weight, cargo_subtype) {
+	0: return UrsusC45_mass *4;
+	1: return (UrsusC45_mass + trailer11_mass) *4;
+	2: return (UrsusC45_mass + 2 * trailer11_mass) *4;
+	3: return (UrsusC45_mass + 3 * trailer11_mass) *4;
+	return CB_FAILED;
+}
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, UrsusC45) { 
+	property { 
+	name:			   	string(STR_URSUSC45_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1939, 9, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 19+8+15 : 19+8);  
+	vehicle_life:		   	15; 
+	retire_early:			8; 
+	reliability_decay:	    	12; 
+	loading_speed:		  	5; 
+	cost_factor:		    	22;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((UrsusC45_mass + 3 * trailer11_mass + 3 * trailer11_maxloadmass) * (UrsusC45_edisp/10 + 4 * (UrsusC45_vmax) * (UrsusC45_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	UrsusC45_vmax km/h; 
+	refittable_cargo_classes:      	bitmask(CC_BULK, CC_PASSENGERS, CC_OVERSIZED); 
+	cargo_disallow_refit:		[TOUR]; 
+	cargo_allow_refit:		[LVST, WOOD];
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	trailer11_refitcost; 
+	cargo_age_period:	 	350; 
+	power:			  	33 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	trailer11_maxloadmass; 
+	default_cargo_type:		GRAI; 
+	weight:			 	UrsusC45_mass + 3 * trailer11_mass; 
+	tractive_effort_coefficient:    0.6; 
+	air_drag_coefficient:	   	0.8; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+//	road_type:			OFFR;
+	 //sound("src/sfx/start_cmusounddesign.wav"); 
+	length:      	    		4; 
+    } 
+
+    graphics { 
+	default:	    	consist_UrsusC45_articulated_graphic_switch;  
+	articulated_part:	UrsusC45_articulated_switch;
+	purchase:	   	spriteset_UrsusC45_purchase;   
+	running_cost_factor:	switch_UrsusC45_running_cost;
+	purchase_running_cost_factor: min(STAFF_RUNNING_COST + ((UrsusC45_mass + 2 * trailer11_mass + 2 * trailer11_maxloadmass) * (UrsusC45_edisp/10 + 4 * (UrsusC45_vmax) * (UrsusC45_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	cargo_subtype_text: 	switch_trailers3_subtype_text;
+	refit_cost:		switch_trailer11_refit_cost;
+	cargo_capacity:		switch_UrsusC45_capacity; 
+	length:			switch_UrsusC45_length;
+	weight:			switch_UrsusC45_weight;
+	additional_text:        switch_UrsusC45_text; 
+	colour_mapping:         switch_bulk_recolour;     
+	visual_effect:		switch_farm_tractor_unit_effect;
+	cargo_age_period:	low_passenger_comfort;
+	sound_effect: return CB_RESULT_NO_SOUND;
+    }  
+ }
+}
+
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, UrsusC45) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

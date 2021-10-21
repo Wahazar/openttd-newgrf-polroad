@@ -1,0 +1,288 @@
+Version 5.1
+Bugfix, 
+loggers can carry WDPR
+
+Version 5.1
+Pedestrian precint zone added
+
+Version 5.0
+Fixed speeds and roadtypes introduction
+
+Version 4.9
+ - sand roads in tropic
+ - fixed capacities
+
+Version 4.7
+ - Tarpan Honker added
+ - New Road Types and restrictions implemented
+
+Version 4.6 
+ - fixed capacities
+ - Final release
+
+Version 4.5
+- Hanomag glitch fix
+- WOOD can be loaded into horse or tractor trailers
+- fixed running cost base
+- slow vehicles (horses, tractors) can go on OFRD only (not on HWAY).
+
+Version 4.4
+- Feature: Hanomag SS100 universal road tractor
+- bugfixes: some LCV power fixed, air drag fixed, semitrailer maxload display fixed
+
+Version 4.3
+- Feature: Fiat 666RN, Mercedes Atego, Mercedes Sprinter with trailer, horse rider, motorcycle
+- Change: small cars with 0 capacit and 0 running costs
+- bugfixes: MANTGA liveries, trailers placement, air drag, running costs
+
+Version 4.2
+- Feature: Cars, Fiat 618 minibus, Jelcz 416+trailer, Solaris Urbino 15E, UAZ469
+- Change: new FIRS cargoes fixed
+
+Version 4.1
+- Feature: Solaris Urbino 12E
+
+Version 3.9
+- Change: Bus costs 
+- Feature: Ford T car
+
+Version 3.8
+- Change: Cargo compatible with FIRS3
+- Feature: Jelcz315 - truck with trailer
+
+Version 3.7
+- Bugfix: Solaris Urbino sprites, corrected Semi-trailer assign to fruit/oil seeds, proper Actros sprites
+
+Version 3.6
+- Feature: dump trucks: Kamaz, Actros Mp1 and Mp3
+
+Version 3.5
+- Change: reduced running costs for vehicle hidden in depot (for timetable depot patch) 
+
+Version 3.4
+- Bugfix: bulk capacities corrected for GPT
+- Feature: Bova Futura Coach
+- Change: tweaking city bus running costs and comfort
+
+Version 3.3
+- Bugfix: milk capacities corrected for STTN
+- Feature: Solaris U18 Hybrid
+
+Version 3.1
+- Bugfix: some capacities corrected for STTN, STTM
+- Bugfix: Zubr and Jelcz STTS enabled
+
+Version 3.0
+- Bugfix: removed revenue from selling trailer
+
+Version 2.9
+- Bugfix: mail capacity for LCV corrected
+- Bugfix: reverted to standard sounds
+
+Version 2.8
+- Feature: Ikarus 608, Jelcz-Berliet Pr-100, Fiat 508 added
+
+Version 2.7
+- Change: max load depend on actual cargo weight
+
+Version 2.6
+- Change: new strings layout
+
+Version 2.4
+- Change: translations
+- Bugfix: trucks running costs/capacities in purchase menu
+- Change: sound definitions
+ 
+Version 2.3
+- Change: translations
+- Change: purchase/running costs fixtures
+- Change: fiacre gfx fixed
+
+Version 2.2
+- Bugfix: BDMT capacity for STTN/M, omnibus capacity, loading speed instead of time 
+- Change: string about variable runing costs
+- Change: GPT without PASS
+- Change: minibuses - more liveries
+
+Version 2.1
+- Change: addtional graphics for DAF semi-trailers
+- Feature: GPT: Star (MAN) TGL
+- Feature: MAN TGA with container trailer
+- Feature: MVMB:Iveco Daily VI CNG
+- Feature: MVMB:Mercedes T2/Vario
+- Change: increased power and decreased pax capacity for Mercedes Sprinter
+- Bugfix: adjustment of modern trailer for containers 
+
+Version 2.0
+- Feature: additional sprites for cargo in lowsided box/on flat trucks/trailers.
+- Change: Semi-trailer trucks with normal trailers divided onto STTN (old ones) and STTM (modern ones) with additional subtypes - bulk dumper and container carrier.
+- Change: GPT and STTN/STTM trucks can carry and utorefit to any cargo - subtype is choosen manually, capacity/unloading speed/cargo aging depend on subtype (i.e. body or trailer type).
+
+Version 1.9
+- Bugfix: STTS bulk subtype text
+- Change: STTS with null PASS instead of subtype, for empty tractor refit
+- Change: real life livery mapping for buses (WPK, PKS)
+- Bugfix: trailer purchase for some farm tractors
+- Feature: stage coach, droshky 
+- Change: running costs formula, loading speed information instead of loading time
+- Change: Jelcz PR110D image length
+- Change: variable running costs
+
+Version 1.8
+- Feature: local bus macro
+- Feature: local buses - Ursus AW, Saurer BLD4, San H01A, Osinobus, Autosan H9, Autosan A1010T
+- Feature: intercity bus macro
+- Feature: intercity buses - Jelcz 043 CAR, Jelcz PR110D, Van Hool Astromega DT927
+- Change: GMC olive-green repaint
+- Feature: Lublin 51 small truck
+
+Version 1.7
+- Feature: articulated city bus macro
+- Feature: articulated city buses - Jelcz AP02, Jelcz 021, Ikarus 280, Jelcz 181M, Solaris Urbino 18
+- Feature: city bus macro
+- Feature: city buses - Benz-Gaggenau, Somua, Mavag Tr5, San H01B, San H100B, Jelcz 272 MEX, Ikarus 260, Jelcz 120M, Jelcz 121M, Solaris Urbino 12, Solaris Urbino 15
+- Bugfix: MVMB capacity hint
+
+Version 1.6
+- Feature: horse omnibus 
+- Feature: parameters for excluding groups of vehicles from purchase menu
+
+Version 1.5
+- Feature: light universal Ford TT truck/minibus 
+
+Version 1.4
+- Feature: 2-axle trailers for Zubr and Jelcz 
+- Feature: Zubr C-90 semi-trailer truck STTS
+- Feature: Jelcz 317 semi-trailer truck STTS
+- Change: STTS subtype cargo switch instead of GEAR
+- Change: wood loggers (Praga, Scania etc) power refit
+
+Version 1.3
+- Feature: single horse small cart, modern (tyres)
+- Change: refit strings
+- Change: STTN subtype cargo switch instead of GEAR
+- Change: GPT subtype cargo switch instead of GEAR
+
+Version 1.2
+- Change: increased trailer number for HCP steam tractors
+- Bugfix: Ursus tractors weight and capacity info corrected
+- Bugfix: DAF XF95 sprite aligment
+
+Version 1.1
+- Bugfix: double horse animation switched off for 1 unit velocity to avoid shatter
+- Change: increased trailer number for Ursus farm tractors
+
+Version 1.0
+-------------
+- Feature: Praga V3S wood logging truck
+- Changes: PASS default for MVMB, visual effect define for MVMB and LCV, MAIL default for LCV,
+info about STTN limited bulk capacity
+- Bugfix: non-empty covered trailer when loading, 
+
+Version 0.9
+-------------
+- Feature: two-horse heavy cart
+- Feature: single horse small cart
+
+Version 0.8
+-------------
+- Feature: Star C21 semitrailer truck STTN
+- Feature: Chevrolet 157 semitrailer truck STTN
+- Feature: LCV: Fiat 621L
+- Change: Ursus A sprites
+- Bugfix: lack of autorefit CB for farm tractors.
+
+Version 0.7
+-------------
+- Feature: old type farm trailer
+- Feature: Farm tractor Ursus 45 (Lanz-Bulldog).
+- Change: Ursus 328 have two version of trailers.
+- Change: Mass of trailers included in total tractor mass.
+- Change: Switch for low comfort of passenger ride on GMC and farm trailers.
+- Feature: Two types of steam tractors (road locomotives).
+
+Version 0.6
+-------------
+- Feature: Farm trailer D77a and T672
+- Feature: Farm tactors Ursus 328, 330, 360 and 1734 added.
+- Feature: Scania S4 special log truck sprite added.
+
+Version 0.56
+-------------
+- Change: truck definition moved from main file to def. files.
+- Feature: Star C28 semitrailer truck STTN
+- Feature: Star 266 log trailer truck
+
+Version 0.55
+-------------
+- Feature: Mercedes Sprinter MVMB
+- Bugfix: STTN mass and max load
+
+Version 0.54
+-------------
+- Feature: GMC CCKW universal ex-US army truck sprite and code
+- Change: engine displacement takien into account for all vehicles running costs computations
+- Change: added piece_goods in LCV, express goods in MVMB 
+
+Version 0.53
+-------------
+- Feature: Volvo F12 and FH13 STTS
+- Change: STTS_short sprites for older type of 3a. trailers
+
+Version 0.52
+-------------
+- Change: STTS sprites and refit rules added
+- Volvo FH12 STTS
+- Change: GOOD as default cargo for STT
+
+Version 0.52
+-------------
+- Feature: GEAR pseudo-cargo definition
+- Change: GEAR instead of PASS for trucks
+
+Version 0.51
+-------------
+- Feature: STTS special semitrailers 3ax sprite
+
+Version 0.5
+-------------
+- Change: STTN redefinition similar to GPT
+- Change: trailer3n sprites
+- Feature: 4 STTNs
+- Change: WATR and MILK in one tank, OIL. PETR etc in other
+
+Version 0.4
+-------------
+- Change: simplified palette switches
+
+Version 0.32
+-------------
+- Feature: GPT: Star2000
+- Bugfix: STT sprite templates, air drag coeff.
+
+Version 0.31
+-------------
+- Feature: template: mail van/minibus   
+- Feature: MVMB: Nysa522
+- Feature: GPT: Star200
+- Feature: STT: Renault Magnum Millenium
+
+Version 0.3
+-------------
+- Feature: template: semi-trailers  
+- Feature: 3-axle semitrailers
+- Feature: template: Semi-Trailer Tractor  
+- Feature: STT: Renault Magnum
+
+Version 0.2
+-------------
+- Feature: template: General Purpose Medium Truck  
+- Feature: GMPT: PZInz703
+- Feature: template: General Purpose Truck
+- Feature: GPT: Star20, Star25
+
+Version 0.1
+-------------
+- Feature: Polish road vehicles: Light Commercial Vehicle template 
+- Feature: LCV: Ursus A
+

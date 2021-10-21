@@ -1,0 +1,82 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// one horse droshky:
+
+
+/* */
+#define onehorse_droshky_maxload 8
+#define onehorse_droshky_mass 1
+#define onehorse_droshky_speed 25
+
+spriteset(spriteset_horse_droshky_purchase, "src/gfx/bus/1horse_droshky.png") { template_sprite_window_sideview7(8) }
+
+spriteset(horse_droshky_walkstop_graphic, "src/gfx/bus/1horse_droshky.png") { template_sprite7(8) } 
+spriteset(horse_droshky_walk0_graphic, "src/gfx/bus/1horse_droshky.png") { template_sprite7(38) } 
+spriteset(horse_droshky_walk1_graphic, "src/gfx/bus/1horse_droshky.png") { template_sprite7(68) } 
+spriteset(horse_droshky_walk2_graphic, "src/gfx/bus/1horse_droshky.png") { template_sprite7(98) } 
+spriteset(horse_droshky_walk3_graphic, "src/gfx/bus/1horse_droshky.png") { template_sprite7(128) } 
+
+switch(FEAT_ROADVEHS, SELF, animated_horse_droshky_switch, motion_counter % 4) {  
+0 : return horse_droshky_walk0_graphic; 
+1 : return horse_droshky_walk1_graphic; 
+2 : return horse_droshky_walk2_graphic; 
+3 : return horse_droshky_walk3_graphic; 
+return CB_FAILED; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, velocity_horse_droshky_switch, current_speed) {   
+0 : return horse_droshky_walkstop_graphic; 
+return animated_horse_droshky_switch;  
+}
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, horse_droshky) { 
+	property { 
+	name:			   	string(STR_1HORSE_DROSHKY_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1820, 1, 1);	    
+	model_life:      		(param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 170+4+20 : 170+4); 
+	vehicle_life:		   	25; 
+	retire_early:			0; 
+	reliability_decay:	    	1; 
+	loading_speed:		  	2; 
+	cost_factor:		    	6;      
+	running_cost_factor:		min(4 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	onehorse_droshky_speed km/h;  
+	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	10 hp; 
+	running_cost_base:	   	RUNNING_COST_ELECTRIC; 
+	cargo_capacity:		 	onehorse_droshky_maxload; 
+	default_cargo_type:		PASS; 
+	weight:			 	onehorse_droshky_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.9; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+//	road_type:			OFFR;
+	sound_effect: SOUND_HORSE; 
+	length:      	    		7; 
+    } 
+    graphics { 
+	default:	    	velocity_horse_droshky_switch;  
+	purchase:	   	spriteset_horse_droshky_purchase;   
+	additional_text:        string(STR_1HORSE_DROSHKY_DESC);
+	cargo_subtype_text: 	switch_livery_subtype_text;  
+	colour_mapping:         switch_livery_subtype_mapping;       
+    }  
+ }
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, horse_droshky) { 
+	property { 
+	road_type:			OFFR;
+	model_life:     VEHICLE_NEVER_EXPIRES;
+    } 
+ }
+}

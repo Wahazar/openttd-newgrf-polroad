@@ -1,0 +1,86 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// horses common switches/graphics:
+
+
+spriteset(twohorse_walkstop_graphic, "src/gfx/other/2horse_walk.png") { template_sprite6(8) }
+spriteset(twohorse_walk0_graphic, "src/gfx/other/2horse_walk.png") { template_sprite6(33) }
+spriteset(twohorse_walk1_graphic, "src/gfx/other/2horse_walk.png") { template_sprite6(58) }
+spriteset(twohorse_walk2_graphic, "src/gfx/other/2horse_walk.png") { template_sprite6(83) }
+spriteset(twohorse_walk3_graphic, "src/gfx/other/2horse_walk.png") { template_sprite6(108) }
+
+spriteset(twohorse_rc_walkstop_graphic, "src/gfx/other/2horse_walk_rc.png") { template_sprite6(8) }
+spriteset(twohorse_rc_walk0_graphic, "src/gfx/other/2horse_walk_rc.png") { template_sprite6(33) }
+spriteset(twohorse_rc_walk1_graphic, "src/gfx/other/2horse_walk_rc.png") { template_sprite6(58) }
+spriteset(twohorse_rc_walk2_graphic, "src/gfx/other/2horse_walk_rc.png") { template_sprite6(83) }
+spriteset(twohorse_rc_walk3_graphic, "src/gfx/other/2horse_walk_rc.png") { template_sprite6(108) }
+
+spriteset(twohorse_rb_walkstop_graphic, "src/gfx/other/2horse_walk_rb.png") { template_sprite6(8) }
+spriteset(twohorse_rb_walk0_graphic, "src/gfx/other/2horse_walk_rb.png") { template_sprite6(33) }
+spriteset(twohorse_rb_walk1_graphic, "src/gfx/other/2horse_walk_rb.png") { template_sprite6(58) }
+spriteset(twohorse_rb_walk2_graphic, "src/gfx/other/2horse_walk_rb.png") { template_sprite6(83) }
+spriteset(twohorse_rb_walk3_graphic, "src/gfx/other/2horse_walk_rb.png") { template_sprite6(108) }
+
+switch(FEAT_ROADVEHS, SELF, animated_horsewalk_graphic_switch, motion_counter % 4) { 
+0 : return twohorse_walk0_graphic;
+1 : return twohorse_walk1_graphic;
+2 : return twohorse_walk2_graphic;
+3 : return twohorse_walk3_graphic;
+return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, velocity_horsewalk_graphic_switch, current_speed) { 
+0..1 : return twohorse_walkstop_graphic;
+return animated_horsewalk_graphic_switch;
+}
+
+switch(FEAT_ROADVEHS, SELF, animated_horsewalk_rc_graphic_switch, motion_counter % 4) { 
+0 : return twohorse_rc_walk0_graphic;
+1 : return twohorse_rc_walk1_graphic;
+2 : return twohorse_rc_walk2_graphic;
+3 : return twohorse_rc_walk3_graphic;
+return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, velocity_horsewalk_rc_graphic_switch, current_speed) { 
+0..1 : return twohorse_rc_walkstop_graphic;
+return animated_horsewalk_rc_graphic_switch;
+}
+
+switch(FEAT_ROADVEHS, SELF, animated_horsewalk_rb_graphic_switch, motion_counter % 4) { 
+0 : return twohorse_rb_walk0_graphic;
+1 : return twohorse_rb_walk1_graphic;
+2 : return twohorse_rb_walk2_graphic;
+3 : return twohorse_rb_walk3_graphic;
+return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, velocity_horsewalk_rb_graphic_switch, current_speed) { 
+0..1 : return twohorse_rb_walkstop_graphic;
+return animated_horsewalk_rb_graphic_switch;
+}
+
+random_switch(FEAT_ROADVEHS, SELF, switch_randomize1_first_horsepair_graphics) {
+    2: return velocity_horsewalk_rc_graphic_switch;
+    1: return velocity_horsewalk_graphic_switch;
+}
+random_switch(FEAT_ROADVEHS, SELF, switch_randomize2_first_horsepair_graphics) {
+    3: return velocity_horsewalk_graphic_switch;
+    1: return velocity_horsewalk_rc_graphic_switch;
+}
+random_switch(FEAT_ROADVEHS, SELF, switch_randomize3_first_horsepair_graphics) {
+    3: return velocity_horsewalk_rb_graphic_switch;
+    1: return velocity_horsewalk_rc_graphic_switch;
+}
+
+//for second horse pair:
+switch(FEAT_ROADVEHS, PARENT, animated_secondpair_horsewalk_graphic_switch, motion_counter % 4) { 
+0 : return twohorse_walk2_graphic;
+1 : return twohorse_walk3_graphic;
+2 : return twohorse_walk0_graphic;
+3 : return twohorse_walk1_graphic;
+return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, PARENT, velocity_secondpair_horsewalk_graphic_switch, current_speed) { 
+0..1 : return twohorse_walkstop_graphic;
+return animated_secondpair_horsewalk_graphic_switch;
+}

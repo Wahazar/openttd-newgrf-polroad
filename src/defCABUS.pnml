@@ -1,0 +1,132 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// definition of articulated city buses:
+
+#define ART_BUS_CITY(BUS_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag1, visual_effect_flag2, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_len1, v_len2, sitpass, stdpass, basecomfort, doorwings, loweredfloor) \
+\
+switch(FEAT_ROADVEHS, SELF, description_##BUS_Name##_switch, [ STORE_TEMP(string(STR_VARIABLE_BUS_COSTS, string(STR_VE_DESC), e_displacement, sitpass) |  \
+GET_COMFORT(basecomfort, loweredfloor, sitpass, (sitpass + stdpass)) << 16, 256), STORE_TEMP( \
+GET_LOADING_SPEED(doorwings, loweredfloor) << 16, 257) \
+ ] \
+) { \
+return string(STR_ART_CITY_BUS); \
+} \
+\
+switch (FEAT_ROADVEHS, SELF, switch_spriteset_##BUS_Name##_graphic, position_in_consist) { \
+    	0 : return spriteset_##BUS_Name##_graphic1; \
+    	1 : return spriteset_##BUS_Name##_graphic2; \
+	return CB_FAILED;  \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect_position1, visual_effect_flag1) {  \
+	VISUAL_EFFECT_DIESEL 	 : 	return switch_high_diesel_smoke_effect; \
+	VISUAL_EFFECT_DIESEL_LOW : 	return switch_low_diesel_smoke_effect;  \
+	return CB_FAILED;  \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect_position2, visual_effect_flag2) {  \
+	VISUAL_EFFECT_DIESEL 	 : 	return switch_high_diesel_smoke_effect; \
+	VISUAL_EFFECT_DIESEL_LOW : 	return switch_low_diesel_smoke_effect;  \
+	return CB_FAILED;  \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect_consist, position_in_consist) {  \
+	0 : return switch_##BUS_Name##_visual_effect_position1;  \
+	1 : return switch_##BUS_Name##_visual_effect_position2;  \
+	return CB_FAILED;  \
+}  \
+\
+switch(FEAT_ROADVEHS, SELF, capacity_##BUS_Name##_touristic_switch, cargo_type_in_veh) {  \
+	TOUR: return sitpass/2;  \
+	PASS: return (sitpass + stdpass)/2;  \
+        return sitpass/2;  \
+}  \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_visual_effect, ((reliability > 70) && (build_year > 1990))) {  \
+	0 : return switch_##BUS_Name##_visual_effect_consist;  \
+	return CB_FAILED;  \
+}  \
+switch (FEAT_ROADVEHS, SELF, switch_##BUS_Name##_length, position_in_consist) {  \
+    	0 : return v_len1;  \
+    	1 : return v_len2;  \
+	return CB_FAILED;  \
+}  \
+switch (FEAT_ROADVEHS, SELF, switch_##BUS_Name##_articulated, extra_callback_info1) { \
+    1 : return BUS_Name; \
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; \
+} \
+switch(FEAT_ROADVEHS, SELF, switch_##BUS_Name##_running_cost, current_speed) { \
+	0: return min(4 * STAFF_RUNNING_COST + basecomfort / 3 + (!vehicle_is_in_depot) * max(0,((v_mass) * (e_displacement / 5 ) * v_fuelsystem) >> 15), 255); \
+	return min(5 * STAFF_RUNNING_COST * max(1, (age_in_days - max_age_in_days - 365 * retire)/365) + basecomfort / 2 + max(0,((v_mass) * (e_displacement / 3 + (current_speed) * (current_speed) * 15) * v_fuelsystem) >> 15), 255); \
+} \
+if (param_allow_bus) { \
+ item(FEAT_ROADVEHS, BUS_Name) { \
+	property { \
+	name:			   	string(STR_V_NAME, string(STR_CITYBUS_SUFFIX)); \
+	climates_available:	 	POLROAD_CLIMATES; \
+	introduction_date:		date(idate, 1, 1);	    \
+	model_life:     ((param_keep_old_vehs == 1) || (odate == 0)) ? VEHICLE_NEVER_EXPIRES : (param_keep_old_vehs == 2) ? odate-idate+retire+4+v_life : odate-idate+retire+4; \
+	vehicle_life:		   	v_life; \
+	retire_early:			retire; \
+	reliability_decay:	    	v_reliab; \
+	loading_speed:		  	GET_LOADING_SPEED(doorwings, loweredfloor); \
+	cost_factor:		    	v_cost;      \
+	running_cost_factor:		min(5 * STAFF_RUNNING_COST + basecomfort / 2 + max(0,((v_mass) * (e_displacement / 3 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255);  \
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
+	speed:			  	v_vmax km/h; \
+	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); \
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
+	refit_cost:		   	0; \
+	cargo_age_period:	 	GET_COMFORT(basecomfort, loweredfloor, sitpass, (sitpass + stdpass)); \
+	power:			  	v_power kW; \
+	running_cost_base:	   	RUNNING_COST_ROADVEH; \
+	cargo_capacity:		 	(sitpass + stdpass) / 2; \
+	default_cargo_type:		PASS; \
+	weight:			 	v_mass; \
+	tractive_effort_coefficient:    0.35; \
+	air_drag_coefficient:	   	v_airdrag; \
+	effect_spawn_model:      	EFFECT_SPAWN_MODEL_DIESEL; \
+	length:      	    		v_len1; \
+	sound_effect: SOUND_BUS_START_PULL_AWAY; \
+    }  \
+    graphics {  \
+	default:	    	switch_spriteset_##BUS_Name##_graphic;  \
+	purchase:	   	spriteset_##BUS_Name##_purchase;  \
+	cargo_subtype_text: 	switch_livery_subtype_text;  \
+	additional_text:        return description_##BUS_Name##_switch; \
+	articulated_part:	switch_##BUS_Name##_articulated; \
+	cargo_capacity:		capacity_##BUS_Name##_touristic_switch; \
+	create_effect:	switch_##BUS_Name##_visual_effect;  \
+	length:			switch_##BUS_Name##_length; \
+	colour_mapping:         switch_livery_subtype_mapping_WPK; \
+purchase_running_cost_factor: 	min(5 * STAFF_RUNNING_COST + basecomfort / 2 + max(0,((v_mass) * (e_displacement / 3 + (v_vmax) * (v_vmax)) * v_fuelsystem) >> 15), 255);  \
+	running_cost_factor:	switch_##BUS_Name##_running_cost; \
+	/*sound_effect: return switch_jelczdoors_sound; */ \
+    }  \
+ } \
+} \
+if ((param_allow_bus) && HWAY_EXISTS)  { \
+ item(FEAT_ROADVEHS, BUS_Name) { \
+	property { \
+	road_type:			HWAY; \
+    } \
+ } \
+}
+
+//ART_BUS_CITY(BUS_Name, STR_V_NAME, STR_VE_DESC, idate, odate, retire, v_life, v_reliab, v_cost, v_fuelsystem, visual_effect_flag1, visual_effect_flag2, e_displacement, v_vmax, v_power, v_airdrag, v_mass, v_len1, v_len2, sitpass, stdpass, basecomfort, doorwings, loweredfloor) 
+
+#include "../src/gfx/bus/JelczAP02.pnml"
+ART_BUS_CITY(JelczAP02, STR_JELCZAP02_NAME, STR_JELCZ272MEX_DESC, 1962, 1972, 0, 10, 22, 81, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, VISUAL_EFFECT_DISABLE, 11781, 60, 118, 0.6, 15, 7, 6, 46, 96, COMFORT_SOFT, 6, 0) 
+
+#include "../src/gfx/bus/Jelcz021.pnml"
+ART_BUS_CITY(Jelcz021, STR_JELCZ021_NAME, STR_JELCZ272MEX_DESC, 1967, 1979, 5, 12, 17, 75, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, VISUAL_EFFECT_DISABLE, 11781, 65, 118, 0.4, 12, 6, 5, 42, 94, COMFORT_SOFT, 7, 0) 
+
+#include "../src/gfx/bus/Ikarus280.pnml"
+ART_BUS_CITY(Ikarus280, STR_IKARUS280_NAME, STR_IKARUS260_DESC, 1974, 1999, 10, 18, 16, 87, DIESEL_ENGINE, VISUAL_EFFECT_DIESEL_LOW, VISUAL_EFFECT_DISABLE, 10350, 70, 162, 0.4, 13, 6, 5, 29, 116, COMFORT_SOFT, 8, 0)
+
+#include "../src/gfx/bus/Jelcz181M.pnml"
+ART_BUS_CITY(Jelcz181M, STR_JELCZ181M_NAME, STR_JELCZ181M_DESC, 1996, 2009, 10, 16, 15, 132, DIESEL_ENGINE, VISUAL_EFFECT_DISABLE, VISUAL_EFFECT_DIESEL_LOW, 6871, 75, 191, 0.35, 15, 6, 5, 44, 136, COMFORT_SOFT, 8, 30)
+
+#include "../src/gfx/bus/Solaris_Urbino18.pnml"
+ART_BUS_CITY(Solaris_Urbino18, STR_URBINO18_NAME, STR_URBINO18_DESC, 1999, 2024, 10, 15, 14, 175, DIESEL_ENGINE, VISUAL_EFFECT_DISABLE, VISUAL_EFFECT_DIESEL, 9200, 75, 228, 0.3, 18, 6, 5, 34, 142, COMFORT_ACOND, 8, 100)
+
+#include "../src/gfx/bus/Solaris_Urbino18Hybrid.pnml"
+ART_BUS_CITY(Solaris_Urbino18Hybrid, STR_URBINO18H_NAME, STR_URBINO18H_DESC, 2016, 0, 0, 14, 16, 210, HYBRID_ENGINE, VISUAL_EFFECT_DISABLE, VISUAL_EFFECT_DIESEL, 6700, 75, 328, 0.4, 18, 6, 5, 34, 142, COMFORT_ACOND, 8, 100)

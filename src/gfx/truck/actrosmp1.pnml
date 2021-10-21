@@ -1,0 +1,21 @@
+// part of Polish Road Set
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Mp1 DT:
+spriteset(spriteset_ActrosMp1_purchase, "src/gfx/truck/ActrosMp1.png") { template_sprite_window_sideview7(8) }
+spriteset(none_spriteset_ActrosMp1_graphic, "src/gfx/truck/ActrosMp1.png") { template_sprite7(8) }
+spriteset(bulk2_spriteset_ActrosMp1_graphic, "src/gfx/truck/ActrosMp1.png") { template_sprite7(38) }
+spriteset(bulk_spriteset_ActrosMp1_graphic, "src/gfx/truck/ActrosMp1.png") { template_sprite7(68) }
+	
+spritegroup bulk_spritegroup_ActrosMp1_graphic {
+    loaded:     [none_spriteset_ActrosMp1_graphic, bulk2_spriteset_ActrosMp1_graphic, bulk_spriteset_ActrosMp1_graphic];
+    loading:    [none_spriteset_ActrosMp1_graphic, bulk2_spriteset_ActrosMp1_graphic, bulk_spriteset_ActrosMp1_graphic];
+}
+
+// check cargo 
+switch(FEAT_ROADVEHS, SELF, spriteset_ActrosMp1_graphic_switch, cargo_type_in_veh) {  
+return bulk_spritegroup_ActrosMp1_graphic;
+}
+
+

@@ -1,0 +1,133 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// one horse farm cart, wooden wheels:
+
+
+/* */
+#define onehorse_cart_maxloadmass 2
+#define onehorse_cart_mass 2
+#define onehorse_cart_pass 10
+#define onehorse_cart_speed 15
+
+spriteset(spriteset_onehorse_cart_purchase, "src/gfx/other/horsecart_empty.png") { template_sprite_window_sideview7(8) }
+
+#define ONEHORSE_ANIMATION_SWITCHES_DEFINITION(cargo, spritelink) \
+spriteset(cargo##_1horse_cart_walkstop_graphic, spritelink) { template_sprite7(8) } \
+spriteset(cargo##_1horse_cart_walk0_graphic, spritelink) { template_sprite7(38) } \
+spriteset(cargo##_1horse_cart_walk1_graphic, spritelink) { template_sprite7(68) } \
+spriteset(cargo##_1horse_cart_walk2_graphic, spritelink) { template_sprite7(98) } \
+spriteset(cargo##_1horse_cart_walk3_graphic, spritelink) { template_sprite7(128) } \
+switch(FEAT_ROADVEHS, SELF, animated_##cargo##_1horse_cart_switch, motion_counter % 4) {  \
+0 : return cargo##_1horse_cart_walk0_graphic; \
+1 : return cargo##_1horse_cart_walk1_graphic; \
+2 : return cargo##_1horse_cart_walk2_graphic; \
+3 : return cargo##_1horse_cart_walk3_graphic; \
+return CB_FAILED; \
+} \
+switch(FEAT_ROADVEHS, SELF, velocity_##cargo##_1horse_cart_switch, current_speed) {   \
+0 : return cargo##_1horse_cart_walkstop_graphic; \
+return animated_##cargo##_1horse_cart_switch;  \
+}
+
+ONEHORSE_ANIMATION_SWITCHES_DEFINITION(empty, "src/gfx/other/horsecart_empty.png")
+ONEHORSE_ANIMATION_SWITCHES_DEFINITION(bulk, "src/gfx/other/horsecart_bulk.png")
+ONEHORSE_ANIMATION_SWITCHES_DEFINITION(wood, "src/gfx/other/horsecart_wood.png")
+ONEHORSE_ANIMATION_SWITCHES_DEFINITION(cover, "src/gfx/other/horsecart_cover.png")
+
+
+switch(FEAT_ROADVEHS, SELF, check_bulk_1horse_cart_graphic_switch, 
+( hasbit(cargo_classes,CC_BULK) && (!hasbit(cargo_classes,CC_COVERED) && (cargo_type_in_veh!=GRAI)) )
+) {  
+	1: return velocity_bulk_1horse_cart_switch;  
+return velocity_cover_1horse_cart_switch;  //all other
+} 
+
+switch(FEAT_ROADVEHS, SELF, check_wood_1horse_cart_graphic_switch, cargo_type_in_veh) {  
+	WOOD: return velocity_wood_1horse_cart_switch;  
+return check_bulk_1horse_cart_graphic_switch;  
+} 
+
+switch(FEAT_ROADVEHS, SELF, onehorse_cart_graphic_switch, cargo_count) {  
+	0: return velocity_empty_1horse_cart_switch;  
+	return check_wood_1horse_cart_graphic_switch;  
+} 
+
+
+switch (FEAT_ROADVEHS, SELF, switch_onehorse_cart_text, param_load_multiplier) {    
+	1 : return string(STR_1HORSE_CART_DESC, onehorse_cart_pass, onehorse_cart_maxloadmass / 2);   
+	2 : return string(STR_1HORSE_CART_DESC, onehorse_cart_pass, onehorse_cart_maxloadmass);   
+	3 : return string(STR_1HORSE_CART_DESC, onehorse_cart_pass, onehorse_cart_maxloadmass * 3 / 2);   
+  return CB_FAILED;   
+}   
+
+switch(FEAT_ROADVEHS, SELF, maxload_onehorse_cart_switch, cargo_type_in_veh) {  	
+	PASS: return onehorse_cart_pass;
+	GEAR: return 0; 
+	MAIL: return onehorse_cart_maxloadmass*param_load_multiplier*8/4;  
+	GOOD: return onehorse_cart_maxloadmass*param_load_multiplier*8/8;  
+	ENSP: return onehorse_cart_maxloadmass*param_load_multiplier*8/10;  
+	VEHI: return onehorse_cart_maxloadmass*param_load_multiplier*8/40;  
+	FMSP: return onehorse_cart_maxloadmass*param_load_multiplier*8/9;  
+	MNSP: return onehorse_cart_maxloadmass*param_load_multiplier*8/5;  
+	LVST: return onehorse_cart_maxloadmass*param_load_multiplier*8/3;  
+	GOLD: return onehorse_cart_maxloadmass*param_load_multiplier*8/8;  
+	VALU: return onehorse_cart_maxloadmass*param_load_multiplier*8/2;  
+	OIL_: return onehorse_cart_maxloadmass*param_load_multiplier*8/15;  
+	PETR: return onehorse_cart_maxloadmass*param_load_multiplier*8/15;  
+	RFPR: return onehorse_cart_maxloadmass*param_load_multiplier*8/15;  
+        return onehorse_cart_maxloadmass*param_load_multiplier/2;  
+}   
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, onehorse_cart) { 
+	property { 
+	name:			   	string(STR_1HORSE_CART_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1700, 1, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES :  245+9;
+	vehicle_life:		   	25; 
+	retire_early:			9; 
+	reliability_decay:	    	1; 
+	loading_speed:		  	4; 
+	cost_factor:		    	4;      
+	running_cost_factor:	min(3 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	onehorse_cart_speed km/h;  
+	refittable_cargo_classes:      	ALL_NORMAL_CARGO_CLASSES; 
+	non_refittable_cargo_classes:   bitmask(CC_OVERSIZED, CC_HAZARDOUS);
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	10 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	onehorse_cart_maxloadmass; 
+	default_cargo_type:		PASS; 
+	weight:			 	onehorse_cart_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	0.9; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		7; 
+//	road_type:			OFFR;
+	sound_effect: SOUND_HORSE;
+    } 
+    graphics { 
+	default:	    	onehorse_cart_graphic_switch;  
+	purchase:	   	spriteset_onehorse_cart_purchase;   
+	cargo_capacity:		maxload_onehorse_cart_switch;
+	additional_text:        switch_onehorse_cart_text;
+	cargo_age_period:	low_passenger_comfort;
+	colour_mapping:         switch_bulk_recolour;  
+//	sound_effect: return switch_horseklap_sound;
+    }  
+ }
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, onehorse_cart) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

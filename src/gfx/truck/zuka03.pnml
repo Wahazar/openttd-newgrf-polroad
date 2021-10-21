@@ -1,0 +1,16 @@
+// part of Polish Road Set
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Zuk A03:
+spriteset(spriteset_ZukA03_purchase, "src/gfx/truck/ZukA03.png") { template_sprite_window_sideview6(8) }
+
+spriteset(good_spriteset_ZukA03_graphic, "src/gfx/truck/ZukA03.png") { template_sprite6(8) }
+spriteset(empty_spriteset_ZukA03_graphic, "src/gfx/truck/ZukA03.png") { template_sprite6(33) }
+
+spriteset(food_spriteset_ZukA03_graphic, "src/gfx/truck/ZukA03.png") { template_sprite6(58) }
+
+spriteset(mail_spriteset_ZukA03_graphic, "src/gfx/truck/ZukA03.png") { template_sprite6(83) }
+
+spriteset(valu_spriteset_ZukA03_graphic, "src/gfx/truck/ZukA03.png") { template_sprite6(108) }
+

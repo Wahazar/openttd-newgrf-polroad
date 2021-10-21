@@ -1,0 +1,17 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// MAN SD202 Hop on city touristic bus:
+spriteset(spriteset_MANSD202_purchase, "src/gfx/bus/MAN_SD202HopOn.png") { template_sprite_window_sideview8bd(8) }
+
+spriteset(spriteset_MANSD202HopOn_graphic, "src/gfx/bus/MAN_SD202HopOn.png") { template_sprite8bd(8) }
+spriteset(spriteset_MANSD202_standard_graphic, "src/gfx/bus/MAN_SD202.png") { template_sprite8bd(8) }
+
+
+//plain graphic for standard 2cc, HopOn graphic for others
+switch (FEAT_ROADVEHS, SELF, spriteset_MANSD202_graphic, cargo_subtype)
+{
+  1: return spriteset_MANSD202_standard_graphic;
+     return spriteset_MANSD202HopOn_graphic;
+}  

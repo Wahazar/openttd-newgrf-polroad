@@ -1,0 +1,162 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+
+// Ursus C328 farm tractor:
+
+#define UrsusC328_mass 2
+#define UrsusC328_vmax 20
+#define UrsusC328_edisp 1810
+
+
+spriteset(spriteset_UrsusC328_purchase, "src/gfx/other/UrsusC328.png") { template_sprite_window_sideviewFT(30) }
+
+spriteset(spriteset_UrsusC328_graphic, "src/gfx/other/UrsusC328.png") { template_spriteFT(8) }
+alternative_sprites(spriteset_UrsusC328_graphic,
+    ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/gfx/other/UrsusC328_x2.png")   { template_spriteFTx2(16) }
+
+
+switch (FEAT_ROADVEHS, SELF, switch_UrsusC328_text, param_load_multiplier) {    
+	1 : return string(STR_FARM_TRACTOR_DESC, trailerD47a_maxloadmass, trailerD47a_lvst, string(STR_URSUSC328_DESC), UrsusC328_edisp);   
+	2 : return string(STR_FARM_TRACTOR_DESC, trailerD47a_maxloadmass * 2, trailerD47a_lvst * 2, string(STR_URSUSC328_DESC), UrsusC328_edisp);    
+	3 : return string(STR_FARM_TRACTOR_DESC, trailerD47a_maxloadmass *3, trailerD47a_lvst * 3, string(STR_URSUSC328_DESC), UrsusC328_edisp);    
+  return CB_FAILED;   
+}   
+ 
+
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_cap0, position_in_consist) {
+	0..2: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_cap1, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailer11_switch;
+	2: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_cap2, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailerD47a_switch;
+	2: return 0;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_cap3, position_in_consist) {
+	0: return 0;
+	1: return maxload_trailerD47a_switch;
+	2: return maxload_trailerD47a_switch;
+	return CB_FAILED;
+}
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_capacity, cargo_subtype) {
+	0: switch_UrsusC328_cap0;
+	1: switch_UrsusC328_cap1;
+	2: switch_UrsusC328_cap2;
+	3: switch_UrsusC328_cap3;
+	return CB_FAILED;
+}
+
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_running_cost, cargo_subtype) { 
+	0: return min(STAFF_RUNNING_COST + max(0,((UrsusC328_mass) * (UrsusC328_edisp/10 + 4 * (UrsusC328_vmax) * (UrsusC328_vmax)) * DIESEL_ENGINE) >> 15), 255); 
+	1 : return min(STAFF_RUNNING_COST + ((UrsusC328_mass + trailer11_mass + trailer11_maxloadmass) * (UrsusC328_edisp/10 + 4 * (UrsusC328_vmax) * (UrsusC328_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	2..3 : return min(STAFF_RUNNING_COST + ((UrsusC328_mass + (cargo_subtype - 1) * trailerD47a_mass + (cargo_subtype - 1) * trailerD47a_maxloadmass) * (UrsusC328_edisp/10 + 4 * (UrsusC328_vmax) * (UrsusC328_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+} 
+
+
+switch(FEAT_ROADVEHS, SELF, check_UrsusC328_trailer_switch, cargo_subtype) {
+0 : return none_spriteset_empty;
+1 : return spriteset_check_trailer11_switch1; //old type cart trailer
+return spriteset_check_trailerD47a_switch1; //Autosan trailer
+}
+switch (FEAT_ROADVEHS, SELF, consist_UrsusC328_articulated_graphic_switch, position_in_consist) { 
+    0 : return spriteset_UrsusC328_graphic; 
+    1 : return check_UrsusC328_trailer_switch; //one old or one new
+    2 : return spriteset_check_trailerD47a_switch3;  //two new 
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_check_length, cargo_subtype) {
+	0: return 1;
+	1..3: return 6;
+	return CB_FAILED;
+}
+
+switch (FEAT_ROADVEHS, SELF, switch_UrsusC328_length, position_in_consist) { 
+    0 : return 4; 
+    1 : return switch_UrsusC328_check_length; 
+return 1;
+} 
+
+switch (FEAT_ROADVEHS, SELF, UrsusC328_articulated_switch, extra_callback_info1) {
+    1..2: return UrsusC328;
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+
+switch(FEAT_ROADVEHS, SELF, switch_UrsusC328_weight, cargo_subtype) {
+0 : return UrsusC328_mass * 4; //internal units t/4
+1 : return (UrsusC328_mass + trailer11_mass) *4; //old type horse cart trailer
+return (UrsusC328_mass + (cargo_subtype-1) * trailerD47a_mass) *4; //one or two Autosan trailers
+}
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, UrsusC328) { 
+	property { 
+	name:			   	string(STR_URSUSC328_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1956, 8, 1);	    
+	model_life:     (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 9+8+20 : 9+8);  
+	vehicle_life:		   	20; 
+	retire_early:			8; 
+	reliability_decay:	    	10; 
+	loading_speed:		  	5; 
+	cost_factor:		    	20;      
+	running_cost_factor:	min(STAFF_RUNNING_COST + ((UrsusC328_mass + trailerD47a_mass + trailerD47a_maxloadmass) * (UrsusC328_edisp/10 + 4 * (UrsusC328_vmax) * (UrsusC328_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	UrsusC328_vmax km/h; 
+	refittable_cargo_classes:      	bitmask(CC_BULK, CC_PASSENGERS, CC_OVERSIZED); 
+	cargo_disallow_refit:		[TOUR]; 
+	cargo_allow_refit:		[LVST, WOOD];
+	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); 
+	refit_cost:		   	trailerD47a_refitcost; 
+	cargo_age_period:	 	350; 
+	power:			  	19 kW; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	trailerD47a_maxloadmass; 
+	default_cargo_type:		GRAI; 
+	weight:			 	UrsusC328_mass + 2 * trailerD47a_mass; 
+	tractive_effort_coefficient:    0.5; 
+	air_drag_coefficient:	   	0.8; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DIESEL, 4); 
+//	road_type:			OFFR;
+ //sound("src/sfx/start_cmusounddesign2.wav"); 
+	length:      	    		4; 
+    } 
+
+    graphics { 
+	default:	    	consist_UrsusC328_articulated_graphic_switch;  
+	articulated_part:	UrsusC328_articulated_switch;
+	purchase:	   	spriteset_UrsusC328_purchase;   
+	running_cost_factor:	switch_UrsusC328_running_cost;
+	purchase_running_cost_factor: min(STAFF_RUNNING_COST + ((UrsusC328_mass + 2 * trailerD47a_mass + 2 * trailerD47a_maxloadmass) * (UrsusC328_edisp/10 + 4 * (UrsusC328_vmax) * (UrsusC328_vmax)) * DIESEL_ENGINE) >> 15, 255); 
+	cargo_subtype_text: 	switch_trailers3_subtype_text;
+	refit_cost:		switch_trailerD47a_refit_cost;
+	cargo_capacity:		switch_UrsusC328_capacity; 
+	length:			switch_UrsusC328_length;
+	weight:			switch_UrsusC328_weight;
+	additional_text:        switch_UrsusC328_text; 
+	colour_mapping:         switch_bulk_recolour;     
+	visual_effect:		switch_farm_tractor_unit_effect;
+	cargo_age_period:	low_passenger_comfort;
+	sound_effect: return CB_RESULT_NO_SOUND;
+    }  
+ }
+}
+
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, UrsusC328) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

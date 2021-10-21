@@ -1,0 +1,9 @@
+// part of Polish Road Set 2
+// Graphic by Sojita, McZapkie
+// NML code by McZapkie
+
+// Star N52:
+spriteset(spriteset_StarN52_purchase, "src/gfx/bus/StarN52.png") { template_sprite_window_sideview6(8) }
+
+spriteset(spriteset_StarN52_graphic, "src/gfx/bus/StarN52.png") { template_sprite6(8) }
+

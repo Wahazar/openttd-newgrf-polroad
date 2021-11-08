@@ -138,7 +138,7 @@ if (param_allow_slow_vehs) {
 	weight:			 	lokomobila_mass + 6 * trailer11_mass; 
 	tractive_effort_coefficient:    0.9; 
 	air_drag_coefficient:	   	1.0; 
-	visual_effect:      	  	visual_effect(VISUAL_EFFECT_STEAM, -3); 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_STEAM, -2); 
 	sound_effect: SOUND_STEAM; 
 //	road_type:			OFFR;
 	length:      	    		4; 

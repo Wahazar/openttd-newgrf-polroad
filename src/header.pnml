@@ -8,7 +8,7 @@
  * See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with PolRoad. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define VERSION_NUMBER 52
+#define VERSION_NUMBER 53
 
 grf {
 	grfid: "MC\02\07";

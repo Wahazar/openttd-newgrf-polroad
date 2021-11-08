@@ -50,7 +50,7 @@ if (param_allow_slow_vehs) {
 	reliability_decay:	    	5; 
 	loading_speed:		  	GET_LOADING_SPEED(1, 0);  
 	cost_factor:		    	12;      
-	running_cost_factor:	min(5 * STAFF_RUNNING_COST /10, 255); 
+	running_cost_factor:	min(4 * STAFF_RUNNING_COST /10, 255); 
 	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
 	speed:			  	twohorse_omnibus_speed km/h;  
 	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); 

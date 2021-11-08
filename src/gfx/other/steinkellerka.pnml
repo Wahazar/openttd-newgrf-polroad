@@ -58,7 +58,7 @@ if (param_allow_slow_vehs) {
 	reliability_decay:	    	20; 
 	loading_speed:		  	4; 
 	cost_factor:		    	21;      
-	running_cost_factor:	min(9 * STAFF_RUNNING_COST /10, 255); 
+	running_cost_factor:	min(8 * STAFF_RUNNING_COST /10, 255); 
 	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
 	speed:			  	horse_stage_coach_speed km/h;  
 	cargo_allow_refit:		[PASS]; 
@@ -67,7 +67,7 @@ if (param_allow_slow_vehs) {
 	refit_cost:		   	0; 
 	cargo_age_period:	 	STANDARD_COMFORT; 
 	power:			  	40 hp; 
-	running_cost_base:	   	RUNNING_COST_ELECTRIC; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
 	cargo_capacity:		 	horse_stage_coach_capacity; 
 	weight:			 	horse_stage_coach_mass; 
 	tractive_effort_coefficient:    1; 

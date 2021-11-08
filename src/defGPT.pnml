@@ -71,7 +71,7 @@ switch(FEAT_ROADVEHS, SELF, maxload_##GPT_Name##_subtype_switch, cargo_subtype) 
 		|| hasbit(cargo_classes, CC_EXPRESS) ) * 80 / cargo_unit_weight \
 		+ (hasbit(cargo_classes, CC_BULK)) * 80 / 20   \
 		+ (cargo_classes == bitmask(CC_LIQUID)) * 80/32 )/10,  \
-		10 * param_load_multiplier); \
+		8 * param_load_multiplier); \
  \
   ID_FLAT : min((v_maxloadmass*param_load_multiplier * 80 /cargo_unit_weight * ((hasbit(cargo_classes, CC_PIECE_GOODS) || hasbit(cargo_classes, CC_EXPRESS)) && !(hasbit(cargo_classes, CC_COVERED) || hasbit(cargo_classes, CC_LIQUID) || hasbit(cargo_classes, CC_REFRIGERATED) || hasbit(cargo_classes, CC_ARMOURED) ) ) )/10, v_maxloadmass * param_load_multiplier); \
   ID_LVST : 0; \
@@ -89,7 +89,7 @@ switch(FEAT_ROADVEHS, SELF, maxload_##GPT_Name##_switch, cargo_type_in_veh) {  \
 	VEHI: return v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * (cargo_subtype == ID_FLAT)/10 + (cargo_subtype == ID_BOX);  \
 	FMSP: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight * ((cargo_subtype == ID_FLAT) || (cargo_subtype == ID_BOX)))/10, v_maxloadmass * param_load_multiplier);  \
 	MNSP: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight* (cargo_subtype == ID_BOX) + 80/16 * (cargo_subtype == ID_FLAT))/10, v_maxloadmass * param_load_multiplier);  \
-	LVST: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight * (cargo_subtype == ID_LVST) + 60/cargo_unit_weight * (cargo_subtype == ID_BOX))/10, v_maxloadmass * param_load_multiplier*3);  \
+	LVST: return min(v_maxloadmass*param_load_multiplier*(80/cargo_unit_weight * (cargo_subtype == ID_LVST) + 50/cargo_unit_weight * (cargo_subtype == ID_BOX))/10, v_maxloadmass * param_load_multiplier*3);  \
 	GOLD: return v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * ((cargo_subtype == ID_ARMO) || (cargo_subtype == ID_BOX))/10;  \
 	VALU: return min(v_maxloadmass*param_load_multiplier*80/cargo_unit_weight * ((cargo_subtype == ID_ARMO) || (cargo_subtype == ID_BOX))/10, v_maxloadmass * param_load_multiplier*2);  \
 	OIL_: return min(v_maxloadmass*param_load_multiplier*(80/32 * (cargo_subtype == ID_BOX) + 80/cargo_unit_weight * (cargo_subtype == ID_OIL))/10, v_maxloadmass * param_load_multiplier);  \

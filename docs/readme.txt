@@ -96,9 +96,10 @@ Authors: nml code: McZapkie
          makefile: planetmaker         
 
 Graphics:
+Graphics:
 	trucks, tractors: Sojita, McZapkie 
 	horse carriages: McZapkie 
 	buses: Sojita, McZapkie, Collosal 
-	roads: Andrew350
-
+	roads: Andrew350, GarryG, McZapkie
+	depots: GarryG
 

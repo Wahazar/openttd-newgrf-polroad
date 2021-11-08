@@ -1,3 +1,7 @@
+Version 5.3
+Load capacities fixed,
+Custom depots added
+
 Version 5.1
 Bugfix, 
 loggers can carry WDPR

@@ -32,8 +32,9 @@ item(FEAT_ROADVEHS, DT_Name) { \
 	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; \
 	speed:			  	v_vmax km/h; \
 	refittable_cargo_classes:      	bitmask(CC_BULK); \
-	non_refittable_cargo_classes:  	bitmask(CC_COVERED, CC_PIECE_GOODS, CC_NON_POURABLE); \
-	cargo_disallow_refit:		[WDPR, GRAI, MAIZ]; \
+	non_refittable_cargo_classes:  	bitmask(CC_COVERED, CC_PIECE_GOODS, CC_NON_POURABLE, CC_REFRIGERATED); \
+	cargo_allow_refit:		[COAL, CLAY, IORE]; \
+	cargo_disallow_refit:		[WDPR, GRAI, MAIZ, WHEA, SUGR, BEAN, URAN, CASS, SALT]; \
 	misc_flags:		   	bitmask(ROADVEH_FLAG_AUTOREFIT, ROADVEH_FLAG_2CC); \
 	refit_cost:		   	0; \
 	cargo_age_period:	 	STANDARD_COMFORT; \

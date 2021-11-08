@@ -13,26 +13,26 @@
 #define trailerD47a_pass 12
 #define trailerD47a_lvst 12
 
-spriteset(empty_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(8) }
-spriteset(empty_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(38) }
+spriteset(empty_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(8) }
+spriteset(empty_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(38) }
 
-spriteset(bulk2_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(68) }
-spriteset(bulk2_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(98) }
+spriteset(bulk2_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(68) }
+spriteset(bulk2_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(98) }
 
-spriteset(bulk_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(128) }
-spriteset(bulk_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(158) }
+spriteset(bulk_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(128) }
+spriteset(bulk_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(158) }
 
-spriteset(grai_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(188) }
-spriteset(grai_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(218) }
+spriteset(grai_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(188) }
+spriteset(grai_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(218) }
 
-spriteset(pass_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(248) }
-spriteset(pass_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(278) }
+spriteset(pass_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(248) }
+spriteset(pass_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(278) }
 
-spriteset(lvst_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(308) }
-spriteset(lvst_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(338) }
+spriteset(lvst_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(308) }
+spriteset(lvst_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(338) }
 
-spriteset(vehi_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(368) }
-spriteset(vehi_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7(398) }
+spriteset(vehi_end_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(368) }
+spriteset(vehi_spriteset_trailerD47a_graphic, "src/gfx/other/trailerD47a.png") { template_sprite7t(398) }
 
 spritegroup bulk_spritegroup_trailerD47a_graphic {
     loaded:     [empty_spriteset_trailerD47a_graphic, bulk2_spriteset_trailerD47a_graphic, bulk_spriteset_trailerD47a_graphic];

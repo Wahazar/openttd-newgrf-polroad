@@ -43,7 +43,7 @@ if (param_allow_slow_vehs) {
 	reliability_decay:	    	1; 
 	loading_speed:		  	2; 
 	cost_factor:		    	6;      
-	running_cost_factor:		min(4 * STAFF_RUNNING_COST /10, 255); 
+	running_cost_factor:		min(3 * STAFF_RUNNING_COST /10, 255); 
 	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
 	speed:			  	onehorse_droshky_speed km/h;  
 	refittable_cargo_classes:      	bitmask(CC_PASSENGERS); 

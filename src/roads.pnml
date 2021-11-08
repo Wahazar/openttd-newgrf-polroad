@@ -104,6 +104,20 @@ switch (FEAT_ROADTYPES, SELF, switch_sett_pavement_underlay_terrain_check, terra
 	switch_sett_pavement_underlay_climate_check;
 }
 
+spriteset(spriteset_ROAD_depot_normal, "src/gfx/roads/ROAD_depot_normal.png") { 
+tmpl_depot() 
+}
+
+spriteset(spriteset_ROAD_depot_snow, "src/gfx/roads/ROAD_depot_snow.png") { 
+tmpl_depot() 
+}
+
+switch (FEAT_ROADTYPES, SELF, switch_ROAD_depot_climate, terrain_type) {
+	TILETYPE_SNOW: spriteset_ROAD_depot_snow;
+	spriteset_ROAD_depot_normal;
+}
+
+
 if (param_allow_roads)  {
 item(FEAT_ROADTYPES, item_sett_pavement, 00) {
 	property {
@@ -136,6 +150,7 @@ item(FEAT_ROADTYPES, item_sett_pavement, 00) {
 		bridge_surfaces:             switch_sett_pavement_bridge_surface_terrain_check;
 //		tunnels:                     spriteset_sett_pavement_tunnels;
 //		tunnel_overlay:              spriteset_sett_pavement_tunnel_overlay;
+		depots:			     switch_ROAD_depot_climate;
 	}
 }
 }
@@ -192,6 +207,19 @@ switch (FEAT_ROADTYPES, SELF, switch_dirt_road_underlay_terrain_check, terrain_t
 	switch_dirt_road_town_zone;
 }
 
+spriteset(spriteset_DIRT_depot_normal, "src/gfx/roads/DIRT_depot_normal.png") { 
+tmpl_depot() 
+}
+
+spriteset(spriteset_DIRT_depot_snow, "src/gfx/roads/DIRT_depot_snow.png") { 
+tmpl_depot() 
+}
+
+switch (FEAT_ROADTYPES, SELF, switch_DIRT_depot_climate, terrain_type) {
+	TILETYPE_SNOW: spriteset_DIRT_depot_snow;
+	spriteset_DIRT_depot_normal;
+}
+
 if (param_allow_roads)  {
 item(FEAT_ROADTYPES, item_dirt_road, 01) {
 	property {
@@ -222,6 +250,7 @@ item(FEAT_ROADTYPES, item_dirt_road, 01) {
 		bridge_surfaces:             switch_dirt_road_bridge_surface_terrain_check;
 //		tunnels:                     spriteset_dirt_road_tunnels;
 //		tunnel_overlay:              spriteset_dirt_road_tunnel_overlay;
+		depots:			     switch_DIRT_depot_climate;
 	}
 }
 }
@@ -303,6 +332,7 @@ item(FEAT_ROADTYPES, item_basic_asphalt_road_new, 02) { //this is the correct ba
 		bridge_surfaces:             switch_basic_asphalt_road_bridge_surface_terrain_check;
 //		tunnels:                     spriteset_basic_asphalt_road_tunnels;
 //		tunnel_overlay:              spriteset_basic_asphalt_tunnel_overlay;
+		depots:			     switch_ROAD_depot_climate;
 	}
 }
 }
@@ -393,6 +423,7 @@ item(FEAT_ROADTYPES, item_improved_asphalt_road, 03) {
 		bridge_surfaces:             switch_improved_asphalt_bridge_overlay_euro_terrain_check;
 //		tunnels:                     spriteset_improved_asphalt_road_tunnels;
 //		tunnel_overlay:              spriteset_improved_asphalt_tunnel_overlay;
+		depots:			     switch_ROAD_depot_climate;
 	}
 }
 }
@@ -473,6 +504,7 @@ item(FEAT_ROADTYPES, item_modern_asphalt_road, 04) {
 		bridge_surfaces:             switch_modern_asphalt_bridge_overlay_euro_terrain_check;
 //		tunnels:                     spriteset_modern_asphalt_road_tunnels;
 //		tunnel_overlay:              spriteset_modern_asphalt_tunnel_overlay;
+		depots:			     switch_ROAD_depot_climate;
 	}
 }
 }
@@ -502,6 +534,19 @@ switch (FEAT_ROADTYPES, SELF, switch_highway_town_zone, town_zone) {
 	TOWNZONE_OUTER_SUBURB: spriteset_highway_road_city;
 	TOWNZONE_OUTSKIRT: spriteset_highway_road_city;
 	spriteset_highway_road_underlay;
+}
+
+spriteset(spriteset_HWAY_depot_normal, "src/gfx/roads/HWAY_depot_normal.png") { 
+tmpl_depot() 
+}
+
+spriteset(spriteset_HWAY_depot_snow, "src/gfx/roads/HWAY_depot_snow.png") { 
+tmpl_depot() 
+}
+
+switch (FEAT_ROADTYPES, SELF, switch_HWAY_depot_climate, terrain_type) {
+	TILETYPE_SNOW: spriteset_HWAY_depot_snow;
+	spriteset_HWAY_depot_normal;
 }
 
 if (param_allow_roads)  {
@@ -534,6 +579,7 @@ item(FEAT_ROADTYPES, item_highway_road, 06) {
 		bridge_surfaces:             spriteset_highway_road_bridge_overlay;
 //		tunnels:                     spriteset_highway_road_tunnels;
 //		tunnel_overlay:              spriteset_highway_tunnel_overlay;
+		depots:			     switch_HWAY_depot_climate;
 	}
 }
 }
@@ -595,6 +641,7 @@ item(FEAT_ROADTYPES, item_haul_road, 05) {
 		bridge_surfaces:             spriteset_haul_road_bridge_overlay;
 //		tunnels:                     spriteset_haul_road_tunnels;
 //		tunnel_overlay:              spriteset_haul_tunnel_overlay;
+		depots:			     switch_HWAY_depot_climate;
 	}
 }
 }
@@ -649,6 +696,18 @@ switch (FEAT_ROADTYPES, SELF, switch_pedestrian_zone_underlay_terrain_check, ter
 	switch_pedestrian_zone_town_zone;
 }
 
+spriteset(spriteset_PEDZ_depot_normal, "src/gfx/roads/PEDZ_depot_normal.png") { 
+tmpl_depot() 
+}
+
+spriteset(spriteset_PEDZ_depot_snow, "src/gfx/roads/PEDZ_depot_snow.png") { 
+tmpl_depot() 
+}
+
+switch (FEAT_ROADTYPES, SELF, switch_PEDZ_depot_climate, terrain_type) {
+	TILETYPE_SNOW: spriteset_PEDZ_depot_snow;
+	spriteset_PEDZ_depot_normal;
+}
 
 if (param_allow_roads)  {
 item(FEAT_ROADTYPES, item_pedestrian_zone, 10) {
@@ -680,6 +739,7 @@ item(FEAT_ROADTYPES, item_pedestrian_zone, 10) {
 		bridge_surfaces:             switch_pedestrian_zone_bridge_surface_terrain_check;
 //		tunnels:                     spriteset_pedestrian_zone_tunnels;
 //		tunnel_overlay:              spriteset_pedestrian_zone_tunnel_overlay;
+		depots:			     switch_PEDZ_depot_climate;
 	}
 }
 }

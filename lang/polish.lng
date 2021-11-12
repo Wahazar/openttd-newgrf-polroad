@@ -388,7 +388,9 @@ STR_ACTROSMP3_NAME      :{STRING} Mercedes Actros Mp3
 STR_NORMAL_POWER        : (standardowa moc)
 STR_MORE_POWER          : (zwiększona moc)
 STR_4HORSE_HEAVY_LOGGER_NAME    :zaprzęg do zrywki drzewa
-STR_4HORSE_HEAVY_LOGGER_DESC    :{RED}{LORRY}{LORRY}{BLACK}fura kłonicowa do drewna, możliwość zmiany: 2 lub 4 perszerony
+STR_4HORSE_HEAVY_LOGGER_DESC    :{LORRY}{LORRY}fura kłonicowa do drewna, możliwość zmiany: 2 lub 4 perszerony
+STR_4HORSE_HEAVY_LORRY_NAME    :fura z czterokonnym zaprzęgiem
+STR_4HORSE_HEAVY_LORRY_DESC    :{LORRY}{LORRY}cięzki wóz konny do materiałów sypkich i płodów rolnych
 STR_PRAGAV3S_NAME       :Praga V3S do dłużycy
 STR_PRAGAV3S_DESC       :silnik wysokoprężny Tatra 912, możliwość przebudowy do E359T
 STR_STAR266_NAME        :Star 266 do dłużycy

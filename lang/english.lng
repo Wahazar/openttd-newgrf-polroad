@@ -393,7 +393,9 @@ STR_ACTROSMP3_NAME  	:Mercedes Actros Mp3 {STRING}
 STR_NORMAL_POWER	: (Standard horsepower)
 STR_MORE_POWER		: (Increased horsepower)
 STR_4HORSE_HEAVY_LOGGER_NAME	:heavy horse logger
-STR_4HORSE_HEAVY_LOGGER_DESC	:{RED}{LORRY}{LORRY}{BLACK} wood lorry, refitable: 2 or 4 persherons
+STR_4HORSE_HEAVY_LOGGER_DESC	:{LORRY}{LORRY} wood lorry, refitable: 2 or 4 draft horses
+STR_4HORSE_HEAVY_LORRY_NAME	:heavy lorry, 4 draft horses
+STR_4HORSE_HEAVY_LORRY_DESC	:{LORRY}{LORRY} heavy lorry for bulk or agricultural cargo 
 STR_PRAGAV3S_NAME	:Praga V3S log trailer truck
 STR_PRAGAV3S_DESC	:Tatra 912 diesel engine, reffitable to E359T
 STR_STAR266_NAME	:Star 266 log trailer truck

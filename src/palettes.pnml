@@ -249,6 +249,7 @@ switch(FEAT_ROADVEHS, SELF, switch_bulk_recolour, cargo_type_in_veh) {
     GRAI: return palette_cargo_cc + 1*NUM_CC_COLOURS + company_colour1;
     WHEA: return palette_cargo_cc + 1*NUM_CC_COLOURS + company_colour1; // same as GRAI
     MAIZ: return palette_cargo_cc + 1*NUM_CC_COLOURS + company_colour1; // same as GRAI
+    CERE: return palette_cargo_cc + 1*NUM_CC_COLOURS + company_colour1; // same as GRAI
     IORE: return palette_cargo_cc + 2*NUM_CC_COLOURS + company_colour1;
     CORE: return palette_cargo_cc + 3*NUM_CC_COLOURS + company_colour1;
     AORE: return palette_cargo_cc + 4*NUM_CC_COLOURS + company_colour1;
@@ -277,6 +278,7 @@ switch(FEAT_ROADVEHS, SELF, switch_bulk_recolour, cargo_type_in_veh) {
     FMSP: return palette_cargo_cc + 1*NUM_CC_COLOURS + company_colour1; //same as GRAI, use for boxes,containers
     MNSP: return palette_cargo_cc + 5*NUM_CC_COLOURS + company_colour1; //same as CLAY, use for boxes,containers
     WOOD: return palette_cargo_cc + 11*NUM_CC_COLOURS + company_colour1; //same as SGBT
+    FRUT: return palette_cargo_cc + 17*NUM_CC_COLOURS + company_colour1; //same as NITR
  return palette_cargo_cc + 13*NUM_CC_COLOURS + company_colour1;
 }
 

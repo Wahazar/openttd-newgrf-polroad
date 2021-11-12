@@ -48,7 +48,13 @@
 
 #include "src/defDT.pnml"
 				
-#include "src/gfx/other/2horse_heavy_cartload.pnml"    
+//farm trailers
+#include "src/gfx/other/trailer11.pnml"
+#include "src/gfx/other/trailerD47a.pnml"
+#include "src/gfx/other/trailerT672.pnml"
+
+#include "src/gfx/other/2horse_heavy_cartload.pnml"  
+#include "src/gfx/other/4horse_heavy_bulkload.pnml"    
 // semitrailer (normal) trucks
 #include "src/defSTTN.pnml"
 // semitrailer (modern) trucks
@@ -72,17 +78,17 @@
 
 //farm tractors
 
-#include "src/gfx/other/trailer11.pnml"
+
 #include "src/gfx/other/HCP-locomobile1.pnml"
 #include "src/gfx/other/HCP-locomobile.pnml"
 #include "src/gfx/other/ursus-c45.pnml"
-#include "src/gfx/other/trailerD47a.pnml"
+
 #include "src/gfx/other/trailers11h.pnml"
 #include "src/gfx/other/HanomagSS100.pnml"
 #include "src/gfx/other/ursus-c328.pnml"
 #include "src/gfx/other/ursus-c330.pnml"
 #include "src/gfx/other/ursus-c360.pnml"
-#include "src/gfx/other/trailerT672.pnml"
+
 #include "src/gfx/other/ursus-c1734.pnml"
 
 #include "src/gfx/other/horserider.pnml"

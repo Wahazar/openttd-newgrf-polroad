@@ -1,0 +1,86 @@
+// part of Polish Road Set
+// Graphic by McZapkie
+// NML code by McZapkie
+
+// four horse heavy lorry:
+
+
+/* */
+#define horse_heavy_lorry_maxloadmass 15
+#define horse_heavy_lorry_mass 4
+#define horse_heavy_lorry_speed 10
+
+
+spriteset(spriteset_horse_heavy_lorry_purchase, "src/gfx/other/heavy_bulkload.png") { template_sprite_window_sideview13(135) }
+
+switch (FEAT_ROADVEHS, SELF, consist_horse_heavy_bulkload_graphic_switch, position_in_consist) { 
+    0 : return switch_randomize1_first_horsepair_graphics; 
+    1 : return velocity_secondpair_horsewalk_graphic_switch; 
+    2 : return check_end_trailerD47a_graphic_switch; 
+return CB_FAILED;
+}
+ 
+switch (FEAT_ROADVEHS, SELF, switch_heavy_bulkload_articulated, extra_callback_info1) { 
+    1..2 : return horse_heavy_bulkload; 
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; 
+} 
+
+switch(FEAT_ROADVEHS, SELF, check_horse_heavy_bulkload_length_switch, position_in_consist) {  
+	0 : return 4; 
+	1 : return 4;
+	2 : return 5;  
+	return CB_FAILED;
+}  
+
+
+if (param_allow_slow_vehs) {
+ item(FEAT_ROADVEHS, horse_heavy_bulkload) { 
+	property { 
+	name:			   	string(STR_4HORSE_HEAVY_LORRY_NAME); 
+	climates_available:	 	POLROAD_CLIMATES; 
+	introduction_date:		date(1914, 1, 1);	    
+	model_life:      (param_keep_old_vehs == 1) ? VEHICLE_NEVER_EXPIRES : ((param_keep_old_vehs == 2) ? 60+10 : 60+5); 
+	vehicle_life:		   	20; 
+	retire_early:			5; 
+	reliability_decay:	    	4; 
+	loading_speed:		  	4; 
+	cost_factor:		    	12;      
+	running_cost_factor:	min(6 * STAFF_RUNNING_COST /10, 255); 
+	sprite_id:		      	SPRITE_ID_NEW_ROADVEH; 
+	speed:			  	horse_heavy_lorry_speed km/h;  
+	cargo_allow_refit:		[COAL, GRAI, CERE, MAIZ, WHEA, SGBT, SGCN, FRUT, LVST, CLAY, OLSD, FERT]; 
+	refittable_cargo_classes:   	bitmask(CC_BULK);
+	non_refittable_cargo_classes:   bitmask(CC_ARMOURED, CC_MAIL, CC_COVERED, CC_POWDERIZED, CC_PASSENGERS); 
+	misc_flags:		   	bitmask(ROADVEH_FLAG_2CC, ROADVEH_FLAG_NO_BREAKDOWN_SMOKE, ROADVEH_FLAG_AUTOREFIT); 
+	refit_cost:		   	0; 
+	cargo_age_period:	 	STANDARD_COMFORT; 
+	power:			  	40 hp; 
+	running_cost_base:	   	RUNNING_COST_ROADVEH; 
+	cargo_capacity:		 	horse_heavy_lorry_maxloadmass /3; 
+	weight:			 	horse_heavy_lorry_mass; 
+	tractive_effort_coefficient:    1; 
+	air_drag_coefficient:	   	1.0; 
+	visual_effect:      	  	visual_effect(VISUAL_EFFECT_DISABLE, 0); 
+	length:      	    		4; 
+//	road_type:			OFFR;
+	sound_effect: SOUND_VEHICLE_BREAKDOWN;
+    } 
+    graphics { 
+	default:	    		consist_horse_heavy_bulkload_graphic_switch;  
+	purchase:	   		spriteset_horse_heavy_lorry_purchase;  
+	articulated_part:		switch_heavy_bulkload_articulated; 
+	length:				check_horse_heavy_bulkload_length_switch;
+	additional_text:        	string(STR_4HORSE_HEAVY_LORRY_DESC);
+	colour_mapping:         	switch_bulk_recolour;
+//	sound_effect: return switch_horsewhin_sound;      
+    } 
+ } 
+}
+
+if ((param_allow_slow_vehs) && OFFR_EXISTS)  {
+ item(FEAT_ROADVEHS, horse_heavy_bulkload) { 
+	property { 
+	road_type:			OFFR;
+    } 
+ }
+}

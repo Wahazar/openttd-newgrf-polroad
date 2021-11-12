@@ -1,3 +1,8 @@
+Version 5.4
+Heavy 4-horse lorry added
+Depots fixed
+Bulk palette fixed
+
 Version 5.3
 Load capacities fixed,
 Custom depots added

@@ -163,11 +163,11 @@ STR_MVMB_DESC           :{RED}{BUS}{BLACK} Furgon/minibus, ładowność do {GOLD
 
 STR_LCV_DESC            :{RED}{LORRY}{BLACK} Dostawczak{}do {GOLD}{UNSIGNED_WORD}{BLACK} ton ładowności ({GOLD}{UNSIGNED_WORD}{BLACK} worków poczty).{}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{} {STRING}, {UNSIGNED_WORD} ccm
 
-STR_GPT_DESC            :{LORRY} ciężarówka średniej ładowności,{}{STRING}{}{STRING},{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu od typu nadwozia) do GOLD}{UNSIGNED_WORD}{BLACK} ton
+STR_GPT_DESC            :{LORRY} ciężarówka średniej ładowności,{}{STRING}{}{STRING},{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu nadwozia) do {GOLD}{UNSIGNED_WORD}{BLACK} ton
 
 # semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
 
-STR_STTN_DESC           :{LORRY}{LORRY}  Ciągnik siodłowy do zwykłych naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{} {GOLD}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} t load{}({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty, ograniczona pojemność dla towarów sypkich)
+STR_STTN_DESC           :{LORRY}{LORRY}  Ciągnik siodłowy do zwykłych naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{} {GOLD}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} t{}({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty, ograniczona pojemność dla towarów sypkich)
 
 STR_STTM_DESC           :{LORRY}{LORRY} Ciągnik siodłowy do zwykłych długich naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} ton
 

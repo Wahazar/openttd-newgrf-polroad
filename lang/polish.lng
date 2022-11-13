@@ -120,7 +120,7 @@ STR_JELCZ181M_DESC                      :częściowo obniżona podłoga,{}silnik
 STR_URBINO18_NAME                       :Solaris Urbino 18 {STRING}
 STR_URBINO18_DESC                       :niskopodłogowy, klimatyzowany{}Silnik wysokoprężny DAF PR228
 STR_URBINO18H_NAME                      :Solaris Urbino 18 MetroStyle {STRING}
-STR_URBINO18H_DESC                      :low floor, AC{}hybrydowy Allison II
+STR_URBINO18H_DESC                      :niskopodłogowy, klimatyzowany{}hybrydowy Allison II
 
 STR_URSUSAW_NAME                        :Ursus AW {STRING}
 STR_URSUSAW_DESC                        :silnik spalinowy S.P.A.

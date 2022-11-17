@@ -2,7 +2,7 @@
 ##plural 7
 ##gender n m f
 ##case c b d m n w
-# This is the English language file
+# This is the Polish language file
 
 # GRF name and description
 STR_GRF_NAME        :Polroad - nowy 'Polish Road Set' nr {UNSIGNED_WORD}
@@ -14,8 +14,8 @@ STR_PARAM_NAME_RUNNING_COST             :Modyfikator kosztów utrzymania
 STR_PARAM_DESC_RUNNING_COST             :Ta opcja pozwala na modyfikację kosztów utrzymania pojazdów z tego setu
 STR_PARAM_COST_H                        :2x mniejsze
 STR_PARAM_COST_N                        :Normalne
-STR_PARAM_COST_D                        :2 x większe
-STR_PARAM_COST_Q                        :4 x większe
+STR_PARAM_COST_D                        :2x większe
+STR_PARAM_COST_Q                        :4x większe
 STR_PARAM_NAME_MAX_LOAD                 :Mnożnik maksymalnej ładowności ciężarówek
 STR_PARAM_DESC_MAX_LOAD                 :Mnożnik maksymalnej pojemności (ładowności), standardowo 2x większa niż w rzeczywistości, ustawienie 3x większej może powodować problemy przy podjeździe pod górę, przy rzeczywistej ładowności zaleca się zmniejszyć koszty utrzymania.
 STR_PARAM_LOAD_1                        : Realistyczne
@@ -167,7 +167,7 @@ STR_GPT_DESC            :{LORRY} ciężarówka średniej ładowności,{}{STRING}
 
 # semi-trailer tractor (normal): description with trailer mass, load mass, engine description and its displacement data
 
-STR_STTN_DESC           :{LORRY}{LORRY}  Ciągnik siodłowy do zwykłych naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{} {GOLD}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} t{}({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty, ograniczona pojemność dla towarów sypkich)
+STR_STTN_DESC           :{LORRY}{LORRY}  Ciągnik siodłowy do zwykłych naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{} {GOLD}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} ton{}({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty, ograniczona pojemność dla towarów sypkich)
 
 STR_STTM_DESC           :{LORRY}{LORRY} Ciągnik siodłowy do zwykłych długich naczep,{}{STRING}, {UNSIGNED_WORD} ccm{}{STRING}{}{GOLD}Bezpłatna przebudowa, również na stacji{BLACK}{}ładowność(zależna od typu naczepy) do {GOLD}{UNSIGNED_WORD}{BLACK} ton
 
@@ -221,14 +221,14 @@ STR_1HORSE_DROSHKY_NAME :dorożka
 STR_1HORSE_DROSHKY_DESC :{BUS} krótka dorożka
 
 STR_2HORSE_OMNIBUS_NAME         :miejski omnibus dwukonny
-STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} krótkodystansowy omnibus konny  {RED}(długi){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących i  {GOLD}{UNSIGNED_WORD}{BLACK} stojących.{}{BLACK}Komfort {GOLD}{UNSIGNED_WORD}{BLACK}, szybkość za/wyładunku GOLD}{UNSIGNED_WORD}{BLACK}
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} krótkodystansowy omnibus konny {RED}(długi){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących i  {GOLD}{UNSIGNED_WORD}{BLACK} stojących.{}{BLACK}Komfort {GOLD}{UNSIGNED_WORD}{BLACK}, szybkość za/wyładunku {GOLD}{UNSIGNED_WORD}{BLACK}
 
 STR_1HORSE_CART_NAME            :furmanka jednokonna
 STR_1HORSE_CART_DESC            :{LORRY} krótka furmanka,{}zabiera  {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub do  {GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku
 STR_1HORSE_CART_TYRES_NAME              :furmanka jednokonna (na pneumatykach)
 
 STR_2HORSE_HEAVY_CART_NAME              :wóz z dwukonnym zaprzęgiem
-STR_2HORSE_HEAVY_CART_DESC              :{LORRY}{LORRY} uniwersalny ciężki wóz konny, długi{}zabiera {UNSIGNED_WORD} pasażerów{}lub do {UNSIGNED_WORD}ton ładunku
+STR_2HORSE_HEAVY_CART_DESC              :{LORRY}{LORRY} uniwersalny ciężki wóz konny, długi{}zabiera  {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub do  {GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku
 
 STR_FORDTT_NAME         :Ford TT - lekka półciężarówka/bus
 STR_FORDTT_DESC         :{RED}{BUS}{BLACK} mały uniwersalny dostawczak, przebudowywalny do{}małego busa ({UNSIGNED_WORD} pasażerów, niski komfort) lub do półciężarówki {GOLD}{UNSIGNED_WORD}{BLACK} ton ładowności ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{}silnik benzynowy 177 CID, 2900ccm
@@ -284,6 +284,9 @@ STR_LUBLIN51_DESC       :{LORRY} ciężarówka towos, ładowność {GOLD}{UNSIGN
 
 STR_UAZ_NAME            :UAZ 469
 STR_UAZ_DESC            :{LORRY} mały uniwersalny "łazik",{}{GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} poczty){}silnik benzynowy  UMZ 451 MI, 2450ccm
+
+STR_HONKER_NAME      	:Honker
+STR_HONKER_DESC      	:{LORRY} mały uniwersalny "łazik",{}{GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} poczty){}silnik wysokoprężny Andoria 4C90, 2636ccm
 
 STR_VWT_NAME    :Volkswagen Transporter
 STR_VWT_DESC    :{LORRY} Uniwersalny dostawczak{}{GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik wysokoprężny AAB, 2370ccm
@@ -459,4 +462,3 @@ STR_HIGHWAY_ROAD_MENU                :Budowa autostrady
 STR_HAUL_ROAD_NAME                :Autostrada z płyt betonowych (dla szybkich pojazdów)
 STR_HAUL_ROAD_TOOLBAR             :Budowa autostrady betonowej
 STR_HAUL_ROAD_MENU                :Budowa autostrady betonowej
-

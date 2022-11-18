@@ -6,7 +6,7 @@
 
 # GRF name and description
 STR_GRF_NAME        :Polroad - nowy 'Polish Road Set' nr {UNSIGNED_WORD}
-STR_GRF_DESCRIPTION :Polroad - (nowy 'Polish Road Set') to popularne pojazdy (konne, traktory, ciężarówki przewożące wszelkie towary, autobusy, minibusy i inne) produkowane w Polsce lub jeżdżące po Polsce.{}Wersja {VERSION}{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licencja: GPL v2
+STR_GRF_DESCRIPTION :Polroad - (nowy 'Polish Road Set') to popularne pojazdy (konne, traktory, ciężarówki przewożące wszelkie towary, autobusy, minibusy i inne) produkowane w Polsce lub jeżdżące po Polsce.{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licencja: GPL v2
 
 STR_PARAM_NAME_PURCHASE_COST            :Modyfikator kosztów zakupu
 STR_PARAM_DESC_PURCHASE_COST            :Ta opcja pozwala na modyfikację kosztów zakupu pojazdów z tego setu
@@ -61,12 +61,12 @@ STR_LOADSPEED_HI                                :{GREEN}SZYBKA{BLACK}
 STR_VARIABLE_COSTS              :{GOLD}Zmienne koszty{BLACK} utrzymania zależne od chwilowej prędkości i wieku pojazdu.
 STR_VARIABLE_BUS_COSTS          :{BLACK}{STRING} {UNSIGNED_WORD} ccm{}{GOLD}Zmienne koszty{BLACK} utrzymania zależne od chwilowej prędkości i wieku pojazdu{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących{}
 
-STR_CITY_BUS                    :{BUS} krótkodystansowy autobus miejski,{}{STRING}{}Komfort {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku {GOLD}{COMMA}{BLACK}
+STR_CITY_BUS                    :{BUS} krótkodystansowy autobus miejski,{}{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku: {GOLD}{COMMA}{BLACK}
 STR_CITYBUS_SUFFIX              :- autobus miejski
 
-STR_ART_CITY_BUS                        :{BUS}{BUS}{BLACK} miejski autobus {RED}przegubowy{BLACK}{}{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku  {GOLD}{COMMA}{BLACK}
+STR_ART_CITY_BUS                        :{BUS}{BUS}{BLACK} miejski autobus {RED}przegubowy{BLACK}{}{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku: {GOLD}{COMMA}{BLACK}
 
-STR_LOCAL_BUS                   :{BUS} autobus dla linii lokalnych/podmiejskich,{}{STRING}{}Komfort{GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku {GOLD}{COMMA}{BLACK}
+STR_LOCAL_BUS                   :{BUS} autobus dla linii lokalnych/podmiejskich,{}{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku: {GOLD}{COMMA}{BLACK}
 
 
 STR_LOCALBUS_SUFFIX             : - autobus podmiejski
@@ -221,7 +221,7 @@ STR_1HORSE_DROSHKY_NAME :dorożka
 STR_1HORSE_DROSHKY_DESC :{BUS} krótka dorożka
 
 STR_2HORSE_OMNIBUS_NAME         :miejski omnibus dwukonny
-STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} krótkodystansowy omnibus konny {RED}(długi){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących i  {GOLD}{UNSIGNED_WORD}{BLACK} stojących.{}{BLACK}Komfort {GOLD}{UNSIGNED_WORD}{BLACK}, szybkość za/wyładunku {GOLD}{UNSIGNED_WORD}{BLACK}
+STR_2HORSE_OMNIBUS_DESC         :{BUS}{BUS} krótkodystansowy omnibus konny {RED}(długi){BLACK}{}{GOLD}{UNSIGNED_WORD}{BLACK} miejsc siedzących i  {GOLD}{UNSIGNED_WORD}{BLACK} stojących.{}{BLACK}Komfort:  {GOLD}{UNSIGNED_WORD}{BLACK}, szybkość za/wyładunku: {GOLD}{UNSIGNED_WORD}{BLACK}
 
 STR_1HORSE_CART_NAME            :furmanka jednokonna
 STR_1HORSE_CART_DESC            :{LORRY} krótka furmanka,{}zabiera  {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub do  {GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku
@@ -272,7 +272,7 @@ STR_FIATPANDA_NAME              :Fiat Panda
 STR_FIATPANDA_DESC              :Małe auto ({STRING}),{}silnik benzynowy FIRE I4, {UNSIGNED_WORD}ccm
 
 STR_GMC_NAME            :GMC CCKW ciężarówka z demobilu/UNRRA
-STR_GMC_DESC            :{LORRY} uniwersalna ciężarówka wojskowa, {UNSIGNED_WORD} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort){}lub do{GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik wysokoprężny GMC, 4420ccm
+STR_GMC_DESC            :{LORRY} uniwersalna ciężarówka wojskowa, {UNSIGNED_WORD} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort){}lub do {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik wysokoprężny GMC, 4420ccm
 
 STR_HANOMAGSS100_NAME   :Hanomag SS100 - ciężki ciągnik szosowy
 STR_HANOMAGSS100_DESC   :{RED}{LORRY}{LORRY}{BLACK}Ciągnik szosowy,silnik wysokoprężny D85S, 8550 ccm{}Przebudowa{RED}tylko w warsztatach, płatna{BLACK}{}ładowność do {GOLD}{UNSIGNED_WORD}{BLACK}t lub {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort)
@@ -280,7 +280,7 @@ STR_HANOMAGSS100_PASS   : w doczepie pasażerskiej
 
 STR_LUBLIN51_NAME       :Lublin 51 towos
 
-STR_LUBLIN51_DESC       :{LORRY} ciężarówka towos, ładowność {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort){}lub do {GOLD}{UNSIGNED_WORD}{BLACK} ton ładunku ( {GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik benzynowy M-51, poj.3480ccm
+STR_LUBLIN51_DESC       :{LORRY} ciężarówka towos, ładowność {GOLD}{UNSIGNED_WORD}{BLACK} pasażerów ({UNSIGNED_WORD} miejsc siedzących, niski komfort){}lub do {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ( {GOLD}{UNSIGNED_WORD}{BLACK} paczek poczty){}silnik benzynowy M-51, poj.3480ccm
 
 STR_UAZ_NAME            :UAZ 469
 STR_UAZ_DESC            :{LORRY} mały uniwersalny "łazik",{}{GOLD}{UNSIGNED_WORD}{BLACK} pasażerów{}lub {GOLD}{UNSIGNED_WORD}{BLACK}t ładunku ({GOLD}{UNSIGNED_WORD}{BLACK} poczty){}silnik benzynowy  UMZ 451 MI, 2450ccm
@@ -462,3 +462,4 @@ STR_HIGHWAY_ROAD_MENU                :Budowa autostrady
 STR_HAUL_ROAD_NAME                :Autostrada z płyt betonowych (dla szybkich pojazdów)
 STR_HAUL_ROAD_TOOLBAR             :Budowa autostrady betonowej
 STR_HAUL_ROAD_MENU                :Budowa autostrady betonowej
+

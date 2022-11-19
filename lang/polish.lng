@@ -4,9 +4,51 @@
 ##case c b d m n w
 # This is the Polish language file
 
-# GRF name and description
-STR_GRF_NAME        :Polroad - nowy 'Polish Road Set' nr {UNSIGNED_WORD}
-STR_GRF_DESCRIPTION :Polroad - (nowy 'Polish Road Set') to popularne pojazdy (konne, traktory, ciężarówki przewożące wszelkie towary, autobusy, minibusy i inne) produkowane w Polsce lub jeżdżące po Polsce.{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licencja: GPL v2
+#	NBSP	non-breaking space		
+#	COPYRIGHT	copyright symbol	©
+#	TRAIN	display train symbol	
+#	LORRY	display lorry symbol	
+#	BUS	display bus symbol	
+#	PLANE	display plane symbol	
+#	SHIP	display ship symbol	
+#	TINYFONT	switch to small font	
+#	BIGFONT	switch to big font	
+#	BLUE	switch to blue text	 
+#	SILVER	switch to silver text 
+#	GOLD	switch to golden text	
+#	RED		switch to red text	 
+#	PURPLE	switch to purple text 
+#	LTBROWN	switch to light brown text	
+#	ORANGE	switch to orange text	 
+#	GREEN	switch to green text	 
+#	YELLOW	switch to yellow text	 
+#	DKGREEN	switch to dark green text	 
+#	CREAM	switch to cream-coloured text	 
+#	BROWN	switch to brown text	 
+#	WHITE	switch to white text 
+#	LTBLUE	switch to light blue text	 
+#	GRAY	switch to gray text	 
+#	DKBLUE	switch to dark blue text	 
+#	BLACK	switch to normal black text
+
+# Name Colors
+# Spring	= Green
+# Summer	= Orange
+# Fall		= Brown
+# Winter	= Silver
+
+# Version Number Colors
+# Sunday 	= BROWN
+# Monday 	= LTBLUE
+# Tusday 	= GREEN
+# Wednesday = GRAY
+# Thusday	= RED
+# Friday	= WHITE
+# Saturday	= YELLOW
+
+# GRF name and description. rev code is year/month/day/hour
+STR_GRF_NAME        :{SILVER}Polroad{ORANGE} - nowy 'Polish Road Set' nr {UNSIGNED_WORD}{YELLOW}rev.2211191800{ORANGE}
+STR_GRF_DESCRIPTION :{ORANGE}Polroad{BLACK} - to popularne pojazdy (konne, traktory, ciężarówki przewożące wszelkie towary, autobusy, minibusy i inne) produkowane w Polsce lub jeżdżące po Polsce.{}{COPYRIGHT}2014 Sojita, McZapkie, Collossus{}Licencja: {GOLD}GPL v2{BLACK}
 
 STR_PARAM_NAME_PURCHASE_COST            :Modyfikator kosztów zakupu
 STR_PARAM_DESC_PURCHASE_COST            :Ta opcja pozwala na modyfikację kosztów zakupu pojazdów z tego setu
@@ -71,7 +113,7 @@ STR_LOCAL_BUS                   :{BUS} autobus dla linii lokalnych/podmiejskich,
 
 STR_LOCALBUS_SUFFIX             : - autobus podmiejski
 
-STR_IC_BUS                      :{BUS} autobus dla połączeń międzymiastowych{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku: {GOLD}{COMMA}{BLACK}
+STR_IC_BUS                      :{BUS} autobus dla połączeń międzymiastowych{}{STRING}{}Komfort: {GOLD}{COMMA}{BLACK}{}szybkość za/wyładunku: {GOLD}{COMMA}{BLACK}
 
 STR_ICBUS_SUFFIX                :-autobus dalekobieżny/turystyczny
 
